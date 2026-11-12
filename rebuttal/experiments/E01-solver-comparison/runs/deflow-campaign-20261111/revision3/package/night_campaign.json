@@ -1,0 +1,383 @@
+{
+  "status": "proposed_night_extension_not_launched",
+  "server": null,
+  "task": "wide_tight",
+  "solver": "multiple",
+  "seeds": [
+    1,
+    2,
+    3
+  ],
+  "horizon": 200000,
+  "retry_policy": "stop and preserve scientific failure, no automatic retry",
+  "resume": "unsupported by native docking engine",
+  "preflight": [
+    "16 CPU tests with DEFLOW_ENGINE set",
+    "CUDA smoke",
+    "short synchronized pilot and disk estimate"
+  ],
+  "jobs": [
+    {
+      "id": "newton_s1",
+      "group": "newton",
+      "seed": 1,
+      "gpu_slot": 0,
+      "priority": 1,
+      "argv": [
+        "python",
+        "-m",
+        "deflow_rebuttal.run_docking",
+        "--repo",
+        "{REPO}",
+        "--output",
+        "{OUTPUT}/newton_s1",
+        "--solver",
+        "newton",
+        "--seed",
+        "1",
+        "--steps",
+        "200000",
+        "--execute"
+      ]
+    },
+    {
+      "id": "newton_s2",
+      "group": "newton",
+      "seed": 2,
+      "gpu_slot": 1,
+      "priority": 1,
+      "argv": [
+        "python",
+        "-m",
+        "deflow_rebuttal.run_docking",
+        "--repo",
+        "{REPO}",
+        "--output",
+        "{OUTPUT}/newton_s2",
+        "--solver",
+        "newton",
+        "--seed",
+        "2",
+        "--steps",
+        "200000",
+        "--execute"
+      ]
+    },
+    {
+      "id": "newton_s3",
+      "group": "newton",
+      "seed": 3,
+      "gpu_slot": 2,
+      "priority": 1,
+      "argv": [
+        "python",
+        "-m",
+        "deflow_rebuttal.run_docking",
+        "--repo",
+        "{REPO}",
+        "--output",
+        "{OUTPUT}/newton_s3",
+        "--solver",
+        "newton",
+        "--seed",
+        "3",
+        "--steps",
+        "200000",
+        "--execute"
+      ]
+    },
+    {
+      "id": "anderson_s1",
+      "group": "anderson",
+      "seed": 1,
+      "gpu_slot": 0,
+      "priority": 1,
+      "argv": [
+        "python",
+        "-m",
+        "deflow_rebuttal.run_docking",
+        "--repo",
+        "{REPO}",
+        "--output",
+        "{OUTPUT}/anderson_s1",
+        "--solver",
+        "anderson",
+        "--seed",
+        "1",
+        "--steps",
+        "200000",
+        "--execute"
+      ]
+    },
+    {
+      "id": "anderson_s2",
+      "group": "anderson",
+      "seed": 2,
+      "gpu_slot": 1,
+      "priority": 1,
+      "argv": [
+        "python",
+        "-m",
+        "deflow_rebuttal.run_docking",
+        "--repo",
+        "{REPO}",
+        "--output",
+        "{OUTPUT}/anderson_s2",
+        "--solver",
+        "anderson",
+        "--seed",
+        "2",
+        "--steps",
+        "200000",
+        "--execute"
+      ]
+    },
+    {
+      "id": "anderson_s3",
+      "group": "anderson",
+      "seed": 3,
+      "gpu_slot": 2,
+      "priority": 1,
+      "argv": [
+        "python",
+        "-m",
+        "deflow_rebuttal.run_docking",
+        "--repo",
+        "{REPO}",
+        "--output",
+        "{OUTPUT}/anderson_s3",
+        "--solver",
+        "anderson",
+        "--seed",
+        "3",
+        "--steps",
+        "200000",
+        "--execute"
+      ]
+    },
+    {
+      "id": "anderson_tighter_s1",
+      "group": "anderson_tighter",
+      "seed": 1,
+      "gpu_slot": 0,
+      "priority": 3,
+      "argv": [
+        "python",
+        "-m",
+        "deflow_rebuttal.run_docking",
+        "--repo",
+        "{REPO}",
+        "--output",
+        "{OUTPUT}/anderson_tighter_s1",
+        "--solver",
+        "anderson",
+        "--seed",
+        "1",
+        "--steps",
+        "200000",
+        "--anderson-tol",
+        "1e-6",
+        "--anderson-cap",
+        "100",
+        "--execute"
+      ]
+    },
+    {
+      "id": "anderson_tighter_s2",
+      "group": "anderson_tighter",
+      "seed": 2,
+      "gpu_slot": 1,
+      "priority": 3,
+      "argv": [
+        "python",
+        "-m",
+        "deflow_rebuttal.run_docking",
+        "--repo",
+        "{REPO}",
+        "--output",
+        "{OUTPUT}/anderson_tighter_s2",
+        "--solver",
+        "anderson",
+        "--seed",
+        "2",
+        "--steps",
+        "200000",
+        "--anderson-tol",
+        "1e-6",
+        "--anderson-cap",
+        "100",
+        "--execute"
+      ]
+    },
+    {
+      "id": "anderson_tighter_s3",
+      "group": "anderson_tighter",
+      "seed": 3,
+      "gpu_slot": 2,
+      "priority": 3,
+      "argv": [
+        "python",
+        "-m",
+        "deflow_rebuttal.run_docking",
+        "--repo",
+        "{REPO}",
+        "--output",
+        "{OUTPUT}/anderson_tighter_s3",
+        "--solver",
+        "anderson",
+        "--seed",
+        "3",
+        "--steps",
+        "200000",
+        "--anderson-tol",
+        "1e-6",
+        "--anderson-cap",
+        "100",
+        "--execute"
+      ]
+    },
+    {
+      "id": "anderson_highcap_s1",
+      "group": "anderson_highcap",
+      "seed": 1,
+      "gpu_slot": 0,
+      "priority": 2,
+      "argv": [
+        "python",
+        "-m",
+        "deflow_rebuttal.run_docking",
+        "--repo",
+        "{REPO}",
+        "--output",
+        "{OUTPUT}/anderson_highcap_s1",
+        "--solver",
+        "anderson",
+        "--seed",
+        "1",
+        "--steps",
+        "200000",
+        "--anderson-tol",
+        "1e-5",
+        "--anderson-cap",
+        "500",
+        "--execute"
+      ]
+    },
+    {
+      "id": "anderson_highcap_s2",
+      "group": "anderson_highcap",
+      "seed": 2,
+      "gpu_slot": 1,
+      "priority": 2,
+      "argv": [
+        "python",
+        "-m",
+        "deflow_rebuttal.run_docking",
+        "--repo",
+        "{REPO}",
+        "--output",
+        "{OUTPUT}/anderson_highcap_s2",
+        "--solver",
+        "anderson",
+        "--seed",
+        "2",
+        "--steps",
+        "200000",
+        "--anderson-tol",
+        "1e-5",
+        "--anderson-cap",
+        "500",
+        "--execute"
+      ]
+    },
+    {
+      "id": "anderson_highcap_s3",
+      "group": "anderson_highcap",
+      "seed": 3,
+      "gpu_slot": 2,
+      "priority": 2,
+      "argv": [
+        "python",
+        "-m",
+        "deflow_rebuttal.run_docking",
+        "--repo",
+        "{REPO}",
+        "--output",
+        "{OUTPUT}/anderson_highcap_s3",
+        "--solver",
+        "anderson",
+        "--seed",
+        "3",
+        "--steps",
+        "200000",
+        "--anderson-tol",
+        "1e-5",
+        "--anderson-cap",
+        "500",
+        "--execute"
+      ]
+    }
+  ],
+  "acceptance": "DONE marker, actual horizon in requested..requested+7, checkpoints, telemetry and 1000-episode solver-aware evaluation; all failures retained",
+  "gpus": 3,
+  "seed_to_gpu_slot": {
+    "1": 0,
+    "2": 1,
+    "3": 2
+  },
+  "groups": {
+    "newton": {
+      "solver": "newton",
+      "rtol": 1e-05,
+      "atol": 1e-07,
+      "cap": 25
+    },
+    "anderson": {
+      "solver": "anderson",
+      "tol": 1e-05,
+      "cap": 25
+    },
+    "anderson_tighter": {
+      "solver": "anderson",
+      "tol": 1e-06,
+      "cap": 100
+    },
+    "anderson_highcap": {
+      "solver": "anderson",
+      "tol": 1e-05,
+      "cap": 500,
+      "purpose": "Isolate iteration budget at unchanged native batch-mean stopping tolerance. Not guaranteed all-sample convergence."
+    }
+  },
+  "queue_by_gpu_slot": {
+    "0": [
+      "newton_s1",
+      "anderson_s1",
+      "anderson_highcap_s1",
+      "anderson_tighter_s1"
+    ],
+    "1": [
+      "anderson_s2",
+      "newton_s2",
+      "anderson_highcap_s2",
+      "anderson_tighter_s2"
+    ],
+    "2": [
+      "newton_s3",
+      "anderson_s3",
+      "anderson_highcap_s3",
+      "anderson_tighter_s3"
+    ]
+  },
+  "note": "12 prepared jobs. Priority1: 6 matched Newton/default Anderson. Priority2: 3 high-cap Anderson. Priority3: 3 tighter Anderson if time permits. No scientific jobs launched. Never call high-cap fully converged without measured residuals. Server/CUDA pilot pending.",
+  "frozen_convergence_audit": {
+    "caps": [
+      25,
+      100,
+      500
+    ],
+    "tol": 1e-05,
+    "same_capsule_as_checkpoint_and_inputs": true,
+    "selection": "Preselect nearest available full-batch training/actor_grad capsules to 25k, 100k, 200k for seeds1/2/3. Report actual steps. Include all failed rows. Avoid selecting only cap hits."
+  }
+}

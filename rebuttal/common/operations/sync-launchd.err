@@ -1,0 +1,29 @@
+Connection closed by 198.18.0.32 port 18290
+Traceback (most recent call last):
+  File "/Users/ruslanageev/dev/DEFLOW/rebuttal/experiments/E01-solver-comparison/runs/deflow-campaign-20261111/revision3/ops/packing-v1/sync_packed.py", line 44, in <module>
+    main()
+  File "/Users/ruslanageev/dev/DEFLOW/rebuttal/experiments/E01-solver-comparison/runs/deflow-campaign-20261111/revision3/ops/packing-v1/sync_packed.py", line 39, in main
+    frozen.main()
+  File "/Users/ruslanageev/dev/DEFLOW/rebuttal/experiments/E01-solver-comparison/runs/deflow-campaign-20261111/revision3/ops/sync_local.py", line 58, in main
+    encoded = subprocess.check_output([ssh, host, command], timeout=600)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/subprocess.py", line 421, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/Users/ruslanageev/dev/mbrl-world-models/output/deflow-campaign-20261111/revision3/ops/ssh.sh', 'featurize@workspace.featurize.cn', 'env DEFLOW_CONTRACT_SHA256=300614d6c0abfbb1bbd5f722effbc5c00774f7213c7598dc68b6527c0225c0ea /home/featurize/deflow-campaign-20261111/revision3/venv/bin/python /home/featurize/deflow-campaign-20261111/revision3/ops/sync_index.py']' returned non-zero exit status 255.
+Traceback (most recent call last):
+  File "/Users/ruslanageev/dev/DEFLOW/rebuttal/experiments/E01-solver-comparison/runs/deflow-campaign-20261111/revision3/ops/packing-v1/sync_packed.py", line 44, in <module>
+    main()
+  File "/Users/ruslanageev/dev/DEFLOW/rebuttal/experiments/E01-solver-comparison/runs/deflow-campaign-20261111/revision3/ops/packing-v1/sync_packed.py", line 39, in main
+    frozen.main()
+  File "/Users/ruslanageev/dev/DEFLOW/rebuttal/experiments/E01-solver-comparison/runs/deflow-campaign-20261111/revision3/ops/sync_local.py", line 79, in main
+    raise RuntimeError(f'Local immutable checksum mismatch: {name}')
+RuntimeError: Local immutable checksum mismatch: results/anderson_highcap_s3/runs/anderson_tol1e-05_cap500_wide_tight_s3/ckpt.pt
+Traceback (most recent call last):
+  File "/Users/ruslanageev/dev/DEFLOW/rebuttal/experiments/E01-solver-comparison/runs/deflow-campaign-20261111/revision3/ops/idle-audits-v1/sync_packed.py", line 38, in <module>
+    main()
+  File "/Users/ruslanageev/dev/DEFLOW/rebuttal/experiments/E01-solver-comparison/runs/deflow-campaign-20261111/revision3/ops/idle-audits-v1/sync_packed.py", line 33, in main
+    frozen.main()
+  File "/Users/ruslanageev/dev/DEFLOW/rebuttal/experiments/E01-solver-comparison/runs/deflow-campaign-20261111/revision3/ops/sync_local.py", line 79, in main
+    raise RuntimeError(f'Local immutable checksum mismatch: {name}')
+RuntimeError: Local immutable checksum mismatch: results/anderson_tighter_s1/runs/anderson_tol1e-06_cap100_wide_tight_s1/ckpt.pt

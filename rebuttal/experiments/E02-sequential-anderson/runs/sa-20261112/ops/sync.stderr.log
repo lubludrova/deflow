@@ -1,0 +1,18 @@
+featurize@workspace.featurize.cn: Permission denied (publickey,password).
+rsync(57770): error: unexpected end of file
+Traceback (most recent call last):
+  File "/Users/ruslanageev/dev/DEFlow/rebuttal/experiments/E02-sequential-anderson/runs/sa-20261112/ops/sync_local.py", line 58, in <module>
+    cycle()
+  File "/Users/ruslanageev/dev/DEFlow/rebuttal/experiments/E02-sequential-anderson/runs/sa-20261112/ops/sync_local.py", line 20, in cycle
+    subprocess.run(['rsync','-az','--timeout=90','--exclude=venv/','--exclude=code/',
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['rsync', '-az', '--timeout=90', '--exclude=venv/', '--exclude=code/', '--exclude=validation/inputs/', '--exclude=capsule_*.pt', '--exclude=solver_calls.jsonl', '--exclude=__pycache__/', '--exclude=*.tmp', '--exclude=ckpt.pt', '-e', 'ssh -S /tmp/deflow-sa-20261112.sock -o BatchMode=yes -o ConnectTimeout=20 -p 13534', 'featurize@workspace.featurize.cn:/home/featurize/deflow-sequential-anderson-20261112/', '/Users/ruslanageev/dev/DEFlow/rebuttal/experiments/E02-sequential-anderson/runs/sa-20261112/mirror/']' returned non-zero exit status 255.
+Traceback (most recent call last):
+  File "/Users/ruslanageev/dev/DEFlow/rebuttal/experiments/E02-sequential-anderson/runs/sa-20261112/ops/sync_local.py", line 58, in <module>
+    cycle()
+  File "/Users/ruslanageev/dev/DEFlow/rebuttal/experiments/E02-sequential-anderson/runs/sa-20261112/ops/sync_local.py", line 20, in cycle
+    subprocess.run(['rsync','-az','--timeout=90','--exclude=venv/','--exclude=code/',
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['rsync', '-az', '--timeout=90', '--exclude=venv/', '--exclude=code/', '--exclude=validation/inputs/', '--exclude=capsule_*.pt', '--exclude=solver_calls.jsonl', '--exclude=__pycache__/', '--exclude=*.tmp', '--exclude=ckpt.pt', '-e', 'ssh -S /tmp/deflow-sa-20261112.sock -o BatchMode=yes -o ConnectTimeout=20 -p 13534', 'featurize@workspace.featurize.cn:/home/featurize/deflow-sequential-anderson-20261112/', '/Users/ruslanageev/dev/DEFlow/rebuttal/experiments/E02-sequential-anderson/runs/sa-20261112/mirror/']' returned non-zero exit status 20.

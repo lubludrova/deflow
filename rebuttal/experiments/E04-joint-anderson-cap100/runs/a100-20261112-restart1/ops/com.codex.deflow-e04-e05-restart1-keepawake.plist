@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.codex.deflow-e04-e05-restart1-keepawake</string>
+	<key>ProcessType</key>
+	<string>Background</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/usr/bin/caffeinate</string>
+		<string>-i</string>
+		<string>-s</string>
+		<string>/Library/Frameworks/Python.framework/Versions/3.10/bin/python3</string>
+		<string>/Users/ruslanageev/dev/DEFlow/rebuttal/experiments/E04-joint-anderson-cap100/runs/a100-20261112-restart1/ops/keepawake.py</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>StandardErrorPath</key>
+	<string>/Users/ruslanageev/dev/DEFlow/rebuttal/experiments/E04-joint-anderson-cap100/runs/a100-20261112-restart1/ops/keepawake.stderr.log</string>
+	<key>StandardOutPath</key>
+	<string>/Users/ruslanageev/dev/DEFlow/rebuttal/experiments/E04-joint-anderson-cap100/runs/a100-20261112-restart1/ops/keepawake.stdout.log</string>
+</dict>
+</plist>

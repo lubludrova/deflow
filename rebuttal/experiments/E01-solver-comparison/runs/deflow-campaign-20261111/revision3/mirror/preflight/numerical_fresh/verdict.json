@@ -1,0 +1,768 @@
+{
+  "phase": "fresh",
+  "thresholds": {
+    "rtol": 1e-05,
+    "atol": 1e-07,
+    "max_iter": 25,
+    "boundary_uncertainty_fraction": 0.1,
+    "norm_rounding_eps_multiple": 8,
+    "fd_steps": [
+      1e-05,
+      1e-06,
+      1e-07
+    ],
+    "fd_relative": 1e-06,
+    "fd_absolute": 1e-07,
+    "readout_atol": 1e-06,
+    "readout_rtol": 0.0001,
+    "gradient_relative": 0.001
+  },
+  "cases": [
+    {
+      "source": {
+        "path": "/home/featurize/deflow-campaign-20261111/revision3/preflight/pilot_newton/capsule_00004000.pt",
+        "sha256": "d96a4fa7848fca3848b5d2b0d2fbb6d5839d2544e2b57bf7ebdcd26158590838",
+        "actual_step": 7504,
+        "source": "newton",
+        "rule": "Latest eligible full-batch training/actor_grad capsule, lexical path tie break"
+      },
+      "pass_all": true,
+      "blockers": [],
+      "native_failed_rows": 0,
+      "fresh_failed_rows": {
+        "flattened": 2,
+        "permuted": 2,
+        "chunk_1": 0,
+        "chunk_32": 1,
+        "chunk_1024": 1,
+        "per_step": 1,
+        "stored_native": 0,
+        "fp64_fixed_q": 0
+      },
+      "boundary_disagreements": 3,
+      "explained_boundary_steps": 3,
+      "unexplained_boundary_steps": 0,
+      "fp64_reproduced_failed_steps": [],
+      "unreviewed_shared_failed_steps": [],
+      "strict_only_failed_steps": [],
+      "fp64_only_failed_steps": [],
+      "reference_valid_rows": 1024,
+      "reference_invalid_rows": 0,
+      "full_batch_fp64_gradient_reference_available": true,
+      "full_batch_fp64_gradient_reference_computed": false,
+      "fd_pass": true,
+      "parity_pass": true,
+      "gradient_relative": 8.432424181137321e-08,
+      "precision": {
+        "matmul_precision": "highest",
+        "matmul_allow_tf32": false,
+        "cudnn_allow_tf32": false,
+        "autocast_cuda": false,
+        "autocast_cpu": false,
+        "default_dtype": "torch.float32",
+        "torch": "2.5.1+cu124",
+        "cuda": "12.4",
+        "cudnn": 90100,
+        "backend_environment": {}
+      },
+      "runtime_boundaries": {
+        "solver_entry": {
+          "actual": {
+            "matmul_precision": "highest",
+            "matmul_allow_tf32": false,
+            "cudnn_allow_tf32": false,
+            "autocast_cuda": false,
+            "autocast_cpu": false,
+            "default_dtype": "torch.float32",
+            "torch": "2.5.1+cu124",
+            "cuda": "12.4",
+            "cudnn": 90100,
+            "backend_environment": {}
+          },
+          "dtypes": [
+            "torch.float32"
+          ],
+          "devices": [
+            "cuda:0"
+          ]
+        },
+        "density_entry": {
+          "actual": {
+            "matmul_precision": "highest",
+            "matmul_allow_tf32": false,
+            "cudnn_allow_tf32": false,
+            "autocast_cuda": false,
+            "autocast_cpu": false,
+            "default_dtype": "torch.float32",
+            "torch": "2.5.1+cu124",
+            "cuda": "12.4",
+            "cudnn": 90100,
+            "backend_environment": {}
+          },
+          "dtypes": [
+            "torch.float32"
+          ],
+          "devices": [
+            "cuda:0"
+          ]
+        },
+        "density_result": {
+          "actual": {
+            "matmul_precision": "highest",
+            "matmul_allow_tf32": false,
+            "cudnn_allow_tf32": false,
+            "autocast_cuda": false,
+            "autocast_cpu": false,
+            "default_dtype": "torch.float32",
+            "torch": "2.5.1+cu124",
+            "cuda": "12.4",
+            "cudnn": 90100,
+            "backend_environment": {}
+          },
+          "dtypes": [
+            "torch.float32"
+          ],
+          "devices": [
+            "cuda:0"
+          ]
+        },
+        "backward_entry": {
+          "actual": {
+            "matmul_precision": "highest",
+            "matmul_allow_tf32": false,
+            "cudnn_allow_tf32": false,
+            "autocast_cuda": false,
+            "autocast_cpu": false,
+            "default_dtype": "torch.float32",
+            "torch": "2.5.1+cu124",
+            "cuda": "12.4",
+            "cudnn": 90100,
+            "backend_environment": {}
+          },
+          "dtypes": [
+            "torch.float32"
+          ],
+          "devices": [
+            "cuda:0"
+          ]
+        },
+        "backward_result": {
+          "actual": {
+            "matmul_precision": "highest",
+            "matmul_allow_tf32": false,
+            "cudnn_allow_tf32": false,
+            "autocast_cuda": false,
+            "autocast_cpu": false,
+            "default_dtype": "torch.float32",
+            "torch": "2.5.1+cu124",
+            "cuda": "12.4",
+            "cudnn": 90100,
+            "backend_environment": {}
+          },
+          "dtypes": [
+            "torch.float32"
+          ],
+          "devices": [
+            "cuda:0"
+          ]
+        }
+      },
+      "reference_runtime_boundaries": {
+        "solver_entry": {
+          "actual": {
+            "matmul_precision": "highest",
+            "matmul_allow_tf32": false,
+            "cudnn_allow_tf32": false,
+            "autocast_cuda": false,
+            "autocast_cpu": false,
+            "default_dtype": "torch.float32",
+            "torch": "2.5.1+cu124",
+            "cuda": "12.4",
+            "cudnn": 90100,
+            "backend_environment": {}
+          },
+          "dtypes": [
+            "torch.float64"
+          ],
+          "devices": [
+            "cpu"
+          ]
+        }
+      },
+      "elapsed_seconds": 22.70621156692505
+    },
+    {
+      "source": {
+        "path": "/home/featurize/deflow-campaign-20261111/revision3/preflight/pilot_anderson/capsule_00004000.pt",
+        "sha256": "3b2292ff99129690013ff332249b67c0924dfa967e79e3b6e328d8321f0b0c4a",
+        "actual_step": 7503,
+        "source": "anderson",
+        "rule": "Latest eligible full-batch training/actor_grad capsule, lexical path tie break"
+      },
+      "pass_all": true,
+      "blockers": [],
+      "native_failed_rows": 0,
+      "fresh_failed_rows": {
+        "flattened": 2,
+        "permuted": 2,
+        "chunk_1": 1,
+        "chunk_32": 1,
+        "chunk_1024": 0,
+        "per_step": 0,
+        "stored_native": 0,
+        "fp64_fixed_q": 1
+      },
+      "boundary_disagreements": 2,
+      "explained_boundary_steps": 2,
+      "unexplained_boundary_steps": 0,
+      "fp64_reproduced_failed_steps": [],
+      "unreviewed_shared_failed_steps": [],
+      "strict_only_failed_steps": [],
+      "fp64_only_failed_steps": [],
+      "reference_valid_rows": 1024,
+      "reference_invalid_rows": 0,
+      "full_batch_fp64_gradient_reference_available": true,
+      "full_batch_fp64_gradient_reference_computed": false,
+      "fd_pass": true,
+      "parity_pass": true,
+      "gradient_relative": 1.5159326949287788e-07,
+      "precision": {
+        "matmul_precision": "highest",
+        "matmul_allow_tf32": false,
+        "cudnn_allow_tf32": false,
+        "autocast_cuda": false,
+        "autocast_cpu": false,
+        "default_dtype": "torch.float32",
+        "torch": "2.5.1+cu124",
+        "cuda": "12.4",
+        "cudnn": 90100,
+        "backend_environment": {}
+      },
+      "runtime_boundaries": {
+        "solver_entry": {
+          "actual": {
+            "matmul_precision": "highest",
+            "matmul_allow_tf32": false,
+            "cudnn_allow_tf32": false,
+            "autocast_cuda": false,
+            "autocast_cpu": false,
+            "default_dtype": "torch.float32",
+            "torch": "2.5.1+cu124",
+            "cuda": "12.4",
+            "cudnn": 90100,
+            "backend_environment": {}
+          },
+          "dtypes": [
+            "torch.float32"
+          ],
+          "devices": [
+            "cuda:0"
+          ]
+        },
+        "density_entry": {
+          "actual": {
+            "matmul_precision": "highest",
+            "matmul_allow_tf32": false,
+            "cudnn_allow_tf32": false,
+            "autocast_cuda": false,
+            "autocast_cpu": false,
+            "default_dtype": "torch.float32",
+            "torch": "2.5.1+cu124",
+            "cuda": "12.4",
+            "cudnn": 90100,
+            "backend_environment": {}
+          },
+          "dtypes": [
+            "torch.float32"
+          ],
+          "devices": [
+            "cuda:0"
+          ]
+        },
+        "density_result": {
+          "actual": {
+            "matmul_precision": "highest",
+            "matmul_allow_tf32": false,
+            "cudnn_allow_tf32": false,
+            "autocast_cuda": false,
+            "autocast_cpu": false,
+            "default_dtype": "torch.float32",
+            "torch": "2.5.1+cu124",
+            "cuda": "12.4",
+            "cudnn": 90100,
+            "backend_environment": {}
+          },
+          "dtypes": [
+            "torch.float32"
+          ],
+          "devices": [
+            "cuda:0"
+          ]
+        },
+        "backward_entry": {
+          "actual": {
+            "matmul_precision": "highest",
+            "matmul_allow_tf32": false,
+            "cudnn_allow_tf32": false,
+            "autocast_cuda": false,
+            "autocast_cpu": false,
+            "default_dtype": "torch.float32",
+            "torch": "2.5.1+cu124",
+            "cuda": "12.4",
+            "cudnn": 90100,
+            "backend_environment": {}
+          },
+          "dtypes": [
+            "torch.float32"
+          ],
+          "devices": [
+            "cuda:0"
+          ]
+        },
+        "backward_result": {
+          "actual": {
+            "matmul_precision": "highest",
+            "matmul_allow_tf32": false,
+            "cudnn_allow_tf32": false,
+            "autocast_cuda": false,
+            "autocast_cpu": false,
+            "default_dtype": "torch.float32",
+            "torch": "2.5.1+cu124",
+            "cuda": "12.4",
+            "cudnn": 90100,
+            "backend_environment": {}
+          },
+          "dtypes": [
+            "torch.float32"
+          ],
+          "devices": [
+            "cuda:0"
+          ]
+        }
+      },
+      "reference_runtime_boundaries": {
+        "solver_entry": {
+          "actual": {
+            "matmul_precision": "highest",
+            "matmul_allow_tf32": false,
+            "cudnn_allow_tf32": false,
+            "autocast_cuda": false,
+            "autocast_cpu": false,
+            "default_dtype": "torch.float32",
+            "torch": "2.5.1+cu124",
+            "cuda": "12.4",
+            "cudnn": 90100,
+            "backend_environment": {}
+          },
+          "dtypes": [
+            "torch.float64"
+          ],
+          "devices": [
+            "cpu"
+          ]
+        }
+      },
+      "elapsed_seconds": 21.254674911499023
+    },
+    {
+      "source": {
+        "path": "/home/featurize/deflow-campaign-20261111/revision3/preflight/pilot_anderson_tighter/capsule_00004000.pt",
+        "sha256": "d398f21168cc2f11f94b48578d974409abcabdd15301393ce360ef91b576e5e2",
+        "actual_step": 7506,
+        "source": "anderson_tighter",
+        "rule": "Latest eligible full-batch training/actor_grad capsule, lexical path tie break"
+      },
+      "pass_all": true,
+      "blockers": [],
+      "native_failed_rows": 0,
+      "fresh_failed_rows": {
+        "flattened": 2,
+        "permuted": 2,
+        "chunk_1": 2,
+        "chunk_32": 2,
+        "chunk_1024": 2,
+        "per_step": 2,
+        "stored_native": 0,
+        "fp64_fixed_q": 1
+      },
+      "boundary_disagreements": 4,
+      "explained_boundary_steps": 4,
+      "unexplained_boundary_steps": 0,
+      "fp64_reproduced_failed_steps": [],
+      "unreviewed_shared_failed_steps": [],
+      "strict_only_failed_steps": [],
+      "fp64_only_failed_steps": [],
+      "reference_valid_rows": 1024,
+      "reference_invalid_rows": 0,
+      "full_batch_fp64_gradient_reference_available": true,
+      "full_batch_fp64_gradient_reference_computed": false,
+      "fd_pass": true,
+      "parity_pass": true,
+      "gradient_relative": 7.748094787984883e-08,
+      "precision": {
+        "matmul_precision": "highest",
+        "matmul_allow_tf32": false,
+        "cudnn_allow_tf32": false,
+        "autocast_cuda": false,
+        "autocast_cpu": false,
+        "default_dtype": "torch.float32",
+        "torch": "2.5.1+cu124",
+        "cuda": "12.4",
+        "cudnn": 90100,
+        "backend_environment": {}
+      },
+      "runtime_boundaries": {
+        "solver_entry": {
+          "actual": {
+            "matmul_precision": "highest",
+            "matmul_allow_tf32": false,
+            "cudnn_allow_tf32": false,
+            "autocast_cuda": false,
+            "autocast_cpu": false,
+            "default_dtype": "torch.float32",
+            "torch": "2.5.1+cu124",
+            "cuda": "12.4",
+            "cudnn": 90100,
+            "backend_environment": {}
+          },
+          "dtypes": [
+            "torch.float32"
+          ],
+          "devices": [
+            "cuda:0"
+          ]
+        },
+        "density_entry": {
+          "actual": {
+            "matmul_precision": "highest",
+            "matmul_allow_tf32": false,
+            "cudnn_allow_tf32": false,
+            "autocast_cuda": false,
+            "autocast_cpu": false,
+            "default_dtype": "torch.float32",
+            "torch": "2.5.1+cu124",
+            "cuda": "12.4",
+            "cudnn": 90100,
+            "backend_environment": {}
+          },
+          "dtypes": [
+            "torch.float32"
+          ],
+          "devices": [
+            "cuda:0"
+          ]
+        },
+        "density_result": {
+          "actual": {
+            "matmul_precision": "highest",
+            "matmul_allow_tf32": false,
+            "cudnn_allow_tf32": false,
+            "autocast_cuda": false,
+            "autocast_cpu": false,
+            "default_dtype": "torch.float32",
+            "torch": "2.5.1+cu124",
+            "cuda": "12.4",
+            "cudnn": 90100,
+            "backend_environment": {}
+          },
+          "dtypes": [
+            "torch.float32"
+          ],
+          "devices": [
+            "cuda:0"
+          ]
+        },
+        "backward_entry": {
+          "actual": {
+            "matmul_precision": "highest",
+            "matmul_allow_tf32": false,
+            "cudnn_allow_tf32": false,
+            "autocast_cuda": false,
+            "autocast_cpu": false,
+            "default_dtype": "torch.float32",
+            "torch": "2.5.1+cu124",
+            "cuda": "12.4",
+            "cudnn": 90100,
+            "backend_environment": {}
+          },
+          "dtypes": [
+            "torch.float32"
+          ],
+          "devices": [
+            "cuda:0"
+          ]
+        },
+        "backward_result": {
+          "actual": {
+            "matmul_precision": "highest",
+            "matmul_allow_tf32": false,
+            "cudnn_allow_tf32": false,
+            "autocast_cuda": false,
+            "autocast_cpu": false,
+            "default_dtype": "torch.float32",
+            "torch": "2.5.1+cu124",
+            "cuda": "12.4",
+            "cudnn": 90100,
+            "backend_environment": {}
+          },
+          "dtypes": [
+            "torch.float32"
+          ],
+          "devices": [
+            "cuda:0"
+          ]
+        }
+      },
+      "reference_runtime_boundaries": {
+        "solver_entry": {
+          "actual": {
+            "matmul_precision": "highest",
+            "matmul_allow_tf32": false,
+            "cudnn_allow_tf32": false,
+            "autocast_cuda": false,
+            "autocast_cpu": false,
+            "default_dtype": "torch.float32",
+            "torch": "2.5.1+cu124",
+            "cuda": "12.4",
+            "cudnn": 90100,
+            "backend_environment": {}
+          },
+          "dtypes": [
+            "torch.float64"
+          ],
+          "devices": [
+            "cpu"
+          ]
+        }
+      },
+      "elapsed_seconds": 21.288763999938965
+    },
+    {
+      "source": {
+        "path": "/home/featurize/deflow-campaign-20261111/revision3/preflight/pilot_anderson_highcap/capsule_00000011.pt",
+        "sha256": "e7f99d7b0b21a567c8f6f437f4c68e6449c02746c8a0d4213348f1ef893f9588",
+        "actual_step": 4009,
+        "source": "anderson_highcap",
+        "rule": "Latest eligible full-batch training/actor_grad capsule, lexical path tie break"
+      },
+      "pass_all": true,
+      "blockers": [],
+      "native_failed_rows": 0,
+      "fresh_failed_rows": {
+        "flattened": 0,
+        "permuted": 0,
+        "chunk_1": 0,
+        "chunk_32": 0,
+        "chunk_1024": 0,
+        "per_step": 0,
+        "stored_native": 0,
+        "fp64_fixed_q": 0
+      },
+      "boundary_disagreements": 0,
+      "explained_boundary_steps": 0,
+      "unexplained_boundary_steps": 0,
+      "fp64_reproduced_failed_steps": [],
+      "unreviewed_shared_failed_steps": [],
+      "strict_only_failed_steps": [],
+      "fp64_only_failed_steps": [],
+      "reference_valid_rows": 1024,
+      "reference_invalid_rows": 0,
+      "full_batch_fp64_gradient_reference_available": true,
+      "full_batch_fp64_gradient_reference_computed": false,
+      "fd_pass": true,
+      "parity_pass": true,
+      "gradient_relative": 1.8114351973963494e-07,
+      "precision": {
+        "matmul_precision": "highest",
+        "matmul_allow_tf32": false,
+        "cudnn_allow_tf32": false,
+        "autocast_cuda": false,
+        "autocast_cpu": false,
+        "default_dtype": "torch.float32",
+        "torch": "2.5.1+cu124",
+        "cuda": "12.4",
+        "cudnn": 90100,
+        "backend_environment": {}
+      },
+      "runtime_boundaries": {
+        "solver_entry": {
+          "actual": {
+            "matmul_precision": "highest",
+            "matmul_allow_tf32": false,
+            "cudnn_allow_tf32": false,
+            "autocast_cuda": false,
+            "autocast_cpu": false,
+            "default_dtype": "torch.float32",
+            "torch": "2.5.1+cu124",
+            "cuda": "12.4",
+            "cudnn": 90100,
+            "backend_environment": {}
+          },
+          "dtypes": [
+            "torch.float32"
+          ],
+          "devices": [
+            "cuda:0"
+          ]
+        },
+        "density_entry": {
+          "actual": {
+            "matmul_precision": "highest",
+            "matmul_allow_tf32": false,
+            "cudnn_allow_tf32": false,
+            "autocast_cuda": false,
+            "autocast_cpu": false,
+            "default_dtype": "torch.float32",
+            "torch": "2.5.1+cu124",
+            "cuda": "12.4",
+            "cudnn": 90100,
+            "backend_environment": {}
+          },
+          "dtypes": [
+            "torch.float32"
+          ],
+          "devices": [
+            "cuda:0"
+          ]
+        },
+        "density_result": {
+          "actual": {
+            "matmul_precision": "highest",
+            "matmul_allow_tf32": false,
+            "cudnn_allow_tf32": false,
+            "autocast_cuda": false,
+            "autocast_cpu": false,
+            "default_dtype": "torch.float32",
+            "torch": "2.5.1+cu124",
+            "cuda": "12.4",
+            "cudnn": 90100,
+            "backend_environment": {}
+          },
+          "dtypes": [
+            "torch.float32"
+          ],
+          "devices": [
+            "cuda:0"
+          ]
+        },
+        "backward_entry": {
+          "actual": {
+            "matmul_precision": "highest",
+            "matmul_allow_tf32": false,
+            "cudnn_allow_tf32": false,
+            "autocast_cuda": false,
+            "autocast_cpu": false,
+            "default_dtype": "torch.float32",
+            "torch": "2.5.1+cu124",
+            "cuda": "12.4",
+            "cudnn": 90100,
+            "backend_environment": {}
+          },
+          "dtypes": [
+            "torch.float32"
+          ],
+          "devices": [
+            "cuda:0"
+          ]
+        },
+        "backward_result": {
+          "actual": {
+            "matmul_precision": "highest",
+            "matmul_allow_tf32": false,
+            "cudnn_allow_tf32": false,
+            "autocast_cuda": false,
+            "autocast_cpu": false,
+            "default_dtype": "torch.float32",
+            "torch": "2.5.1+cu124",
+            "cuda": "12.4",
+            "cudnn": 90100,
+            "backend_environment": {}
+          },
+          "dtypes": [
+            "torch.float32"
+          ],
+          "devices": [
+            "cuda:0"
+          ]
+        }
+      },
+      "reference_runtime_boundaries": {
+        "solver_entry": {
+          "actual": {
+            "matmul_precision": "highest",
+            "matmul_allow_tf32": false,
+            "cudnn_allow_tf32": false,
+            "autocast_cuda": false,
+            "autocast_cpu": false,
+            "default_dtype": "torch.float32",
+            "torch": "2.5.1+cu124",
+            "cuda": "12.4",
+            "cudnn": 90100,
+            "backend_environment": {}
+          },
+          "dtypes": [
+            "torch.float64"
+          ],
+          "devices": [
+            "cpu"
+          ]
+        }
+      },
+      "elapsed_seconds": 19.88168239593506
+    }
+  ],
+  "blockers": [],
+  "root": "/home/featurize/deflow-campaign-20261111/revision3",
+  "device": "cuda",
+  "torch": "2.5.1+cu124",
+  "cuda": "12.4",
+  "policy": "strict_fp32",
+  "cpu_threads": 1,
+  "script_sha256": "91e70af30c5ba6e271248581891e7e6583d2fcff13c2678a590216674825186f",
+  "engine_sha256": "ba94c8e1f66a41bc6b828ec78d52a1d0ca53573428a771c52c73ea7196205bb5",
+  "package_sha256": {
+    "test_precision.py": "4aa05f012ee04290f4b3e7d5230adf805c9b4bcba5dfe8d93ff1383a22968da5",
+    "__init__.py": "bb1453bff7053d16daa30c920e327a4321f2b67d8cb1a9f3f77997be12909a91",
+    "precision.py": "538963ed417e294db4c4bf78605671463e6f9263222073b5e0e2404e3a3dbe92",
+    "prepare_inputs.py": "13c9ffbac77395c8d2b9cd153408214d3c5d212a341250b042637509aa58030b",
+    "sequential_newton.py": "e7c24ebef16db7bd2e16101c08625294ba4902449e774281b9f5f0fca0a3a6d8",
+    "test_audit.py": "610bc8e4230cb497d0024b93873c61d7e050b87d0d91d3a7f512d14fcc90e1b8",
+    "test_solver.py": "b2072803ce51db7958b7f6331f88345ffc614d27c609d8d9fc0bd79489a6bb7c",
+    "evaluate.py": "b5e50a8fc7131fd765c4207e837d310f3168b5e897f004696d16746e9984b8f1",
+    "audit.py": "6dcff6cb6b5c2e3f58b4c98b22c99551598c8512f1c08ebaf9c6e0ecbcd7d48d",
+    "run_docking.py": "e6f32b01bbbc00bffaa1852c757d8d940a4fe9e3ab792b90e063013cf7ce0cf2"
+  },
+  "environment": {
+    "NVIDIA_TF32_OVERRIDE": null,
+    "CUDA_VISIBLE_DEVICES": "GPU-25aeeb0b-2f1a-6068-db50-71c18174ccba",
+    "CUBLAS_WORKSPACE_CONFIG": null
+  },
+  "precision_before": {
+    "matmul_precision": "highest",
+    "matmul_allow_tf32": false,
+    "cudnn_allow_tf32": false,
+    "autocast_cuda": false,
+    "autocast_cpu": false,
+    "default_dtype": "torch.float32",
+    "torch": "2.5.1+cu124",
+    "cuda": "12.4",
+    "cudnn": 90100,
+    "backend_environment": {}
+  },
+  "device_name": "NVIDIA GeForce RTX 4090",
+  "fresh_bank_sha256": "7a74aa2e073665dd13b8c31790b80cd4ab766349c55f9f0e0bc8ea76fce402f8",
+  "precision_after": {
+    "matmul_precision": "highest",
+    "matmul_allow_tf32": false,
+    "cudnn_allow_tf32": false,
+    "autocast_cuda": false,
+    "autocast_cpu": false,
+    "default_dtype": "torch.float32",
+    "torch": "2.5.1+cu124",
+    "cuda": "12.4",
+    "cudnn": 90100,
+    "backend_environment": {}
+  },
+  "pass": true,
+  "elapsed_seconds": 85.26287126541138
+}

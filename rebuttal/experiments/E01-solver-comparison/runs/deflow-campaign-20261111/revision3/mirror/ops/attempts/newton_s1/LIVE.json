@@ -1,0 +1,142 @@
+{
+  "campaign_id": "deflow-campaign-20261111-revision3",
+  "contract_sha256": "300614d6c0abfbb1bbd5f722effbc5c00774f7213c7598dc68b6527c0225c0ea",
+  "precision_policy": "strict_fp32",
+  "run_id": "newton_s1",
+  "attempt_id": 0,
+  "argv": [
+    "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python",
+    "-m",
+    "deflow_rebuttal.run_docking",
+    "--repo",
+    "/home/featurize/deflow-campaign-20261111/revision3/DEFlow",
+    "--output",
+    "/home/featurize/deflow-campaign-20261111/revision3/results/newton_s1",
+    "--solver",
+    "newton",
+    "--seed",
+    "1",
+    "--steps",
+    "200000",
+    "--execute",
+    "--precision-policy",
+    "strict_fp32"
+  ],
+  "cwd": "/home/featurize/deflow-campaign-20261111/revision3/package",
+  "gpu_slot": 0,
+  "gpu_uuid": "GPU-25aeeb0b-2f1a-6068-db50-71c18174ccba",
+  "environment": {
+    "PYTHONPATH": "/home/featurize/deflow-campaign-20261111/revision3/package",
+    "DEFLOW_ENGINE": "/home/featurize/deflow-campaign-20261111/revision3/DEFlow/src/docking_full/sac_anderson_flow.py",
+    "CUDA_VISIBLE_DEVICES": "GPU-25aeeb0b-2f1a-6068-db50-71c18174ccba"
+  },
+  "command_sha256": "ee21be482b021823aba089f2907caf937292f426d67a5e8699e5cf0ef18d7c66",
+  "claimed_at": 1794378770.442051,
+  "capacity_sample": {
+    "at": 1794378770.5617654,
+    "gpus": [
+      [
+        "0",
+        "GPU-25aeeb0b-2f1a-6068-db50-71c18174ccba",
+        "1",
+        "24109",
+        "0"
+      ],
+      [
+        "1",
+        "GPU-8c5841b8-9c0d-e867-7e29-7714a772fa58",
+        "1",
+        "24109",
+        "0"
+      ],
+      [
+        "2",
+        "GPU-911aa272-5dd1-019f-9636-accc89c876da",
+        "1",
+        "24109",
+        "0"
+      ]
+    ],
+    "processes": []
+  },
+  "log": "/home/featurize/deflow-campaign-20261111/revision3/ops/logs/newton_s1.log",
+  "run_path": "/home/featurize/deflow-campaign-20261111/revision3/results/newton_s1",
+  "retry_budget": 0,
+  "resume": false,
+  "identity": {
+    "pid": 45017,
+    "process_start_ticks": 4907085,
+    "boot_id": "4dfe31ec-070c-4dde-80cb-8b843303addc",
+    "process_group": 45017,
+    "session": 45017,
+    "cmdline": "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python -m deflow_rebuttal.run_docking --repo /home/featurize/deflow-campaign-20261111/revision3/DEFlow --output /home/featurize/deflow-campaign-20261111/revision3/results/newton_s1 --solver newton --seed 1 --steps 200000 --execute --precision-policy strict_fp32 ",
+    "cwd": "/home/featurize/deflow-campaign-20261111/revision3/package"
+  },
+  "pid": 45017,
+  "started_at": 1794378770.442051,
+  "state": "RUNNING",
+  "observed_at": 1794469216.4556727,
+  "telemetry": {
+    "step": 164195,
+    "last_telemetry_age_seconds": 0.09014177322387695,
+    "last_solver_call": {
+      "call": 182964,
+      "global_step": 164195,
+      "role": "training/actor_grad",
+      "batch": 1024,
+      "steps": 4,
+      "solver": "newton",
+      "solver_seconds": 0.22975607801345177,
+      "cap_hit": false,
+      "common_abs_residual": {
+        "nonfinite": 0,
+        "count": 4096,
+        "p50": 2.274563541959651e-07,
+        "p95": 8.598912245361134e-06,
+        "max": 0.35641077160835266
+      },
+      "failed_samples": 9,
+      "failed_local_steps": 10,
+      "native": {
+        "n_iter": 8,
+        "cap_hit": false,
+        "failed_samples": 5,
+        "status_counts": {
+          "0": 4090,
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 6,
+          "5": 0
+        },
+        "backtracks_total": 301
+      },
+      "work": {
+        "nfe_total": 22307,
+        "jacobian_evals_total": 8955,
+        "linear_solves_total": 8955
+      },
+      "telemetry_extra_field_positions": 4096,
+      "totals": {
+        "calls": 80096,
+        "samples": 82018304,
+        "local_steps": 328073216,
+        "failed_samples": 2718637,
+        "failed_local_steps": 3084983,
+        "cap_calls": 10126,
+        "mean_converged_calls": 0,
+        "unconverged_budget_calls": 0,
+        "newton_status_counts": {
+          "0": 325091524,
+          "1": 15289,
+          "2": 0,
+          "3": 0,
+          "4": 2966403,
+          "5": 0
+        },
+        "newton_converged_samples": 79398487,
+        "newton_budget_exhausted_calls": 9313
+      }
+    }
+  }
+}

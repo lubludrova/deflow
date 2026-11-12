@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "/home/featurize/deflow-sequential-anderson-20261112/code/validate_capsules.py", line 105, in <module>
+    main()
+  File "/home/featurize/deflow-sequential-anderson-20261112/code/validate_capsules.py", line 58, in main
+    refout = audit.readout(actor,obs,z,qref.float(),critics,payload['loss_config'])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/deflow-sequential-anderson-20261112/code/package/deflow_rebuttal/audit.py", line 168, in readout
+    q = torch.minimum(*(net(torch.cat([obs, action], dim=-1)) for net in qnets)).squeeze(-1)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/deflow-sequential-anderson-20261112/code/package/deflow_rebuttal/audit.py", line 168, in <genexpr>
+    q = torch.minimum(*(net(torch.cat([obs, action], dim=-1)) for net in qnets)).squeeze(-1)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/deflow-sequential-anderson-20261112/venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/deflow-sequential-anderson-20261112/venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: parent_critic.forward() missing 1 required positional argument: 'act'

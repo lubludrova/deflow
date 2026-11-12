@@ -1,0 +1,37 @@
+{
+  "obs_dim": 5,
+  "act_dim": 2,
+  "act_low": [
+    -1.0,
+    -1.0
+  ],
+  "act_high": [
+    1.0,
+    1.0
+  ],
+  "denoising_steps": 4,
+  "time_emb_dim": 32,
+  "hidden_dim": 256,
+  "n_gate_hidden": 1,
+  "use_layernorm": true,
+  "u_scale": 4.0,
+  "gate_bias": 1.0,
+  "jac_sigma_target": 0.9,
+  "m_fwd": 5,
+  "lam_fwd": 0.01,
+  "max_iter_fwd": 10,
+  "tol_fwd": 1e-05,
+  "beta_fwd": 0.7,
+  "m_bwd": 5,
+  "lam_bwd": 0.01,
+  "max_iter_bwd": 10,
+  "tol_bwd": 0.001,
+  "beta_bwd": 0.7,
+  "z_std": 1.0,
+  "logdet_eps": 1e-06,
+  "exact_backward": true,
+  "integration": "implicit",
+  "density_estimator": "exact",
+  "density_diag_every": 100,
+  "density_diag_batch": 32
+}

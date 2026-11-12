@@ -1,0 +1,86 @@
+{
+  "campaign_id": "deflow-campaign-20261111-revision3",
+  "contract_sha256": "300614d6c0abfbb1bbd5f722effbc5c00774f7213c7598dc68b6527c0225c0ea",
+  "precision_policy": "strict_fp32",
+  "run_id": "smoke_anderson_highcap",
+  "attempt_id": 0,
+  "argv": [
+    "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python",
+    "-m",
+    "deflow_rebuttal.run_docking",
+    "--repo",
+    "/home/featurize/deflow-campaign-20261111/revision3/DEFlow",
+    "--output",
+    "/home/featurize/deflow-campaign-20261111/revision3/preflight/smoke_anderson_highcap",
+    "--solver",
+    "anderson",
+    "--seed",
+    "0",
+    "--steps",
+    "8000",
+    "--anderson-tol",
+    "1e-5",
+    "--anderson-cap",
+    "500",
+    "--execute",
+    "--smoke",
+    "--precision-policy",
+    "strict_fp32"
+  ],
+  "cwd": "/home/featurize/deflow-campaign-20261111/revision3/package",
+  "gpu_slot": 2,
+  "gpu_uuid": "GPU-911aa272-5dd1-019f-9636-accc89c876da",
+  "environment": {
+    "PYTHONPATH": "/home/featurize/deflow-campaign-20261111/revision3/package",
+    "DEFLOW_ENGINE": "/home/featurize/deflow-campaign-20261111/revision3/DEFlow/src/docking_full/sac_anderson_flow.py",
+    "CUDA_VISIBLE_DEVICES": "GPU-911aa272-5dd1-019f-9636-accc89c876da"
+  },
+  "command_sha256": "a4b16acb40a90d798fefc366272cb3d631a9d8fa80e0d20e4563bb2385b433f2",
+  "claimed_at": 1794378127.6500103,
+  "capacity_sample": {
+    "at": 1794378127.7798846,
+    "gpus": [
+      [
+        "0",
+        "GPU-25aeeb0b-2f1a-6068-db50-71c18174ccba",
+        "4",
+        "24106",
+        "0"
+      ],
+      [
+        "1",
+        "GPU-8c5841b8-9c0d-e867-7e29-7714a772fa58",
+        "4",
+        "24106",
+        "0"
+      ],
+      [
+        "2",
+        "GPU-911aa272-5dd1-019f-9636-accc89c876da",
+        "4",
+        "24106",
+        "0"
+      ]
+    ],
+    "processes": []
+  },
+  "log": "/home/featurize/deflow-campaign-20261111/revision3/ops/logs/smoke_anderson_highcap.log",
+  "run_path": "/home/featurize/deflow-campaign-20261111/revision3/preflight/smoke_anderson_highcap",
+  "retry_budget": 0,
+  "resume": false,
+  "identity": {
+    "pid": 43500,
+    "process_start_ticks": 4842790,
+    "boot_id": "4dfe31ec-070c-4dde-80cb-8b843303addc",
+    "process_group": 43500,
+    "session": 43500,
+    "cmdline": "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python -m deflow_rebuttal.run_docking --repo /home/featurize/deflow-campaign-20261111/revision3/DEFlow --output /home/featurize/deflow-campaign-20261111/revision3/preflight/smoke_anderson_highcap --solver anderson --seed 0 --steps 8000 --anderson-tol 1e-5 --anderson-cap 500 --execute --smoke --precision-policy strict_fp32 ",
+    "cwd": "/home/featurize/deflow-campaign-20261111/revision3/package"
+  },
+  "pid": 43500,
+  "started_at": 1794378127.6500103,
+  "state": "EXITED",
+  "exit_code": 0,
+  "finished_at": 1794378140.0957701,
+  "elapsed_seconds": 12.445760488510132
+}

@@ -1,0 +1,180 @@
+{
+  "campaign_id": "deflow-campaign-20261111-revision3",
+  "contract_sha256": "300614d6c0abfbb1bbd5f722effbc5c00774f7213c7598dc68b6527c0225c0ea",
+  "precision_policy": "strict_fp32",
+  "packing_sha256": "68a81075d8ce655dae718838dd05afdd0107d67edac1e53f330c1f0eb0057866",
+  "run_id": "anderson_s3",
+  "attempt_id": 0,
+  "argv": [
+    "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python",
+    "-m",
+    "deflow_rebuttal.run_docking",
+    "--repo",
+    "/home/featurize/deflow-campaign-20261111/revision3/DEFlow",
+    "--output",
+    "/home/featurize/deflow-campaign-20261111/revision3/results/anderson_s3",
+    "--solver",
+    "anderson",
+    "--seed",
+    "3",
+    "--steps",
+    "200000",
+    "--execute",
+    "--precision-policy",
+    "strict_fp32"
+  ],
+  "cwd": "/home/featurize/deflow-campaign-20261111/revision3/package",
+  "gpu_slot": 2,
+  "gpu_uuid": "GPU-911aa272-5dd1-019f-9636-accc89c876da",
+  "lane": 1,
+  "environment": {
+    "PYTHONPATH": "/home/featurize/deflow-campaign-20261111/revision3/package",
+    "DEFLOW_ENGINE": "/home/featurize/deflow-campaign-20261111/revision3/DEFlow/src/docking_full/sac_anderson_flow.py",
+    "CUDA_VISIBLE_DEVICES": "GPU-911aa272-5dd1-019f-9636-accc89c876da"
+  },
+  "command_sha256": "a8997275844bfa7888f3fbe2d050aa2ab7aab3fa2f3ff7a0bc56ee99cebe4d7b",
+  "claimed_at": 1794399630.9852185,
+  "capacity_sample": {
+    "at": 1794399631.2212434,
+    "gpus": [
+      [
+        "0",
+        "GPU-25aeeb0b-2f1a-6068-db50-71c18174ccba",
+        "1693",
+        "22418",
+        "95"
+      ],
+      [
+        "1",
+        "GPU-8c5841b8-9c0d-e867-7e29-7714a772fa58",
+        "854",
+        "23257",
+        "18"
+      ],
+      [
+        "2",
+        "GPU-911aa272-5dd1-019f-9636-accc89c876da",
+        "856",
+        "23255",
+        "20"
+      ]
+    ],
+    "processes": [
+      [
+        "GPU-25aeeb0b-2f1a-6068-db50-71c18174ccba",
+        "45017",
+        "846"
+      ],
+      [
+        "GPU-25aeeb0b-2f1a-6068-db50-71c18174ccba",
+        "78014",
+        "832"
+      ],
+      [
+        "GPU-8c5841b8-9c0d-e867-7e29-7714a772fa58",
+        "58120",
+        "844"
+      ],
+      [
+        "GPU-911aa272-5dd1-019f-9636-accc89c876da",
+        "45018",
+        "846"
+      ]
+    ]
+  },
+  "log": "/home/featurize/deflow-campaign-20261111/revision3/ops/logs/anderson_s3.log",
+  "run_path": "/home/featurize/deflow-campaign-20261111/revision3/results/anderson_s3",
+  "retry_budget": 0,
+  "resume": false,
+  "co_runners_at_claim": {
+    "newton_s3": {
+      "identity": {
+        "pid": 45018,
+        "process_start_ticks": 4907086,
+        "boot_id": "4dfe31ec-070c-4dde-80cb-8b843303addc",
+        "process_group": 45018,
+        "session": 45018,
+        "cmdline": "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python -m deflow_rebuttal.run_docking --repo /home/featurize/deflow-campaign-20261111/revision3/DEFlow --output /home/featurize/deflow-campaign-20261111/revision3/results/newton_s3 --solver newton --seed 3 --steps 200000 --execute --precision-policy strict_fp32 ",
+        "cwd": "/home/featurize/deflow-campaign-20261111/revision3/package"
+      },
+      "progress": {
+        "step": 70864,
+        "last_telemetry_age_seconds": 0.05857229232788086,
+        "last_solver_call": {
+          "call": 76462,
+          "global_step": 70864,
+          "role": "training/target_or_eval_logp",
+          "batch": 1024,
+          "steps": 4,
+          "solver": "newton",
+          "solver_seconds": 0.5698296560003655,
+          "cap_hit": false,
+          "common_abs_residual": {
+            "nonfinite": 0,
+            "count": 4096,
+            "p50": 1.1928293019991543e-07,
+            "p95": 9.348278808829491e-06,
+            "max": 0.83803790807724
+          },
+          "failed_samples": 76,
+          "failed_local_steps": 76,
+          "native": {
+            "n_iter": 14,
+            "cap_hit": false,
+            "failed_samples": 74,
+            "status_counts": {
+              "0": 4022,
+              "1": 0,
+              "2": 0,
+              "3": 0,
+              "4": 74,
+              "5": 0
+            },
+            "backtracks_total": 3360
+          },
+          "work": {
+            "nfe_total": 24040,
+            "jacobian_evals_total": 8292,
+            "linear_solves_total": 8292
+          },
+          "telemetry_extra_field_positions": 4096,
+          "totals": {
+            "calls": 33433,
+            "samples": 34235392,
+            "local_steps": 136941568,
+            "failed_samples": 320449,
+            "failed_local_steps": 338692,
+            "cap_calls": 1474,
+            "mean_converged_calls": 0,
+            "unconverged_budget_calls": 0,
+            "newton_status_counts": {
+              "0": 136660644,
+              "1": 1447,
+              "2": 0,
+              "3": 0,
+              "4": 279477,
+              "5": 0
+            },
+            "newton_converged_samples": 33972339,
+            "newton_budget_exhausted_calls": 1314
+          }
+        }
+      }
+    }
+  },
+  "identity": {
+    "pid": 79645,
+    "process_start_ticks": 6993121,
+    "boot_id": "4dfe31ec-070c-4dde-80cb-8b843303addc",
+    "process_group": 79645,
+    "session": 79645,
+    "cmdline": "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python -m deflow_rebuttal.run_docking --repo /home/featurize/deflow-campaign-20261111/revision3/DEFlow --output /home/featurize/deflow-campaign-20261111/revision3/results/anderson_s3 --solver anderson --seed 3 --steps 200000 --execute --precision-policy strict_fp32 ",
+    "cwd": "/home/featurize/deflow-campaign-20261111/revision3/package"
+  },
+  "pid": 79645,
+  "started_at": 1794399630.9852185,
+  "state": "EXITED",
+  "exit_code": 0,
+  "finished_at": 1794409830.7748454,
+  "elapsed_seconds": 10199.789627313614
+}

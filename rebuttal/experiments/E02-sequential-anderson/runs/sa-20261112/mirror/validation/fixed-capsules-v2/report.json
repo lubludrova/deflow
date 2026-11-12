@@ -1,0 +1,257 @@
+{
+  "runtime": {
+    "matmul_precision": "highest",
+    "matmul_allow_tf32": false,
+    "cudnn_allow_tf32": false,
+    "autocast_cuda": false,
+    "autocast_cpu": false,
+    "default_dtype": "torch.float32",
+    "torch": "2.7.1+cu128",
+    "cuda": "12.8",
+    "cudnn": 90701,
+    "backend_environment": {}
+  },
+  "device": "NVIDIA GeForce RTX 5090",
+  "source_sha256": {
+    "sac_anderson_flow.py": "ba94c8e1f66a41bc6b828ec78d52a1d0ca53573428a771c52c73ea7196205bb5",
+    "sac_flow_parent.py": "84f00325205c5e7e78b49d50879be56d861e1d715d347f40560dfc220f3ad761",
+    "sac_gaussian_baseline.py": "2d4d33f90aaa97b2580c4ae7f159f0290ca78d12d865c8f899fc45c81ef75964",
+    "dime_actor.py": "2792ac803dd3229e66fbe36c872589476ea750159831fbb9a8b95d7ee0fb3790",
+    "qsm_actor.py": "70e33a61d900d2503d2f2e91157552fdc2a2d2da861c41fbc6bd260a4b292e2d",
+    "multigoal_docking_env.py": "05a1c9a3b046d6260ef0055834b594a12ac391a3ab80faf1a444369276edb986",
+    "step_accounting.py": "0d3343cc0b3e87729b1980d927728b31ec835944adee6eeb3cbcb824f4fd24f1",
+    "run_multigoal_docking_full.py": "7adaaf6a735d5a629fa45e070841c1d83185405b9a1dabce521932b6103155ac",
+    "evaluate_multigoal_docking_full.py": "244d093da999c6df7e5382db1462e8060f209db4a4f7591c6439b2ca1bad4530"
+  },
+  "package_sha256": {
+    "test_precision.py": "4aa05f012ee04290f4b3e7d5230adf805c9b4bcba5dfe8d93ff1383a22968da5",
+    "test_sequential_anderson.py": "cd8d139f56b12968447b0630cfde7977f789caa9b142eec877a8589fc60da6f0",
+    "__init__.py": "bb1453bff7053d16daa30c920e327a4321f2b67d8cb1a9f3f77997be12909a91",
+    "precision.py": "538963ed417e294db4c4bf78605671463e6f9263222073b5e0e2404e3a3dbe92",
+    "prepare_inputs.py": "13c9ffbac77395c8d2b9cd153408214d3c5d212a341250b042637509aa58030b",
+    "sequential_newton.py": "e7c24ebef16db7bd2e16101c08625294ba4902449e774281b9f5f0fca0a3a6d8",
+    "test_audit.py": "610bc8e4230cb497d0024b93873c61d7e050b87d0d91d3a7f512d14fcc90e1b8",
+    "sequential_anderson.py": "bccc438e476f93e2adc625bd47924baf85c5fd87de0d5a7fc05091d9dd71a76d",
+    "test_solver.py": "b2072803ce51db7958b7f6331f88345ffc614d27c609d8d9fc0bd79489a6bb7c",
+    "evaluate.py": "898a38155612b53bde39cbb4762aa7d5a65368bda9e242bd301b9cd7233f0c4a",
+    "audit.py": "6dcff6cb6b5c2e3f58b4c98b22c99551598c8512f1c08ebaf9c6e0ecbcd7d48d",
+    "run_docking.py": "3892450c54e4746a3b8a9d7462d22249742509ec0c8c9c923655f44eef324e64"
+  },
+  "timing": "exclusive GPU, one warmup and three synchronized forward samples, no telemetry inside timer",
+  "reference": "FP64 sequential Newton cap100, independent previous-root starts, residual and singular-value masks",
+  "limitations": "Reference is diagnostic, not branch uniqueness. No finite-program derivative claim.",
+  "capsules": [
+    {
+      "path": "a2_step99336.pt",
+      "sha256": "a893072bd2a96377a908c5504ce55eab3109d908db7a477b8f42e1c820f62b0c",
+      "metadata": {
+        "call": 109000,
+        "global_step": 99336,
+        "role": "training/actor_grad",
+        "batch": 1024,
+        "steps": 4,
+        "solver": "anderson",
+        "solver_seconds": 0.021205202996497974,
+        "cap_hit": true,
+        "common_abs_residual": {
+          "nonfinite": 0,
+          "count": 4096,
+          "p50": 1.94264998754079e-06,
+          "p95": 0.0010902430512942374,
+          "max": 1.2013753652572632
+        },
+        "failed_samples": 362,
+        "failed_local_steps": 817,
+        "native": {
+          "n_iter": 25,
+          "res_curve": [
+            0.18880274891853333,
+            0.12521404027938843,
+            0.091571144759655,
+            0.08165249228477478,
+            0.08240064978599548,
+            0.061613429337739944,
+            0.03138647973537445,
+            0.02107492834329605,
+            0.014969654381275177,
+            0.011257322505116463,
+            0.009510291740298271,
+            0.0072580622509121895,
+            0.00815073773264885,
+            0.0047704903408885,
+            0.004630452021956444,
+            0.0056493207812309265,
+            0.005164540372788906,
+            0.0042756604962050915,
+            0.004221773706376553,
+            0.0043581388890743256,
+            0.0028273581992834806,
+            0.003540927544236183,
+            0.0030952421948313713
+          ],
+          "res_last": 0.0030952421948313713,
+          "res_p50": 4.966351298207883e-06,
+          "res_p95": 0.004959519486874342,
+          "res_max": 1.2561309337615967,
+          "res_fail_frac": 0.3251953125,
+          "abs_res_p95": 0.006413253024220467,
+          "abs_res_max": 1.8997681140899658,
+          "tolerance": 1e-05,
+          "iteration_limit": 25,
+          "mean_criterion_met": false,
+          "iteration_limit_reached": true,
+          "budget_exhausted_without_convergence": true,
+          "stop_reason": "iteration_limit",
+          "convergence_scope": "native batch mean, not all samples",
+          "anderson_history_lstsq_count": 23
+        },
+        "work": {
+          "nfe_total": 102400,
+          "jacobian_evals_total": 0,
+          "linear_solves_total": 0
+        },
+        "telemetry_extra_field_positions": 4096,
+        "totals": {
+          "calls": 47666,
+          "samples": 48809984,
+          "local_steps": 195239936,
+          "failed_samples": 17917288,
+          "failed_local_steps": 34743262,
+          "cap_calls": 47474,
+          "mean_converged_calls": 215,
+          "unconverged_budget_calls": 47451,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        }
+      },
+      "reference_valid": 1022,
+      "samples": 1024,
+      "methods": {
+        "anderson": {
+          "finite": true,
+          "seconds": [
+            0.019802644999970198,
+            0.02066930199998751,
+            0.019541607999997268
+          ],
+          "failed_samples": 363,
+          "failed_local_steps": 818,
+          "local_residual": {
+            "n": 4096,
+            "nonfinite": 0,
+            "median": 1.9706831153598614e-06,
+            "p95": 0.0010901414207182825,
+            "max": 1.2105708122253418
+          },
+          "trajectory_error_valid": {
+            "n": 4088,
+            "nonfinite": 0,
+            "median": 2.803936405630975e-06,
+            "p95": 0.0007514862864404953,
+            "max": 1.248066854110558
+          },
+          "action_error_valid": {
+            "n": 1022,
+            "nonfinite": 0,
+            "median": 3.039252476355614e-07,
+            "p95": 0.003320289449766272,
+            "max": 1.5815114974975586
+          },
+          "logp_error_valid": {
+            "n": 1022,
+            "nonfinite": 0,
+            "median": 7.152557373046875e-07,
+            "p95": 0.00950493812561035,
+            "max": 4.893129825592041
+          },
+          "full_batch_sac_loss": 1.916567087173462,
+          "full_batch_sac_gradient_error_vs_reference": 0.49410802125930786,
+          "gradient_scope": "full batch including reference-invalid rows, diagnostic only"
+        },
+        "newton": {
+          "finite": true,
+          "seconds": [
+            0.2743484949999697,
+            0.27361315999996805,
+            0.2733664470000008
+          ],
+          "failed_samples": 4,
+          "failed_local_steps": 4,
+          "local_residual": {
+            "n": 4096,
+            "nonfinite": 0,
+            "median": 2.470327729042765e-07,
+            "p95": 8.874515515344683e-06,
+            "max": 0.9054630994796753
+          },
+          "trajectory_error_valid": {
+            "n": 4088,
+            "nonfinite": 0,
+            "median": 7.698946760967985e-07,
+            "p95": 1.1387186637021186e-05,
+            "max": 3.158210381737809e-05
+          },
+          "action_error_valid": {
+            "n": 1022,
+            "nonfinite": 0,
+            "median": 2.8312206268310547e-07,
+            "p95": 3.400441835310628e-06,
+            "max": 2.3951952243805863e-05
+          },
+          "logp_error_valid": {
+            "n": 1022,
+            "nonfinite": 0,
+            "median": 5.960464477539062e-07,
+            "p95": 8.106231689453125e-06,
+            "max": 0.0001729726791381836
+          },
+          "full_batch_sac_loss": 1.8983368873596191,
+          "full_batch_sac_gradient_error_vs_reference": 0.00016691125347279012,
+          "gradient_scope": "full batch including reference-invalid rows, diagnostic only"
+        },
+        "sequential_anderson": {
+          "finite": true,
+          "seconds": [
+            0.06735895299999584,
+            0.06729466000001594,
+            0.06709236200003943
+          ],
+          "failed_samples": 287,
+          "failed_local_steps": 614,
+          "local_residual": {
+            "n": 4096,
+            "nonfinite": 0,
+            "median": 1.1742230299205403e-06,
+            "p95": 0.00016999847866827622,
+            "max": 0.11799375712871552
+          },
+          "trajectory_error_valid": {
+            "n": 4088,
+            "nonfinite": 0,
+            "median": 2.2380694236502638e-06,
+            "p95": 0.0002258890399929951,
+            "max": 0.35685920446816305
+          },
+          "action_error_valid": {
+            "n": 1022,
+            "nonfinite": 0,
+            "median": 2.747638347955217e-07,
+            "p95": 0.000651201128493993,
+            "max": 0.3461429178714752
+          },
+          "logp_error_valid": {
+            "n": 1022,
+            "nonfinite": 0,
+            "median": 5.960464477539062e-07,
+            "p95": 0.0013512849807739225,
+            "max": 0.525591254234314
+          },
+          "full_batch_sac_loss": 1.904317021369934,
+          "full_batch_sac_gradient_error_vs_reference": 0.4733327627182007,
+          "gradient_scope": "full batch including reference-invalid rows, diagnostic only"
+        }
+      }
+    }
+  ]
+}

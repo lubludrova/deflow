@@ -1,0 +1,88 @@
+{
+  "campaign_id": "deflow-campaign-20261111-revision3",
+  "contract_sha256": "300614d6c0abfbb1bbd5f722effbc5c00774f7213c7598dc68b6527c0225c0ea",
+  "precision_policy": "strict_fp32",
+  "run_id": "smoke_anderson_eval",
+  "attempt_id": 0,
+  "argv": [
+    "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python",
+    "-m",
+    "deflow_rebuttal.evaluate",
+    "--repo",
+    "/home/featurize/deflow-campaign-20261111/revision3/DEFlow",
+    "--run",
+    "/home/featurize/deflow-campaign-20261111/revision3/preflight/smoke_anderson",
+    "--checkpoint",
+    "/home/featurize/deflow-campaign-20261111/revision3/preflight/smoke_anderson/runs/anderson_wide_tight_s0/ckpt.pt",
+    "--output",
+    "/home/featurize/deflow-campaign-20261111/revision3/preflight/smoke_anderson_eval",
+    "--episodes",
+    "4",
+    "--eval-seed",
+    "26152",
+    "--device",
+    "cuda"
+  ],
+  "cwd": "/home/featurize/deflow-campaign-20261111/revision3/package",
+  "gpu_slot": 1,
+  "gpu_uuid": "GPU-8c5841b8-9c0d-e867-7e29-7714a772fa58",
+  "environment": {
+    "PYTHONPATH": "/home/featurize/deflow-campaign-20261111/revision3/package",
+    "DEFLOW_ENGINE": "/home/featurize/deflow-campaign-20261111/revision3/DEFlow/src/docking_full/sac_anderson_flow.py",
+    "CUDA_VISIBLE_DEVICES": "GPU-8c5841b8-9c0d-e867-7e29-7714a772fa58"
+  },
+  "command_sha256": "cc6130638c5db043615c376f33f33ef1cd7fa791558fecc9181aa778f59c0849",
+  "claimed_at": 1794378140.1329541,
+  "capacity_sample": {
+    "at": 1794378140.2523065,
+    "gpus": [
+      [
+        "0",
+        "GPU-25aeeb0b-2f1a-6068-db50-71c18174ccba",
+        "578",
+        "23533",
+        "13"
+      ],
+      [
+        "1",
+        "GPU-8c5841b8-9c0d-e867-7e29-7714a772fa58",
+        "4",
+        "24106",
+        "0"
+      ],
+      [
+        "2",
+        "GPU-911aa272-5dd1-019f-9636-accc89c876da",
+        "4",
+        "24106",
+        "0"
+      ]
+    ],
+    "processes": [
+      [
+        "GPU-25aeeb0b-2f1a-6068-db50-71c18174ccba",
+        "43503",
+        "568"
+      ]
+    ]
+  },
+  "log": "/home/featurize/deflow-campaign-20261111/revision3/ops/logs/smoke_anderson_eval.log",
+  "run_path": "/home/featurize/deflow-campaign-20261111/revision3/preflight/smoke_anderson_eval",
+  "retry_budget": 0,
+  "resume": false,
+  "identity": {
+    "pid": 43534,
+    "process_start_ticks": 4844037,
+    "boot_id": "4dfe31ec-070c-4dde-80cb-8b843303addc",
+    "process_group": 43534,
+    "session": 43534,
+    "cmdline": "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python -m deflow_rebuttal.evaluate --repo /home/featurize/deflow-campaign-20261111/revision3/DEFlow --run /home/featurize/deflow-campaign-20261111/revision3/preflight/smoke_anderson --checkpoint /home/featurize/deflow-campaign-20261111/revision3/preflight/smoke_anderson/runs/anderson_wide_tight_s0/ckpt.pt --output /home/featurize/deflow-campaign-20261111/revision3/preflight/smoke_anderson_eval --episodes 4 --eval-seed 26152 --device cuda ",
+    "cwd": "/home/featurize/deflow-campaign-20261111/revision3/package"
+  },
+  "pid": 43534,
+  "started_at": 1794378140.1329541,
+  "state": "EXITED",
+  "exit_code": 0,
+  "finished_at": 1794378144.5350947,
+  "elapsed_seconds": 4.402141094207764
+}

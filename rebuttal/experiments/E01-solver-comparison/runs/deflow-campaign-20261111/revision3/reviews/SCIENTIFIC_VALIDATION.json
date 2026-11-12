@@ -1,0 +1,19 @@
+{
+  "python": "/opt/anaconda3/bin/python",
+  "python_version": "3.11.8 | packaged by conda-forge | (main, Feb 16 2024, 20:49:36) [Clang 16.0.6 ]",
+  "torch": "2.5.1",
+  "device": "cpu",
+  "tests": {
+    "passed": 22,
+    "skipped": 0,
+    "command": "OMP_NUM_THREADS=1 PYTHONPATH=revision3/package DEFLOW_ENGINE=revision3/DEFlow/src/docking_full/sac_anderson_flow.py python -m unittest deflow_rebuttal.test_solver deflow_rebuttal.test_audit deflow_rebuttal.test_precision -q"
+  },
+  "integration": {
+    "training": "local-checks/smoke_newton, 256 transitions",
+    "evaluation": "local-checks/eval_newton, 4 episodes seed26152",
+    "audit": "local-checks/audit_cpu_smoke, same-capsule batch8 target-call fixture, independent reference8/8, not campaign scientific actor-gradient audit"
+  },
+  "source_map_sha256": "700461a6393cabf81af9bd8d4df7826906868295688bb5ff028cb7cf23f2e522",
+  "limitations": "CPU integration only. Requires pinned server CUDA tests and approved bounded CUDA preflight before scientific training.",
+  "post_review_fix": "Optional None density output filtered. Existing dispatch regression now exercises forward_with_jacobian_penalty including backward.22 tests rerun. Earlier CPU smoke/eval/audit artifacts retain their original source hashes and precede this two-line observer fix."
+}

@@ -1,0 +1,107 @@
+{
+  "campaign_id": "deflow-campaign-20261111-revision3",
+  "contract_sha256": "300614d6c0abfbb1bbd5f722effbc5c00774f7213c7598dc68b6527c0225c0ea",
+  "precision_policy": "strict_fp32",
+  "packing_sha256": "c774feaa140acadafb78d4702d0347e27d9346cd3bcdb181a492c4836f5368d2",
+  "run_id": "audit_a2_100000",
+  "attempt_id": 0,
+  "argv": [
+    "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python",
+    "-m",
+    "deflow_rebuttal.audit",
+    "--engine",
+    "/home/featurize/deflow-campaign-20261111/revision3/DEFlow/src/docking_full/sac_anderson_flow.py",
+    "--checkpoint",
+    "/home/featurize/deflow-campaign-20261111/revision3/results/anderson_s2/capsule_00109000.pt",
+    "--inputs",
+    "/home/featurize/deflow-campaign-20261111/revision3/results/anderson_s2/capsule_00109000.pt",
+    "--anderson-caps",
+    "25",
+    "100",
+    "500",
+    "--anderson-tol",
+    "1e-5",
+    "--output",
+    "/home/featurize/deflow-campaign-20261111/revision3/audits/audit_a2_100000",
+    "--device",
+    "cuda",
+    "--warmup",
+    "2",
+    "--repeats",
+    "10",
+    "--precision-policy",
+    "strict_fp32",
+    "--require-same-capsule"
+  ],
+  "cwd": "/home/featurize/deflow-campaign-20261111/revision3/package",
+  "gpu_slot": 1,
+  "gpu_uuid": "GPU-8c5841b8-9c0d-e867-7e29-7714a772fa58",
+  "lane": 0,
+  "environment": {
+    "PYTHONPATH": "/home/featurize/deflow-campaign-20261111/revision3/package",
+    "DEFLOW_ENGINE": "/home/featurize/deflow-campaign-20261111/revision3/DEFlow/src/docking_full/sac_anderson_flow.py",
+    "CUDA_VISIBLE_DEVICES": "GPU-8c5841b8-9c0d-e867-7e29-7714a772fa58"
+  },
+  "command_sha256": "8e2453477ab79ec68a91ad4627efac0c422914e00bd3cc08f24c5d3c160b8152",
+  "claimed_at": 1794450443.851393,
+  "capacity_sample": {
+    "at": 1794450443.9749453,
+    "gpus": [
+      [
+        "0",
+        "GPU-25aeeb0b-2f1a-6068-db50-71c18174ccba",
+        "1693",
+        "22418",
+        "97"
+      ],
+      [
+        "1",
+        "GPU-8c5841b8-9c0d-e867-7e29-7714a772fa58",
+        "1",
+        "24109",
+        "0"
+      ],
+      [
+        "2",
+        "GPU-911aa272-5dd1-019f-9636-accc89c876da",
+        "842",
+        "23269",
+        "32"
+      ]
+    ],
+    "processes": [
+      [
+        "GPU-25aeeb0b-2f1a-6068-db50-71c18174ccba",
+        "45017",
+        "846"
+      ],
+      [
+        "GPU-25aeeb0b-2f1a-6068-db50-71c18174ccba",
+        "140875",
+        "832"
+      ],
+      [
+        "GPU-911aa272-5dd1-019f-9636-accc89c876da",
+        "131874",
+        "832"
+      ]
+    ]
+  },
+  "log": "/home/featurize/deflow-campaign-20261111/revision3/ops/logs/audit_a2_100000.log",
+  "run_path": "/home/featurize/deflow-campaign-20261111/revision3/audits/audit_a2_100000",
+  "retry_budget": 0,
+  "resume": false,
+  "co_runners_at_claim": {},
+  "identity": {
+    "pid": 163312,
+    "process_start_ticks": 12074394,
+    "boot_id": "4dfe31ec-070c-4dde-80cb-8b843303addc",
+    "process_group": 163312,
+    "session": 163312,
+    "cmdline": "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python -m deflow_rebuttal.audit --engine /home/featurize/deflow-campaign-20261111/revision3/DEFlow/src/docking_full/sac_anderson_flow.py --checkpoint /home/featurize/deflow-campaign-20261111/revision3/results/anderson_s2/capsule_00109000.pt --inputs /home/featurize/deflow-campaign-20261111/revision3/results/anderson_s2/capsule_00109000.pt --anderson-caps 25 100 500 --anderson-tol 1e-5 --output /home/featurize/deflow-campaign-20261111/revision3/audits/audit_a2_100000 --device cuda --warmup 2 --repeats 10 --precision-policy strict_fp32 --require-same-capsule ",
+    "cwd": "/home/featurize/deflow-campaign-20261111/revision3/package"
+  },
+  "pid": 163312,
+  "started_at": 1794450443.851393,
+  "state": "RUNNING"
+}

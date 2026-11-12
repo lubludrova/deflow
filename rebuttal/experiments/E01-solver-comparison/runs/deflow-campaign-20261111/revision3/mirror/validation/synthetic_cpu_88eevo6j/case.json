@@ -1,0 +1,46 @@
+{
+  "source": {
+    "path": "/Users/ruslanageev/dev/mbrl-world-models/output/deflow-campaign-20261111/revision3/validation/synthetic_cpu_88eevo6j/capsule.pt",
+    "sha256": "909b2dc93a8ddf44c552f2dedcf0a2dbe694c071b1944f9ef5b9fd6d4719db7e",
+    "actual_step": 123,
+    "source": "synthetic_cpu_fixture",
+    "rule": "Fixed RNG seed41, all1024 synthetic rows"
+  },
+  "pass_all": true,
+  "blockers": [],
+  "native_failed_rows": 0,
+  "fresh_failed_rows": {
+    "flattened": 0,
+    "permuted": 0,
+    "chunk_1": 1,
+    "chunk_32": 1,
+    "chunk_1024": 0,
+    "per_step": 0,
+    "stored_native": 0,
+    "fp64_fixed_q": 1
+  },
+  "boundary_disagreements": 1,
+  "explained_boundary_steps": 1,
+  "unexplained_boundary_steps": 0,
+  "intrinsic_failed_steps": [],
+  "strict_only_failed_steps": [],
+  "reference_valid_rows": 1024,
+  "reference_invalid_rows": 0,
+  "full_batch_fp64_gradient_reference_available": true,
+  "full_batch_fp64_gradient_reference_computed": false,
+  "fd_pass": true,
+  "parity_pass": true,
+  "gradient_relative": 2.2008194378031476e-08,
+  "precision": {
+    "matmul_precision": "highest",
+    "matmul_allow_tf32": false,
+    "cudnn_allow_tf32": false,
+    "autocast_cuda": false,
+    "autocast_cpu": false,
+    "default_dtype": "torch.float32",
+    "torch": "2.5.1",
+    "cuda": null,
+    "cudnn": null,
+    "backend_environment": {}
+  }
+}

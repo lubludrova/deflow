@@ -1,0 +1,86 @@
+{
+  "at": 1794377946.1980183,
+  "pass_all": true,
+  "cases": [
+    {
+      "leader_exited_before_cleanup": false,
+      "child_pid": 43017,
+      "states_before": {
+        "43016": "T",
+        "43017": "T"
+      },
+      "cleanup": {
+        "at": 1794377944.9391356,
+        "identity": {
+          "pid": 43016,
+          "process_start_ticks": 4824429,
+          "boot_id": "4dfe31ec-070c-4dde-80cb-8b843303addc",
+          "process_group": 43016,
+          "session": 43016,
+          "cmdline": "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python -u -c import subprocess,sys,time; p=subprocess.Popen([sys.executable,\"-c\",\"import time; time.sleep(600)\"]); print(p.pid,flush=True); time.sleep(600) ",
+          "cwd": "/home/featurize/deflow-campaign-20261111/revision3"
+        },
+        "signals": [
+          "SIGTERM"
+        ],
+        "members_before": [
+          {
+            "pid": 43016,
+            "process_start_ticks": 4824429,
+            "boot_id": "4dfe31ec-070c-4dde-80cb-8b843303addc",
+            "process_group": 43016,
+            "session": 43016,
+            "cmdline": "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python -u -c import subprocess,sys,time; p=subprocess.Popen([sys.executable,\"-c\",\"import time; time.sleep(600)\"]); print(p.pid,flush=True); time.sleep(600) ",
+            "cwd": "/home/featurize/deflow-campaign-20261111/revision3"
+          },
+          {
+            "pid": 43017,
+            "process_start_ticks": 4824433,
+            "boot_id": "4dfe31ec-070c-4dde-80cb-8b843303addc",
+            "process_group": 43016,
+            "session": 43016,
+            "cmdline": "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python -c import time; time.sleep(600) ",
+            "cwd": "/home/featurize/deflow-campaign-20261111/revision3"
+          }
+        ],
+        "members_after": [],
+        "exit_code": -15
+      }
+    },
+    {
+      "leader_exited_before_cleanup": true,
+      "child_pid": 43019,
+      "states_before": {
+        "43019": "S"
+      },
+      "cleanup": {
+        "at": 1794377946.1088417,
+        "identity": {
+          "pid": 43018,
+          "process_start_ticks": 4824495,
+          "boot_id": "4dfe31ec-070c-4dde-80cb-8b843303addc",
+          "process_group": 43018,
+          "session": 43018,
+          "cmdline": "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python -u -c import subprocess,sys,time; p=subprocess.Popen([sys.executable,\"-c\",\"import time; time.sleep(600)\"]); print(p.pid,flush=True); time.sleep(1) ",
+          "cwd": "/home/featurize/deflow-campaign-20261111/revision3"
+        },
+        "signals": [
+          "SIGTERM"
+        ],
+        "members_before": [
+          {
+            "pid": 43019,
+            "process_start_ticks": 4824499,
+            "boot_id": "4dfe31ec-070c-4dde-80cb-8b843303addc",
+            "process_group": 43018,
+            "session": 43018,
+            "cmdline": "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python -c import time; time.sleep(600) ",
+            "cwd": "/home/featurize/deflow-campaign-20261111/revision3"
+          }
+        ],
+        "members_after": [],
+        "exit_code": 0
+      }
+    }
+  ]
+}

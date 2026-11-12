@@ -1,0 +1,62 @@
+{
+  "tests": "16 passed, CPU",
+  "scientific_training_started": false,
+  "cuda_validated": false,
+  "torch": "2.13.0",
+  "scope": "Convergence-budget extension after original VALIDATION.json. Earlier review files cover the original package snapshot.",
+  "checks": {
+    "highcap_256_transition_training": {
+      "exit_code": 0,
+      "elapsed_seconds": 4.108276844024658,
+      "checkpoints": [
+        {
+          "path": "/private/tmp/deflow-highcap-smoke-v2/runs/anderson_tol1e-05_cap500_wide_tight_s0/ckpt.pt",
+          "global_step": 256
+        },
+        {
+          "path": "/private/tmp/deflow-highcap-smoke-v2/runs/anderson_tol1e-05_cap500_wide_tight_s0/ckpt_step_000000256.pt",
+          "global_step": 256
+        }
+      ]
+    },
+    "highcap_restored_evaluator": {
+      "episodes": 4,
+      "tol": 1e-05,
+      "cap": 500,
+      "passed": true
+    },
+    "paired_sweep": {
+      "caps": [
+        25,
+        100,
+        500
+      ],
+      "tol": 1e-05,
+      "batch": 8,
+      "reference_valid": 8,
+      "configured_SAC_actor_loss": true,
+      "readouts_and_paired_gradients_verified": true,
+      "scientific_result": false
+    },
+    "night_manifest": {
+      "jobs": 12,
+      "all_four_group_plans_checked": true
+    }
+  },
+  "limitations": [
+    "CUDA and repository-pinned Torch2.5.1 not validated locally",
+    "A high cap does not guarantee convergence, native stopping tests batch mean",
+    "CPU smoke timings do not estimate production training cost"
+  ],
+  "package_sha256": {
+    "deflow_rebuttal/__init__.py": "bb1453bff7053d16daa30c920e327a4321f2b67d8cb1a9f3f77997be12909a91",
+    "deflow_rebuttal/audit.py": "3cf7c616c819aebc1e0f3f89b686f1c8be1508ab86e73d1410370f1746f21c0a",
+    "deflow_rebuttal/evaluate.py": "1702aa3575da4fdbdefd5770b947d9c9ea1982e52bbbb28a3cb52309800c4b15",
+    "deflow_rebuttal/prepare_inputs.py": "80893e90208e4e912104fea318634d79a504ef23cc2b6a966fab671ab07d9fbb",
+    "deflow_rebuttal/run_docking.py": "cf761a8a431624039ea613e0cafca02ff115d6b3bf5eb564294234d96db9f19e",
+    "deflow_rebuttal/sequential_newton.py": "e7c24ebef16db7bd2e16101c08625294ba4902449e774281b9f5f0fca0a3a6d8",
+    "deflow_rebuttal/test_audit.py": "610bc8e4230cb497d0024b93873c61d7e050b87d0d91d3a7f512d14fcc90e1b8",
+    "deflow_rebuttal/test_solver.py": "b2072803ce51db7958b7f6331f88345ffc614d27c609d8d9fc0bd79489a6bb7c",
+    "install_into_deflow.py": "c3fe48a21146f3fbdf74026d925976382b9014d98d9f0e5fd7b6374c9ab0b30b"
+  }
+}

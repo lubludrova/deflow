@@ -1,0 +1,171 @@
+{
+  "passed": true,
+  "completed_evaluations": 12,
+  "raw_audits": 18,
+  "fully_valid_batches": 5,
+  "pooled_error_trajectories": 5120,
+  "invalid_reference_rows": 5,
+  "selected_audit_capsules": 9,
+  "evaluation_source_hash_checks": 234,
+  "frozen_source_hash_checks": 92,
+  "prior_preservation_hash_checks": 762,
+  "training_checkpoints_in_publication": 0,
+  "groups": {
+    "joint_cap25": {
+      "seeds": [
+        {
+          "run_id": "anderson_s1",
+          "u4": 0.66790884883925,
+          "success_percent": 96.7,
+          "evaluation_sha256": "3ce86a8df1d64e2c85d1e7c473541c9c99b3ef9dee3e23c2809ed56dfe00f653"
+        },
+        {
+          "run_id": "anderson_s2",
+          "u4": 0.66145462359175,
+          "success_percent": 94.89999999999999,
+          "evaluation_sha256": "13921c5cc52dbacebf525e1fe234319f652fd10ec9163c9fadf5c0a3c894a5a8"
+        },
+        {
+          "run_id": "anderson_s3",
+          "u4": 0.6661294255757501,
+          "success_percent": 96.9,
+          "evaluation_sha256": "824bf3bac5040174e82bfdfae61b9a4d27b2eeea4d9d5efdb7e8e19344a299b5"
+        }
+      ],
+      "u4_mean": 0.6651642993355833,
+      "u4_sample_sd": 0.003333595263519583,
+      "success_mean": 96.16666666666667,
+      "success_sample_sd": 1.1015141094572278
+    },
+    "joint_cap500": {
+      "seeds": [
+        {
+          "run_id": "anderson_highcap_s1",
+          "u4": 0.67672067881925,
+          "success_percent": 98.7,
+          "evaluation_sha256": "756851a7e135c64bdd55c41f00fd4f51aa092a94c543005944c88c8f4d68fec7"
+        },
+        {
+          "run_id": "anderson_highcap_s2",
+          "u4": 0.6765835796592501,
+          "success_percent": 98.5,
+          "evaluation_sha256": "6e3d77f4b5af719ae348f9f20ba2c203eeac94fb6ffc0edaffeb2752f1fe93fc"
+        },
+        {
+          "run_id": "anderson_highcap_s3",
+          "u4": 0.6694695143114999,
+          "success_percent": 97.39999999999999,
+          "evaluation_sha256": "333bb06441505089d44d1bd9402c570614e04fb11a379930256cda81f97943d2"
+        }
+      ],
+      "u4_mean": 0.6742579242633333,
+      "u4_sample_sd": 0.004147451198631658,
+      "success_mean": 98.2,
+      "success_sample_sd": 0.700000000000006
+    },
+    "joint_tighter_cap100": {
+      "seeds": [
+        {
+          "run_id": "anderson_tighter_s1",
+          "u4": 0.65915467107575,
+          "success_percent": 94.89999999999999,
+          "evaluation_sha256": "cc2d4076abd77f11bb023c95a5d9316bd5b824f3f4ab952550b3b82879138dc7"
+        },
+        {
+          "run_id": "anderson_tighter_s2",
+          "u4": 0.67461738135525,
+          "success_percent": 98.1,
+          "evaluation_sha256": "992a8fe4c3cd50a5acd650075f575694aa1c213e3d922cd1b911184948ff1982"
+        },
+        {
+          "run_id": "anderson_tighter_s3",
+          "u4": 0.666215728219,
+          "success_percent": 96.60000000000001,
+          "evaluation_sha256": "d06b7bec854a6211f76338ea2e7ee978885734381232221e9bf7cfde5d7fa2ac"
+        }
+      ],
+      "u4_mean": 0.66666259355,
+      "u4_sample_sd": 0.007741034734773886,
+      "success_mean": 96.53333333333333,
+      "success_sample_sd": 1.6010413278030455
+    },
+    "sequential_anderson": {
+      "seeds": [
+        {
+          "run_id": "sequential_anderson_s1",
+          "u4": 0.55702515872775,
+          "success_percent": 86.9,
+          "evaluation_sha256": "0e43a697e41e4a48bbeb65e0e4f3cba4e0b25e9c1c0ba6c8654966fd188a1f73"
+        },
+        {
+          "run_id": "sequential_anderson_s2",
+          "u4": 0.66774505797925,
+          "success_percent": 97.7,
+          "evaluation_sha256": "fc6e4111ded67fc854f5c881393babe99c36a628d3a4dcd86afd0baa90a9df9e"
+        },
+        {
+          "run_id": "sequential_anderson_s3",
+          "u4": 0.6343727375355,
+          "success_percent": 91.8,
+          "evaluation_sha256": "ae8b9b0def76f2eb86e0cf00b0f254e1b404658c3a1d79c50ea5ee662e9a696e"
+        }
+      ],
+      "u4_mean": 0.6197143180808333,
+      "u4_sample_sd": 0.05679679540473465,
+      "success_mean": 92.13333333333334,
+      "success_sample_sd": 5.407710544521898
+    }
+  },
+  "active_snapshots": {
+    "E04-joint-anderson-cap100": {
+      "observed_timestamp": 1794476480.719834,
+      "jobs": [
+        {
+          "run_id": "joint_anderson_a100_s1",
+          "state": "TRAINING",
+          "step": 59181
+        },
+        {
+          "run_id": "joint_anderson_a100_s2",
+          "state": "TRAINING",
+          "step": 52143
+        },
+        {
+          "run_id": "joint_anderson_a100_s3",
+          "state": "TRAINING",
+          "step": 51139
+        }
+      ]
+    },
+    "E05-joint-anderson-cap10": {
+      "observed_timestamp": 1794476496.3803053,
+      "jobs": [
+        {
+          "run_id": "joint_anderson_a10_s1",
+          "state": "TRAINING",
+          "step": 143403
+        },
+        {
+          "run_id": "joint_anderson_a10_s2",
+          "state": "TRAINING",
+          "step": 141449
+        },
+        {
+          "run_id": "joint_anderson_a10_s3",
+          "state": "TRAINING",
+          "step": 142447
+        }
+      ]
+    }
+  },
+  "draft_sha256": {
+    "dkt6.md": "48c90df2633e98fb3821049814d2c770c3021c9359114c95668661bc69142d0e",
+    "VrBX.md": "f104a72e1987249dccba4c4379bd89190d30ea51fff5dad8cca4cd4759d904a9",
+    "agWk.md": "6120e479021447549fd76436e1ad457d50094db448883e94c27a42b0cc691f62"
+  },
+  "limits": [
+    "Live snapshots are dated observations, not final results.",
+    "Original checkpoint hashes are provenance only. Checkpoints are not distributed.",
+    "No new scientific run or GPU computation was performed."
+  ]
+}

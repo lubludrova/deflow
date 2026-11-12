@@ -1,0 +1,79 @@
+{
+  "status": "prepared_not_launched",
+  "server": null,
+  "task": "wide_tight",
+  "solver": "newton",
+  "seeds": [
+    1,
+    2,
+    3
+  ],
+  "horizon": 200000,
+  "retry_policy": "stop and preserve scientific failure, no automatic retry",
+  "resume": "unsupported by native docking engine",
+  "preflight": [
+    "13 CPU tests",
+    "CUDA smoke",
+    "short synchronized pilot and disk estimate"
+  ],
+  "jobs": [
+    {
+      "seed": 1,
+      "argv": [
+        "python",
+        "-m",
+        "deflow_rebuttal.run_docking",
+        "--repo",
+        "{REPO}",
+        "--output",
+        "{OUTPUT}/newton_s1",
+        "--solver",
+        "newton",
+        "--seed",
+        "1",
+        "--steps",
+        "200000",
+        "--execute"
+      ]
+    },
+    {
+      "seed": 2,
+      "argv": [
+        "python",
+        "-m",
+        "deflow_rebuttal.run_docking",
+        "--repo",
+        "{REPO}",
+        "--output",
+        "{OUTPUT}/newton_s2",
+        "--solver",
+        "newton",
+        "--seed",
+        "2",
+        "--steps",
+        "200000",
+        "--execute"
+      ]
+    },
+    {
+      "seed": 3,
+      "argv": [
+        "python",
+        "-m",
+        "deflow_rebuttal.run_docking",
+        "--repo",
+        "{REPO}",
+        "--output",
+        "{OUTPUT}/newton_s3",
+        "--solver",
+        "newton",
+        "--seed",
+        "3",
+        "--steps",
+        "200000",
+        "--execute"
+      ]
+    }
+  ],
+  "acceptance": "DONE marker, actual horizon in requested..requested+7, checkpoints, telemetry and 1000-episode solver-aware evaluation; all failures retained"
+}

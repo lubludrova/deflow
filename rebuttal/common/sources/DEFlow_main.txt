@@ -1,0 +1,1829 @@
+      Under review as a conference paper at ICLR 2027
+
+
+
+
+000
+001
+      DEF LOW: D EEP E QUILIBRIUM F LOW M AXIMUM -
+002   E NTROPY R EINFORCEMENT L EARNING
+003
+004
+005     Anonymous authors
+006     Paper under double-blind review
+007
+008
+009                                                                              A BSTRACT
+010
+011                  Expressive flow policies can represent multiple high-value actions, but sampling
+012                  them with few integration steps while retaining tractable action densities remains
+013                  challenging. We introduce DEFlow, a deep equilibrium flow policy that replaces
+014                  explicit Euler sampling with implicit Euler integration and solves all intermediate
+015                  actions jointly as an equilibrium system. We combine implicit differentiation with
+016                  a discrete change-of-variables formula for the final-action density, enabling off-
+017                  policy training within soft actor–critic without backpropagating through solver
+018
+                     iterations. DEFlow achieves an average relative improvement of approximately
+                     10% in mean successful coverage over the strongest baseline across four Multi-
+019
+                     Goal docking variants. It also achieves the highest mean time-averaged return on
+020
+                     four of five manipulation tasks, while remaining broadly competitive across five
+021                  MuJoCo tasks. These results support implicit flow policies for tasks requiring both
+022                  diversity and precision, at the cost of additional nonlinear and linear solves.1
+023
+024
+025   1        I NTRODUCTION
+026
+027   Soft actor–critic (SAC) is a strong baseline for continuous control. It combines data-efficient off-
+028   policy learning with entropy-driven exploration (Haarnoja et al., 2018a;b). Its standard actor, how-
+029   ever, is a single tanh-squashed diagonal Gaussian. This distribution is easy to sample from and has
+030   a closed-form density, but it cannot easily represent several distinct high-value actions at the same
+031
+      state (Haarnoja et al., 2017). Diffusion and flow-matching policies offer a more expressive alter-
+      native. They generate actions by transforming simple noise through multiple learned steps and can
+032
+      represent complex, multimodal distributions (Wang et al., 2023; Lipman et al., 2023). The challenge
+033
+      is to gain this expressivity while keeping SAC training practical. Sampling and actor differentiation
+034   now involve a multi-step rollout, and the final-action log-density required by the entropy objective
+035   may be hard to obtain.
+036
+037
+      Existing off-policy methods resolve this tension by design compromise. Some give up the maximum-
+      entropy objective altogether: Flow Q-Learning distills a multi-step generator into a one-step actor
+038
+      (Park et al., 2025), consistency policies replace the long sampler with one- or few-step generation
+039
+      (Ding & Jin, 2024), and Diffusion-QL combines diffusion behavior cloning with value maximiza-
+040   tion without evaluating the policy likelihood (Wang et al., 2023). Q-score matching (QSM) (Psenka
+041   et al., 2024) directly matches the policy score to the critic’s action-gradient and avoids backpropa-
+042   gating through the complete sampler. SAC-Flow (Zhang et al., 2025), the direct parent of this work,
+043   treats its explicit K-step flow rollout as a sequential model and stabilizes the recurrence with a
+044   gated velocity field. DIME retains a multi-step denoising policy and trains its transitions through
+045   approximate inference toward a Q-defined energy-based target (Celik et al., 2025). These methods
+046   make expressive generative actors trainable off-policy, but leave a separate numerical question: how
+047   should a multi-step policy be sampled when its learned velocity field becomes difficult to integrate
+048
+      with a small number of explicit steps? We investigate implicit-Euler sampling as an alternative.
+049   We introduce DEFlow, a flow policy built around implicit-Euler sampling. We retain SAC-Flow’s
+050   gated velocity field and multi-step actor, but evaluate each velocity at the unknown next action,
+051   replacing the explicit Euler recurrence with implicit-Euler equations (Hairer & Wanner, 1996).
+052   This integration rule is well suited to stiff dynamics, making it a natural alternative when a
+053        1
+               Code available at https://anonymous.4open.science/r/deflow-81BE/README.md.
+
+
+                                                                                            1
+      Reviewers: please read the Reviewer Guidelines (iclr.cc/Conferences/2027/ReviewerGuidelines) and the AI Policy for Reviewers (iclr.cc/Conferences/2027/AIPolicyForReviewers).
+      If you used AI to expand, edit, or polish your review, please provide the input text to the LLM. Better still, consider skipping the LLM and submitting your original text: we,
+      and the authors, are much more interested in your unedited thoughts than in what an LLM has to say. AI-assisted or not, you are putting your name and reputation behind
+      your review: LLM-generated falsehoods, hallucinations or misrepresentations are subject to disciplinary action, which may include desk-rejecting all papers you have authored.
+      Under review as a conference paper at ICLR 2027
+
+
+
+
+054
+      learned field is poorly resolved by a few explicit steps. To implement the sampler, we collect
+055   all T intermediate actions into one small deep-equilibrium system and solve for them jointly
+056   (Bai et al., 2019; Walker & Ni, 2011). The forward pass uses a root solver to obtain the trajectory,
+057   while the backward pass is formulated through implicit differentiation rather than backpropagation
+058   through the solver iterations. Under the stated regularity assumptions, an exact equilibrium also ad-
+059   mits a final-action log-density through discrete change of variables. The implementation evaluates
+060   the density and implicit gradient along the numerically obtained trajectory.
+061   In summary, our contributions are threefold:
+062
+063          • A joint equilibrium formulation of flow policies. We formulate the full implicit-Euler
+064            action trajectory as a single deep equilibrium system, providing an alternative to explicit
+065            rollouts for expressive policies.
+066          • Maximum-entropy policy learning. We train DEFlow within SAC using implicit gradi-
+067            ents and a final-action density formula, exact at equilibrium under the stated assumptions.
+068          • Comprehensive empirical evaluation. We study DEFlow across precision docking, ma-
+069            nipulation, and MuJoCo benchmarks, with matched explicit-Euler baselines, step-count ab-
+070            lations, and numerical density verification. The experiments characterize both the strengths
+071            and the limitations of implicit flow sampling.
+072
+073
+      2     BACKGROUND AND R ELATED W ORK
+074
+075
+      2.1   M AXIMUM -E NTROPY R EINFORCEMENT L EARNING
+076
+077   We consider an infinite-horizon Markov decision process with state s ∈ S, action a ∈ A ⊆ Rda ,
+078   transition kernel p(s′ | s, a), reward r(s, a), and discount γ ∈ (0, 1), where da is the action dimen-
+079   sion. Soft actor–critic (SAC) trains a policy πθ off-policy on [︁transitions
+                                                                         ∑︁ t (︁ drawn from a replay buffer   )︁]︁
+080   D to maximize the maximum-entropy return J(πθ ) = Eτ ∼πθ             t γ r(st , at ) + α H(πθ (· | st )) ,
+081   where the temperature α > 0 trades reward against entropy (Haarnoja et al., 2018a;b). With twin
+082   critics Qϕ1 , Qϕ2 , the actor balances expected value against the log-density of its sampled actions.
+083
+      The same log-density enters the soft target for the critics. Section 4.2 gives the actor and critic
+      objectives used by DEFlow.
+084
+085   SAC provides the actor–critic framework used in this work. Its standard actor parameterizes a state-
+086   conditioned Gaussian distribution whose samples are squashed by tanh to satisfy the action bounds
+087   (Haarnoja et al., 2018b). The underlying Gaussian is unimodal, which limits the policy’s ability to
+088   capture complex, multimodal action distributions.
+089
+090   2.2   F LOW AND D IFFUSION P OLICIES
+091
+      A flow policy is the expressive actor we adopt. Rather than a single Gaussian draw, it turns base
+092
+      noise z ∼ p0 into an action by transporting it through a learned velocity field. The state-conditioned
+093
+      transport follows ȧ(t) = vθ (a(t), s, t), starting from a(0) = z for t ∈ [0, 1]. A numerical integrator
+094   turns this motion into T discrete steps; the endpoint is then squashed to keep the action bounded.
+095   Flow matching (Lipman et al., 2023) provides a way to learn such fields from data. By transporting
+096   samples from a simple base distribution, a flow can represent complex action distributions with
+097   multiple distinct modes.
+098
+      Representing a richer action distribution, however, does not by itself make the policy easy to opti-
+099
+      mize with SAC. The standard actor update propagates gradients from the critic through the sampled
+100   action to the policy parameters. Flow policies admit this differentiation, but direct optimization re-
+101   quires propagating the learning signal through the entire sequence of sampling steps. This can be
+102   computationally expensive and can lead to vanishing or exploding gradients, making stable policy
+103   improvement a separate challenge from learning to reproduce an action distribution (Park et al.,
+104   2025; Zhang et al., 2025).
+105
+      Our main comparisons concern expressive policies learned through online interaction. SAC-Flow
+106   (Zhang et al., 2025), our direct predecessor, combines a gated velocity field with explicit Euler
+107   integration and a surrogate entropy objective within SAC. DIME (Celik et al., 2025) instead uses a
+
+
+                                                           2
+      Under review as a conference paper at ICLR 2027
+
+
+
+
+108
+      variational maximum-entropy bound, while Q-score matching (QSM) (Psenka et al., 2024) learns
+109   the policy score from the critic’s action-gradient without evaluating a density.
+110
+111
+      2.3    I MPLICIT M ODELS AND D IFFERENTIATION
+112
+113   Deep equilibrium (DEQ) models are implicit-layer networks (Bai et al., 2019): rather than stack
+114   many explicit layers, a DEQ defines its output as the fixed point Z ⋆ = gθ (Z ⋆ ) of a single weight-
+115   tied map and computes it with a root-finder. When gθ is a contraction, the iteration Z k+1 = gθ (Z k )
+116   converges at a linear rate bounded by its Lipschitz constant. Anderson acceleration (Walker & Ni,
+117   2011) uses a history of iterates and residuals to accelerate this solve.
+118   The gradient follows from the solved equilibrium, without differentiating through the solver itera-
+119   tions. For a continuously differentiable map with nonsingular I − ∂Z gθ (Z ⋆ ), implicit differentia-
+120   tion turns the nonlinear forward problem into a linear system in the backward pass. Standard DEQ
+121   implementations solve the adjoint system iteratively. Jacobian regularization can improve the con-
+122   vergence of these solves (Bai et al., 2021). A complementary perspective treats backpropagation as
+123   block-triangular back substitution (Edelman et al., 2024). We use the equilibrium formulation and
+124   implicit differentiation to construct DEFlow in Section 4.
+125
+126   3     T HE F INITE -S TEP S AMPLING P ROBLEM
+127
+128   At a fixed state, the maximum-entropy optimum (Haarnoja et al., 2017; 2018b) is
+129
+                                         π ⋆ (a | s) ∝ exp(Q⋆ (s, a)/α) .                                (1)
+130
+131   It can therefore contain several narrow modes corresponding to different valid actions. The tanh-
+132   Gaussian actor used by SAC is unimodal before squashing, whereas a flow policy can represent
+133   these modes if its finite-step sampler preserves them.
+134
+135   A finite inference budget.    At a fixed state, explicit and implicit Euler use
+136                                   aexp
+                                       k+1 = ak + ∆t vθ (ak , s, tk ),                                   (2)
+137
+                                      aimp
+                                       k+1 = ak + ∆t vθ (ak+1 , s, tk+1 ).                               (3)
+138
+139   where tk = k∆t and ∆t = 1/T . Real-time control limits latency and field evaluations, so the usable
+140   T may be small and ∆t correspondingly large. Solving an implicit step may require multiple field
+141   evaluations, increasing its computational cost.
+142
+143   Three distinct numerical effects. Coarse discretization affects (i) the endpoint, (ii) the step map,
+144   and (iii) the policy gradient. For the one-step maps Fk : ak ↦→ ak+1 and Jk = Da vθ (ak , s, tk ), the
+145   step Jacobians are
+146                                                                                 −1
+                          Da Fkexp = I + ∆t Jk ,        Da Fkimp = (I − ∆t Jk+1 )        .               (4)
+147
+148   so the two schemes can have different conditioning on the same field. In the fixed-state mixture
+149   analysis of Appendix A.1, the exact field is smooth, but its largest derivative grows at least like
+150
+      m2 σ −3 as the mode width σ decreases. Writing π∆t⋆
+                                                           for the law induced by T explicit Euler steps
+                              ⋆
+      of the exact field and π for the two-mode surrogate target of that appendix, explicit Euler incurs
+151
+                                         √                                 σ
+152                              ∆t ≥ 2 2 σ =⇒ W2 (π∆t        ⋆
+                                                                , π⋆ ) ≥ √ ,                            (5)
+153                                                                       2 2
+154   and at T = 2 its error tends to a positive limit as σ → 0 (Eq. (29)). The same analysis bounds
+155   the discrete gradient at no more than a fraction 3(σ/∆t)2 of the exact one for a specified Gaussian
+156   subfamily and terminal loss, so it nearly vanishes in the same coarse-grid regime. Coarse explicit
+157   integration can introduce errors in both the sampled distribution and its gradients even when every
+158   step remains locally invertible.
+159
+160   A coarse-step empirical illustration. Figure 1 shows that implicit Euler achieves more accurate
+161   robot reaching than explicit Euler at low step counts for the tested fixed contracting flow. With just
+      two steps, the joint DEQ sampler concentrates endpoints near the target and achieves 97.8% success,
+
+
+                                                        3
+      Under review as a conference paper at ICLR 2027
+
+
+
+
+162                                                                      Explicit Euler                                                                             Joint DEQ
+163
+                                            0.025               0.025                                                           0.025               0.025
+
+164                                                                 0                                                                                     0
+
+
+165
+                                            0.000                                                                               0.000
+166
+
+
+                      Lateral error (mm)                                                                  Lateral error (mm)
+                                                                −0.05                                                                               −0.05
+
+
+
+167                                                                     −10          0       10                                                               −10          0       10
+
+
+
+
+168
+169
+170                                        −0.050                                                                              −0.050
+                                                       N=2 (1.7%)   N=4 (6.7%)                                                             N=2 (97.8%)        N=4 (100.0%)
+171                                                    N=3 (2.0%)   N=5 (77.8%)                                                            N=3 (100.0%)       N=5 (100.0%)
+
+
+172                                                 −200                      −100
+                                                                          Axial error (mm)
+                                                                                                  0                                     −200                        −100
+                                                                                                                                                                Axial error (mm)
+                                                                                                                                                                                        0
+
+
+
+173
+174
+175
+      Figure 1: Panda reaching errors with explicit Euler (left) and joint implicit Euler (right), using 2–5
+      flow steps. Percentages show success over 640 paired trials per setting: final 3D error below 8 mm.
+176
+177
+178   versus 1.7% for explicit Euler. This advantage persists at three to five steps, where implicit sampling
+179   achieves 100% success and explicit Euler reaches at most 77.8%. The comparison uses a fixed field
+180   without a trained neural policy.
+181
+      Together, the analysis and measurements motivate implicit discretization. Its local sensitivity is gov-
+182
+      erned by (I − ∆t J)−1 rather than I + ∆t J, which can preserve concentration when the field
+183   contracts toward a target. The accuracy of implicit steps also depends on the conditioning of the
+184   underlying solve.
+185
+186
+187
+      4     M ETHOD
+188
+      We introduce a deep equilibrium flow policy (DEFlow), defined by implicit Euler integration and
+189
+      trained within soft actor–critic (SAC) (Haarnoja et al., 2018a;b). Following Sec. 3, we sample ac-
+190
+      tions by solving the implicit Euler equations for all integration steps together. We compute policy
+191   gradients by implicit differentiation and action log-densities with the change-of-variables formula.
+192
+193
+      4.1   I MPLICIT F LOW P OLICY
+194
+195   For a state s, we transform a base sample a0 = z ∼ p0 = N (0, σz2 I) into an action through a
+196   state-conditioned velocity field vθ (a, s, t). We take σz > 0, and the base distribution is independent
+197   of θ. We write its density as p(z). We parameterize the velocity field using the gated form of Flow-G
+198   in SAC-Flow (Zhang et al., 2025),
+199
+                                                                 (︁              )︁
+                                    vθ (a, s, t) = zg (a, s, t) ⊙ h̃(a, s, t) − a ,                       (6)
+200
+201   where zg ∈ (0, 1)da is a sigmoid gate, h̃ ∈ Rda is a scaled tanh output, and ⊙ denotes elementwise
+202   multiplication. Both outputs depend on (a, s, t) and share parameters θ.
+203   Let ∆t = 1/T and tk = k∆t. We replace the explicit Euler rollout of SAC-Flow with implicit
+204   (backward) Euler (Hairer & Wanner, 1996):
+205
+                                                             ak = ak−1 + ∆t vθ (ak , s, tk ),                                                       k = 1, . . . , T,
+206                                                                                                                                                                                         (7)
+                                                           aenv = c ⊙ tanh(aT ) + b.
+207
+208   The field is evaluated at the new point ak . The final squashing transformation follows SAC (Haarnoja
+209   et al., 2018b), with c = (amax −amin )/2 > 0 and b = (amax +amin )/2 enforcing the action bounds.
+210   Unless stated otherwise, we use T = 4 integration steps.
+211   Implicit Euler is a standard choice for stiff dynamics (Hairer & Wanner, 1996). For the scalar linear
+212   test equation ẋ = λx with Re λ < 0, its amplification factor (1 − ∆t λ)−1 has magnitude at most
+213   one for every ∆t > 0, whereas explicit Euler requires |1 + ∆t λ| ≤ 1. The finite-step analysis in
+214   Sec. 3 motivates our use of implicit Euler. For strongly contracting dynamics, explicit Euler may
+215   require very small integration steps to remain stable. In the scalar linear setting above, implicit Euler
+      remains stable for any positive step size.
+
+
+                                                                                                      4
+      Under review as a conference paper at ICLR 2027
+
+
+
+
+216
+      J OINT F IXED -P OINT F ORMULATION
+217
+218   Summing the first k implicit Euler updates in Eq. (7), with a0 = z, expresses each intermediate
+219   action in terms of the base sample and the accumulated velocity:
+220                                               k
+                                                 ∑︂
+221                              ak = z + ∆t           vθ (aj , s, tj ),    k = 1, . . . , T.               (8)
+222                                              j=1
+223
+224   We collect the intermediate actions into the vector Z = (a⊤               ⊤ ⊤
+                                                                   1 , . . . , aT ) ∈ RD , where D = T da .
+225   Define gθ (Z; s, z) by stacking the right-hand sides of Eq. (8) in the same order. The implicit Euler
+226   equations can then be written as a single fixed-point equation:
+227                                                Z ⋆ = gθ (Z ⋆ ; s, z).                                   (9)
+228
+                      ⋆
+229   The solution Z      contains the intermediate actions a⋆1 , . . . , a⋆T
+                                                                 satisfying all implicit Euler steps.
+230
+      Following the DEQ approach (Bai et al., 2019), we compute this solution with a numerical root
+      finder.
+231
+232   The forward pass searches for a root of gθ (Z; s, z) − Z = 0. We use Anderson acceleration (Walker
+233   & Ni, 2011), initialized with every trajectory block equal to z, to approximate this root. Each evalu-
+234   ation of gθ computes the velocities at the current estimates of the intermediate actions and accumu-
+235   lates them along the trajectory. The final block supplies aT , which is squashed into the environment
+236
+      action by Eq. (7).
+237
+      BACKWARD PASS
+238
+239   Following the implicit differentiation procedure of Bai et al. (2019, Eqs. (8) and (11)), we compute
+240   policy gradients by solving a linear system at the fixed point, without backpropagating through the
+241   root-finding iterations. For a differentiable sample loss ℓ(θ, Z ⋆ ), let A = I − ∂Z gθ , with derivatives
+242   evaluated at (Z ⋆ ; s, z) for fixed (s, z). Assuming a differentiable solution branch and an invertible
+243   A, we solve for the adjoint vector λ ∈ RD and evaluate the parameter gradient as
+244
+                                   A⊤ λ = ∇Z ℓ,           ∇θ ℓ = ∂θ ℓ|Z ⋆ + (∂θ gθ )⊤ λ.                   (10)
+245
+246   Gradients are column vectors. The direct derivative ∂θ ℓ|Z ⋆ holds the trajectory fixed and accounts
+247   for the explicit parameter dependence of the log-density and Jacobian penalty introduced below. The
+248   adjoint solve avoids forming A−1 .
+249   In our implementation, we compute λ with a batched dense linear solve. Appendix A.2 gives the
+250   derivation, the structure of A, and full regularity assumptions. Appendix C.1 describes the finite-
+251   tolerance evaluation and numerical modifications.
+252
+253   4.2   M AXIMUM -E NTROPY P OLICY O PTIMIZATION
+254
+255   To train the implicit flow policy with SAC, we need the log-density of its actions (Haarnoja et al.,
+256   2018b). We derive this density from the discrete implicit Euler steps and use it in the actor–critic
+257
+      updates below.
+258
+259
+      E XACT D ENSITY BY D ISCRETE C HANGE OF VARIABLES
+260   To obtain the exact density we use the change-of-variables identity for invertible maps (Rezende &
+261   Mohamed, 2015; Papamakarios et al., 2021): for x ↦→ y = f (x),
+262
+                        pY (y) = pX f −1 (y) ⃓det ∂f −1 /∂y ⃓ = pX (x) det ∂f /∂x⃓,
+                                     (︁       )︁ ⃓           ⃓          /︁⃓            ⃓
+263                                                                                                  (11)
+264   Under the smoothness and invertibility assumptions in Appendix A.3, each implicit step in Eq. (7)
+265   defines a locally invertible map around the selected solution. Differentiating ak = ak−1 +
+266   ∆t vθ (ak , s, tk ) gives the differential dak = dak−1 + ∆t Jk dak , so (I − ∆t Jk ) dak = dak−1
+267   and the one-step Jacobian is
+268                                                                      ⃓
+                                   ∂ak                  −1          ∂vθ ⃓⃓
+269                                       = (I − ∆t Jk ) ,    Jk =                 .               (12)
+                                  ∂ak−1                              ∂a ⃓(ak ,tk )
+
+
+                                                               5
+      Under review as a conference paper at ICLR 2027
+
+
+
+
+270
+      Substituting Eq. ⃓(12) into Eq. (11),   a single step changes the log-density by log p(ak ) =
+271                                      ⃓
+      log p(ak−1 ) + log⃓det(I − ∆t Jk )⃓. The positive sign follows from the inverse in Eq. (12). Compos-
+272   ing the T steps into the rollout z = a0 → a1 → · · · → aT , the log-density is the base density plus
+273   one log-determinant per step. Applying the final squashing transformation gives the environment
+274   action aenv = c ⊙ tanh(aT ) + b (Eq. (7)). Its exact log-density is therefore:
+275
+                                              T                           da
+276                                          ∑︂                           ∑︂
+                                                                             log ci (1 − tanh2 aT,i )
+                                                      ⃓               ⃓         [︁                   ]︁
+            log πθ (aenv | s) = log p(z) +         log⃓det(I − ∆t Jk )⃓ −                                 (13)
+277
+                                             k=1                          i=1
+278
+279   Equation (13) gives the exact action log-density for the selected solution branch under the assump-
+280
+      tions above. SAC-Flow uses a joint path log-density over intermediate actions as its entropy term
+      (Zhang et al., 2025), whereas DIME uses a lower bound on the policy entropy (Celik et al., 2025).
+281
+      Here, the change-of-variables formula gives the log-density of the final action directly. The imple-
+282
+      mentation uses finite solver tolerances, diagonal shifts, and clipping, which can modify the evaluated
+283   log-density and policy gradient. The full derivation is given in Appendix A.3.
+284
+285   ACTOR –C RITIC U PDATES
+286
+287   We train DEFlow within the SAC framework (Haarnoja et al., 2018b), using the action samples and
+288   log-densities derived above. Let aθ (s, z) = c ⊙ tanh(a⋆T ) + b denote an action sampled from the
+289   implicit policy. We compute the soft Bellman target as
+                                         [︃                                      ]︃
+290
+291                           y = r + γ min Qϕ̄j (s′ , a′ ) − α log πθ (a′ | s′ ) ,                (14)
+                                              j=1,2
+292
+               ′        ′   ′   ′
+293   where a = aθ (s , z ), z ∼ p0 , and d is the termination indicator. Here ϕ̄j denotes the parameters of
+294   target critic j, and the action log-density is given by Eq. (13). For terminal transitions, we set y = r.
+295
+      Each critic is trained by minimizing the mean squared error
+                                                           [︂(︁            )︁2 ]︂
+296
+                        LQ (ϕj ) = E(s,a,r,s′ ,d)∼D, z′ ∼p0 Qϕj (s, a) − y        ,  j = 1, 2.             (15)
+297
+298
+      We update the implicit flow policy by minimizing the SAC actor objective (Haarnoja et al., 2018a;b):
+299
+                                          [︃                                            ]︃
+300
+                   Lπ (θ) = Es∼D, z∼p0 α log πθ (aθ (s, z) | s) − min Qϕj (s, aθ (s, z)) .           (16)
+301                                                                      j=1,2
+302
+      The log-density is evaluated by Eq. (13). We compute the policy gradient using the implicit backward
+303
+      pass in Eq. (10). In the regularized configuration, we minimize Lπ + βRJ , where β ≥ 0 weights
+304
+      a per-step Jacobian penalty motivated by Jacobian regularization in DEQ models (Bai et al., 2021).
+305   Appendix B.1 defines RJ and specifies its hyperparameters.
+306
+307   The target critics are initialized with ϕ̄j = ϕj and updated by exponential moving averages ϕ̄j ←
+308   (1 − τ )ϕ̄j + τ ϕj for j = 1, 2, where τ ∈ (0, 1] is the target averaging rate (Haarnoja et al., 2018b).
+309
+310
+      A LGORITHM
+311   Algorithm 1 in Appendix B summarizes data collection and actor–critic updates following SAC
+312   (Haarnoja et al., 2018b). Each action aθ (s, z) is obtained by solving Eq. (9) with Anderson accel-
+313   eration and applying the squashing transformation in Eq. (7). Policy updates use the log-density in
+314   Eq. (13) and the implicit gradients in Eq. (10). The pseudocode takes the current temperature α and
+315   regularization weight β as inputs to each update. Numerical evaluation is described in Appendix C.1.
+316
+317   5     E XPERIMENTS
+318
+319   5.1    E XPERIMENTAL S ETUP
+320
+321   We evaluate DEFlow in three settings: four variants of MultiGoal-4 with different navigation and
+322   docking tolerances (Haarnoja et al., 2017), five MuJoCo locomotion tasks (Todorov et al., 2012),
+323   and five manipulation tasks: PickCube and PushCube in ManiSkill (Tao et al., 2025), and Button-
+      PressWall, PegInsertSide, and PushWall in MetaWorld (Yu et al., 2020). Training budgets are 200k
+
+
+                                                             6
+      Under review as a conference paper at ICLR 2027
+
+
+
+
+324
+      transitions for MultiGoal, 1M environment steps for MuJoCo, and 500k recorded steps for manip-
+325   ulation. Our main comparison methods are SAC (Haarnoja et al., 2018a), SAC-Flow, DIME, and
+326   QSM. For ablation studies, we compare DEFlow with a matched explicit-Euler flow on MultiGoal
+327   and vary the number of integration steps T . All baseline results come from our own implementa-
+328   tions and training runs. Evaluation protocols, task-specific configurations, and additional statistical
+329   analyses are provided in Appendices B and C.
+330
+331   5.2   B ENCHMARK R ESULTS
+332
+333   Successful diversity under precision constraints. We extend the four-goal MultiGoal task
+334   (Haarnoja et al., 2017) to test whether an expressive policy can combine diverse goal choices with
+335
+      precise actions. The agent receives a dense distance reward while navigating toward one of four
+      symmetric goals. On entering a goal region, it performs one docking action and receives a bonus if
+336
+      the action is sufficiently close to the goal’s target. We study four variants combining wide or narrow
+337
+      goal regions with loose or tight docking tolerances. Wide goal regions are circles of radius 1, while
+338   narrow regions are radial ellipses with semi-axes 1 and 0.20. Docking succeeds when the final action
+339   lies within distance 0.12 (loose) or 0.06 (tight) of the target associated with the reached goal. This
+340   design varies the precision required during navigation and during the final docking action separately.
+341   Figure 5 in Appendix C.2 illustrates the four variants. To maintain several successful strategies, the
+342   policy must choose different goals across episodes and concentrate its final action around the target
+343   associated with each goal.
+344   Our main metric, successful coverage (U4), measures how many distinct goals a policy successfully
+345   completes within a small number of attempts. Let pi be the probability that an episode from the
+346   origin reaches goal i and docks successfully. For four independent episodes under the same policy,
+347
+                                                             4
+348                                                    1 ∑︂ [︁
+                                                              1 − (1 − pi )4 .
+                                                                            ]︁
+                                                U4 =                                                                      (17)
+349                                                    4 i=1
+350
+351   Here, 1 − (1 − pi )4 is the probability of completing goal i at least once, so U4 is the expected
+352   fraction of distinct goals successfully completed. It rewards both reliable docking and coverage of
+353   alternative goals. Always succeeding at one goal gives U4 = 0.25, whereas uniform success across
+354
+      all four goals attains the maximum 1 − (3/4)4 ≈ 0.684. We estimate pi from 1,000 stochastic
+      episodes per trained policy and average U4 across training seeds.
+355
+356   DEFlow achieves the highest mean successful coverage on all evaluated variants (Table 1). On loose
+357   docking, it approaches the balanced four-goal ceiling. Its mean successful coverage exceeds that of
+358   the second-best method by up to 17%. Thus, DEFlow retains the strongest combination of diversity
+359   and successful completion when the final action must be more precise. Figure 2 also shows that
+360
+      DEFlow develops successful coverage early in training. Appendix C.4 and Sec. 5.3 examine the
+      failures of explicit flow and QSM.
+361
+362
+      Table 1: Successful coverage (U4) at 200k transitions: mean ± SD over completed seeds, 1,000
+363   episodes per seed. Bold/underline mark the top two means.
+364
+365     Navigation Docking            SAC        SAC-Flow            DIME            QSM       Explicit flow         DEFlow
+366     Wide      Loose      0.397 ± 0.127   0.522 ± 0.224   0.634 ± 0.021   0.000 ± 0.000   0.507 ± 0.030     0.671 ± 0.002
+367     Narrow    Loose      0.376 ± 0.019   0.613 ± 0.032   0.632 ± 0.012   0.000 ± 0.000   0.499 ± 0.100     0.661 ± 0.020
+        Wide      Tight      0.428 ± 0.105   0.481 ± 0.067   0.502 ± 0.011   0.000 ± 0.000   0.412 ± 0.084     0.589 ± 0.128
+368     Narrow    Tight      0.467 ± 0.074   0.451 ± 0.084   0.491 ± 0.009   0.000 ± 0.000   0.417 ± 0.153     0.552 ± 0.113
+369
+370
+371
+372
+373
+374
+375
+376
+377
+
+
+
+                                                                 7
+        Under review as a conference paper at ICLR 2027
+
+
+
+
+378                                                Wide navigation                          Narrow navigation                              Wide navigation                            Narrow navigation
+                                                   Loose docking                             Loose docking                                  Tight docking                               Tight docking
+379
+
+
+
+
+            Successful coverage (U4)
+380                                    0.6                                     0.6                                              0.6                                        0.6
+
+381
+                                       0.4                                     0.4                                              0.4                                        0.4
+382
+                                       0.2                                     0.2                                              0.2                                        0.2
+383
+384                                    0.0                                     0.0                                              0.0                                        0.0
+                                             25        100             200           25            100                   200          25        100                 200          25        100             200
+385                                                 Transitions (k)                             Transitions (k)                              Transitions (k)                            Transitions (k)
+386
+387                                                                   SAC                 SAC-Flow            DIME                   QSM           Explicit flow           DEFlow
+
+388
+389     Figure 2: Successful coverage during training (mean ± SD). The dotted line marks the maximum
+390     U4.
+391
+392     Continuous control. Figure 3 shows learning curves across five MuJoCo tasks, and Table 6 in
+393     Appendix C.2 summarizes return at the recorded 1M evaluation. We report means and standard de-
+394
+        viations across three runs per task. Appendix C.2 provides per-seed results, confidence intervals,
+        and sensitivity analyses at alternative evaluation horizons. These tasks do not explicitly require mul-
+395
+        timodal action selection, and we observe no consistent advantage from greater policy expressivity,
+396
+        with SAC, SAC-Flow, DIME, and DEFlow achieving broadly comparable returns overall and SAC
+397     retaining a small lead in the sum of returns across tasks.
+398
+399                                                Hopper-v4                    Walker2d-v4                             HalfCheetah-v4                          Ant-v4                      Humanoid-v4
+400                                    4000                                                                15000                                  8000                           6000
+                                                                      6000
+                                                                                                                                                                                 5000
+
+
+
+      Evaluation return
+401                                    3000                                                                                                       6000
+                                                                      4000                                 10000                                                                 4000
+402                                    2000                                                                                                       4000
+                                                                                                                                                                                 3000
+403                                                                   2000                                  5000                                  2000                           2000
+                                       1000
+404                                       0                                                                                                            0                         1000
+                                                                         0                                     0
+405                                                                                                                                                                                 0
+                                             0.0      0.5       1.0      0.0              0.5        1.0          0.0          0.5         1.0         0.0         0.5       1.0     0.0          0.5       1.0
+406                                                Steps (M)                         Steps (M)                            Steps (M)                            Steps (M)                       Steps (M)
+407                                                                              SAC                 SAC-Flow                  DIME              QSM            DEFlow
+408
+409                                            Figure 3: MuJoCo learning curves. Lines show run means, bands show ±1 sample SD.
+410
+411     Manipulation. Manipulation tasks test how quickly a policy turns contact with an object into use-
+412     ful behavior. We compare SAC, SAC-Flow, DIME, and DEFlow on five tasks from ManiSkill and
+413     MetaWorld, with a budget of 500k recorded training steps. Figure 4 shows deterministic evalua-
+414     tion returns, and Table 7 in Appendix C.2 summarizes their time average over training. Table 5 in
+415     Appendix C.2 reports final sampled ever-success: the fraction of evaluation episodes in which the
+416     policy completes the task at least once.
+417     DEFlow’s main advantage is early learning under the evaluated training recipes. It achieves the
+418     highest mean time-averaged return on four of the five tasks. On PickCube, the advantage also appears
+419     in task completion: DEFlow reaches higher sampled success at the intermediate checkpoints, before
+420     DIME catches up later in training. On PushCube, DEFlow attains high return by the first evaluation
+421     and maintains it through the rest of training. The return curves and early success evaluations thus
+422     capture gains that a final-checkpoint comparison alone would miss. At the final checkpoint, DIME
+423     has the highest sampled-success means on the cube tasks, while SAC leads on PegInsertSide.
+424
+425
+426
+427
+428
+429
+430
+431
+
+
+
+                                                                                                                           8
+      Under review as a conference paper at ICLR 2027
+
+
+
+
+432                                   MS                         MS                           MW                                  MW                            MW
+                                   PickCube                   PushCube                  ButtonPressWall                      PegInsertSide                    PushWall
+433
+                                                      40
+
+
+
+
+      Evaluation return
+434                       40                                                      800                                                               1000
+                                                                                                                   1000
+435                       30                          30                          600
+                                                                                                                                                     500
+                                                      20                          400
+436                       20                                                                                        500
+
+                          10                          10                          200
+437                                                                                                                                                    0
+                                                                                    0                                 0
+                           0                           0
+438
+                           0.00      0.25      0.50    0.00     0.25      0.50      0.00      0.25          0.50      0.00       0.25        0.50      0.00     0.25      0.50
+439                                Steps (M)                  Steps (M)                     Steps (M)                          Steps (M)                      Steps (M)
+
+440                                                               SAC            SAC-Flow            DIME             DEFlow (ours)
+441
+442   Figure 4: Manipulation evaluation returns, mean ± SD across three training seeds. Dashed segments
+443   connect an illustrative origin to the first evaluation.
+444
+445   5.3                         A BLATION S TUDIES
+446
+447   Implicit vs. explicit flow. To test the role of implicit integration during policy learning, we re-
+448   place DEFlow’s implicit-Euler updates with explicit Euler while retaining the actor architecture,
+449   four integration steps, discrete density objective, and training settings. Both policies are trained in-
+450   dependently on the docking tasks. DEFlow achieves higher successful coverage on loose docking
+451
+      (Table 1), and tight docking exposes a further limitation of the explicit variant: it either concentrates
+      on a preferred goal or fails numerically (details in Appendix C.4). This comparison strongly supports
+452
+      implicit integration for learning diverse successful behavior under a narrow action tolerance.
+453
+454
+      Integrator step-count ablation. On the MultiGoal variant with wide goal regions and tight dock-
+455
+      ing, we freeze two policies trained with T = 4 and change only the number of docking integration
+456   steps. Each policy keeps its own integrator and uses the same states and Gaussian inputs across
+457   step counts. At the training depth T = 4, the explicit policy achieves only 50.1% balanced docking
+458   accuracy on a shared bank of reachable states, with near-zero accuracy for two of the four goals,
+459   while DEFlow achieves 94.1%. Even on each policy’s own visited states, changing only the docking
+460   integration depth from T = 4 to T = 2 reduces explicit success from 99.8% to 0.7%, versus 96.5%
+461   to 53.7% for DEFlow, and increasing T also degrades the explicit policy. For this pair, DEFlow is
+462   more robust to changes in step count (Figures 8 and 9).
+463
+464   6                        L IMITATIONS AND C OSTS
+465
+466   Training time. In our measured runs, DEFlow had roughly 40% lower effective training through-
+467   put than SAC-Flow and took about three times as long as SAC. Its wall-clock cost was of the same
+468   order as DIME’s. These comparisons are approximate and depend on workload and shared hard-
+469   ware. Each implicit actor update requires a nonlinear forward solve and a dense linear backward
+470   solve.
+471
+472   Exactness is tolerance-limited in training. Equation (13) is exact for a solution of the implicit
+473   equations under the assumptions in Appendix A.3. The implementation uses finite solver tolerances
+474
+      and numerical modifications (Appendix C.1). The trained-policy audit in Appendix C.1 measures
+      the resulting discrepancies at final manipulation checkpoints. The audit finds numerical inaccuracy,
+475
+      especially in PushWall actor gradients. Tightening the solver at evaluation reduces these errors, while
+476
+      sampled task success changes little. We use the original solver settings for benchmark evaluations
+477   to avoid the extra cost of tighter solves.
+478
+479
+480   7                        C ONCLUSION
+481
+482   We introduced DEFlow, a deep-equilibrium formulation of flow policies for maximum-entropy re-
+483
+      inforcement learning. By combining implicit sampling, tractable density evaluation, and implicit
+      differentiation, DEFlow provides an alternative to explicit flow actors. Our experiments highlight its
+484
+      potential for expressive control and the remaining trade-offs in numerical accuracy and computa-
+485
+      tional cost.
+
+
+                                                                                             9
+      Under review as a conference paper at ICLR 2027
+
+
+
+
+486
+      R EFERENCES
+487
+488   Shaojie Bai, J. Zico Kolter, and Vladlen Koltun. Deep equilibrium models. In Advances in Neural
+489     Information Processing Systems, 2019. doi: 10.48550/arXiv.1909.01377. URL https://arxiv.org/
+490     abs/1909.01377.
+491   Shaojie Bai, Vladlen Koltun, and J. Zico Kolter. Stabilizing equilibrium models by jacobian reg-
+492     ularization. In Proceedings of the 38th International Conference on Machine Learning, vol-
+493     ume 139 of Proceedings of Machine Learning Research, pp. 554–565. PMLR, 2021. URL
+494     https://proceedings.mlr.press/v139/bai21b.html.
+495
+      Onur Celik, Zechu Li, Denis Blessing, Ge Li, Daniel Palenicek, Jan Peters, Georgia Chalvatzaki,
+496
+        and Gerhard Neumann. DIME: Diffusion-based maximum entropy reinforcement learning. In
+497     Proceedings of the 42nd International Conference on Machine Learning, volume 267 of Pro-
+498     ceedings of Machine Learning Research, pp. 6958–6977. PMLR, 2025. URL https://proceedings.
+499     mlr.press/v267/celik25a.html.
+500
+501   Zihan Ding and Chi Jin. Consistency models as a rich and efficient policy class for reinforcement
+502
+        learning. In International Conference on Learning Representations, 2024. doi: 10.48550/arXiv.
+        2309.16984. URL https://arxiv.org/abs/2309.16984.
+503
+504   Alan Edelman, Ekin Akyürek, and Yuyang Wang. Backpropagation through back substitution with
+505     a backslash. SIAM Journal on Matrix Analysis and Applications, 45(1):429–449, 2024. doi:
+506     10.1137/22M1532871. URL https://doi.org/10.1137/22M1532871.
+507
+      Tuomas Haarnoja, Haoran Tang, Pieter Abbeel, and Sergey Levine. Reinforcement learning with
+508     deep energy-based policies. In Proceedings of the 34th International Conference on Machine
+509     Learning, volume 70 of Proceedings of Machine Learning Research, pp. 1352–1361. PMLR,
+510     2017. URL https://proceedings.mlr.press/v70/haarnoja17a.html.
+511
+512
+      Tuomas Haarnoja, Aurick Zhou, Pieter Abbeel, and Sergey Levine. Soft actor-critic: Off-policy
+        maximum entropy deep reinforcement learning with a stochastic actor. In Proceedings of the 35th
+513
+        International Conference on Machine Learning, volume 80 of Proceedings of Machine Learning
+514
+        Research, pp. 1861–1870. PMLR, 2018a. URL https://proceedings.mlr.press/v80/haarnoja18b.
+515     html.
+516
+517   Tuomas Haarnoja, Aurick Zhou, Kristian Hartikainen, George Tucker, Sehoon Ha, Jie Tan, Vikash
+518     Kumar, Henry Zhu, Abhishek Gupta, Pieter Abbeel, and Sergey Levine. Soft actor-critic algo-
+519     rithms and applications, 2018b. URL https://arxiv.org/abs/1812.05905.
+520   Ernst Hairer and Gerhard Wanner. Solving Ordinary Differential Equations II: Stiff and Differential-
+521     Algebraic Problems, volume 14 of Springer Series in Computational Mathematics. Springer,
+522     Berlin, Heidelberg, 2 edition, 1996. doi: 10.1007/978-3-642-05221-7.
+523
+      Yaron Lipman, Ricky T. Q. Chen, Heli Ben-Hamu, Maximilian Nickel, and Matt Le. Flow matching
+524
+        for generative modeling. In International Conference on Learning Representations, 2023. URL
+525
+        https://arxiv.org/abs/2210.02747.
+526
+527   George Papamakarios, Eric Nalisnick, Danilo Jimenez Rezende, Shakir Mohamed, and Balaji Lak-
+528     shminarayanan. Normalizing flows for probabilistic modeling and inference. Journal of Machine
+529     Learning Research, 22(57):1–64, 2021.
+530   Seohong Park, Qiyang Li, and Sergey Levine. Flow q-learning. In Proceedings of the 42nd Inter-
+531     national Conference on Machine Learning, volume 267 of Proceedings of Machine Learning Re-
+532     search, pp. 48104–48127. PMLR, 2025. URL https://proceedings.mlr.press/v267/park25f.html.
+533
+534
+      Michael Psenka, Alejandro Escontrela, Pieter Abbeel, and Yi Ma. Learning a diffusion model policy
+       from rewards via q-score matching. In Proceedings of the 41st International Conference on
+535
+       Machine Learning, volume 235 of Proceedings of Machine Learning Research, pp. 41163–41182.
+536
+       PMLR, 2024. URL https://proceedings.mlr.press/v235/psenka24a.html.
+537
+538   Danilo Jimenez Rezende and Shakir Mohamed. Variational inference with normalizing flows. In
+539     Proceedings of the 32nd International Conference on Machine Learning (ICML), volume 37 of
+        PMLR, pp. 1530–1538, 2015.
+
+
+                                                      10
+      Under review as a conference paper at ICLR 2027
+
+
+
+
+540
+      Stone Tao, Fanbo Xiang, Arth Shukla, Yuzhe Qin, Xander Hinrichsen, Xiaodi Yuan, Chen Bao,
+541     Xinsong Lin, Yulin Liu, Tse-Kai Chan, Yuan Gao, Xuanlin Li, Tongzhou Mu, Nan Xiao, Arnav
+542     Gurha, Viswesh Nagaswamy Rajesh, Yong Woo Choi, Yen-Ru Chen, Zhiao Huang, Roberto Ca-
+543     landra, Rui Chen, Shan Luo, and Hao Su. Demonstrating gpu parallelized robot simulation and
+544     rendering for generalizable embodied ai with maniskill3. In Proceedings of Robotics: Science
+545     and Systems, 2025. doi: 10.15607/RSS.2025.XXI.021. URL https://www.roboticsproceedings.
+546     org/rss21/p021.html.
+547
+      Emanuel Todorov, Tom Erez, and Yuval Tassa. Mujoco: A physics engine for model-based control.
+548
+        In 2012 IEEE/RSJ International Conference on Intelligent Robots and Systems, pp. 5026–5033,
+549     2012. doi: 10.1109/IROS.2012.6386109. URL https://doi.org/10.1109/IROS.2012.6386109.
+550
+551   Homer F. Walker and Peng Ni. Anderson acceleration for fixed-point iterations. SIAM Journal on
+552     Numerical Analysis, 49(4):1715–1735, 2011. doi: 10.1137/10078356X. URL https://doi.org/10.
+553     1137/10078356X.
+554   Zhendong Wang, Jonathan J. Hunt, and Mingyuan Zhou. Diffusion policies as an expressive policy
+555     class for offline reinforcement learning. In International Conference on Learning Representa-
+556     tions, 2023. doi: 10.48550/arXiv.2208.06193. URL https://arxiv.org/abs/2208.06193.
+557
+558   Tianhe Yu, Deirdre Quillen, Zhanpeng He, Ryan Julian, Karol Hausman, Chelsea Finn, and Sergey
+559
+        Levine. Meta-world: A benchmark and evaluation for multi-task and meta reinforcement learn-
+        ing. In Proceedings of the Conference on Robot Learning, volume 100 of Proceedings of Ma-
+560
+        chine Learning Research, pp. 1094–1100. PMLR, 2020. URL https://proceedings.mlr.press/v100/
+561
+        yu20a.html.
+562
+563   Yixian Zhang, Shu’ang Yu, Tonghe Zhang, Mo Guang, Haojia Hui, Kaiwen Long, Yu Wang, Chao
+564     Yu, and Wenbo Ding. Sac flow: Sample-efficient reinforcement learning of flow-based policies
+565     via velocity-reparameterized sequential modeling, 2025. URL https://arxiv.org/abs/2509.25756.
+566
+567
+568
+      A      A DDITIONAL D ERIVATIONS
+569
+570
+      A.1     F INITE -S TEP A NALYSIS
+571   This appendix records the assumptions and proof details behind the claims in Sec. 3. We use T ∈ N+
+572   integration steps on [0, 1] with ∆t = 1/T and tk = k∆t. We fix a state and suppress it from the
+573   notation. The actions are unsquashed, the base variable is shared when two rollouts are compared,
+574   and the field is the ideal independent-interpolation field. These results isolate the numerical effects
+575   of finite-step integration on analytically specified vector fields.
+576
+577   A SMOOTH MULTIMODAL TARGET CAN REQUIRE A FINE GRID
+578
+      Consider
+579
+                           A = mC + σG,                C ∈ {−1, 1},           It = (1 − t)Z + tA,                 (18)
+580
+581   where m, σ > 0, P(C = ±1) = 1/2, and Z, G are standard Gaussians. The variables C, Z, G
+                                                                                                     ⋆
+582
+      are mutually independent. Small-width limits keep m fixed. The terminal target is πm,σ               =
+      1          2     1         2                         2     2 2
+583   2 N (−m, σ   ) + 2 N (m, σ   ). Writing qt = (1 − t)   + σ  t  , conditional Gaussian regression gives
+584
+                                                          σ 2 t − (1 − t)             m(1 − t)             mt
+585         v ⋆ (x, t) = bt x + dt tanh(kt x),    bt =                    ,    dt =            ,    kt =      .   (19)
+                                                                 qt                     qt                 qt
+586
+587   The denominator is bounded away from zero, so this field is globally well posed. Its derivative is
+588
+                                         ∂x v ⋆ (x, t) = bt + dt kt sech2 (kt x).                                 (20)
+589
+590   For 0 < σ ≤ min{1/2, m/10}, evaluating at x = 0 and t = (1 + σ)−1 yields
+591
+                                                                         m2
+592                                              sup |∂x v ⋆ (x, t)| ≥        .                                   (21)
+593                                              x,t                     8σ 3
+
+
+
+                                                              11
+      Under review as a conference paper at ICLR 2027
+
+
+
+
+594
+      Thus the exact field remains regular for every fixed σ > 0, while the near-identity requirement for a
+595   discrete step becomes increasingly demanding as the target narrows.
+596
+597   For completeness, let Jk = Da v(ak , tk ) and Bk = I + ∆t Jk . If ∥Jk ∥ ≤ Lk , the triangle and
+598
+      reverse-triangle inequalities give
+599                         [1 − ∆t Lk ]+ ≤ σmin (Bk ) ≤ σmax (Bk ) ≤ 1 + ∆t Lk .                (22)
+600   When ∆t Lk < 1 for all k, multiplication of singular-value bounds gives
+601                                                                −1
+                                                                 T∏︂
+602                                                                     1 + ∆t Lk
+                                        κ2 (BT −1 · · · B0 ) ≤                    .                    (23)
+603                                                                     1 − ∆t Lk
+                                                                 k=0
+604
+      The same calculation for an implicit step produces the inverse factor (I − ∆t Jk+1 )−1 , which is why
+605   the two discretizations can have different conditioning on the same field.
+606
+607   Sampling error. For the explicit Euler discretization of (19), define π∆t⋆
+                                                                                  as the law after T = 1/∆t
+608   steps. The linear part of the update contracts the outward fluctuation. An induction gives
+609
+                        |X
+                         ˆ︁k | ≤ mtk + Rk |Z|,       Rk+1 = (1 + ∆t btk ) Rk , R0 = 1.                  (24)
+610                 √
+611   Convexity of qt implies
+612                                                  σ 2 (1 − ∆t)                σ2
+613                                    RT ≤ √︁                               ≤      .                  (25)
+                                                 (∆t)2 + σ 2 (1 − ∆t)2           ∆t
+614
+615   Now use the 1-Lipschitz function fm (x) =√(|x| − m)+ . The envelope gives ∥fm (X       ˆ︁T )∥L2 ≤ RT ,
+616   while the target satisfies ∥fm (A)∥L2 ≥ σ/ 2. For any coupling of the numerical and target vari-
+617   ables, the reverse triangle inequality in L2 therefore gives
+                                                               [︃               ]︃
+618                                              ⋆     ⋆           σ
+619                                       W2 (π∆t   , πm,σ ) ≥ √ − RT               .                   (26)
+                                                                     2            +
+620
+      Substitution of (25) proves
+621
+                                          √                          ⋆      ⋆              σ
+622                              ∆t ≥ 2 2 σ =⇒ W2 (π∆t                 , πm,σ    )≥ √ .                 (27)
+623                                                                                     2 2
+                                                                                    √
+624   At one step, v ⋆ (x, 0) = −x, so X    ˆ︁1 = 0 and W2 (π ⋆ , π ⋆ ) = m2 + σ 2 . At two steps, direct
+                                                                   1   m,σ
+625   substitution gives                                        (︁                    )︁
+626                                            σ 2 Z + m tanh mZ/(1 + σ 2 )
+                                      X2 =
+                                       ˆ︁                                                .              (28)
+627                                                          1 + σ2
+628                                   2
+      As σ ↓ 0, this converges in L to m tanh(mZ), whereas the target converges to the two-point law
+629   on {−m, m}. The limiting Wasserstein error is consequently
+630                                                                     ]︁)︁1/2
+                                        m E (1 − tanh(m|Z|))2
+                                           (︁ [︁
+631
+                                                                                 > 0.                   (29)
+632   This establishes intermodal shape distortion without invoking a singular explicit update.
+633
+634   A FIXED BUDGET CAN DISTORT THE POLICY GRADIENT
+635                                                                                               √
+      The gradient statement in Sec. 3 uses the centered Gaussian subfamily
+                                                                      √     A ∼ N (0, ϑ), with σ = ϑ,
+636
+      and the terminal loss ℓ(a) = a2 /2. The exact flow gives X1 = ϑZ and L′ (ϑ) = 1/2. For T ≥ 2,
+637
+      direct substitution of tk = k/T into the explicit update yields
+638
+                                 −1
+                               T∏︂
+639                                   (T − k)(T − k − 1) + ϑk(k + 1)
+                    RT (ϑ) =                                         ,                X
+                                                                                      ˆ︁T = RT (ϑ)Z.   (30)
+640                                           (T − k)2 + ϑk 2
+                          k=0
+641
+642   Hence L∆t (ϑ) = RT RT′ . Setting u = T 2 ϑ = (σ/∆t)2 , the factors are nondecreasing and their
+             ′
+
+643
+      logarithmic derivatives give
+644                                                                               1
+                             0 ≤ 2RT RT′ ≤ 2ue2u (1 + u) ≤ 3u,                   0≤u≤
+                                                                                    .                  (31)
+645                                                                               8
+646   Since the exact derivative is 1/2, this is the claimed bound on the relative gradient. The statement
+647   is deliberately limited to this terminal loss and parameterization; it identifies a possible rollout-
+      sensitivity mechanism rather than characterizing the full SAC actor gradient.
+
+
+                                                           12
+      Under review as a conference paper at ICLR 2027
+
+
+
+
+648
+      W HY ARCHITECTURAL STABILIZATION ALONE IS INSUFFICIENT
+649
+650   Two short counterexamples clarify the scope of the preceding results. First, clipping an optimizer
+651   step bounds ∥θr+1 − θr ∥, but does not bound ∥Da vθ ∥, the smallest singular value of a step map, or
+652   the sampling error. For vλ (x) = −λx, explicit Euler gives
+653
+                  X1 = e−λ Z,         ˆ︁T = (1 − ∆tλ)T Z,        W2 = ⃓|1 − ∆tλ|T − e−λ ⃓ .
+                                                                      ⃓                    ⃓
+                                      X                                                              (32)
+654
+655   The continuous flow is well posed, while λ = 1/∆t makes one step singular and λ > 2/∆t amplifies
+656   its sensitivity. A clipped update can be zero at a parameter-space minimizer, so clipping does not
+657
+      exclude this field.
+658   Second, a bounded gated field can keep every Euler state in a bounded range while its gate derivative
+659   makes the step Jacobian singular or arbitrarily ill-conditioned. Normalized features and a bounded
+660   output head do not remove this possibility. These examples show why the method must expose
+661   and control the discrete step structure; they do not imply that the trained actor always enters the
+662   counterexample regime.
+663
+664   A.2    I MPLICIT D IFFERENTIATION
+665
+      We derive the backward pass in Sec. 4.1 following Bai et al. (2019). Fix (s, z) and let Z ⋆ solve
+666
+      Eq. (9). Assume that the velocity field has continuous first and second derivatives in (a, θ) and that
+667   each matrix I − ∆tJk is invertible at this solution, where Jk = ∂a vθ (a⋆k , s, tk ).
+668
+669   Differentiating the fixed-point equation gives
+670                                      dZ ⋆
+671
+                                       A         = ∂θ gθ ,   A = I − ∂Z gθ .                              (33)
+                                          dθ
+672   All derivatives are evaluated at (Z ⋆ ; s, z). From Eq. (8), block k depends only on actions 1, . . . , k.
+673   The blocks of A are therefore
+674                            ⎧
+675
+                               ⎨−∆tJj ,           j < k,                T
+                                                                       ∏︂
+676
+                        Akj = I − ∆tJk , j = k,              det A =       det(I − ∆tJk ).                (34)
+                               ⎩
+677                               0,              j > k.               k=1
+
+678   Thus A is block lower triangular and invertible under the stated assumptions. The implicit function
+679   theorem then gives a locally differentiable solution as (z, θ) varies.
+680
+      For a differentiable sample loss ℓ(θ, Z ⋆ ), the chain rule gives
+681
+                                          (︃ ⋆ )︃⊤
+682                                         dZ
+683
+                        ∇θ ℓ = ∂θ ℓ|Z ⋆ +              ∇Z ℓ = ∂θ ℓ|Z ⋆ + (∂θ gθ )⊤ A−⊤ ∇Z ℓ.               (35)
+                                             dθ
+684
+685
+      Solving A⊤ λ = ∇Z ℓ recovers Eq. (10). This avoids forming either A−1 or the full derivative
+      dZ ⋆ /dθ. The direct term ∂θ ℓ|Z ⋆ includes the dependence of the log-density and Jacobian penalty
+686
+      on θ with the actions held fixed. Their derivatives involve second derivatives of the velocity field.
+687
+688   To apply this calculation to the expected actor loss, we assume that, for almost every (s, z), the se-
+689   lected solution remains differentiable throughout a common neighborhood of the current parameters.
+690   We also assume that the sample-loss derivatives in this neighborhood are bounded by a function of
+691
+      (s, z) with finite expectation. Holding the replay distribution fixed, these conditions allow differenti-
+      ation under the expectation and justify the minibatch gradient in Algorithm 1. Numerical evaluation
+692
+      of this gradient is described in Appendix C.1.
+693
+694
+      A.3    ACTION L OG -D ENSITY
+695
+696   We justify the change-of-variables calculation in Sec. 4.2. Fix a state s. Assume that a measurable,
+697   deterministic rule selects an implicit trajectory for almost every z ∼ p0 . On open regions covering
+698   these samples up to a set of probability zero, assume that the selected trajectory is continuously
+699   differentiable in z and that every I − ∆tJk is invertible.
+700
+      The log form of the change-of-variables identity in Eq. (11) is
+701                                                             ⃓        ⃓
+                                 log pY (y) = log pX (x) − log⃓det ∂f /∂x⃓.                                (36)
+
+
+                                                         13
+      Under review as a conference paper at ICLR 2027
+
+
+
+
+702
+      An implicit Euler step has the explicit inverse relation
+703
+704                           ak−1 = Hk (ak ),          Hk (a) = a − ∆t vθ (a, s, tk ).                     (37)
+705
+      Consequently, the endpoint determines every preceding action and the base sample: z = H1 ◦ · · · ◦
+706   HT (aT ). Two different base samples cannot produce the same selected endpoint. The selected map
+707   z ↦→ a⋆T is therefore one-to-one, even if the step equations admit other solutions. The pre-squash
+708   density is defined on the image of this selected map and is zero outside it.
+709
+      Since ∂a Hk = I − ∆tJk , differentiating the inverse map gives
+710
+711                                    ∂z
+                                          = (I − ∆tJ1 ) · · · (I − ∆tJT ).                                  (38)
+712                                   ∂aT
+713
+      Composing the step maps and applying the log form of change of variables gives
+714
+715                                                                                    T
+      ∂aT                                                                             ∑︂
+          = (I − ∆t JT )−1 · · · (I − ∆t J1 )−1 ,
+                                                                                               ⃓               ⃓
+716                                                      log π(aT | s) = log p(z) +         log⃓det(I − ∆t Jk )⃓.
+       ∂z
+717                                                                                   k=1
+                                                                                                   (39)
+718
+      Here, π(aT | s) denotes the density before squashing. The final transformation       aenv =  c⊙
+719
+      tanh(a⋆T ) + b is one-to-one for ci > 0, with Jacobian determinant i ci (1 − tanh2 (a⋆T,i )). Di-
+                                                                             ∏︁
+720
+      viding by this determinant and taking logarithms gives the final-action log-density:
+721
+722                                           T                          da
+                                             ∑︂                       ⃓ ∑︂
+                                                                            log ci (1 − tanh2 aT,i )
+                                                      ⃓                        [︁                   ]︁
+723         log πθ (aenv | s) = log p(z) +         log det(I − ∆t Jk ) −
+                                                      ⃓               ⃓
+724                                          k=1                           i=1
+
+725   This is Eq. (13), including the action-bound correction used in SAC (Haarnoja et al., 2018b). This
+726   identity concerns an exact solution of the implicit equations. Appendix C.1 specifies how it is eval-
+727   uated at finite solver tolerance.
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+
+
+
+                                                          14
+      Under review as a conference paper at ICLR 2027
+
+
+
+
+756
+      B     I MPLEMENTATION D ETAILS
+757
+758
+      B.1   A RCHITECTURE
+759
+760   DEFlow uses the gated velocity field of SAC-Flow (Zhang et al., 2025). Its inputs are the obser-
+761   vation, intermediate action, and time embedding. The time embedding maps 32 sinusoidal features
+762   through two layers of widths 64 and 32. A shared projection with SiLU and layer normalization
+763   feeds separate gate and candidate heads. Each head has one hidden layer and outputs an action-
+764   dimensional vector. The gate is sigmoid, and the candidate is a scaled tanh as in Eq. (6). The velocity
+765
+      width is 256, the candidate scale is 4, and the gate output bias is initialized to 1. Actions start from
+      standard Gaussian noise and use four implicit-Euler steps before the final tanh and action-bound
+766
+      scaling.
+767
+768
+      Jacobian regularization. Motivated by Jacobian regularization for DEQ models (Bai et al., 2021),
+769
+      we penalize the individual velocity Jacobians:
+770
+                                          [︄ T                  ]︄
+771
+                                                            ∗ 2
+                                            ∑︂[︁             ]︁
+772                RJ (θ) = Es∼D, z∼p0          ∥∆tJk ∥2 − σ + ,      [x]+ = max(x, 0),           (40)
+773                                          k=1
+                                             ∗
+774   and minimize Lπ + βRJ . We use σ = 0.9 and increase β from zero to 0.01 over the first 100,000
+775   environment steps.
+776
+777   Temperature updates. In the regularized DEFlow recipe, we update log α from the actor log-
+778   densities. The target is an exponential moving average of negative log-density (weight 0.01) minus
+779   0.7, with floor −0.7da . The update winsorizes log-densities at the minibatch 5th and 95th per-
+780   centiles, leaks log α toward log(0.05) with weight 0.01, and enforces α ≥ 0.02. We also tested
+781
+      fixed-temperature variants, which sometimes reached comparable return but did not provide stable
+      adaptive temperature behavior.
+782
+783
+784   B.2   I MPLEMENTATION D ETAILS
+785
+      Algorithm 1 summarizes the SAC updates with DEFlow’s implicit actor. Table 2 gives one reference
+786   configuration for the matched-critic MuJoCo comparison. All methods use twin 4×512 ReLU critics
+787   in this comparison. We retain each baseline’s policy class and actor objective: SAC has a squashed
+788   Gaussian density (Haarnoja et al., 2018b), SAC-Flow uses its noisy explicit rollout and joint-path
+789   entropy term (Zhang et al., 2025), DIME uses its diffusion entropy bound (Celik et al., 2025), and
+790   QSM matches its score to the critic action gradient without a policy log-density (Psenka et al., 2024).
+791   We implement each baseline’s actor and objective in a common training pipeline. Matching critic
+792   capacity is necessary to assess actor performance without confounding it with differences in the
+793   critic.
+794
+      Table 2: Reference matched-critic MuJoCo configuration. Method rows retain actor-specific sam-
+795   pling and objectives; full run settings are in the repository.
+796
+797                   Method       Actor steps     Policy objective or density
+798
+                      SAC               —          Gaussian log-density
+799
+                      SAC-Flow           4         Joint-path entropy
+800                   DIME              16         Diffusion entropy bound
+801                   QSM                5         Q-score matching (no log-density)
+802                   DEFlow             4         Discrete change-of-variables density
+803                   Shared: twin 4 × 512 critics; batch 512; replay 106 ; warm-up 50k; UTD 1.
+804                   γ = 0.99; τ = 0.005; actor/critic learning rates 3 × 10−4 /10−3 .
+805
+806
+807   B.3   B ENCHMARK P ROTOCOL
+808
+809   The benchmarks comprise MultiGoal-4 (Haarnoja et al., 2017), five MuJoCo locomotion tasks
+      (Hopper-v4, Walker2d-v4, HalfCheetah-v4, Ant-v4, Humanoid-v4) (Todorov et al., 2012), two Man-
+
+
+                                                          15
+      Under review as a conference paper at ICLR 2027
+
+
+
+
+810
+      Algorithm 1 DEFlow
+811
+812
+      Require: Initial policy parameters θ, critic parameters ϕ1 , ϕ2 , minibatch size B, target averaging
+          rate τ .
+813
+       1: Initialize target parameters ϕ̄j ← ϕj for j = 1, 2 and replay buffer D ← ∅.
+814
+       2: Reset the environment and observe the initial state s.
+815    3: for each iteration do
+816    4:    for each environment step do
+817    5:       Draw z ∼ p0 and compute a = aθ (s, z).
+818    6:       Execute a and observe reward r, next state s′ , and termination indicator d.
+819    7:       Store (s, a, r, s′ , d) in D.
+820    8:       Set s ← s′ , or reset the environment if the episode has ended.
+821    9:    end for
+822   10:    for each gradient step do
+823
+      11:       Draw a minibatch {(si , ai , ri , s′i , di )}B
+                                                             i=1 from D.
+      12:       Draw zi′ ∼ p0 and compute a′i = aθ (s′i , zi′ ) for each i.
+824
+      13:       Evaluate log πθ (a′i | s′i ) using Eq. (13).
+825
+      14:       Compute targets yi using Eq. (14), with yi = ri when di = 1.
+826   15:       Update ϕ1 , ϕ2 by minimizing the minibatch critic loss in Eq. (15), holding yi fixed.
+827   16:       if a policy update is due then
+828   17:          Draw fresh zi ∼ p0 and compute ãi = aθ (si , zi ) for each i.
+829   18:          Evaluate log πθ (ãi | si ) using Eq. (13).
+830   19:          Form each sample loss ℓi using Eq. (16) and the β-weighted penalty in Eq. (40).
+831   20:          Solve the adjoint systems in Eq. (10) to compute ∇θ ℓi .
+                                            ∑︁B
+832   21:          Update θ using B −1 i=1 ∇θ ℓi .
+833   22:          Update α.
+834   23:       end if
+835   24:       Update target parameters ϕ̄j ← (1 − τ )ϕ̄j + τ ϕj for j = 1, 2.
+836
+      25:    end for
+      26: end for
+837
+838
+839
+      iSkill tasks (PickCube-v1 and PushCube-v1) (Tao et al., 2025), and three MetaWorld tasks (Button-
+840
+      PressWall, PegInsertSide, PushWall) (Yu et al., 2020). All methods use the same task wrapper and
+841   checkpoint schedule within each comparison. MuJoCo and manipulation runs use budgets of 1M and
+842   500k recorded steps, respectively. Manipulation wrappers set task-specific rewards, resets, horizons,
+843   and termination rules; their exact settings are provided in the repository’s run configurations.
+844
+      MuJoCo returns use the recorded evaluation at 1M steps, curves use evaluations every 25k steps.
+845
+      Manipulation returns are evaluated from 50k to 500k steps and averaged over the recorded check-
+846
+      points for the time-averaged-return table. We report means and sample standard deviations across
+847   three training seeds per task and method. For deterministic DEFlow evaluation, the base sample is
+848   z = 0, QSM retains stochastic denoising even in its evaluation channel. Final manipulation ever-
+849   success is the fraction of sampled episodes in which the task succeeds at least once, measured over
+850   100 episodes per trained policy. These evaluation episodes are not additional training seeds. The
+851   exact selected runs and evaluation scripts are linked from the repository’s result manifests.
+852
+853   B.4   F IXED -F LOW ROBOT I LLUSTRATION
+854
+855   Figure 1 isolates discretization in a fixed scalar contraction, v(x, t) = −8(x − 0.8), on t ∈ [0, 1],
+856
+      initialized with z ∼ N (0, 1). We compare explicit Euler with a jointly solved implicit-Euler trajec-
+      tory at T ∈ {2, 3, 4, 5} and apply u = tanh(xT ) to the terminal sample. The implicit solver uses
+857
+      damped Newton with zero initialization, an 80-iteration cap, and normalized local and cumulative
+858
+      fixed-point residual tolerances of 10−11 and 10−9 , respectively, in double precision. This diagnostic
+859   has no learned velocity field, critic, or policy training; the learned DEFlow policies in Sec. 4 use
+860   Anderson acceleration.
+861
+862
+      The simulator is a custom one-decision Panda waypoint-reaching task in ManiSkill 3. The scalar
+      command specifies a displacement of 0.12u metres along the task axis from the calibrated end-
+863
+      effector anchor. The target uses u⋆ = tanh(0.8(1 − e−8 )), the continuous-flow image of z = 0 after
+
+
+                                                       16
+      Under review as a conference paper at ICLR 2027
+
+
+
+
+864
+      squashing. Each waypoint is held for 40 Cartesian position-control steps at 20 Hz, with the gripper
+865   fixed and no early success termination. Success is the final three-dimensional end-effector distance
+866   to the target being less than 8 mm; it is not an ever-success metric. The plot shows axial and lateral
+867   projections, while its success labels use all three coordinates.
+868
+      Each method and step count uses 640 trials: 128 trials for each of seeds 0, 1, 2, 3, 4. Simulator
+869
+      states and Gaussian base samples are shared across methods and step counts. The figure reuses
+870
+      recorded endpoints from the descriptive step-count sweep and is not an independent replication. The
+871   comparison holds the number of integration steps fixed, without matching field evaluations or wall-
+872   clock time. It supports a discretization comparison for this contraction task, without establishing
+873   computational efficiency, multimodal sampling accuracy, or performance of a trained policy.
+874
+875
+876
+      C     A DDITIONAL R ESULTS
+877
+      C.1   N UMERICAL V ERIFICATION
+878
+879   DEFlow solves the joint trajectory with Anderson acceleration (Walker & Ni, 2011). The solver
+880   stops when the minibatch mean relative residual meets its configured tolerance or the iteration limit
+881   is reached, returning the last iterate in either case. Actor updates re-evaluate the field at that iterate
+882   and use a dense adjoint solve rather than differentiating through solver iterations. The adjoint and
+883   log-determinant matrices receive a 10−6 I shift, and log-determinants are clipped to [−50, 50]. Some
+884   training recipes also clip actor log-densities to [−15, 15]. The reference MuJoCo configuration uses
+885   a 3 × 10−4 forward tolerance.
+886   We test how the forward solver affects trained DEFlow policies by comparing each final manip-
+887   ulation policy under two settings: the original Anderson solver with a 25-iteration limit and 10−5
+888   tolerance, and a tighter solver with a 100-iteration limit and 10−6 tolerance. Table 3 compares ac-
+889   tions, safeguarded log-density readouts, and actor gradients with an independently solved implicit
+890   reference; the median and P95 pool matched inputs within each task. Three PushWall inputs without
+891   a validated reference are excluded from these discrepancies. Table 4 reports stochastic ever-success
+892
+      on paired environment episodes as the mean ± sample standard deviation over three training seeds.
+      Both settings use the same 100 evaluation episodes per checkpoint, and the change is Tighter minus
+893
+      Original in percentage points.
+894
+895                            Table 3: Numerical discrepancies on trained policies.
+896
+897                                                        Original                    Tighter
+898
+               Task              Discrepancy           Median           P95       Median           P95
+899
+900            PickCube          Action            1.49×10−5 1.62×10−4 7.04×10−7 2.39×10−6
+901                              Log-density (nat) 3.73×10−5 5.18×10−4 2.05×10−6 9.92×10−6
+                                 Gradient (%)         0.00330     0.771  0.000143  0.000980
+902
+903            PushCube          Action            1.02×10−5 3.20×10−5 9.73×10−7 2.38×10−6
+904                              Log-density (nat) 2.03×10−5 8.15×10−5 2.47×10−6 8.91×10−6
+                                 Gradient (%)        0.000930   0.00465  0.000229  0.000642
+905
+906            ButtonPressWall Action            1.63×10−5 9.92×10−4 9.95×10−7 3.10×10−6
+907                            Log-density (nat) 4.49×10−5 1.91×10−3 2.55×10−6 1.05×10−5
+908
+                               Gradient (%)         0.00630     0.836  0.000420   0.00178
+909            PegInsertSide     Action            8.54×10−6 2.75×10−5 9.69×10−7 2.57×10−6
+910                              Log-density (nat) 2.22×10−5 1.31×10−4 2.09×10−6 9.18×10−6
+911                              Gradient (%)        0.000523   0.00435  0.000153  0.000390
+912            PushWall          Action               0.00299         0.0375    0.000479         0.0211
+913                              Log-density (nat)     0.0108          0.299     0.00122          0.197
+                                 Gradient (%)            13.7           96.1        2.84           50.3
+914
+915
+916
+917
+
+
+
+                                                         17
+      Under review as a conference paper at ICLR 2027
+
+
+
+
+918                                                             Table 4: Final sampled success under each solver.
+919
+920                                                          Task                                 Original                    Tighter           Change (pp)
+921
+                                                             PickCube                      87.0 ± 8.9                      86.7 ± 8.7                          −0.33
+922                                                          PushCube                      98.7 ± 1.2                      99.0 ± 1.0                          +0.33
+923                                                          ButtonPressWall               8.7 ± 14.2                      8.3 ± 13.6                          −0.33
+924                                                          PegInsertSide                38.0 ± 23.8                     38.0 ± 23.8                           0.00
+925                                                          PushWall                       0.3 ± 0.6                       0.3 ± 0.6                           0.00
+926
+927   The tighter settings reduce the median and P95 discrepancies for every task and quantity in Table 3.
+928   Final sampled success changes little on the paired episodes in Table 4. This means that a more ac-
+929
+      curate solver at evaluation does not improve task success overall. For the iteration limit, the fraction
+      of evaluation calls that reach it averages 47.2% with Original and 13.1% with Tighter across check-
+930
+      points. These results measure the sensitivity of final policies to the tested solver change, while errors
+931
+      during learning and the likelihood of the finite-iteration sampler remain open. Original is reevaluated
+932   in the same runtime as Tighter and can differ from the earlier benchmark evaluation.
+933
+934
+      C.2                  E XTENDED B ENCHMARK R ESULTS
+935
+936                             Wide navigation                                 Narrow navigation                                  Wide navigation                            Narrow navigation
+                                Loose docking                                    Loose docking                                      Tight docking                               Tight docking
+937                                          3                                                3                                                 3                                             3
+                          5                                                5                                                  5                                          5
+938
+
+            Position y
+939                               2                      1                         2                      1                          2                         1                 2                        1
+                          0                                                0                                                  0                                          0
+940
+                                             4                                                4                                                 4                                             4
+941                      −5                                               −5                                                −5                                          −5
+942                             −5       0           5                           −5       0           5                            −5       0             5                    −5         0           5
+943                            Docking radius: 0.12                             Docking radius: 0.12                              Docking radius: 0.06                        Docking radius: 0.06
+944                                      3                                                3                                                 3                                            3
+                         0.6                                             0.6                                                0.6                                         0.6
+945                                                  1                                                1                                                        1                                      1
+
+
+      Action ay
+946                      0.0         2                                   0.0          2                                     0.0         2                               0.0         2
+
+947                                              4                                                4                                                  4                                            4
+                  −0.6                                                 −0.6                                                −0.6                                        −0.6
+948
+                               −0.6 0.0      0.6                                −0.6 0.0      0.6                                 −0.6 0.0      0.6                           −0.6 0.0      0.6
+949                                Action ax                                        Action ax                                         Action ax                                   Action ax
+950
+951   Figure 5: Four MultiGoal docking variants. Top: navigation goal regions. Bottom: corresponding
+952   docking targets and action tolerances; colors and numbers identify goals.
+953
+954                        Hopper                                   Walker2d                          HalfCheetah                                        Ant                      Humanoid
+
+955
+956
+957
+958
+959
+960                        MuJoCo-v4                                MuJoCo-v4                                 MuJoCo-v4                             MuJoCo-v4                        MuJoCo-v4
+961
+962                                   Figure 6: MuJoCo continuous-control environments used in our experiments.
+963
+964
+965
+966
+967
+968
+969
+970
+971
+
+
+
+                                                                                                                18
+       Under review as a conference paper at ICLR 2027
+
+
+
+
+972           PickCube           PushCube                ButtonPressWall                  PegInsertSide            PushWall
+
+973
+974
+975
+976
+977
+978
+               ManiSkill          ManiSkill                   MetaWorld                     MetaWorld              MetaWorld
+979
+980    Figure 7: Manipulation tasks from ManiSkill (first two) and MetaWorld (last three). ManiSkill im-
+981    ages are from the official task demonstrations.
+982
+983    Table 5: Final sampled ever-success (%) at 500k steps, mean ± SD across three training seeds. Bold
+984    and underlined values mark the top two means.
+985
+986    Task                                   SAC              SAC-Flow                                 DIME             DEFlow
+987    PickCube                 64.7 ± 56.0                     5.0 ± 8.7                   93.0 ± 9.5               87.3 ± 8.3
+988    PushCube                  97.0 ± 3.6                    97.3 ± 3.1                   99.0 ± 1.7               98.7 ± 1.2
+989    ButtonPressWall            0.0 ± 0.0                     0.0 ± 0.0                     3.7 ± 2.1             8.7 ± 14.2
+990    PegInsertSide            72.3 ± 9.8                      0.0 ± 0.0                   23.7 ± 41.0             39.3 ± 21.5
+       PushWall                   0.0 ± 0.0                  10.3 ± 17.9                      1.0 ± 1.7               0.3 ± 0.6
+991
+992    Sum                               234.0                            112.7                         220.3                  234.3
+993
+994
+       Table 6: MuJoCo return at 1M steps, mean ± SD across three runs. Bold and underlined values mark
+995    the highest and second-highest means.
+996
+997           Environment               SAC          SAC-Flow                     DIME                  QSM      DEFlow
+998
+              Hopper           2510 ± 901 2955 ± 1055 2485 ± 326 2474 ± 1284 3318 ± 560
+999
+              Walker2d         4517 ± 644  4513 ± 436 4866 ± 348 1615 ± 992 4973 ± 564
+1000          HalfCheetah   14190 ± 1152 11476 ± 1647 13476 ± 527 5981 ± 791 12534 ± 340
+1001          Ant              5995 ± 188 6215 ± 458 5975 ± 568     −22 ± 2 5673 ± 1340
+1002          Humanoid         5042 ± 334 5089 ± 123 4981 ± 185 4672 ± 191 4211 ± 858
+1003          Sum                   32253                30247                    31783             14721          30709
+1004
+1005
+1006   Table 7: Time-averaged return over 50k–500k steps, mean ± SD across three seeds. Bold and un-
+1007
+       derlined values mark the top two means.
+1008
+1009
+                  Environment                        SAC        SAC-Flow                     DIME               DEFlow
+1010              MS PickCube            25.1 ± 5.9 19.0 ± 1.5     29.1 ± 3.0    33.5 ± 0.5
+1011              MS PushCube            38.4 ± 0.7 37.3 ± 1.2     37.3 ± 1.5    40.8 ± 0.2
+                  MW ButtonPressWall   641.6 ± 91.1 47.2 ± 55.6 696.7 ± 30.1 755.7 ± 24.9
+1012
+                  MW PegInsertSide   699.1 ± 209.1    2.5 ± 0.0 298.2 ± 237.4  564.3 ± 158.7
+1013              MW PushWall           61.2 ± 39.3 28.1 ± 38.5   23.4 ± 19.4 217.8 ± 334.9
+1014
+                  Sum                               1465.4                134.0             1084.9              1612.2
+1015
+1016
+1017
+       Table 6 reports MuJoCo return at the recorded 1M evaluation. Table 7 reports time-averaged manip-
+       ulation return over 50k–500k steps. Table 8 reports the last-100k mean, return AUC, and return at
+1018
+       950k for the MuJoCo benchmark. Table 9 reports return at 500k, return AUC over 50k–500k steps,
+1019
+       and sampled ever-success for the manipulation benchmark.
+1020
+1021
+1022
+1023
+1024
+1025
+
+
+
+                                                                19
+       Under review as a conference paper at ICLR 2027
+
+
+
+
+1026   Table 8: Sensitivity analysis: mean ± 95% confidence-interval half-width across three training seeds
+1027   per cell. Return AUC is the time-averaged return over 25k–1M steps.
+1028
+1029   Environment                  SAC                SAC-Flow                DIME                     QSM          DEFlow
+1030   Last 100k mean
+1031   Hopper                2775 ± 644              3328 ± 591           2416 ± 627          2491 ± 1277       3165 ± 1126
+       Walker2d             4487 ± 1604              4443 ± 844           4849 ± 964          1461 ± 2336        5169 ± 522
+1032   HalfCheetah         14098 ± 2417            11533 ± 3924         13501 ± 1278           5982 ± 999       12723 ± 449
+1033   Ant                   5737 ± 859              6286 ± 530          6047 ± 1171             −25 ± 6        5824 ± 2296
+       Humanoid             4345 ± 1267              5023 ± 107           4875 ± 512          4539 ± 1046       4357 ± 1914
+1034
+       Return AUC
+1035   Hopper                2157 ± 1123             2644 ± 583           2500 ± 164           1956 ± 762        2858 ± 567
+1036   Walker2d              2873 ± 2416             3112 ± 176          3127 ± 1230           879 ± 1219        3583 ± 628
+       HalfCheetah           11220 ± 999            9806 ± 2582          11564 ± 461           5237 ± 610      10465 ± 1491
+1037   Ant                    3569 ± 715             4917 ± 846          4470 ± 1235             −27 ± 4         3846 ± 651
+1038   Humanoid               2902 ± 462             3400 ± 282           3150 ± 816           2722 ± 559        2706 ± 496
+
+1039   Return at 950k
+       Hopper                3543 ± 828               3559 ± 45          2251 ± 2148          2996 ± 1308       2725 ± 1920
+1040   Walker2d             4423 ± 1504             3748 ± 2373          4757 ± 1307          1035 ± 1551        5131 ± 512
+1041   HalfCheetah         13709 ± 2787            11624 ± 3846         13071 ± 3973           6196 ± 917       12677 ± 560
+       Ant                   5682 ± 973             6145 ± 1255          6046 ± 1664             −25 ± 2        5583 ± 2774
+1042   Humanoid             4441 ± 1126              4848 ± 743           5220 ± 459          4407 ± 2007       4250 ± 3408
+1043
+1044
+       Table 9: Manipulation benchmark results, mean ± 95% confidence-interval half-width across three
+1045   training seeds per cell. Return AUC is the time-averaged return over 50k–500k steps.
+1046
+1047   Environment                          SAC                   SAC-Flow                      DIME                 DEFlow
+1048   Return at 500k
+1049   PickCube                      30.2 ± 28.3               23.2 ± 6.6                  38.7 ± 7.1             35.5 ± 3.7
+       PushCube                      40.3 ± 11.2              39.8 ± 10.5                  42.7 ± 1.0             42.8 ± 1.2
+1050   ButtonPressWall             845.6 ± 108.9              35.9 ± 89.1               772.8 ± 155.2          747.6 ± 200.3
+1051   PegInsertSide              1274.5 ± 308.7                2.0 ± 0.5              699.7 ± 1607.9         1091.7 ± 693.2
+       PushWall                     78.7 ± 118.1               7.7 ± 19.0                 15.8 ± 12.5         457.8 ± 1887.2
+1052
+       Return AUC
+1053
+       PickCube                      25.1 ± 14.6               19.0 ± 3.7                  29.1 ± 7.5             33.5 ± 1.2
+1054   PushCube                       38.4 ± 1.8               37.3 ± 3.1                  37.3 ± 3.7             40.8 ± 0.6
+       ButtonPressWall             641.6 ± 226.3             47.2 ± 138.2                696.7 ± 74.8           755.7 ± 61.8
+1055
+       PegInsertSide               699.1 ± 519.5                2.5 ± 0.1               298.2 ± 589.7          564.3 ± 394.2
+1056   PushWall                      61.2 ± 97.6              28.1 ± 95.6                 23.4 ± 48.3          217.8 ± 831.9
+1057   Sampled ever-success (%)
+1058   PickCube                     64.7 ± 139.1               5.0 ± 21.5                 93.0 ± 23.7            87.3 ± 20.7
+       PushCube                       97.0 ± 9.0               97.3 ± 7.6                  99.0 ± 4.3             98.7 ± 2.9
+1059   ButtonPressWall                 0.0 ± 0.0                0.0 ± 0.0                   3.7 ± 5.2             8.7 ± 35.2
+1060   PegInsertSide                 72.3 ± 24.4                0.0 ± 0.0                23.7 ± 101.8            39.3 ± 53.3
+       PushWall                        0.0 ± 0.0              10.3 ± 44.5                   1.0 ± 4.3              0.3 ± 1.4
+1061
+1062
+1063
+       C.3     A BLATION S TUDIES
+1064
+       Integrator step-count ablation. Both figures use the wide-goal, tight-docking MultiGoal variant
+1065   and two frozen policies, each keeping its training integrator (explicit Euler, implicit DEFlow), both
+1066   trained at T = 4 (seed 3, 200005 transitions). We vary only the docking step count T ∈ {2, 4, 8, 16},
+1067   keeping navigation and all inputs fixed; this is the only seed with both final checkpoints, since
+1068   explicit seeds 1 and 2 failed numerically. Figure 8 evaluates both policies on the same 104 reached
+1069   states with 16 Gaussian inputs each (1664 actions), using balanced Hit@0.06, the per-goal hit rates
+1070   averaged with equal weights. Figure 9 follows 1000 new stochastic T = 4 episodes per policy and
+1071   recomputes only the docking action from each recorded state, Gaussian base sample, and full batch;
+1072   replaying at T = 4 reproduces the recorded actions bit-for-bit and matches every recorded episode
+1073
+       success. Its Hit is the fraction of the 1000 docking actions within 0.06 of the reached goal’s target,
+       so frequent routes dominate.
+1074
+1075   On the shared states, DEFlow stays high for T ≥ 4 (94.1%, 96.5%, 95.1%; 54.9% at T = 2), while
+1076   the explicit policy reaches 50.1% at its training depth, accurate on only two goals and near zero on
+1077   the other two, and degrades at smaller and larger step counts (1.4%, 35.1%, 15.1% at T = 2, 8, 16).
+1078   On its own trajectories, explicit succeeds on 99.8% of episodes at T = 4 because they visit almost
+1079
+       only those two goals, then drops to 0.7% at T = 2 and 59.1%/28.2% at T = 8/16; DEFlow holds
+       96.5%, 99.1%, 98.0%, and 53.7% at T = 2. In this pair, DEFlow’s docking is nearly insensitive
+
+
+                                                                   20
+       Under review as a conference paper at ICLR 2027
+
+
+
+
+1080
+       to the tested step counts, whereas the explicit policy’s accuracy is route-selective and strongly step-
+1081   dependent (paired illustration, one seed, each policy with its own integrator).
+1082
+1083                                T=2                         T=4                          T=8                         T = 16
+1084               1    Hit 1.4%                    Hit 50.1%                    Hit 35.1%                   Hit 15.1%
+
+1085
+1086
+1087   Explicit
+                   0
+       Action y
+1088
+1089
+1090
+                  −1
+1091               1    Hit 54.9%                   Hit 94.1%                    Hit 96.5%                   Hit 95.1%
+1092
+1093
+1094   Implicit
+                   0
+1095   Action y
+1096
+1097
+1098              −1
+                       −1              0       1   −1              0        1   −1              0       1   −1              0       1
+1099                                Action x                    Action x                     Action x                    Action x
+
+1100
+1101   Figure 8: Docking actions on shared states as T varies. Top: explicit; bottom: DEFlow. Hit averages
+1102   equally over goals.
+1103
+1104                                T=2                         T=4                          T=8                         T = 16
+                   1    Hit 0.7%                    Hit 99.8%                    Hit 59.1%                   Hit 28.2%
+1105
+1106
+1107
+       Explicit
+1108               0
+       Action y
+1109
+1110
+1111              −1
+1112               1    Hit 53.7%                   Hit 96.5%                    Hit 99.1%                   Hit 98.0%
+
+1113
+1114
+       Implicit
+1115               0
+       Action y
+1116
+1117
+1118
+                  −1
+1119                   −1              0       1   −1              0        1   −1              0       1   −1              0       1
+                                    Action x                    Action x                     Action x                    Action x
+1120
+1121
+       Figure 9: Docking actions on each policy’s own trajectories. Hit uses observed goal frequencies;
+1122
+       gray targets were not visited.
+1123
+1124
+1125
+1126
+1127
+1128
+1129
+1130
+1131
+1132
+1133
+
+
+
+                                                                           21
+       Under review as a conference paper at ICLR 2027
+
+
+
+
+1134
+       C.4   D OCKING FAILURE D IAGNOSTICS
+1135
+1136   Explicit flow. The docking audit illustrates the step-map conditioning effect identified in Sec. 3.
+1137   In the notation of Eq. (4), the explicit-step Jacobian is Bk = Da Fkexp = I + ∆tJk . Three original
+1138   explicit-flow runs terminated after detecting non-finite TD targets. At a frozen checkpoint from one
+1139   of these runs, det(B0 + εI) changes sign between two sampled latent inputs. A float64 probe locates
+1140   a singularity of this diagonally regularized matrix between them. At the same local J0 , the algebraic
+1141   implicit counterpart I − ∆tJ0 has minimum singular value 1.226. The checkpoint thus exhibits the
+1142
+       singular explicit-step regime illustrated by the linear contraction in Appendix A.1.
+1143
+       QSM. QSM’s zero docking success is not a failure to reach the goal: 1,374 of 3,000 episodes
+1144
+       across three seeds reached the docking state, yet none docked. The failure lies in action generation.
+1145
+       At a frozen checkpoint, ideal goal-center observations produced action-box corners in 2,045 of 2,048
+1146   samples. An exact replay of the five denoising steps shows that the final learned correction has
+1147   median magnitude 16.0–21.6 in a box of [−1, 1]2 , pushing both coordinates outside the box in 99.4–
+1148   100% of samples, so clipping maps the action to a corner. All values are finite and the final step adds
+1149   no fresh noise. Why the correction is learned so large remains unresolved.
+1150
+1151
+       D     AI A SSISTANCE
+1152
+1153
+       We used AI tools to assist with writing and polishing the manuscript, to support literature retrieval
+1154
+       and discovery of related work, and to draft sections of the paper. The authors reviewed and revised
+1155   the resulting text and take full responsibility for the final manuscript.
+1156
+1157
+1158
+1159
+1160
+1161
+1162
+1163
+1164
+1165
+1166
+1167
+1168
+1169
+1170
+1171
+1172
+1173
+1174
+1175
+1176
+1177
+1178
+1179
+1180
+1181
+1182
+1183
+1184
+1185
+1186
+1187
+
+
+
+                                                         22
+

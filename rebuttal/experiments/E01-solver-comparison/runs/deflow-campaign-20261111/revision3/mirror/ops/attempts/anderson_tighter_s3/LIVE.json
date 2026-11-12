@@ -1,0 +1,333 @@
+{
+  "campaign_id": "deflow-campaign-20261111-revision3",
+  "contract_sha256": "300614d6c0abfbb1bbd5f722effbc5c00774f7213c7598dc68b6527c0225c0ea",
+  "precision_policy": "strict_fp32",
+  "packing_sha256": "68a81075d8ce655dae718838dd05afdd0107d67edac1e53f330c1f0eb0057866",
+  "run_id": "anderson_tighter_s3",
+  "attempt_id": 0,
+  "argv": [
+    "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python",
+    "-m",
+    "deflow_rebuttal.run_docking",
+    "--repo",
+    "/home/featurize/deflow-campaign-20261111/revision3/DEFlow",
+    "--output",
+    "/home/featurize/deflow-campaign-20261111/revision3/results/anderson_tighter_s3",
+    "--solver",
+    "anderson",
+    "--seed",
+    "3",
+    "--steps",
+    "200000",
+    "--anderson-tol",
+    "1e-6",
+    "--anderson-cap",
+    "100",
+    "--execute",
+    "--precision-policy",
+    "strict_fp32"
+  ],
+  "cwd": "/home/featurize/deflow-campaign-20261111/revision3/package",
+  "gpu_slot": 2,
+  "gpu_uuid": "GPU-911aa272-5dd1-019f-9636-accc89c876da",
+  "lane": 1,
+  "environment": {
+    "PYTHONPATH": "/home/featurize/deflow-campaign-20261111/revision3/package",
+    "DEFLOW_ENGINE": "/home/featurize/deflow-campaign-20261111/revision3/DEFlow/src/docking_full/sac_anderson_flow.py",
+    "CUDA_VISIBLE_DEVICES": "GPU-911aa272-5dd1-019f-9636-accc89c876da"
+  },
+  "command_sha256": "3f08fdf802f8cad4cb1ef4ced51f85a0ca6bc297a6f643644112b4f8bc25c58c",
+  "claimed_at": 1794433721.2437186,
+  "capacity_sample": {
+    "at": 1794433721.362092,
+    "gpus": [
+      [
+        "0",
+        "GPU-25aeeb0b-2f1a-6068-db50-71c18174ccba",
+        "1693",
+        "22418",
+        "98"
+      ],
+      [
+        "1",
+        "GPU-8c5841b8-9c0d-e867-7e29-7714a772fa58",
+        "842",
+        "23269",
+        "31"
+      ],
+      [
+        "2",
+        "GPU-911aa272-5dd1-019f-9636-accc89c876da",
+        "856",
+        "23255",
+        "16"
+      ]
+    ],
+    "processes": [
+      [
+        "GPU-25aeeb0b-2f1a-6068-db50-71c18174ccba",
+        "45017",
+        "846"
+      ],
+      [
+        "GPU-25aeeb0b-2f1a-6068-db50-71c18174ccba",
+        "90935",
+        "832"
+      ],
+      [
+        "GPU-8c5841b8-9c0d-e867-7e29-7714a772fa58",
+        "111973",
+        "832"
+      ],
+      [
+        "GPU-911aa272-5dd1-019f-9636-accc89c876da",
+        "45018",
+        "846"
+      ]
+    ]
+  },
+  "log": "/home/featurize/deflow-campaign-20261111/revision3/ops/logs/anderson_tighter_s3.log",
+  "run_path": "/home/featurize/deflow-campaign-20261111/revision3/results/anderson_tighter_s3",
+  "retry_budget": 0,
+  "resume": false,
+  "co_runners_at_claim": {
+    "newton_s3": {
+      "identity": {
+        "pid": 45018,
+        "process_start_ticks": 4907086,
+        "boot_id": "4dfe31ec-070c-4dde-80cb-8b843303addc",
+        "process_group": 45018,
+        "session": 45018,
+        "cmdline": "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python -m deflow_rebuttal.run_docking --repo /home/featurize/deflow-campaign-20261111/revision3/DEFlow --output /home/featurize/deflow-campaign-20261111/revision3/results/newton_s3 --solver newton --seed 3 --steps 200000 --execute --precision-policy strict_fp32 ",
+        "cwd": "/home/featurize/deflow-campaign-20261111/revision3/package"
+      },
+      "progress": {
+        "step": 132121,
+        "last_telemetry_age_seconds": 0.4617173671722412,
+        "last_solver_call": {
+          "call": 146181,
+          "global_step": 132121,
+          "role": "training/actor_grad",
+          "batch": 1024,
+          "steps": 4,
+          "solver": "newton",
+          "solver_seconds": 0.396274786995491,
+          "cap_hit": true,
+          "common_abs_residual": {
+            "nonfinite": 0,
+            "count": 4096,
+            "p50": 3.637836982761655e-07,
+            "p95": 1.1078999932578881e-05,
+            "max": 0.1518813669681549
+          },
+          "failed_samples": 3,
+          "failed_local_steps": 3,
+          "native": {
+            "n_iter": 25,
+            "cap_hit": true,
+            "failed_samples": 1,
+            "status_counts": {
+              "0": 4095,
+              "1": 1,
+              "2": 0,
+              "3": 0,
+              "4": 0,
+              "5": 0
+            },
+            "backtracks_total": 213
+          },
+          "work": {
+            "nfe_total": 27735,
+            "jacobian_evals_total": 11713,
+            "linear_solves_total": 11713
+          },
+          "telemetry_extra_field_positions": 4096,
+          "totals": {
+            "calls": 64064,
+            "samples": 65601536,
+            "local_steps": 262406144,
+            "failed_samples": 2453196,
+            "failed_local_steps": 2709339,
+            "cap_calls": 5364,
+            "mean_converged_calls": 0,
+            "unconverged_budget_calls": 0,
+            "newton_status_counts": {
+              "0": 259781242,
+              "1": 10712,
+              "2": 0,
+              "3": 0,
+              "4": 2614189,
+              "5": 1
+            },
+            "newton_converged_samples": 63227160,
+            "newton_budget_exhausted_calls": 5028
+          }
+        }
+      }
+    }
+  },
+  "identity": {
+    "pid": 131874,
+    "process_start_ticks": 10402134,
+    "boot_id": "4dfe31ec-070c-4dde-80cb-8b843303addc",
+    "process_group": 131874,
+    "session": 131874,
+    "cmdline": "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python -m deflow_rebuttal.run_docking --repo /home/featurize/deflow-campaign-20261111/revision3/DEFlow --output /home/featurize/deflow-campaign-20261111/revision3/results/anderson_tighter_s3 --solver anderson --seed 3 --steps 200000 --anderson-tol 1e-6 --anderson-cap 100 --execute --precision-policy strict_fp32 ",
+    "cwd": "/home/featurize/deflow-campaign-20261111/revision3/package"
+  },
+  "pid": 131874,
+  "started_at": 1794433721.2437186,
+  "state": "RUNNING",
+  "observed_at": 1794455576.8136919,
+  "telemetry": {
+    "step": 199991,
+    "last_telemetry_age_seconds": 0.015167474746704102,
+    "last_solver_call": {
+      "call": 223938,
+      "global_step": 199991,
+      "role": "training/actor_grad",
+      "batch": 1024,
+      "steps": 4,
+      "solver": "anderson",
+      "solver_seconds": 0.07665133100817911,
+      "cap_hit": false,
+      "common_abs_residual": {
+        "nonfinite": 0,
+        "count": 4096,
+        "p50": 1.1644139874533721e-07,
+        "p95": 4.409695364415711e-07,
+        "max": 0.00011067107698181644
+      },
+      "failed_samples": 14,
+      "failed_local_steps": 22,
+      "native": {
+        "n_iter": 91,
+        "res_curve": [
+          0.19722241163253784,
+          0.13426019251346588,
+          0.1137378066778183,
+          0.10051414370536804,
+          0.09914563596248627,
+          0.09670272469520569,
+          0.04300178587436676,
+          0.029920443892478943,
+          0.0230831541121006,
+          0.019387096166610718,
+          0.012597180902957916,
+          0.011606289073824883,
+          0.007709647994488478,
+          0.005349422805011272,
+          0.0050208792090415955,
+          0.004243787378072739,
+          0.0035271262750029564,
+          0.0031337414402514696,
+          0.0025181537494063377,
+          0.002122514182701707,
+          0.001989586977288127,
+          0.0018895098473876715,
+          0.0014202019665390253,
+          0.0008428443688899279,
+          0.0007089467253535986,
+          0.0006812383653596044,
+          0.0005861879326403141,
+          0.00040599226485937834,
+          0.0004292718949727714,
+          0.0003446659538894892,
+          0.00026761472690850496,
+          0.0002766594698186964,
+          0.0002838306245394051,
+          0.00019233665079809725,
+          0.0001866515085566789,
+          0.00018672578153200448,
+          0.0001525966654298827,
+          0.00012061908637406304,
+          0.00013111029693391174,
+          0.00012199459888506681,
+          8.866119605954736e-05,
+          8.111425267998129e-05,
+          8.769378473516554e-05,
+          7.43741329642944e-05,
+          5.1840113883372396e-05,
+          6.358249811455607e-05,
+          5.601146040135063e-05,
+          3.971456317231059e-05,
+          3.87716936529614e-05,
+          4.172130866209045e-05,
+          3.42600978910923e-05,
+          2.650812348292675e-05,
+          2.902065716625657e-05,
+          2.8836491765105166e-05,
+          1.8497999917599373e-05,
+          1.9018978491658345e-05,
+          2.1571406250586733e-05,
+          1.6783429600764066e-05,
+          1.2633307051146403e-05,
+          1.4530161934089847e-05,
+          1.5094025002326816e-05,
+          8.981912287708838e-06,
+          9.028094609675463e-06,
+          1.2222950317664072e-05,
+          7.917793482192792e-06,
+          5.869795586477267e-06,
+          8.84383189259097e-06,
+          7.4797380875679664e-06,
+          4.347081812738907e-06,
+          5.753562618338037e-06,
+          6.610841410292778e-06,
+          3.4852680528274504e-06,
+          3.4143688480980927e-06,
+          5.225499535299605e-06,
+          3.66818721886375e-06,
+          2.0039101400470827e-06,
+          3.862187895720126e-06,
+          3.4245783808728447e-06,
+          1.4682188975712052e-06,
+          2.6225038709526416e-06,
+          2.943232630059356e-06,
+          1.5582050991724827e-06,
+          1.654094148761942e-06,
+          2.4110686354106292e-06,
+          1.664540604906506e-06,
+          1.0212891083938302e-06,
+          1.8619729189595091e-06,
+          1.5891206430751481e-06,
+          7.100439916030155e-07
+        ],
+        "res_last": 7.100439916030155e-07,
+        "res_p50": 2.4768604589553433e-07,
+        "res_p95": 6.122892841631256e-07,
+        "res_max": 0.00011704435019055381,
+        "res_fail_frac": 0.0380859375,
+        "abs_res_p95": 1.3954454516351689e-06,
+        "abs_res_max": 0.00018362543778494,
+        "tolerance": 1e-06,
+        "iteration_limit": 100,
+        "mean_criterion_met": true,
+        "iteration_limit_reached": false,
+        "budget_exhausted_without_convergence": false,
+        "stop_reason": "mean_tolerance",
+        "convergence_scope": "native batch mean, not all samples",
+        "anderson_history_lstsq_count": 89
+      },
+      "work": {
+        "nfe_total": 372736,
+        "jacobian_evals_total": 0,
+        "linear_solves_total": 0
+      },
+      "telemetry_extra_field_positions": 4096,
+      "totals": {
+        "calls": 97999,
+        "samples": 100350976,
+        "local_steps": 401403904,
+        "failed_samples": 2059409,
+        "failed_local_steps": 2544178,
+        "cap_calls": 13081,
+        "mean_converged_calls": 86031,
+        "unconverged_budget_calls": 11968,
+        "newton_status_counts": {},
+        "newton_converged_samples": 0,
+        "newton_budget_exhausted_calls": 0
+      }
+    }
+  }
+}

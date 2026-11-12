@@ -1,0 +1,90 @@
+{
+  "at": 1794469216.6825526,
+  "reason": "User explicitly requested stopping all runs and preserving essential results before disconnecting the GPU server.",
+  "state": "STOP_REQUESTED",
+  "active": [
+    {
+      "run_id": "newton_s1",
+      "identity": {
+        "pid": 45017,
+        "process_start_ticks": 4907085,
+        "boot_id": "4dfe31ec-070c-4dde-80cb-8b843303addc",
+        "process_group": 45017,
+        "session": 45017,
+        "cmdline": "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python -m deflow_rebuttal.run_docking --repo /home/featurize/deflow-campaign-20261111/revision3/DEFlow --output /home/featurize/deflow-campaign-20261111/revision3/results/newton_s1 --solver newton --seed 1 --steps 200000 --execute --precision-policy strict_fp32 ",
+        "cwd": "/home/featurize/deflow-campaign-20261111/revision3/package"
+      },
+      "step": 164195
+    },
+    {
+      "run_id": "newton_s1",
+      "identity": {
+        "pid": 45017,
+        "process_start_ticks": 4907085,
+        "boot_id": "4dfe31ec-070c-4dde-80cb-8b843303addc",
+        "process_group": 45017,
+        "session": 45017,
+        "cmdline": "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python -m deflow_rebuttal.run_docking --repo /home/featurize/deflow-campaign-20261111/revision3/DEFlow --output /home/featurize/deflow-campaign-20261111/revision3/results/newton_s1 --solver newton --seed 1 --steps 200000 --execute --precision-policy strict_fp32 ",
+        "cwd": "/home/featurize/deflow-campaign-20261111/revision3/package"
+      },
+      "step": 164195
+    },
+    {
+      "run_id": "newton_s1",
+      "identity": {
+        "pid": 45017,
+        "process_start_ticks": 4907085,
+        "boot_id": "4dfe31ec-070c-4dde-80cb-8b843303addc",
+        "process_group": 45017,
+        "session": 45017,
+        "cmdline": "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python -m deflow_rebuttal.run_docking --repo /home/featurize/deflow-campaign-20261111/revision3/DEFlow --output /home/featurize/deflow-campaign-20261111/revision3/results/newton_s1 --solver newton --seed 1 --steps 200000 --execute --precision-policy strict_fp32 ",
+        "cwd": "/home/featurize/deflow-campaign-20261111/revision3/package"
+      },
+      "step": 164195
+    }
+  ],
+  "coordinators": [
+    {
+      "source": "ops/campaign_live.json",
+      "identity": {
+        "pid": 43139,
+        "process_start_ticks": 4834709,
+        "boot_id": "4dfe31ec-070c-4dde-80cb-8b843303addc",
+        "process_group": 43139,
+        "session": 43139,
+        "cmdline": "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python -u /home/featurize/deflow-campaign-20261111/revision3/ops/campaign.py ",
+        "cwd": "/home/featurize/deflow-campaign-20261111/revision3"
+      },
+      "alive": true,
+      "signal": "SIGTERM"
+    },
+    {
+      "source": "ops/packing-v1/campaign_live.json",
+      "identity": {
+        "pid": 77898,
+        "process_start_ticks": 6926004,
+        "boot_id": "4dfe31ec-070c-4dde-80cb-8b843303addc",
+        "process_group": 77898,
+        "session": 77898,
+        "cmdline": "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python /home/featurize/deflow-campaign-20261111/revision3/ops/packing-v1/controller.py ",
+        "cwd": "/home/featurize"
+      },
+      "alive": true,
+      "signal": "SIGTERM"
+    },
+    {
+      "source": "ops/idle-audits-v1/campaign_live.json",
+      "identity": {
+        "pid": 161687,
+        "process_start_ticks": 12018621,
+        "boot_id": "4dfe31ec-070c-4dde-80cb-8b843303addc",
+        "process_group": 161687,
+        "session": 161687,
+        "cmdline": "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python /home/featurize/deflow-campaign-20261111/revision3/ops/idle-audits-v1/controller.py ",
+        "cwd": "/home/featurize"
+      },
+      "alive": true,
+      "signal": "SIGTERM"
+    }
+  ]
+}

@@ -1,0 +1,191 @@
+{
+  "observed_at": "2026-11-12T12:36:21.406234+08:00",
+  "quality": [
+    {
+      "run": "anderson_s1",
+      "metrics": {
+        "p_i": [
+          0.226,
+          0.269,
+          0.217,
+          0.255
+        ],
+        "total_success": 0.967,
+        "successful_goal_entropy_nats": 1.3824940480054042,
+        "successful_goal_entropy_normalized": 0.9972586535579526,
+        "u4": 0.66790884883925,
+        "u16": 0.9869488097956489,
+        "mean_return": -7.372816246960428
+      },
+      "episodes": 1000,
+      "evaluation_sha256": "3ce86a8df1d64e2c85d1e7c473541c9c99b3ef9dee3e23c2809ed56dfe00f653",
+      "accepted_sha256": "7c2bc0ae8887ccceddc802a7c183d105149ebf1004231b82ba634bdb14c691f5",
+      "exit_sha256": "44259da6815b7a8df08ffd7b2b67537802eece01c05a68f95b7f2d4a631560fc",
+      "training_elapsed_seconds": 10228.491111278534
+    },
+    {
+      "run": "anderson_s2",
+      "metrics": {
+        "p_i": [
+          0.244,
+          0.238,
+          0.235,
+          0.232
+        ],
+        "total_success": 0.949,
+        "successful_goal_entropy_nats": 1.3861199331138123,
+        "successful_goal_entropy_normalized": 0.9998741767903194,
+        "u4": 0.66145462359175,
+        "u16": 0.9868217914324604,
+        "mean_return": -8.105148948183865
+      },
+      "episodes": 1000,
+      "evaluation_sha256": "13921c5cc52dbacebf525e1fe234319f652fd10ec9163c9fadf5c0a3c894a5a8",
+      "accepted_sha256": "df91194e24d3d8bbd1900d676c2d25247adf0956ba1efe52c5b9f0c3957e97a6",
+      "exit_sha256": "3aab206fdc98586cc169b7bfa5105e57fd0b88f7117cf6cc3f34259d7a0e8922",
+      "training_elapsed_seconds": 8567.583801984787
+    },
+    {
+      "run": "anderson_s3",
+      "metrics": {
+        "p_i": [
+          0.276,
+          0.185,
+          0.25,
+          0.258
+        ],
+        "total_success": 0.9690000000000001,
+        "successful_goal_entropy_nats": 1.3757225386681011,
+        "successful_goal_entropy_normalized": 0.9923740420878224,
+        "u4": 0.66612942557575,
+        "u16": 0.98448651990847,
+        "mean_return": -8.139553258239077
+      },
+      "episodes": 1000,
+      "evaluation_sha256": "824bf3bac5040174e82bfdfae61b9a4d27b2eeea4d9d5efdb7e8e19344a299b5",
+      "accepted_sha256": "66d8f7f504d776f7d0186a670ba61b7a2cf1846e2315b48e69f216cd1e887791",
+      "exit_sha256": "c5b6b04a8206a3934ad0de20224e1cf74220fe8d167d6681d7b1f095f6288a66",
+      "training_elapsed_seconds": 10197.335030317307
+    },
+    {
+      "run": "newton_s3",
+      "metrics": {
+        "p_i": [
+          0.364,
+          0.001,
+          0.498,
+          0.001
+        ],
+        "total_success": 0.864,
+        "successful_goal_entropy_nats": 0.6974028079498302,
+        "successful_goal_entropy_normalized": 0.5030697862656291,
+        "u4": 0.4452162444915,
+        "u16": 0.507757047508905,
+        "mean_return": -6.236912447568728
+      },
+      "episodes": 1000,
+      "evaluation_sha256": "49f325c71e34412c743e6a42f8a9d77505ad154a24564929e4afc32804702806",
+      "accepted_sha256": "725349ca7ab7f5f690b5f54a94c71b5acfff985e1bd8a575d03d8669c37edf8c",
+      "exit_sha256": "7adb3f4af2596e8ff489b076632e067881910ca80ed321f6f983e2397bf066b2",
+      "training_elapsed_seconds": 71260.89223790169
+    }
+  ],
+  "timing_report_sha256": "e6c6114081e0feed94bc03448d20b3c6c48db44dcbe366ac089611c05029f9d5",
+  "timing": [
+    {
+      "capsule": "a2_step99336.pt",
+      "capsule_sha256": "a893072bd2a96377a908c5504ce55eab3109d908db7a477b8f42e1c820f62b0c",
+      "method": "anderson",
+      "seconds": [
+        0.019588752000004206,
+        0.019548516999975618,
+        0.01940632999992431
+      ],
+      "median_ms": 19.548516999975618,
+      "ratio_to_joint": 1.0,
+      "failed_samples": 363,
+      "samples": 1024
+    },
+    {
+      "capsule": "a2_step99336.pt",
+      "capsule_sha256": "a893072bd2a96377a908c5504ce55eab3109d908db7a477b8f42e1c820f62b0c",
+      "method": "newton",
+      "seconds": [
+        0.27421211700004733,
+        0.27489444600007573,
+        0.2732969039999489
+      ],
+      "median_ms": 274.21211700004733,
+      "ratio_to_joint": 14.027259305674663,
+      "failed_samples": 4,
+      "samples": 1024
+    },
+    {
+      "capsule": "a2_step99336.pt",
+      "capsule_sha256": "a893072bd2a96377a908c5504ce55eab3109d908db7a477b8f42e1c820f62b0c",
+      "method": "sequential_anderson",
+      "seconds": [
+        0.06719220499996936,
+        0.06678661199998714,
+        0.06681802299999617
+      ],
+      "median_ms": 66.81802299999617,
+      "ratio_to_joint": 3.418060971074149,
+      "failed_samples": 287,
+      "samples": 1024
+    },
+    {
+      "capsule": "n3_step78398.pt",
+      "capsule_sha256": "43185881cce831ab9bf047c40a2cb932699d737c326bea4b3b90729b53324510",
+      "method": "anderson",
+      "seconds": [
+        0.019935264999958235,
+        0.019812295000065205,
+        0.019758130000013807
+      ],
+      "median_ms": 19.812295000065205,
+      "ratio_to_joint": 1.0,
+      "failed_samples": 841,
+      "samples": 1024
+    },
+    {
+      "capsule": "n3_step78398.pt",
+      "capsule_sha256": "43185881cce831ab9bf047c40a2cb932699d737c326bea4b3b90729b53324510",
+      "method": "newton",
+      "seconds": [
+        1.2050312200000235,
+        1.1978018029999475,
+        1.1941565580000315
+      ],
+      "median_ms": 1197.8018029999475,
+      "ratio_to_joint": 60.45749889126956,
+      "failed_samples": 556,
+      "samples": 1024
+    },
+    {
+      "capsule": "n3_step78398.pt",
+      "capsule_sha256": "43185881cce831ab9bf047c40a2cb932699d737c326bea4b3b90729b53324510",
+      "method": "sequential_anderson",
+      "seconds": [
+        0.06658655899991572,
+        0.06693436600005498,
+        0.06662622499993631
+      ],
+      "median_ms": 66.62622499993631,
+      "ratio_to_joint": 3.3628726505292312,
+      "failed_samples": 838,
+      "samples": 1024
+    }
+  ],
+  "sequential_anderson_final_evaluated": 0,
+  "sequential_anderson_planned": 3,
+  "newton_seed2_failure": "non-finite pi_loss at step131908",
+  "newton_seed1": "running, near133k",
+  "limitations": [
+    "Only two preselected frozen-input batches, three measured repetitions after one warmup",
+    "Same RTX5090 and strictFP32, no GPU co-runner, concurrent preflight activity on another GPU",
+    "Unequal achieved accuracy, nominal configurations only",
+    "Forward solve includes implementation diagnostic reductions but excludes attachment, density, backward and environment",
+    "Historical full-training durations have co-location/runtime confounds"
+  ]
+}

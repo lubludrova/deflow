@@ -1,0 +1,345 @@
+{
+  "schema_version": 1,
+  "campaign_id": "deflow-joint-anderson-a100-20261112-restart1",
+  "revision": 1,
+  "created_at": "2026-11-12T08:24:24.164942+00:00",
+  "campaign_mode": "executable",
+  "authorization": {
+    "at": 1794471864.16158,
+    "state": "USER_AUTHORIZED_RESTART_E04_E05",
+    "instruction": "\u043f\u043e\u0447\u0435\u043c\u0443 \u0432\u0441\u0435 \u043a\u043e\u043c\u043f\u0430\u043d\u0438\u0438 \u043e\u0441\u0442\u0430\u043d\u043e\u0432\u0438\u043b\u0438\u0441\u044c? \u041f\u0420\u044f\u043c\u043e \u0441\u0435\u0439\u0447\u0430\u0441 \u0436\u0435 \u043f\u0440\u043e\u0434\u043e\u043b\u0436\u0438 \u043e\u0431\u0443\u0447\u0435\u043d\u0438\u0435",
+    "scope": "Only E04/E05, three seeds each, same science and concurrent two trainings per GPU. One fresh replacement per administratively interrupted run. No further automatic retry or resume.",
+    "reason": "Exact continuation is impossible because docking checkpoints omit replay/optimizers/RNG and the reviewed engine forbids resume. User informed before fresh restart.",
+    "supersedes_for_this_scope": "STOP_ALL_RUNS_BY_USER at1794469405.9594638",
+    "old_attempts_preserved": true,
+    "new_local_roots": {
+      "100": "/Users/ruslanageev/dev/DEFlow/rebuttal/experiments/E04-joint-anderson-cap100/runs/a100-20261112-restart1",
+      "10": "/Users/ruslanageev/dev/DEFlow/rebuttal/experiments/E05-joint-anderson-cap10/runs/a10-20261112-restart1"
+    }
+  },
+  "remote_root": "/home/featurize/deflow-joint-anderson-a100-20261112-restart1",
+  "server": {
+    "host": "workspace.featurize.cn",
+    "port": 13534,
+    "user": "featurize",
+    "mode": "dedicated_3_gpus",
+    "hard_deadline": null
+  },
+  "gpu_by_slot": {
+    "0": "GPU-7e4bdbda-0d14-81f1-d1f0-de28845d99f4",
+    "1": "GPU-76379389-f799-da48-fde8-accbca15445b",
+    "2": "GPU-42f7bd79-47f5-70dc-fdf4-4bf31c3aa679"
+  },
+  "environment": {
+    "PYTHONPATH": "/home/featurize/deflow-joint-anderson-a100-20261112-restart1/code/package",
+    "DEFLOW_ENGINE": "/home/featurize/deflow-joint-anderson-a100-20261112-restart1/code/DEFlow/src/docking_full/sac_anderson_flow.py",
+    "PYTHONUNBUFFERED": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1"
+  },
+  "jobs": [
+    {
+      "run_id": "joint_anderson_a100_s1",
+      "seed": 1,
+      "gpu": 0,
+      "gpu_uuid": "GPU-7e4bdbda-0d14-81f1-d1f0-de28845d99f4",
+      "attempt_id": "0000",
+      "session": "deflow-a100-20261112-s1-r1",
+      "cwd": "/home/featurize/deflow-joint-anderson-a100-20261112-restart1",
+      "horizon": [
+        200000,
+        200007
+      ],
+      "resource_estimate": {
+        "gpu_memory_mib": 12000
+      },
+      "retry_budget": 0,
+      "resume": false,
+      "train_argv": [
+        "/home/featurize/deflow-sequential-anderson-20261112/venv/bin/python",
+        "-m",
+        "deflow_rebuttal.run_docking",
+        "--repo",
+        "/home/featurize/deflow-joint-anderson-a100-20261112-restart1/code/DEFlow",
+        "--output",
+        "/home/featurize/deflow-joint-anderson-a100-20261112-restart1/results/joint_anderson_a100_s1",
+        "--solver",
+        "anderson",
+        "--seed",
+        "1",
+        "--steps",
+        "200000",
+        "--precision-policy",
+        "strict_fp32",
+        "--anderson-tol",
+        "1e-5",
+        "--anderson-cap",
+        "100",
+        "--execute"
+      ],
+      "eval_argv": [
+        "/home/featurize/deflow-sequential-anderson-20261112/venv/bin/python",
+        "-m",
+        "deflow_rebuttal.evaluate",
+        "--repo",
+        "/home/featurize/deflow-joint-anderson-a100-20261112-restart1/code/DEFlow",
+        "--run",
+        "/home/featurize/deflow-joint-anderson-a100-20261112-restart1/results/joint_anderson_a100_s1",
+        "--checkpoint",
+        "{CHECKPOINT}",
+        "--output",
+        "/home/featurize/deflow-joint-anderson-a100-20261112-restart1/evaluations/joint_anderson_a100_s1",
+        "--episodes",
+        "1000",
+        "--eval-seed",
+        "26152",
+        "--device",
+        "cuda"
+      ],
+      "outputs": {
+        "results": "/home/featurize/deflow-joint-anderson-a100-20261112-restart1/results/joint_anderson_a100_s1",
+        "evaluation": "/home/featurize/deflow-joint-anderson-a100-20261112-restart1/evaluations/joint_anderson_a100_s1",
+        "attempt": "/home/featurize/deflow-joint-anderson-a100-20261112-restart1/attempts/joint_anderson_a100_s1/0000"
+      },
+      "checkpoint_interval": 25000
+    },
+    {
+      "run_id": "joint_anderson_a100_s2",
+      "seed": 2,
+      "gpu": 1,
+      "gpu_uuid": "GPU-76379389-f799-da48-fde8-accbca15445b",
+      "attempt_id": "0000",
+      "session": "deflow-a100-20261112-s2-r1",
+      "cwd": "/home/featurize/deflow-joint-anderson-a100-20261112-restart1",
+      "horizon": [
+        200000,
+        200007
+      ],
+      "resource_estimate": {
+        "gpu_memory_mib": 12000
+      },
+      "retry_budget": 0,
+      "resume": false,
+      "train_argv": [
+        "/home/featurize/deflow-sequential-anderson-20261112/venv/bin/python",
+        "-m",
+        "deflow_rebuttal.run_docking",
+        "--repo",
+        "/home/featurize/deflow-joint-anderson-a100-20261112-restart1/code/DEFlow",
+        "--output",
+        "/home/featurize/deflow-joint-anderson-a100-20261112-restart1/results/joint_anderson_a100_s2",
+        "--solver",
+        "anderson",
+        "--seed",
+        "2",
+        "--steps",
+        "200000",
+        "--precision-policy",
+        "strict_fp32",
+        "--anderson-tol",
+        "1e-5",
+        "--anderson-cap",
+        "100",
+        "--execute"
+      ],
+      "eval_argv": [
+        "/home/featurize/deflow-sequential-anderson-20261112/venv/bin/python",
+        "-m",
+        "deflow_rebuttal.evaluate",
+        "--repo",
+        "/home/featurize/deflow-joint-anderson-a100-20261112-restart1/code/DEFlow",
+        "--run",
+        "/home/featurize/deflow-joint-anderson-a100-20261112-restart1/results/joint_anderson_a100_s2",
+        "--checkpoint",
+        "{CHECKPOINT}",
+        "--output",
+        "/home/featurize/deflow-joint-anderson-a100-20261112-restart1/evaluations/joint_anderson_a100_s2",
+        "--episodes",
+        "1000",
+        "--eval-seed",
+        "26152",
+        "--device",
+        "cuda"
+      ],
+      "outputs": {
+        "results": "/home/featurize/deflow-joint-anderson-a100-20261112-restart1/results/joint_anderson_a100_s2",
+        "evaluation": "/home/featurize/deflow-joint-anderson-a100-20261112-restart1/evaluations/joint_anderson_a100_s2",
+        "attempt": "/home/featurize/deflow-joint-anderson-a100-20261112-restart1/attempts/joint_anderson_a100_s2/0000"
+      },
+      "checkpoint_interval": 25000
+    },
+    {
+      "run_id": "joint_anderson_a100_s3",
+      "seed": 3,
+      "gpu": 2,
+      "gpu_uuid": "GPU-42f7bd79-47f5-70dc-fdf4-4bf31c3aa679",
+      "attempt_id": "0000",
+      "session": "deflow-a100-20261112-s3-r1",
+      "cwd": "/home/featurize/deflow-joint-anderson-a100-20261112-restart1",
+      "horizon": [
+        200000,
+        200007
+      ],
+      "resource_estimate": {
+        "gpu_memory_mib": 12000
+      },
+      "retry_budget": 0,
+      "resume": false,
+      "train_argv": [
+        "/home/featurize/deflow-sequential-anderson-20261112/venv/bin/python",
+        "-m",
+        "deflow_rebuttal.run_docking",
+        "--repo",
+        "/home/featurize/deflow-joint-anderson-a100-20261112-restart1/code/DEFlow",
+        "--output",
+        "/home/featurize/deflow-joint-anderson-a100-20261112-restart1/results/joint_anderson_a100_s3",
+        "--solver",
+        "anderson",
+        "--seed",
+        "3",
+        "--steps",
+        "200000",
+        "--precision-policy",
+        "strict_fp32",
+        "--anderson-tol",
+        "1e-5",
+        "--anderson-cap",
+        "100",
+        "--execute"
+      ],
+      "eval_argv": [
+        "/home/featurize/deflow-sequential-anderson-20261112/venv/bin/python",
+        "-m",
+        "deflow_rebuttal.evaluate",
+        "--repo",
+        "/home/featurize/deflow-joint-anderson-a100-20261112-restart1/code/DEFlow",
+        "--run",
+        "/home/featurize/deflow-joint-anderson-a100-20261112-restart1/results/joint_anderson_a100_s3",
+        "--checkpoint",
+        "{CHECKPOINT}",
+        "--output",
+        "/home/featurize/deflow-joint-anderson-a100-20261112-restart1/evaluations/joint_anderson_a100_s3",
+        "--episodes",
+        "1000",
+        "--eval-seed",
+        "26152",
+        "--device",
+        "cuda"
+      ],
+      "outputs": {
+        "results": "/home/featurize/deflow-joint-anderson-a100-20261112-restart1/results/joint_anderson_a100_s3",
+        "evaluation": "/home/featurize/deflow-joint-anderson-a100-20261112-restart1/evaluations/joint_anderson_a100_s3",
+        "attempt": "/home/featurize/deflow-joint-anderson-a100-20261112-restart1/attempts/joint_anderson_a100_s3/0000"
+      },
+      "checkpoint_interval": 25000
+    }
+  ],
+  "retry_budget": 0,
+  "resume": false,
+  "max_compute_per_gpu": 1,
+  "admission_seconds": 60,
+  "placement": "one seed per GPU, no packing, unknown compute blocks admission",
+  "launcher_path": "/home/featurize/deflow-joint-anderson-a100-20261112-restart1/ops/runner.py",
+  "launcher_sha256": "05aef47a2ac55903277d4787c0b61ff46a36b48ed8b1a919cb17248b899dae55",
+  "frozen_files": {
+    "code/DEFlow/src/docking_full/dime_actor.py": "2792ac803dd3229e66fbe36c872589476ea750159831fbb9a8b95d7ee0fb3790",
+    "code/DEFlow/src/docking_full/evaluate_multigoal_docking_full.py": "244d093da999c6df7e5382db1462e8060f209db4a4f7591c6439b2ca1bad4530",
+    "code/DEFlow/src/docking_full/multigoal_docking_env.py": "05a1c9a3b046d6260ef0055834b594a12ac391a3ab80faf1a444369276edb986",
+    "code/DEFlow/src/docking_full/qsm_actor.py": "70e33a61d900d2503d2f2e91157552fdc2a2d2da861c41fbc6bd260a4b292e2d",
+    "code/DEFlow/src/docking_full/run_multigoal_docking_full.py": "7adaaf6a735d5a629fa45e070841c1d83185405b9a1dabce521932b6103155ac",
+    "code/DEFlow/src/docking_full/sac_anderson_flow.py": "ba94c8e1f66a41bc6b828ec78d52a1d0ca53573428a771c52c73ea7196205bb5",
+    "code/DEFlow/src/docking_full/sac_flow_parent.py": "84f00325205c5e7e78b49d50879be56d861e1d715d347f40560dfc220f3ad761",
+    "code/DEFlow/src/docking_full/sac_gaussian_baseline.py": "2d4d33f90aaa97b2580c4ae7f159f0290ca78d12d865c8f899fc45c81ef75964",
+    "code/DEFlow/src/docking_full/step_accounting.py": "0d3343cc0b3e87729b1980d927728b31ec835944adee6eeb3cbcb824f4fd24f1",
+    "code/finalize.py": "590a2b0a800e23932fa300524a79c5d07326d4ba9140c20ac21b221d6266a985",
+    "code/package/deflow_rebuttal/__init__.py": "bb1453bff7053d16daa30c920e327a4321f2b67d8cb1a9f3f77997be12909a91",
+    "code/package/deflow_rebuttal/audit.py": "6dcff6cb6b5c2e3f58b4c98b22c99551598c8512f1c08ebaf9c6e0ecbcd7d48d",
+    "code/package/deflow_rebuttal/evaluate.py": "898a38155612b53bde39cbb4762aa7d5a65368bda9e242bd301b9cd7233f0c4a",
+    "code/package/deflow_rebuttal/precision.py": "538963ed417e294db4c4bf78605671463e6f9263222073b5e0e2404e3a3dbe92",
+    "code/package/deflow_rebuttal/prepare_inputs.py": "13c9ffbac77395c8d2b9cd153408214d3c5d212a341250b042637509aa58030b",
+    "code/package/deflow_rebuttal/run_docking.py": "3892450c54e4746a3b8a9d7462d22249742509ec0c8c9c923655f44eef324e64",
+    "code/package/deflow_rebuttal/sequential_anderson.py": "bccc438e476f93e2adc625bd47924baf85c5fd87de0d5a7fc05091d9dd71a76d",
+    "code/package/deflow_rebuttal/sequential_newton.py": "e7c24ebef16db7bd2e16101c08625294ba4902449e774281b9f5f0fca0a3a6d8",
+    "code/package/deflow_rebuttal/test_audit.py": "610bc8e4230cb497d0024b93873c61d7e050b87d0d91d3a7f512d14fcc90e1b8",
+    "code/package/deflow_rebuttal/test_precision.py": "4aa05f012ee04290f4b3e7d5230adf805c9b4bcba5dfe8d93ff1383a22968da5",
+    "code/package/deflow_rebuttal/test_sequential_anderson.py": "cd8d139f56b12968447b0630cfde7977f789caa9b142eec877a8589fc60da6f0",
+    "code/package/deflow_rebuttal/test_solver.py": "b2072803ce51db7958b7f6331f88345ffc614d27c609d8d9fc0bd79489a6bb7c",
+    "code/package/engine_sha256.json": "e9cd81c52e0f571c97e59585942883d614acfa09221eb8724b6592e3463a3d58",
+    "code/preflight.py": "f1ae8a242718fcc0727fa2f64dbb480839e0768b078ecf9d6f7870ca1d5f215f",
+    "code/preflight_finish.py": "7868b17bb6a0127829642cb6900160969aac7f721a70894604e77d3c095fa080",
+    "ops/runner.py": "05aef47a2ac55903277d4787c0b61ff46a36b48ed8b1a919cb17248b899dae55",
+    "ops/sync_local.py": "6e539a6cad24a02d68948bd45e105d748519d1937d8da1aa8b5c635192ac91f1",
+    "ops/status.py": "46409fb5d76831a132ce1399e52727b43ad6385b34c49e58e8422e849e20556d",
+    "ops/test_runner.py": "b97b9820894e9e200b607acd911e90313e596825c37be57b22a6d7cbd810fde2",
+    "ops/profile.json": "a1f02eae3f7677662b2d4d5f6ed7adb0b86005745434c3df5c55b05621d1ba81"
+  },
+  "release_gates": {
+    "validation/test_runner.py.log": "dcf0a7fc200cab9ab36e5d3037278eb791f53b95cc73af6040c74a0a911416bc",
+    "validation/plan-s3.json": "5b4b91e5aefc15e27606e54bc4bb27360e8b65ab082d3d632ac65e1ddff76f92",
+    "validation/plan-s2.json": "51ca9bbab93042989510b85a155f1cadf7734d2e3099a28e3574ba08f18dc50c",
+    "validation/runtime-pip-freeze.txt": "efe3d480de9f9a87a8041c15da927644efdb315781132c93af478468d4bef8a0",
+    "validation/PRIOR_RELEASE_READY.json": "05b9bb905e6f3735755ff7a27e196a173950401911fe74da8651659a82c4feb2",
+    "validation/plan-s1.json": "e39b5452b3639bd36184018cda9157eafe8faff37486a34bb53cbf77bf5ddab5",
+    "validation/RESTART_READY.json": "ae18e165724ba8acec411dc2923aae4e7aa19d93082f1d2959e77600e5af48b0"
+  },
+  "science": {
+    "precision": "strict_fp32",
+    "solver": "anderson",
+    "formulation": "joint",
+    "tol": 1e-05,
+    "cap": 100,
+    "steps": 4,
+    "history": 5,
+    "lam": 0.01,
+    "beta": 0.7,
+    "backward": "unchanged E01/E02 mixed-point shifted dense",
+    "final_evaluation": "1000 stochastic coverage episodes, seed26152",
+    "reference_baseline": "E01 and E02 matched docking protocol",
+    "runtime_caveat": "RTX5090 torch2.7.1+cu128 as E02, differs from E01 RTX4090 torch2.5.1+cu124"
+  },
+  "success_criteria": [
+    "real exit0 and DONE",
+    "horizon200000..200007",
+    "finite actor/critics/log_alpha checkpoint",
+    "checkpoint verified local sync before evaluation",
+    "1000 episodes with matching checkpoint hash",
+    "verified final sync"
+  ],
+  "stop_conditions": [
+    "nonzero exit/nonfinite: preserve failure, no retry",
+    "changed frozen hashes: refuse launch",
+    "external GPU process/low disk: refuse admission",
+    "missing/stale sync: block evaluation"
+  ],
+  "sync": {
+    "local_root": "/Users/ruslanageev/dev/DEFlow/rebuttal/experiments/E04-joint-anderson-cap100/runs/a100-20261112-restart1/mirror",
+    "interval_seconds": 120,
+    "critical": "immutable *.pt SHA256",
+    "max_ack_age_seconds": 600,
+    "excluded": [
+      "venv",
+      "code",
+      "capsule_*.pt",
+      "solver_calls.jsonl",
+      "ckpt.pt"
+    ],
+    "full_raw_location": "/home/featurize/deflow-joint-anderson-a100-20261112-restart1",
+    "final_ack": "/Users/ruslanageev/dev/DEFlow/rebuttal/experiments/E04-joint-anderson-cap100/runs/a100-20261112-restart1/ops/FINAL_SYNC_ACK.json"
+  },
+  "retention": "No deletions. Preserve failures and full raw remotely. Compact local mirror is not full raw backup.",
+  "monitoring": {
+    "supervisor": "one tmux session per seed",
+    "heartbeat_seconds": 30,
+    "identity": "PID, start ticks, command SHA256, boot_id",
+    "local_sync": "launchd com.codex.deflow-a100-20261112-sync-r1"
+  },
+  "runtime_python": "/home/featurize/deflow-sequential-anderson-20261112/venv/bin/python",
+  "lineage": {
+    "previous_campaign_root": "/home/featurize/deflow-joint-anderson-a100-20261112",
+    "previous_local_root": "/Users/ruslanageev/dev/DEFlow/rebuttal/experiments/E04-joint-anderson-cap100/runs/a100-20261112",
+    "previous_exit_code": -15,
+    "replacement_kind": "fresh restart explicitly requested, not checkpoint resume"
+  },
+  "operational_shared_placement": "User authorized E04 and E05 concurrently, matched seed pairs per GPU. E04 ACK guard and E05 peer wait serialize evaluations."
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "authorization": "User explicitly approved PROPOSED_TENSORBOARD_FIX.patch and autonomous continuation on 2026-11-11.",
+  "original_validation": "VALIDATION_CONVERGENCE.json remains unchanged. Exactly one authorized difference below.",
+  "authorized_changes": {
+    "deflow_rebuttal/run_docking.py": {
+      "original_sha256": "cf761a8a431624039ea613e0cafca02ff115d6b3bf5eb564294234d96db9f19e",
+      "patched_sha256": "3f8a1334cf9b800ed14a16b32a645c4cbb3928d6d285250f8a7038d814d4035c",
+      "reason": "Filter metadata returned to native TensorBoard scalar logging. Full structured solver telemetry remains in Recorder JSONL."
+    }
+  },
+  "server_tests": "16 passed, no skipped, Torch2.5.1+cu124",
+  "regression": "All four modes: original logging failure reproduced, patched TensorBoard succeeds, actions/logp/gradients bitwise equal on fixed CUDA batch.",
+  "patch_sha256": "e855bd3c931bd0541495929d33c227f17146077eb9e0a0ebdc249793f9eaa014"
+}

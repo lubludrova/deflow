@@ -1,0 +1,397 @@
+{
+  "campaign_id": "deflow-campaign-20261111-revision3",
+  "contract_sha256": "300614d6c0abfbb1bbd5f722effbc5c00774f7213c7598dc68b6527c0225c0ea",
+  "precision_policy": "strict_fp32",
+  "at": 1794399788.5378463,
+  "packing_sha256": "68a81075d8ce655dae718838dd05afdd0107d67edac1e53f330c1f0eb0057866",
+  "original_parent_retained": true,
+  "original_newton_identities_unchanged": true,
+  "live_age_seconds": 5.486705780029297,
+  "new_runs": {
+    "anderson_s1": {
+      "pid": 78014,
+      "identity": {
+        "pid": 78014,
+        "process_start_ticks": 6926248,
+        "boot_id": "4dfe31ec-070c-4dde-80cb-8b843303addc",
+        "process_group": 78014,
+        "session": 78014,
+        "cmdline": "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python -m deflow_rebuttal.run_docking --repo /home/featurize/deflow-campaign-20261111/revision3/DEFlow --output /home/featurize/deflow-campaign-20261111/revision3/results/anderson_s1 --solver anderson --seed 1 --steps 200000 --execute --precision-policy strict_fp32 ",
+        "cwd": "/home/featurize/deflow-campaign-20261111/revision3/package"
+      },
+      "gpu_slot": 0,
+      "gpu_uuid": "GPU-25aeeb0b-2f1a-6068-db50-71c18174ccba",
+      "progress": {
+        "step": 19747,
+        "last_telemetry_age_seconds": 0.02507781982421875,
+        "last_solver_call": {
+          "call": 18017,
+          "global_step": 19747,
+          "role": "training/actor_grad",
+          "batch": 1024,
+          "steps": 4,
+          "solver": "anderson",
+          "solver_seconds": 0.023996356001589447,
+          "cap_hit": true,
+          "common_abs_residual": {
+            "nonfinite": 0,
+            "count": 4096,
+            "p50": 1.0868418485188158e-06,
+            "p95": 3.501021274132654e-05,
+            "max": 0.012800206430256367
+          },
+          "failed_samples": 190,
+          "failed_local_steps": 403,
+          "native": {
+            "n_iter": 25,
+            "res_curve": [
+              0.11807602643966675,
+              0.06153852865099907,
+              0.03838969022035599,
+              0.0333106629550457,
+              0.009970000013709068,
+              0.005740243475884199,
+              0.0029183700680732727,
+              0.0020696138963103294,
+              0.0015673323068767786,
+              0.0012443287996575236,
+              0.0010994842741638422,
+              0.0008269217796623707,
+              0.0006791305495426059,
+              0.0005609429790638387,
+              0.00042048716568388045,
+              0.00024951586965471506,
+              0.00017118520918302238,
+              0.00014284983626566827,
+              0.00012203786172904074,
+              0.00010562849638517946,
+              9.003568993648514e-05,
+              7.583000842714682e-05,
+              6.576780288014561e-05
+            ],
+            "res_last": 6.576780288014561e-05,
+            "res_p50": 2.124542561432463e-06,
+            "res_p95": 0.00010349605872761458,
+            "res_max": 0.018942153081297874,
+            "res_fail_frac": 0.1806640625,
+            "abs_res_p95": 0.00019601364328991622,
+            "abs_res_max": 0.032907526940107346,
+            "tolerance": 1e-05,
+            "iteration_limit": 25,
+            "mean_criterion_met": false,
+            "iteration_limit_reached": true,
+            "budget_exhausted_without_convergence": true,
+            "stop_reason": "iteration_limit",
+            "convergence_scope": "native batch mean, not all samples",
+            "anderson_history_lstsq_count": 23
+          },
+          "work": {
+            "nfe_total": 102400,
+            "jacobian_evals_total": 0,
+            "linear_solves_total": 0
+          },
+          "telemetry_extra_field_positions": 4096,
+          "totals": {
+            "calls": 7875,
+            "samples": 8064000,
+            "local_steps": 32256000,
+            "failed_samples": 1411880,
+            "failed_local_steps": 3572917,
+            "cap_calls": 7701,
+            "mean_converged_calls": 187,
+            "unconverged_budget_calls": 7688,
+            "newton_status_counts": {},
+            "newton_converged_samples": 0,
+            "newton_budget_exhausted_calls": 0
+          }
+        }
+      },
+      "actual_strict_fp32_verified": true,
+      "argv_matches_frozen_job": true
+    },
+    "anderson_s3": {
+      "pid": 79645,
+      "identity": {
+        "pid": 79645,
+        "process_start_ticks": 6993121,
+        "boot_id": "4dfe31ec-070c-4dde-80cb-8b843303addc",
+        "process_group": 79645,
+        "session": 79645,
+        "cmdline": "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python -m deflow_rebuttal.run_docking --repo /home/featurize/deflow-campaign-20261111/revision3/DEFlow --output /home/featurize/deflow-campaign-20261111/revision3/results/anderson_s3 --solver anderson --seed 3 --steps 200000 --execute --precision-policy strict_fp32 ",
+        "cwd": "/home/featurize/deflow-campaign-20261111/revision3/package"
+      },
+      "gpu_slot": 2,
+      "gpu_uuid": "GPU-911aa272-5dd1-019f-9636-accc89c876da",
+      "progress": {
+        "step": 6993,
+        "last_telemetry_age_seconds": 0.020015716552734375,
+        "last_solver_call": {
+          "call": 3422,
+          "global_step": 6993,
+          "role": "training/target_or_eval_logp",
+          "batch": 1024,
+          "steps": 4,
+          "solver": "anderson",
+          "solver_seconds": 0.02418202700209804,
+          "cap_hit": true,
+          "common_abs_residual": {
+            "nonfinite": 0,
+            "count": 4096,
+            "p50": 1.1422496299928753e-06,
+            "p95": 5.061958290752955e-05,
+            "max": 0.1199488565325737
+          },
+          "failed_samples": 210,
+          "failed_local_steps": 555,
+          "native": {
+            "n_iter": 25,
+            "res_curve": [
+              0.15934395790100098,
+              0.056994739919900894,
+              0.016022827476263046,
+              0.011593061499297619,
+              0.006931619718670845,
+              0.0046314699575304985,
+              0.0035540603566914797,
+              0.002371798502281308,
+              0.0019189852755516768,
+              0.0014570648781955242,
+              0.0010697650723159313,
+              0.0009056378621608019,
+              0.0007702021393924952,
+              0.0006718505173921585,
+              0.000595542776864022,
+              0.0005407933495007455,
+              0.0004977283533662558,
+              0.0004265216994099319,
+              0.00032221974106505513,
+              0.0001901148061733693,
+              0.00015735230408608913,
+              0.0001334568951278925,
+              0.00011745774099836126
+            ],
+            "res_last": 0.00011745774099836126,
+            "res_p50": 1.5014468317531282e-06,
+            "res_p95": 9.832111391006038e-05,
+            "res_max": 0.05385804548859596,
+            "res_fail_frac": 0.21875,
+            "abs_res_p95": 0.00024067526101134717,
+            "abs_res_max": 0.14647164940834045,
+            "tolerance": 1e-05,
+            "iteration_limit": 25,
+            "mean_criterion_met": false,
+            "iteration_limit_reached": true,
+            "budget_exhausted_without_convergence": true,
+            "stop_reason": "iteration_limit",
+            "convergence_scope": "native batch mean, not all samples",
+            "anderson_history_lstsq_count": 23
+          },
+          "work": {
+            "nfe_total": 102400,
+            "jacobian_evals_total": 0,
+            "linear_solves_total": 0
+          },
+          "telemetry_extra_field_positions": 4096,
+          "totals": {
+            "calls": 1499,
+            "samples": 1534976,
+            "local_steps": 6139904,
+            "failed_samples": 391724,
+            "failed_local_steps": 1032307,
+            "cap_calls": 1314,
+            "mean_converged_calls": 195,
+            "unconverged_budget_calls": 1304,
+            "newton_status_counts": {},
+            "newton_converged_samples": 0,
+            "newton_budget_exhausted_calls": 0
+          }
+        }
+      },
+      "actual_strict_fp32_verified": true,
+      "argv_matches_frozen_job": true
+    },
+    "anderson_highcap_s2": {
+      "pid": 79640,
+      "identity": {
+        "pid": 79640,
+        "process_start_ticks": 6993103,
+        "boot_id": "4dfe31ec-070c-4dde-80cb-8b843303addc",
+        "process_group": 79640,
+        "session": 79640,
+        "cmdline": "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python -m deflow_rebuttal.run_docking --repo /home/featurize/deflow-campaign-20261111/revision3/DEFlow --output /home/featurize/deflow-campaign-20261111/revision3/results/anderson_highcap_s2 --solver anderson --seed 2 --steps 200000 --anderson-tol 1e-5 --anderson-cap 500 --execute --precision-policy strict_fp32 ",
+        "cwd": "/home/featurize/deflow-campaign-20261111/revision3/package"
+      },
+      "gpu_slot": 1,
+      "gpu_uuid": "GPU-8c5841b8-9c0d-e867-7e29-7714a772fa58",
+      "progress": {
+        "step": 6427,
+        "last_telemetry_age_seconds": 0.021406173706054688,
+        "last_solver_call": {
+          "call": 2764,
+          "global_step": 6427,
+          "role": "training/target_or_eval_logp",
+          "batch": 1024,
+          "steps": 4,
+          "solver": "anderson",
+          "solver_seconds": 0.03446158699807711,
+          "cap_hit": false,
+          "common_abs_residual": {
+            "nonfinite": 0,
+            "count": 4096,
+            "p50": 1.6049041562382627e-07,
+            "p95": 1.685576251020393e-06,
+            "max": 0.0014127785107120872
+          },
+          "failed_samples": 38,
+          "failed_local_steps": 102,
+          "native": {
+            "n_iter": 34,
+            "res_curve": [
+              0.0868619829416275,
+              0.03744380921125412,
+              0.0139996986836195,
+              0.008813180029392242,
+              0.004183096811175346,
+              0.0023337798193097115,
+              0.0014385572867468,
+              0.0009250771254301071,
+              0.0006596045568585396,
+              0.0004813403356820345,
+              0.0003726549621205777,
+              0.0002877357474062592,
+              0.00022673862986266613,
+              0.00018337764777243137,
+              0.00015047183842398226,
+              0.00012370891636237502,
+              0.00010210438631474972,
+              8.52018129080534e-05,
+              7.15479691280052e-05,
+              6.028509233146906e-05,
+              5.086534656584263e-05,
+              4.304768663132563e-05,
+              3.655487671494484e-05,
+              3.1098767067305744e-05,
+              2.6494624762563035e-05,
+              2.2595822883886285e-05,
+              1.9295639503980055e-05,
+              1.6497609976795502e-05,
+              1.4113402357907034e-05,
+              1.208788944495609e-05,
+              1.0357404789829161e-05,
+              8.885293937055394e-06
+            ],
+            "res_last": 8.885293937055394e-06,
+            "res_p50": 2.5037925865945e-07,
+            "res_p95": 3.157419314447907e-06,
+            "res_max": 0.0016486456152051687,
+            "res_fail_frac": 0.041015625,
+            "abs_res_p95": 9.312110705650412e-06,
+            "abs_res_max": 0.0020968152675777674,
+            "tolerance": 1e-05,
+            "iteration_limit": 500,
+            "mean_criterion_met": true,
+            "iteration_limit_reached": false,
+            "budget_exhausted_without_convergence": false,
+            "stop_reason": "mean_tolerance",
+            "convergence_scope": "native batch mean, not all samples",
+            "anderson_history_lstsq_count": 32
+          },
+          "work": {
+            "nfe_total": 139264,
+            "jacobian_evals_total": 0,
+            "linear_solves_total": 0
+          },
+          "telemetry_extra_field_positions": 4096,
+          "totals": {
+            "calls": 1214,
+            "samples": 1243136,
+            "local_steps": 4972544,
+            "failed_samples": 85938,
+            "failed_local_steps": 197433,
+            "cap_calls": 0,
+            "mean_converged_calls": 1214,
+            "unconverged_budget_calls": 0,
+            "newton_status_counts": {},
+            "newton_converged_samples": 0,
+            "newton_budget_exhausted_calls": 0
+          }
+        }
+      },
+      "actual_strict_fp32_verified": true,
+      "argv_matches_frozen_job": true
+    }
+  },
+  "gpu": {
+    "at": 1794399788.64571,
+    "gpus": [
+      [
+        "0",
+        "GPU-25aeeb0b-2f1a-6068-db50-71c18174ccba",
+        "1693",
+        "22418",
+        "94"
+      ],
+      [
+        "1",
+        "GPU-8c5841b8-9c0d-e867-7e29-7714a772fa58",
+        "1691",
+        "22420",
+        "95"
+      ],
+      [
+        "2",
+        "GPU-911aa272-5dd1-019f-9636-accc89c876da",
+        "1693",
+        "22418",
+        "96"
+      ]
+    ],
+    "processes": [
+      [
+        "GPU-25aeeb0b-2f1a-6068-db50-71c18174ccba",
+        "45017",
+        "846"
+      ],
+      [
+        "GPU-25aeeb0b-2f1a-6068-db50-71c18174ccba",
+        "78014",
+        "832"
+      ],
+      [
+        "GPU-8c5841b8-9c0d-e867-7e29-7714a772fa58",
+        "58120",
+        "844"
+      ],
+      [
+        "GPU-8c5841b8-9c0d-e867-7e29-7714a772fa58",
+        "79640",
+        "832"
+      ],
+      [
+        "GPU-911aa272-5dd1-019f-9636-accc89c876da",
+        "45018",
+        "846"
+      ],
+      [
+        "GPU-911aa272-5dd1-019f-9636-accc89c876da",
+        "79645",
+        "832"
+      ]
+    ]
+  },
+  "canary": {
+    "at": 1794399630.1264298,
+    "seconds": 607.7799389362335,
+    "rates": {
+      "newton_s1": 0.7305275668971746,
+      "anderson_s1": 18.98878074225291
+    },
+    "normalized_progress": 1.3730282467652946,
+    "threshold": 1.05,
+    "solo_baselines": {
+      "newton_s1": 1.3282676350743252,
+      "anderson_s1": 23.07143140073027
+    },
+    "caveat": "Operational progress check across evolving policies, not a controlled speedup experiment."
+  }
+}

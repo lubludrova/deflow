@@ -1,0 +1,19 @@
+{
+  "status": "source_review_approved_for_freeze_and_prescribed_cuda_preflight",
+  "tests": "14 CPU-only lifecycle tests passed",
+  "command": "python3 -m unittest discover -s output/deflow-campaign-20261111/revision3/ops -p test_lifecycle.py -v",
+  "compile": "python3 -m py_compile output/deflow-campaign-20261111/revision3/ops/*.py",
+  "source_sha256": {
+    "RUNNER_PLAN.md": "358c3e859b1134a6fbbe4800a416367a4ee0690943c00cba7592400039184b07",
+    "ops/DEPLOYMENT.md": "57dd7b066bb342bf5893c7ddda8fe9b4927433c7e05863bc7e8c4717b22cf7d7",
+    "ops/campaign.py": "8e6b9eac80476dd2d7435d320e88e31bc9c2180d1c7bf4636d5dc43f1bbdf1bd",
+    "ops/common.py": "d948480047b9b84b5b439a0ab53ec22890e26aa4cfe1527a178f93976c082bda",
+    "ops/preflight.py": "14477e49c38e70c7c13d091603e98441c908c522bcfb110462a50f2c5716221f",
+    "ops/sync_index.py": "689d577e17a4d86d6848ca41d04dfe97ab4aaeb658ebba58eb3367240f2a3f47",
+    "ops/sync_local.py": "e6106fe590c1a65ad87f32e4c01faa7a5fd99aac5b5ecef8179c94180727dec7",
+    "ops/test_lifecycle.py": "48b82da1486aa4d119e2e0a868b38f4cf9bde7e4f8e5fe5620857e8eb91b1333"
+  },
+  "server_actions": false,
+  "peer_review": "astra-reviews/final_integration.md",
+  "outstanding": "Live Linux signal/descendant smoke and all prescribed strict CUDA numerical/smoke/pilot gates. No source edits pending."
+}

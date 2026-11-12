@@ -1,0 +1,153 @@
+{
+  "campaign_id": "deflow-campaign-20261111-revision3",
+  "contract_sha256": "300614d6c0abfbb1bbd5f722effbc5c00774f7213c7598dc68b6527c0225c0ea",
+  "precision_policy": "strict_fp32",
+  "run_id": "newton_s2",
+  "attempt_id": 0,
+  "argv": [
+    "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python",
+    "-m",
+    "deflow_rebuttal.run_docking",
+    "--repo",
+    "/home/featurize/deflow-campaign-20261111/revision3/DEFlow",
+    "--output",
+    "/home/featurize/deflow-campaign-20261111/revision3/results/newton_s2",
+    "--solver",
+    "newton",
+    "--seed",
+    "2",
+    "--steps",
+    "200000",
+    "--execute",
+    "--precision-policy",
+    "strict_fp32"
+  ],
+  "cwd": "/home/featurize/deflow-campaign-20261111/revision3/package",
+  "gpu_slot": 1,
+  "gpu_uuid": "GPU-8c5841b8-9c0d-e867-7e29-7714a772fa58",
+  "environment": {
+    "PYTHONPATH": "/home/featurize/deflow-campaign-20261111/revision3/package",
+    "DEFLOW_ENGINE": "/home/featurize/deflow-campaign-20261111/revision3/DEFlow/src/docking_full/sac_anderson_flow.py",
+    "CUDA_VISIBLE_DEVICES": "GPU-8c5841b8-9c0d-e867-7e29-7714a772fa58"
+  },
+  "command_sha256": "06b14909584a402150c8eb563eb77e26748ca44879457ef23b7b181695212f3f",
+  "claimed_at": 1794387448.2345233,
+  "capacity_sample": {
+    "at": 1794387448.3477237,
+    "gpus": [
+      [
+        "0",
+        "GPU-25aeeb0b-2f1a-6068-db50-71c18174ccba",
+        "856",
+        "23255",
+        "17"
+      ],
+      [
+        "1",
+        "GPU-8c5841b8-9c0d-e867-7e29-7714a772fa58",
+        "1",
+        "24109",
+        "0"
+      ],
+      [
+        "2",
+        "GPU-911aa272-5dd1-019f-9636-accc89c876da",
+        "854",
+        "23257",
+        "20"
+      ]
+    ],
+    "processes": [
+      [
+        "GPU-25aeeb0b-2f1a-6068-db50-71c18174ccba",
+        "45017",
+        "846"
+      ],
+      [
+        "GPU-911aa272-5dd1-019f-9636-accc89c876da",
+        "45018",
+        "844"
+      ]
+    ]
+  },
+  "log": "/home/featurize/deflow-campaign-20261111/revision3/ops/logs/newton_s2.log",
+  "run_path": "/home/featurize/deflow-campaign-20261111/revision3/results/newton_s2",
+  "retry_budget": 0,
+  "resume": false,
+  "identity": {
+    "pid": 58120,
+    "process_start_ticks": 5774834,
+    "boot_id": "4dfe31ec-070c-4dde-80cb-8b843303addc",
+    "process_group": 58120,
+    "session": 58120,
+    "cmdline": "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python -m deflow_rebuttal.run_docking --repo /home/featurize/deflow-campaign-20261111/revision3/DEFlow --output /home/featurize/deflow-campaign-20261111/revision3/results/newton_s2 --solver newton --seed 2 --steps 200000 --execute --precision-policy strict_fp32 ",
+    "cwd": "/home/featurize/deflow-campaign-20261111/revision3/package"
+  },
+  "pid": 58120,
+  "started_at": 1794387448.2345233,
+  "state": "RUNNING",
+  "observed_at": 1794426391.6467388,
+  "telemetry": {
+    "step": 131908,
+    "last_telemetry_age_seconds": 0.19995331764221191,
+    "last_solver_call": {
+      "call": 145990,
+      "global_step": 131908,
+      "role": "training/actor_grad",
+      "batch": 1024,
+      "steps": 4,
+      "solver": "newton",
+      "solver_seconds": 0.04347152900299989,
+      "cap_hit": false,
+      "common_abs_residual": {
+        "nonfinite": 0,
+        "count": 4096,
+        "p50": 5.960464477539063e-08,
+        "p95": 1.1920928955078125e-07,
+        "max": 1.1920928955078125e-07
+      },
+      "failed_samples": 0,
+      "failed_local_steps": 0,
+      "native": {
+        "n_iter": 1,
+        "cap_hit": false,
+        "failed_samples": 0,
+        "status_counts": {
+          "0": 4096,
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0
+        },
+        "backtracks_total": 0
+      },
+      "work": {
+        "nfe_total": 12288,
+        "jacobian_evals_total": 4096,
+        "linear_solves_total": 4096
+      },
+      "telemetry_extra_field_positions": 4096,
+      "totals": {
+        "calls": 63952,
+        "samples": 65486848,
+        "local_steps": 261947392,
+        "failed_samples": 474694,
+        "failed_local_steps": 495186,
+        "cap_calls": 1759,
+        "mean_converged_calls": 0,
+        "unconverged_budget_calls": 0,
+        "newton_status_counts": {
+          "0": 261528755,
+          "1": 1825,
+          "2": 0,
+          "3": 0,
+          "4": 416811,
+          "5": 1
+        },
+        "newton_converged_samples": 65088122,
+        "newton_budget_exhausted_calls": 1579
+      }
+    }
+  }
+}

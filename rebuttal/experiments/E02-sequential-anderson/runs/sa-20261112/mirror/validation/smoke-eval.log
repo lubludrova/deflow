@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/featurize/deflow-sequential-anderson-20261112/code/package/deflow_rebuttal/evaluate.py", line 62, in <module>
+    if __name__=='__main__': main()
+                             ^^^^^^
+  File "/home/featurize/deflow-sequential-anderson-20261112/code/package/deflow_rebuttal/evaluate.py", line 30, in main
+    payload=torch.load(c.checkpoint,map_location='cpu',weights_only=False)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/deflow-sequential-anderson-20261112/venv/lib/python3.11/site-packages/torch/serialization.py", line 1479, in load
+    with _open_file_like(f, "rb") as opened_file:
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/deflow-sequential-anderson-20261112/venv/lib/python3.11/site-packages/torch/serialization.py", line 759, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/deflow-sequential-anderson-20261112/venv/lib/python3.11/site-packages/torch/serialization.py", line 740, in __init__
+    super().__init__(open(name, mode))
+                     ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'validation/smoke/runs/sequential_anderson_wide_tight_s1/ckpt_00000261.pt'

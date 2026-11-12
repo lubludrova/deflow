@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/featurize/deflow-campaign-20261111/revision3/ops/idle-audits-v1/controller.py", line 255, in <module>
+    main()
+  File "/home/featurize/deflow-campaign-20261111/revision3/ops/idle-audits-v1/controller.py", line 247, in main
+    c.sync_gate(final_hashes=hashes)
+  File "/home/featurize/deflow-campaign-20261111/revision3/ops/common.py", line 272, in sync_gate
+    latch_check()
+  File "/home/featurize/deflow-campaign-20261111/revision3/ops/common.py", line 101, in latch_check
+    raise RuntimeError('Campaign STOP requested')
+RuntimeError: Campaign STOP requested

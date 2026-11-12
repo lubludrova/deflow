@@ -1,0 +1,895 @@
+{
+  "kind": "runner_takeover_read_only_verification",
+  "observed_at": "2026-11-11T11:28:14.447818+00:00",
+  "campaign_id": "deflow-campaign-20261111-revision3",
+  "contract_sha256": "300614d6c0abfbb1bbd5f722effbc5c00774f7213c7598dc68b6527c0225c0ea",
+  "local_frozen_files_checked": 52,
+  "local_frozen_mismatches": [],
+  "remote": {
+    "observed_at_epoch": 1794396494.071023,
+    "coordinator_identity_verified": true,
+    "live_age_seconds": 8.425427436828613,
+    "counts": {
+      "runs": 12,
+      "evaluated": 1,
+      "audits": 9,
+      "audits_finished": 0
+    },
+    "jobs": {
+      "newton_s1": "RUNNING",
+      "newton_s2": "RUNNING",
+      "newton_s3": "RUNNING",
+      "anderson_s1": "PLANNED",
+      "anderson_s2": "EVALUATION_FINISHED",
+      "anderson_s3": "PLANNED",
+      "anderson_tighter_s1": "PLANNED",
+      "anderson_tighter_s2": "PLANNED",
+      "anderson_tighter_s3": "PLANNED",
+      "anderson_highcap_s1": "PLANNED",
+      "anderson_highcap_s2": "PLANNED",
+      "anderson_highcap_s3": "PLANNED"
+    },
+    "audits": {
+      "audit_a1_25000": "PLANNED",
+      "audit_a1_100000": "PLANNED",
+      "audit_a1_200000": "PLANNED",
+      "audit_a2_25000": "PLANNED",
+      "audit_a2_100000": "PLANNED",
+      "audit_a2_200000": "PLANNED",
+      "audit_a3_25000": "PLANNED",
+      "audit_a3_100000": "PLANNED",
+      "audit_a3_200000": "PLANNED"
+    },
+    "active": {
+      "newton_s1": {
+        "pid": 45017,
+        "identity_verified": true,
+        "gpu_slot": 0,
+        "gpu_uuid": "GPU-25aeeb0b-2f1a-6068-db50-71c18174ccba",
+        "telemetry": {
+          "step": 82399,
+          "last_telemetry_age_seconds": 0.16537761688232422,
+          "last_solver_call": {
+            "call": 89655,
+            "global_step": 82399,
+            "role": "training/actor_grad",
+            "batch": 1024,
+            "steps": 4,
+            "solver": "newton",
+            "solver_seconds": 0.34016078599961475,
+            "cap_hit": false,
+            "common_abs_residual": {
+              "nonfinite": 0,
+              "count": 4096,
+              "p50": 1.4023132166585128e-07,
+              "p95": 8.681481858729967e-06,
+              "max": 0.5644676685333252
+            },
+            "failed_samples": 8,
+            "failed_local_steps": 9,
+            "native": {
+              "n_iter": 9,
+              "cap_hit": false,
+              "failed_samples": 8,
+              "status_counts": {
+                "0": 4087,
+                "1": 0,
+                "2": 0,
+                "3": 0,
+                "4": 9,
+                "5": 0
+              },
+              "backtracks_total": 467
+            },
+            "work": {
+              "nfe_total": 22743,
+              "jacobian_evals_total": 9090,
+              "linear_solves_total": 9090
+            },
+            "telemetry_extra_field_positions": 4096,
+            "totals": {
+              "calls": 39200,
+              "samples": 40140800,
+              "local_steps": 160563200,
+              "failed_samples": 152786,
+              "failed_local_steps": 155137,
+              "cap_calls": 599,
+              "mean_converged_calls": 0,
+              "unconverged_budget_calls": 0,
+              "newton_status_counts": {
+                "0": 160455159,
+                "1": 551,
+                "2": 0,
+                "3": 0,
+                "4": 107490,
+                "5": 0
+              },
+              "newton_converged_samples": 40034955,
+              "newton_budget_exhausted_calls": 529
+            }
+          },
+          "delta_sps": 2.98442241209993,
+          "eta_seconds": 39404.94466306208,
+          "eta_caveat": "Measured recent window. Late solver cost and final evaluation may increase duration.",
+          "gpu_utilization_window": {
+            "samples": 17,
+            "mean": 18.58823529411765,
+            "p95": 21,
+            "peak": 22,
+            "memory_used_mib": 856
+          },
+          "co_runners": [],
+          "checkpoint_age_seconds": 2420.842141866684,
+          "returns": {
+            "charts/avg_episode_reward": -6.963809013366699,
+            "charts/eval_return_det": -4.914644718170166
+          }
+        },
+        "current_progress": {
+          "step": 82421,
+          "last_telemetry_age_seconds": 0.9267978668212891,
+          "last_solver_call": {
+            "call": 89676,
+            "global_step": 82421,
+            "role": "training/actor_grad",
+            "batch": 1024,
+            "steps": 4,
+            "solver": "newton",
+            "solver_seconds": 0.4306165120069636,
+            "cap_hit": false,
+            "common_abs_residual": {
+              "nonfinite": 0,
+              "count": 4096,
+              "p50": 1.3578957691606774e-07,
+              "p95": 8.459063565169345e-06,
+              "max": 0.6291220188140869
+            },
+            "failed_samples": 16,
+            "failed_local_steps": 16,
+            "native": {
+              "n_iter": 11,
+              "cap_hit": false,
+              "failed_samples": 14,
+              "status_counts": {
+                "0": 4082,
+                "1": 0,
+                "2": 0,
+                "3": 0,
+                "4": 14,
+                "5": 0
+              },
+              "backtracks_total": 653
+            },
+            "work": {
+              "nfe_total": 22727,
+              "jacobian_evals_total": 8989,
+              "linear_solves_total": 8989
+            },
+            "telemetry_extra_field_positions": 4096,
+            "totals": {
+              "calls": 39209,
+              "samples": 40150016,
+              "local_steps": 160600064,
+              "failed_samples": 152908,
+              "failed_local_steps": 155263,
+              "cap_calls": 600,
+              "mean_converged_calls": 0,
+              "unconverged_budget_calls": 0,
+              "newton_status_counts": {
+                "0": 160491912,
+                "1": 552,
+                "2": 0,
+                "3": 0,
+                "4": 107600,
+                "5": 0
+              },
+              "newton_converged_samples": 40044064,
+              "newton_budget_exhausted_calls": 530
+            }
+          }
+        }
+      },
+      "newton_s3": {
+        "pid": 45018,
+        "identity_verified": true,
+        "gpu_slot": 2,
+        "gpu_uuid": "GPU-911aa272-5dd1-019f-9636-accc89c876da",
+        "telemetry": {
+          "step": 66605,
+          "last_telemetry_age_seconds": 0.0947418212890625,
+          "last_solver_call": {
+            "call": 71597,
+            "global_step": 66605,
+            "role": "training/actor_grad",
+            "batch": 1024,
+            "steps": 4,
+            "solver": "newton",
+            "solver_seconds": 0.6637053989979904,
+            "cap_hit": false,
+            "common_abs_residual": {
+              "nonfinite": 0,
+              "count": 4096,
+              "p50": 1.7896908843795245e-07,
+              "p95": 7.82250685915642e-06,
+              "max": 0.6283037662506104
+            },
+            "failed_samples": 21,
+            "failed_local_steps": 21,
+            "native": {
+              "n_iter": 20,
+              "cap_hit": false,
+              "failed_samples": 20,
+              "status_counts": {
+                "0": 4076,
+                "1": 0,
+                "2": 0,
+                "3": 0,
+                "4": 20,
+                "5": 0
+              },
+              "backtracks_total": 1182
+            },
+            "work": {
+              "nfe_total": 25148,
+              "jacobian_evals_total": 9935,
+              "linear_solves_total": 9935
+            },
+            "telemetry_extra_field_positions": 4096,
+            "totals": {
+              "calls": 31303,
+              "samples": 32054272,
+              "local_steps": 128217088,
+              "failed_samples": 159843,
+              "failed_local_steps": 170521,
+              "cap_calls": 619,
+              "mean_converged_calls": 0,
+              "unconverged_budget_calls": 0,
+              "newton_status_counts": {
+                "0": 128097277,
+                "1": 563,
+                "2": 0,
+                "3": 0,
+                "4": 119248,
+                "5": 0
+              },
+              "newton_converged_samples": 31944950,
+              "newton_budget_exhausted_calls": 537
+            }
+          },
+          "delta_sps": 1.383495466008722,
+          "eta_seconds": 96418.81977743976,
+          "eta_caveat": "Measured recent window. Late solver cost and final evaluation may increase duration.",
+          "gpu_utilization_window": {
+            "samples": 17,
+            "mean": 18.88235294117647,
+            "p95": 21,
+            "peak": 22,
+            "memory_used_mib": 856
+          },
+          "co_runners": [],
+          "checkpoint_age_seconds": 7423.922160387039,
+          "returns": {
+            "charts/avg_episode_reward": -8.898085594177246,
+            "charts/eval_return_det": -1.2028284072875977
+          }
+        },
+        "current_progress": {
+          "step": 66612,
+          "last_telemetry_age_seconds": 0.8254439830780029,
+          "last_solver_call": {
+            "call": 71609,
+            "global_step": 66612,
+            "role": "training/target_or_eval_logp",
+            "batch": 1024,
+            "steps": 4,
+            "solver": "newton",
+            "solver_seconds": 0.7177518479875289,
+            "cap_hit": false,
+            "common_abs_residual": {
+              "nonfinite": 0,
+              "count": 4096,
+              "p50": 1.862645149230957e-07,
+              "p95": 8.166837460521492e-06,
+              "max": 0.722710132598877
+            },
+            "failed_samples": 37,
+            "failed_local_steps": 37,
+            "native": {
+              "n_iter": 19,
+              "cap_hit": false,
+              "failed_samples": 35,
+              "status_counts": {
+                "0": 4061,
+                "1": 0,
+                "2": 0,
+                "3": 0,
+                "4": 35,
+                "5": 0
+              },
+              "backtracks_total": 2233
+            },
+            "work": {
+              "nfe_total": 27167,
+              "jacobian_evals_total": 10419,
+              "linear_solves_total": 10419
+            },
+            "telemetry_extra_field_positions": 4096,
+            "totals": {
+              "calls": 31309,
+              "samples": 32060416,
+              "local_steps": 128241664,
+              "failed_samples": 209017,
+              "failed_local_steps": 225069,
+              "cap_calls": 864,
+              "mean_converged_calls": 0,
+              "unconverged_budget_calls": 0,
+              "newton_status_counts": {
+                "0": 128071286,
+                "1": 811,
+                "2": 0,
+                "3": 0,
+                "4": 169567,
+                "5": 0
+              },
+              "newton_converged_samples": 31905832,
+              "newton_budget_exhausted_calls": 764
+            }
+          }
+        }
+      },
+      "newton_s2": {
+        "pid": 58120,
+        "identity_verified": true,
+        "gpu_slot": 1,
+        "gpu_uuid": "GPU-8c5841b8-9c0d-e867-7e29-7714a772fa58",
+        "telemetry": {
+          "step": 55546,
+          "last_telemetry_age_seconds": 0.26621437072753906,
+          "last_solver_call": {
+            "call": 58976,
+            "global_step": 55546,
+            "role": "training/actor_grad",
+            "batch": 1024,
+            "steps": 4,
+            "solver": "newton",
+            "solver_seconds": 0.32603274600114673,
+            "cap_hit": false,
+            "common_abs_residual": {
+              "nonfinite": 0,
+              "count": 4096,
+              "p50": 2.1490760104825313e-07,
+              "p95": 1.0739016033767257e-05,
+              "max": 0.3926600217819214
+            },
+            "failed_samples": 30,
+            "failed_local_steps": 30,
+            "native": {
+              "n_iter": 10,
+              "cap_hit": false,
+              "failed_samples": 26,
+              "status_counts": {
+                "0": 4070,
+                "1": 0,
+                "2": 0,
+                "3": 0,
+                "4": 26,
+                "5": 0
+              },
+              "backtracks_total": 961
+            },
+            "work": {
+              "nfe_total": 24941,
+              "jacobian_evals_total": 9942,
+              "linear_solves_total": 9942
+            },
+            "telemetry_extra_field_positions": 4096,
+            "totals": {
+              "calls": 25772,
+              "samples": 26390528,
+              "local_steps": 105562112,
+              "failed_samples": 87721,
+              "failed_local_steps": 88502,
+              "cap_calls": 185,
+              "mean_converged_calls": 0,
+              "unconverged_budget_calls": 0,
+              "newton_status_counts": {
+                "0": 105514126,
+                "1": 185,
+                "2": 0,
+                "3": 0,
+                "4": 47800,
+                "5": 1
+              },
+              "newton_converged_samples": 26343259,
+              "newton_budget_exhausted_calls": 165
+            }
+          },
+          "delta_sps": 1.8990184913655843,
+          "eta_seconds": 76067.7163791718,
+          "eta_caveat": "Measured recent window. Late solver cost and final evaluation may increase duration.",
+          "gpu_utilization_window": {
+            "samples": 17,
+            "mean": 17.88235294117647,
+            "p95": 20,
+            "peak": 20,
+            "memory_used_mib": 854
+          },
+          "co_runners": [],
+          "checkpoint_age_seconds": 1928.7870721817017,
+          "returns": {
+            "charts/avg_episode_reward": -9.715795516967773,
+            "charts/eval_return_det": -4.435073375701904
+          }
+        },
+        "current_progress": {
+          "step": 55568,
+          "last_telemetry_age_seconds": 0.319960355758667,
+          "last_solver_call": {
+            "call": 58999,
+            "global_step": 55568,
+            "role": "training/actor_grad",
+            "batch": 1024,
+            "steps": 4,
+            "solver": "newton",
+            "solver_seconds": 0.31552512700727675,
+            "cap_hit": false,
+            "common_abs_residual": {
+              "nonfinite": 0,
+              "count": 4096,
+              "p50": 2.1086796664349094e-07,
+              "p95": 9.733402976053185e-06,
+              "max": 0.3609998822212219
+            },
+            "failed_samples": 25,
+            "failed_local_steps": 25,
+            "native": {
+              "n_iter": 12,
+              "cap_hit": false,
+              "failed_samples": 24,
+              "status_counts": {
+                "0": 4072,
+                "1": 0,
+                "2": 0,
+                "3": 0,
+                "4": 24,
+                "5": 0
+              },
+              "backtracks_total": 917
+            },
+            "work": {
+              "nfe_total": 25047,
+              "jacobian_evals_total": 10017,
+              "linear_solves_total": 10017
+            },
+            "telemetry_extra_field_positions": 4096,
+            "totals": {
+              "calls": 25782,
+              "samples": 26400768,
+              "local_steps": 105603072,
+              "failed_samples": 88004,
+              "failed_local_steps": 88785,
+              "cap_calls": 187,
+              "mean_converged_calls": 0,
+              "unconverged_budget_calls": 0,
+              "newton_status_counts": {
+                "0": 105554813,
+                "1": 187,
+                "2": 0,
+                "3": 0,
+                "4": 48071,
+                "5": 1
+              },
+              "newton_converged_samples": 26353226,
+              "newton_budget_exhausted_calls": 167
+            }
+          }
+        }
+      }
+    },
+    "gpu": {
+      "at": 1794396485.2635858,
+      "gpus": [
+        [
+          "0",
+          "GPU-25aeeb0b-2f1a-6068-db50-71c18174ccba",
+          "856",
+          "23255",
+          "19"
+        ],
+        [
+          "1",
+          "GPU-8c5841b8-9c0d-e867-7e29-7714a772fa58",
+          "854",
+          "23257",
+          "15"
+        ],
+        [
+          "2",
+          "GPU-911aa272-5dd1-019f-9636-accc89c876da",
+          "856",
+          "23255",
+          "20"
+        ]
+      ],
+      "processes": [
+        [
+          "GPU-25aeeb0b-2f1a-6068-db50-71c18174ccba",
+          "45017",
+          "846"
+        ],
+        [
+          "GPU-8c5841b8-9c0d-e867-7e29-7714a772fa58",
+          "58120",
+          "844"
+        ],
+        [
+          "GPU-911aa272-5dd1-019f-9636-accc89c876da",
+          "45018",
+          "846"
+        ]
+      ]
+    },
+    "disk_free_bytes": 2144391806976,
+    "markers": {
+      "PREFLIGHT_DONE.json": {
+        "campaign_id": "deflow-campaign-20261111-revision3",
+        "contract_sha256": "300614d6c0abfbb1bbd5f722effbc5c00774f7213c7598dc68b6527c0225c0ea",
+        "precision_policy": "strict_fp32",
+        "finished_at": 1794378750.4774413,
+        "counts": {
+          "smokes": 4,
+          "smoke_evaluations": 4,
+          "pilots": 4
+        },
+        "evidence_sha256": {
+          "ops/disk_estimate.json": "c74e780db58d27b0f12e0fe6ee1fe875aed5aede00d083ffc518a69eaa063853",
+          "preflight/smoke_anderson_tighter_eval/actor_kwargs.json": "4f9a803edffa5bd30bf8506f5c4d3111c8beaaf7c3d8af1db9d1d067166f068f",
+          "preflight/smoke_anderson_tighter_eval/runtime_precision.json": "9d341aba73cbbb4a6246f6b6fe227d5cc805b42a144ffb3bd9316468dd47b10c",
+          "preflight/smoke_anderson_tighter_eval/evaluation.json": "20bef32fb2cb2b7b08aaa5d9924e1deb7c434dbce1b0de7402422f563d0e7067",
+          "preflight/smoke_anderson_tighter_eval/telemetry_summary.json": "d34fce866dcc0be04a364b79a9b583a8cc4caf63ed6f88eceb45224b120b4e51",
+          "preflight/smoke_anderson_tighter/manifest.json": "4e07398da37c33863c186fa3314c1dd1b1e8ce75bb410d16b241c50d93d135d2",
+          "preflight/smoke_anderson_tighter/DONE.json": "6b3b17b4a1ba2b143fa8dd7a8d7013c31a1649b9ee5d91f7bea2df7511a0f9dd",
+          "preflight/smoke_anderson_tighter/actor_kwargs.json": "4f9a803edffa5bd30bf8506f5c4d3111c8beaaf7c3d8af1db9d1d067166f068f",
+          "preflight/smoke_anderson_tighter/runtime_precision.json": "f4479541e0a178c4a50296ea611efda9c8060c7a3129b6bcb75a8ea74dca6d3b",
+          "preflight/smoke_anderson_tighter/telemetry_summary.json": "964e3fdc2ab4b5d482d3e2a21e5001736d696d5b28fc4436ca38435c27bdc122",
+          "preflight/pilot_anderson/manifest.json": "bb64d6ba89288f3c11932ddf268ecea9162d0e6b08d6c8fdd8c7809611e55744",
+          "preflight/pilot_anderson/DONE.json": "e473aedfba7cdabba008c67abc404efcb1ba83c0bd6c288a4f4d620c962c89be",
+          "preflight/pilot_anderson/actor_kwargs.json": "5f7186ca837f6ec7761f7b8f7a82e3bd5c5c136bfe114055f6b6c91fced056c0",
+          "preflight/pilot_anderson/runtime_precision.json": "7c6f4fff0a4c0cbec5d3ceea5020cb96b89cae84195415ba8a3c224bba96d5b0",
+          "preflight/pilot_anderson/telemetry_summary.json": "1f1309a3e0178a22538bc98f58f0da58890402a0cd69cbf9eb457ad7d759a1ac",
+          "preflight/smoke_anderson_eval/actor_kwargs.json": "5f7186ca837f6ec7761f7b8f7a82e3bd5c5c136bfe114055f6b6c91fced056c0",
+          "preflight/smoke_anderson_eval/runtime_precision.json": "6c1ac0fc4a41a3a63425e8b3c41af58a366d8a6459245b96290b5c8ec96eec23",
+          "preflight/smoke_anderson_eval/evaluation.json": "249a2fbcacdb10e765737f85e3df892eccba73cbd4701fa100bed5bb616a0b14",
+          "preflight/smoke_anderson_eval/telemetry_summary.json": "ab08f8c2c2aa1ac764a7a9b5469aa3310d563cc8461e616b5dc23245da1e6616",
+          "preflight/pilot_newton/manifest.json": "771e967a2177a5366eb35c481d5dae7c7c5a23343bfe02903b76ead3170a40fd",
+          "preflight/pilot_newton/DONE.json": "35ec233e719d4f8580e2c8289b49e1d379ff23ab3c65ca2a71b3869713367de2",
+          "preflight/pilot_newton/actor_kwargs.json": "5f7186ca837f6ec7761f7b8f7a82e3bd5c5c136bfe114055f6b6c91fced056c0",
+          "preflight/pilot_newton/runtime_precision.json": "7c6f4fff0a4c0cbec5d3ceea5020cb96b89cae84195415ba8a3c224bba96d5b0",
+          "preflight/pilot_newton/telemetry_summary.json": "bef476a7c1b013ea9953dfe2332114228c3662f7500aa5a9efb5f3d12c08302d",
+          "preflight/numerical_fresh/verdict.json": "d2dcedc2556ef374ef9ba010759d137ba7f8b188378b4c3e90e4b1cb73ac6f1a",
+          "preflight/numerical_fresh/case_00/case.json": "2c3ef473ac0c646c8f17a1514e64afb248d13e41a14533edf42726bbbd3366da",
+          "preflight/numerical_fresh/case_03/case.json": "ffd997467f1b9b6ff96e41ca4687fc1242be6392db8f05113a37cdf85af955f6",
+          "preflight/numerical_fresh/case_02/case.json": "6a2832dd74cc1596dfd7dcbf2a23aae0b7bd731fc1306607d98b365c8666f6cd",
+          "preflight/numerical_fresh/case_01/case.json": "a0c7b6c1e2a4aab60b94d521bcb00008a731aabb65e699ea14262b1616e9a915",
+          "preflight/numerical_fixed/verdict.json": "dc8cc2e6608a4a8dbb007ffd391e6d421f9c140558df57dd0ba450bf63647d5b",
+          "preflight/numerical_fixed/case_00/case.json": "c2c93f7e0f3a9d443c4210102ae6fed562bf73956abb371fededb27e18a2ea34",
+          "preflight/numerical_fixed/case_02/case.json": "af7f6c3c49f44f420aacce8c1303478fa95262ed140397fa28c667a44f061261",
+          "preflight/numerical_fixed/case_01/case.json": "9b59b0d30b5584beb5fddb0ea9845aab5bf07014c255c7e27fec367b27a324b0",
+          "preflight/smoke_newton/manifest.json": "124c4556b867c17706b08a0fd90452fd862d0d5a3b23bf396c956ee631ead142",
+          "preflight/smoke_newton/DONE.json": "27327b360dadfb856ee4d536b1e913132746c9883160dea287b129b2f15d0cd9",
+          "preflight/smoke_newton/actor_kwargs.json": "5f7186ca837f6ec7761f7b8f7a82e3bd5c5c136bfe114055f6b6c91fced056c0",
+          "preflight/smoke_newton/runtime_precision.json": "7c6f4fff0a4c0cbec5d3ceea5020cb96b89cae84195415ba8a3c224bba96d5b0",
+          "preflight/smoke_newton/telemetry_summary.json": "138f32486ea3325de3666f52a7e38080c8164f694a6175b80d88ce621bbad01a",
+          "preflight/smoke_anderson_highcap/manifest.json": "a823e6fd1dc16f40497571153425db6dc8ffdc32f491f6f669309ac66263ecd3",
+          "preflight/smoke_anderson_highcap/DONE.json": "aa4db5c3c0a66925fe0a225b75967356eb2beaef686e5895151d1d1ddd0906eb",
+          "preflight/smoke_anderson_highcap/actor_kwargs.json": "617ffd2d462ead48eab1b799ec2e8bdf8e672c1dfd7f7f6c79ff37a70ab546ba",
+          "preflight/smoke_anderson_highcap/runtime_precision.json": "9c7794f2027a8bfb825fa95a97c03bf8d09a989d75454f62dc8e9ee3dc42607f",
+          "preflight/smoke_anderson_highcap/telemetry_summary.json": "318c63eb86d59328719865f714bbe2cb880f140a719f01e30b714c76ed260c0b",
+          "preflight/smoke_anderson_highcap_eval/actor_kwargs.json": "617ffd2d462ead48eab1b799ec2e8bdf8e672c1dfd7f7f6c79ff37a70ab546ba",
+          "preflight/smoke_anderson_highcap_eval/runtime_precision.json": "45090c3e599e923bb2b043c116d25407f8ba3cf92d10baf623f84840d074342b",
+          "preflight/smoke_anderson_highcap_eval/evaluation.json": "5d57621294aaa41168cd38b3d35061090a0ec6e10cfe32eb673e6e3b8c5e53af",
+          "preflight/smoke_anderson_highcap_eval/telemetry_summary.json": "6c7e2c4d9d2973d5272973e3556db1bb1fda3b57f8273dca8e535708f8e02f5b",
+          "preflight/smoke_anderson/manifest.json": "7ba40d3694887bde4e0dbd76568bc3995a4316879423a8cf2d85bdebacdc4c5d",
+          "preflight/smoke_anderson/DONE.json": "a4adc6516ad6d8728deebe2d58adfe2c34a9bbe74a9bb5a3bba40f68ea18ccdf",
+          "preflight/smoke_anderson/actor_kwargs.json": "5f7186ca837f6ec7761f7b8f7a82e3bd5c5c136bfe114055f6b6c91fced056c0",
+          "preflight/smoke_anderson/runtime_precision.json": "7c6f4fff0a4c0cbec5d3ceea5020cb96b89cae84195415ba8a3c224bba96d5b0",
+          "preflight/smoke_anderson/telemetry_summary.json": "72b6b2da5fffde08c058bf791ab8e9bb7cc6297a001b50795b13f6a5e4362178",
+          "preflight/pilot_anderson_highcap/manifest.json": "d2000cda6c35b02b27117828a7807a4655ef25312c7c32e09f6da1fb37272db4",
+          "preflight/pilot_anderson_highcap/DONE.json": "a6e636e1f9e2881db11113ee09743840d87e358200e75f273b6c7a4651273c42",
+          "preflight/pilot_anderson_highcap/actor_kwargs.json": "617ffd2d462ead48eab1b799ec2e8bdf8e672c1dfd7f7f6c79ff37a70ab546ba",
+          "preflight/pilot_anderson_highcap/runtime_precision.json": "9c7794f2027a8bfb825fa95a97c03bf8d09a989d75454f62dc8e9ee3dc42607f",
+          "preflight/pilot_anderson_highcap/telemetry_summary.json": "7fd63aca91e272fcee1df794136b7623f8573ca483cc7d30ded371ecc5997ad3",
+          "preflight/pilot_anderson_tighter/manifest.json": "434d7f494817269d92ae4e413bded8e79c6b19fc7cd52d8f692681c923e03622",
+          "preflight/pilot_anderson_tighter/DONE.json": "8ecf73777c32a1630e1f5458680ec3df4a42dd9335357d7258f19c4269015f92",
+          "preflight/pilot_anderson_tighter/actor_kwargs.json": "4f9a803edffa5bd30bf8506f5c4d3111c8beaaf7c3d8af1db9d1d067166f068f",
+          "preflight/pilot_anderson_tighter/runtime_precision.json": "f4479541e0a178c4a50296ea611efda9c8060c7a3129b6bcb75a8ea74dca6d3b",
+          "preflight/pilot_anderson_tighter/telemetry_summary.json": "5f21a9d8b4804608e9f0a4c3b62c1dff35920026acf9f521bb2d98ecf610332c",
+          "preflight/smoke_newton_eval/actor_kwargs.json": "5f7186ca837f6ec7761f7b8f7a82e3bd5c5c136bfe114055f6b6c91fced056c0",
+          "preflight/smoke_newton_eval/runtime_precision.json": "6c1ac0fc4a41a3a63425e8b3c41af58a366d8a6459245b96290b5c8ec96eec23",
+          "preflight/smoke_newton_eval/evaluation.json": "aa680962497110d8e879727329aeacccec2b64f574ca9d00e196606dcf63827f",
+          "preflight/smoke_newton_eval/telemetry_summary.json": "d45885a7d5a19339d3759acbce9c6a95b9a9f51c3d922c17ab0cacf4696c3cae",
+          "ops/timings/anderson_highcap.json": "502eeae24358df152323681032d993ac3bc40b71d82b730e24a18526fdc04dc9",
+          "ops/timings/newton.json": "9edd6da0cfaac3ab1473c327ff6c58e639f42f4bbf9586752d2e1f3c22a6b767",
+          "ops/timings/anderson.json": "c7cf8d3d1877e103244ea25240eb48905bda09bff70f050ebc8e321136a66939",
+          "ops/timings/anderson_tighter.json": "4cece6555fff219bab56e5ad1b9355b7cd594d8dfb93ae582bca4e60d809cb24",
+          "ops/attempts/smoke_anderson_tighter_eval/EXIT.json": "1c49cf3b658e7a32a77d28c2c08b2006fa61cc00b4e50162786ce06fbdffdb47",
+          "ops/attempts/smoke_anderson_tighter_eval/CLAIM.json": "1e2c93d58301b9299fc0cf533d97c46d5fea3031f0eb8bc5f089fabe85796673",
+          "ops/attempts/smoke_anderson_tighter_eval/START.json": "92c3ed9cf2dc95ec89dfee0fad858c207fbe1386e407a2bca9f7ca810efcc202",
+          "ops/attempts/smoke_anderson_tighter_eval/ACCEPTED.json": "d766c58fd007691e077e2864b96b447d29d856fb44abbb2e9a9d5c85fa28e547",
+          "ops/attempts/smoke_anderson_tighter/EXIT.json": "66c3e101cf0436bcacf9533af8eb972bcbda6d1a8428f03aefa1dd1e541d599c",
+          "ops/attempts/smoke_anderson_tighter/CLAIM.json": "b5174172413eb5e25095bc2b67b1312737acf59d3f0015447348f56f544056e2",
+          "ops/attempts/smoke_anderson_tighter/START.json": "4e5127cf7e1808d791eb292bf987aa65a7de416db100600acb531a7b8b2610a4",
+          "ops/attempts/pilot_anderson/EXIT.json": "73a8bb1362bc2f332b0bc2d196b583c5b3aa3b36f3d85632d9347cab14d4ba0e",
+          "ops/attempts/pilot_anderson/CLAIM.json": "9aa68b04b1911d8af43fdb772984ae9ea3ef64aa139c30e44aadd55906946ac8",
+          "ops/attempts/pilot_anderson/START.json": "655932f1bfec176869e675d040d5845439aa19ffcdcea5872179dfe997fa0403",
+          "ops/attempts/smoke_anderson_eval/EXIT.json": "4ca091b1c63da53c311431aca2da8e123da25de22b27c4921f3ce64bd0deee88",
+          "ops/attempts/smoke_anderson_eval/CLAIM.json": "694d6e210f16173b5df23d7734830c423e0862f3d962b309c594f812e4f9b9d5",
+          "ops/attempts/smoke_anderson_eval/START.json": "6375ed3253a2c2a1adc22efbf001fd5f5a4fa99e87e824fa6a8cb378cdc00588",
+          "ops/attempts/smoke_anderson_eval/ACCEPTED.json": "ddb59befe2f51a519a7a24af09e1cefeeaf6775b81026f3fc444aed1485782f7",
+          "ops/attempts/pilot_newton/EXIT.json": "395d7b47fa88b6f75d1f555b384255d7fc0b8cd4945af955439d1e43ed3f45d2",
+          "ops/attempts/pilot_newton/CLAIM.json": "261a7eb785d04c7fb224415eeabbfb14168014c79c7b0cc70856eb0a54ee566f",
+          "ops/attempts/pilot_newton/START.json": "bde617c2c5e72d930ce3483b3c9b162b93cf995004a4dadf2bd4cd9665a688b2",
+          "ops/attempts/numerical_fresh/EXIT.json": "4beb556013188f56fd617fe162c82157135cd44b013b33736f99a1369c8e2c19",
+          "ops/attempts/numerical_fresh/CLAIM.json": "c3b0be71e79d063adc534806604d2dd53013a6a248ff66b253d801c0b76e5686",
+          "ops/attempts/numerical_fresh/START.json": "840c7cbadd05a1a22dbc970ab78315f110fcb4e7397b5759427ffb5702a64eaa",
+          "ops/attempts/numerical_fixed/EXIT.json": "3d479722cd077eda95d29b262193351fb3e883bf1b851d488de77df653f87b54",
+          "ops/attempts/numerical_fixed/CLAIM.json": "faaea25417a19fbc8881def9732e52169654884733abf4c4e39c820caac8608d",
+          "ops/attempts/numerical_fixed/START.json": "992c2f1e0eaefb4c01b9a980495e77b33ea9c1af8dc5d2388264f903fc43fc7d",
+          "ops/attempts/smoke_newton/EXIT.json": "cc1beaf26cc58f6eec8b425fa223000c23902d08aedb603785eda9a61ff5e819",
+          "ops/attempts/smoke_newton/CLAIM.json": "28423596569d11e4f6fd1b71ceae232d628a66090256119fb359047b73fa96cc",
+          "ops/attempts/smoke_newton/START.json": "5bc3ce833e08b29542eceac73212c10044713b3e65aa62e20e0db639c6274459",
+          "ops/attempts/smoke_anderson_highcap/EXIT.json": "9b8f6dddd7133c87aa902bd915ab7cdc9d9e53e4f243d7fe26afd62d4588cd31",
+          "ops/attempts/smoke_anderson_highcap/CLAIM.json": "facdb08f5463454c1cedfb4dc207566b4ce5f75bd9eb373d4e403e1dadff4d80",
+          "ops/attempts/smoke_anderson_highcap/START.json": "d16e899a9ec8c329a06ab6492e54cc240cf4a5154893cb590f8c040764942d4c",
+          "ops/attempts/smoke_anderson_highcap_eval/EXIT.json": "564f18ab1e3800b978945b3d3a43dbb6aa0e4eaf497f68c0fd7ccec132f9ec5f",
+          "ops/attempts/smoke_anderson_highcap_eval/CLAIM.json": "0ade2ae18333dd8410a89fe0af8c9897d87cf6fac87aa8d68bc7a786820eeba2",
+          "ops/attempts/smoke_anderson_highcap_eval/START.json": "77a78948dc4eb3089052e6a9d1984ca25f13fad39154694cb6a511c11b7adefa",
+          "ops/attempts/smoke_anderson_highcap_eval/ACCEPTED.json": "d7bac37a233ece3e04ee47fdd73df971948be8b3ef965095a4dc4d541d1aa4cb",
+          "ops/attempts/smoke_anderson/EXIT.json": "53f6d4b73df05b38d8f3d40a0cfe37c82b70349a9878ed57494157a64656313c",
+          "ops/attempts/smoke_anderson/CLAIM.json": "4c7952f2f5dc137f9c21b1001e63f47cec12e9730e1d2754bfdd00899540293a",
+          "ops/attempts/smoke_anderson/START.json": "789b6bc6fd0b72cc187bb4f50ffa84a944ccf5d295cacb95cabb355fb66ec7f7",
+          "ops/attempts/pilot_anderson_highcap/EXIT.json": "603672e29996356d13812dc1935c782d76c5d2ef14ee48c0e41b8cbe1019dfeb",
+          "ops/attempts/pilot_anderson_highcap/CLAIM.json": "38a9d1aa06816d6880a13328d53658d92b8cb442b51d3170cb4ca3693cb11d5b",
+          "ops/attempts/pilot_anderson_highcap/START.json": "044be15efeec7ac33a4d01afb6be1dd4652027dadc498a6911dbfdea5c85d465",
+          "ops/attempts/pilot_anderson_tighter/EXIT.json": "7fbf8daca4d879d5cdbb76516b7ff1edb604262d4b27cc4a0a0a4488862861a0",
+          "ops/attempts/pilot_anderson_tighter/CLAIM.json": "662b36f92e6acfe6171b5e7af2d121bd340b66ac1db90c82d3e8b1cef214f0fd",
+          "ops/attempts/pilot_anderson_tighter/START.json": "4350acba6ca7f64b636d0907fc2d9842e9526000dfe248e6dc891b3528ee1488",
+          "ops/attempts/smoke_newton_eval/EXIT.json": "960c202c869ac229bf2daf6c382779104ca725c24ff9762aeb8f420d4ce6374a",
+          "ops/attempts/smoke_newton_eval/CLAIM.json": "52c96676daaeda8fb8a07d070367f91033ed1c5802e3672f288731c709074659",
+          "ops/attempts/smoke_newton_eval/START.json": "0eaf1a42a5b759d5c089b8215357bfd3859a12859a828d44fdf0d430ec15ba79",
+          "ops/attempts/smoke_newton_eval/ACCEPTED.json": "44b28e284ab0d394d07af55bdb6acc037ff49e15935905277a5a984bfb31561a",
+          "ops/tests_lifecycle.log": "9580bcfa6538520d35a57cc0d07732d9d25760df511da750a798bee778870d19",
+          "ops/tests_numerical_gate.log": "f9598cef737c335184b693454e66f2838a511d59d3b3f5c0c1528461859b8296",
+          "ops/tests_original.log": "8388d051e526e4bd6ef45f1e8fded0667e4a04b32150922b4240f2508b93f26a",
+          "ops/tests_precision.log": "6a9790eb1bacf7bab47e5c55e7832ad3d3d7d93ed7531c41cd5118676c8d2910"
+        },
+        "scientific_runs_started": false
+      },
+      "COORDINATOR_STARTED.json": {
+        "campaign_id": "deflow-campaign-20261111-revision3",
+        "contract_sha256": "300614d6c0abfbb1bbd5f722effbc5c00774f7213c7598dc68b6527c0225c0ea",
+        "precision_policy": "strict_fp32",
+        "at": 1794378048.2601967,
+        "identity": {
+          "pid": 43139,
+          "process_start_ticks": 4834709,
+          "boot_id": "4dfe31ec-070c-4dde-80cb-8b843303addc",
+          "process_group": 43139,
+          "session": 43139,
+          "cmdline": "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python -u /home/featurize/deflow-campaign-20261111/revision3/ops/campaign.py ",
+          "cwd": "/home/featurize/deflow-campaign-20261111/revision3"
+        }
+      }
+    },
+    "failure_files": [],
+    "sync_receipt": {
+      "campaign_id": "deflow-campaign-20261111-revision3",
+      "contract_sha256": "300614d6c0abfbb1bbd5f722effbc5c00774f7213c7598dc68b6527c0225c0ea",
+      "precision_policy": "strict_fp32",
+      "at": 1794396438.2987578,
+      "result": "ok",
+      "index_sha256": "bc4368b04040559f19b077cc955053719f7bf31f8bc9d370faa2f624a1c0ff43",
+      "files": 310,
+      "selected_bytes": 322917983,
+      "verified_sha256": {
+        "evaluations/anderson_s2/evaluation.json": "13921c5cc52dbacebf525e1fe234319f652fd10ec9163c9fadf5c0a3c894a5a8",
+        "evaluations/anderson_s2/runtime_precision.json": "6c1ac0fc4a41a3a63425e8b3c41af58a366d8a6459245b96290b5c8ec96eec23",
+        "ops/DEPLOYMENT.md": "57dd7b066bb342bf5893c7ddda8fe9b4927433c7e05863bc7e8c4717b22cf7d7",
+        "ops/PREFLIGHT_DONE.json": "c1ad48552f805c898a3c457b945b0ba514cfd911c13dad2635854798b0adf557",
+        "ops/attempts/anderson_s2/ACCEPTED.json": "735c18521534e5dc82c7c1dc3202f8358d5191c83803133af7f542ed318b10d5",
+        "ops/attempts/anderson_s2/EXIT.json": "8f4a5e9e4be0209ce64356425931df20813c0892e329893078a823224e1fd749",
+        "ops/attempts/anderson_s2_eval/ACCEPTED.json": "df91194e24d3d8bbd1900d676c2d25247adf0956ba1efe52c5b9f0c3957e97a6",
+        "ops/attempts/anderson_s2_eval/EXIT.json": "3aab206fdc98586cc169b7bfa5105e57fd0b88f7117cf6cc3f34259d7a0e8922",
+        "ops/attempts/numerical_fixed/EXIT.json": "3d479722cd077eda95d29b262193351fb3e883bf1b851d488de77df653f87b54",
+        "ops/attempts/numerical_fresh/EXIT.json": "4beb556013188f56fd617fe162c82157135cd44b013b33736f99a1369c8e2c19",
+        "ops/attempts/pilot_anderson/EXIT.json": "73a8bb1362bc2f332b0bc2d196b583c5b3aa3b36f3d85632d9347cab14d4ba0e",
+        "ops/attempts/pilot_anderson_highcap/EXIT.json": "603672e29996356d13812dc1935c782d76c5d2ef14ee48c0e41b8cbe1019dfeb",
+        "ops/attempts/pilot_anderson_tighter/EXIT.json": "7fbf8daca4d879d5cdbb76516b7ff1edb604262d4b27cc4a0a0a4488862861a0",
+        "ops/attempts/pilot_newton/EXIT.json": "395d7b47fa88b6f75d1f555b384255d7fc0b8cd4945af955439d1e43ed3f45d2",
+        "ops/attempts/smoke_anderson/EXIT.json": "53f6d4b73df05b38d8f3d40a0cfe37c82b70349a9878ed57494157a64656313c",
+        "ops/attempts/smoke_anderson_eval/ACCEPTED.json": "ddb59befe2f51a519a7a24af09e1cefeeaf6775b81026f3fc444aed1485782f7",
+        "ops/attempts/smoke_anderson_eval/EXIT.json": "4ca091b1c63da53c311431aca2da8e123da25de22b27c4921f3ce64bd0deee88",
+        "ops/attempts/smoke_anderson_highcap/EXIT.json": "9b8f6dddd7133c87aa902bd915ab7cdc9d9e53e4f243d7fe26afd62d4588cd31",
+        "ops/attempts/smoke_anderson_highcap_eval/ACCEPTED.json": "d7bac37a233ece3e04ee47fdd73df971948be8b3ef965095a4dc4d541d1aa4cb",
+        "ops/attempts/smoke_anderson_highcap_eval/EXIT.json": "564f18ab1e3800b978945b3d3a43dbb6aa0e4eaf497f68c0fd7ccec132f9ec5f",
+        "ops/attempts/smoke_anderson_tighter/EXIT.json": "66c3e101cf0436bcacf9533af8eb972bcbda6d1a8428f03aefa1dd1e541d599c",
+        "ops/attempts/smoke_anderson_tighter_eval/ACCEPTED.json": "d766c58fd007691e077e2864b96b447d29d856fb44abbb2e9a9d5c85fa28e547",
+        "ops/attempts/smoke_anderson_tighter_eval/EXIT.json": "1c49cf3b658e7a32a77d28c2c08b2006fa61cc00b4e50162786ce06fbdffdb47",
+        "ops/attempts/smoke_newton/EXIT.json": "cc1beaf26cc58f6eec8b425fa223000c23902d08aedb603785eda9a61ff5e819",
+        "ops/attempts/smoke_newton_eval/ACCEPTED.json": "44b28e284ab0d394d07af55bdb6acc037ff49e15935905277a5a984bfb31561a",
+        "ops/attempts/smoke_newton_eval/EXIT.json": "960c202c869ac229bf2daf6c382779104ca725c24ff9762aeb8f420d4ce6374a",
+        "ops/campaign.py": "8e6b9eac80476dd2d7435d320e88e31bc9c2180d1c7bf4636d5dc43f1bbdf1bd",
+        "ops/common.py": "d948480047b9b84b5b439a0ab53ec22890e26aa4cfe1527a178f93976c082bda",
+        "ops/keepawake.py": "3977908b64a9426444a24234c5d881300f884c7f03fb15265647c6f710342975",
+        "ops/preflight.py": "14477e49c38e70c7c13d091603e98441c908c522bcfb110462a50f2c5716221f",
+        "ops/ssh-askpass.sh": "d069562f1804a64b49ca424682e8ea3d7d6b0a1331b2a77b68e542c6eb9564d1",
+        "ops/ssh.sh": "0a9041abc7a4e8baf1b9192b841a03dd760f88b1679375859e059096e3e7819f",
+        "ops/sync_index.py": "689d577e17a4d86d6848ca41d04dfe97ab4aaeb658ebba58eb3367240f2a3f47",
+        "ops/sync_local.py": "e6106fe590c1a65ad87f32e4c01faa7a5fd99aac5b5ecef8179c94180727dec7",
+        "ops/test_lifecycle.py": "48b82da1486aa4d119e2e0a868b38f4cf9bde7e4f8e5fe5620857e8eb91b1333",
+        "preflight/numerical_fixed/case_00/forward_raw.pt": "1efb8cb344fb74b523bee8481c78774ae22767ba298323ece1674c885bfdaac6",
+        "preflight/numerical_fixed/case_01/forward_raw.pt": "dba99d3bef4d49e70878bfb553614fc2bf604ef725233e67a9954125ca376dfe",
+        "preflight/numerical_fixed/case_02/forward_raw.pt": "22f00b1316f5e7eada81d95ff6d8fcb8df76a2fd41caf18750f7874c43b35042",
+        "preflight/numerical_fresh/case_00/forward_raw.pt": "2b052f8d8fbbbe53d1a920caed231ee6d3de5105340949004e40f6903e953936",
+        "preflight/numerical_fresh/case_01/forward_raw.pt": "10bc45b2a2da6a3df7925b73460f12d8ea5279eb4745f7f977d98e310cd1763a",
+        "preflight/numerical_fresh/case_02/forward_raw.pt": "af1da9d2cb5bdbd216f43bbcb6034f2309d50398c687ed88fee3ac0eb9bafc0a",
+        "preflight/numerical_fresh/case_03/forward_raw.pt": "ebd0dcf3144aed68065de65d1c8b5370f811a857306260a2af5ee5f0d66fc1cc",
+        "preflight/pilot_anderson/DONE.json": "e473aedfba7cdabba008c67abc404efcb1ba83c0bd6c288a4f4d620c962c89be",
+        "preflight/pilot_anderson/runs/anderson_wide_tight_s0/anderson_wide_tight_s0.pt": "e5b0e8b12cd0d8384bc3963a1f3be5fcd5fe02f3343d1369de6f282582cce650",
+        "preflight/pilot_anderson/runs/anderson_wide_tight_s0/ckpt.pt": "cd52479e5ebf416d05389a02050da9831c8d8ba34a3f9b9502917c3f93642b34",
+        "preflight/pilot_anderson/runs/anderson_wide_tight_s0/ckpt_step_000008002.pt": "cd52479e5ebf416d05389a02050da9831c8d8ba34a3f9b9502917c3f93642b34",
+        "preflight/pilot_anderson_highcap/DONE.json": "a6e636e1f9e2881db11113ee09743840d87e358200e75f273b6c7a4651273c42",
+        "preflight/pilot_anderson_highcap/runs/anderson_tol1e-05_cap500_wide_tight_s0/anderson_tol1e-05_cap500_wide_tight_s0.pt": "1438846080c2d386b6e626268dcba5e63dcbec141948c7ae53633cc1727b3b5e",
+        "preflight/pilot_anderson_highcap/runs/anderson_tol1e-05_cap500_wide_tight_s0/ckpt.pt": "608d08a151ec8bebfbe8a3362182ad006e1b124ccba8255f1e1bfa2f46e24621",
+        "preflight/pilot_anderson_highcap/runs/anderson_tol1e-05_cap500_wide_tight_s0/ckpt_step_000008001.pt": "608d08a151ec8bebfbe8a3362182ad006e1b124ccba8255f1e1bfa2f46e24621",
+        "preflight/pilot_anderson_tighter/DONE.json": "8ecf73777c32a1630e1f5458680ec3df4a42dd9335357d7258f19c4269015f92",
+        "preflight/pilot_anderson_tighter/runs/anderson_tol1e-06_cap100_wide_tight_s0/anderson_tol1e-06_cap100_wide_tight_s0.pt": "e04b4b552851e4deb267a1bed315784c27b950cfb42da5b7d47f97c10999969a",
+        "preflight/pilot_anderson_tighter/runs/anderson_tol1e-06_cap100_wide_tight_s0/ckpt.pt": "5b16418e56871d8825e41bcba96b7af7999f0695080564f180e7ef34d87fe05d",
+        "preflight/pilot_anderson_tighter/runs/anderson_tol1e-06_cap100_wide_tight_s0/ckpt_step_000008004.pt": "5b16418e56871d8825e41bcba96b7af7999f0695080564f180e7ef34d87fe05d",
+        "preflight/pilot_newton/DONE.json": "35ec233e719d4f8580e2c8289b49e1d379ff23ab3c65ca2a71b3869713367de2",
+        "preflight/pilot_newton/runs/newton_wide_tight_s0/ckpt.pt": "4cc335df0b08ed43f831d69bc5870b331edc18d60cb056e0ae8c0b316d73d736",
+        "preflight/pilot_newton/runs/newton_wide_tight_s0/ckpt_step_000008003.pt": "4cc335df0b08ed43f831d69bc5870b331edc18d60cb056e0ae8c0b316d73d736",
+        "preflight/pilot_newton/runs/newton_wide_tight_s0/newton_wide_tight_s0.pt": "ef659bef90526e5e93f792d7b24819efd2df93321be53c73d065245c07c90cfb",
+        "preflight/smoke_anderson/DONE.json": "a4adc6516ad6d8728deebe2d58adfe2c34a9bbe74a9bb5a3bba40f68ea18ccdf",
+        "preflight/smoke_anderson/actor_kwargs.json": "5f7186ca837f6ec7761f7b8f7a82e3bd5c5c136bfe114055f6b6c91fced056c0",
+        "preflight/smoke_anderson/manifest.json": "7ba40d3694887bde4e0dbd76568bc3995a4316879423a8cf2d85bdebacdc4c5d",
+        "preflight/smoke_anderson/runs/anderson_wide_tight_s0/anderson_wide_tight_s0.pt": "ba7075c06d6e3a3bbe6a9ac5116733b9b2d6c519e0f364cb9727e5e0ab5c24e9",
+        "preflight/smoke_anderson/runs/anderson_wide_tight_s0/ckpt.pt": "6495aa56099302bdcc2978508213d5459db97282dd6242cec6624ea466131df3",
+        "preflight/smoke_anderson/runs/anderson_wide_tight_s0/ckpt_step_000000256.pt": "6495aa56099302bdcc2978508213d5459db97282dd6242cec6624ea466131df3",
+        "preflight/smoke_anderson/runtime_precision.json": "7c6f4fff0a4c0cbec5d3ceea5020cb96b89cae84195415ba8a3c224bba96d5b0",
+        "preflight/smoke_anderson/telemetry_summary.json": "72b6b2da5fffde08c058bf791ab8e9bb7cc6297a001b50795b13f6a5e4362178",
+        "preflight/smoke_anderson_eval/evaluation.json": "249a2fbcacdb10e765737f85e3df892eccba73cbd4701fa100bed5bb616a0b14",
+        "preflight/smoke_anderson_eval/runtime_precision.json": "6c1ac0fc4a41a3a63425e8b3c41af58a366d8a6459245b96290b5c8ec96eec23",
+        "preflight/smoke_anderson_highcap/DONE.json": "aa4db5c3c0a66925fe0a225b75967356eb2beaef686e5895151d1d1ddd0906eb",
+        "preflight/smoke_anderson_highcap/actor_kwargs.json": "617ffd2d462ead48eab1b799ec2e8bdf8e672c1dfd7f7f6c79ff37a70ab546ba",
+        "preflight/smoke_anderson_highcap/manifest.json": "a823e6fd1dc16f40497571153425db6dc8ffdc32f491f6f669309ac66263ecd3",
+        "preflight/smoke_anderson_highcap/runs/anderson_tol1e-05_cap500_wide_tight_s0/anderson_tol1e-05_cap500_wide_tight_s0.pt": "d5bd53bea7c481627e32df8505ed64053533f86b044c9e8a9ef9629847b0022f",
+        "preflight/smoke_anderson_highcap/runs/anderson_tol1e-05_cap500_wide_tight_s0/ckpt.pt": "96a6c3ee0941ccdc9ba9a949595b61b5397bd2fcd9ba7d04a2e48c5b877cc3eb",
+        "preflight/smoke_anderson_highcap/runs/anderson_tol1e-05_cap500_wide_tight_s0/ckpt_step_000000256.pt": "96a6c3ee0941ccdc9ba9a949595b61b5397bd2fcd9ba7d04a2e48c5b877cc3eb",
+        "preflight/smoke_anderson_highcap/runtime_precision.json": "9c7794f2027a8bfb825fa95a97c03bf8d09a989d75454f62dc8e9ee3dc42607f",
+        "preflight/smoke_anderson_highcap/telemetry_summary.json": "318c63eb86d59328719865f714bbe2cb880f140a719f01e30b714c76ed260c0b",
+        "preflight/smoke_anderson_highcap_eval/evaluation.json": "5d57621294aaa41168cd38b3d35061090a0ec6e10cfe32eb673e6e3b8c5e53af",
+        "preflight/smoke_anderson_highcap_eval/runtime_precision.json": "45090c3e599e923bb2b043c116d25407f8ba3cf92d10baf623f84840d074342b",
+        "preflight/smoke_anderson_tighter/DONE.json": "6b3b17b4a1ba2b143fa8dd7a8d7013c31a1649b9ee5d91f7bea2df7511a0f9dd",
+        "preflight/smoke_anderson_tighter/actor_kwargs.json": "4f9a803edffa5bd30bf8506f5c4d3111c8beaaf7c3d8af1db9d1d067166f068f",
+        "preflight/smoke_anderson_tighter/manifest.json": "4e07398da37c33863c186fa3314c1dd1b1e8ce75bb410d16b241c50d93d135d2",
+        "preflight/smoke_anderson_tighter/runs/anderson_tol1e-06_cap100_wide_tight_s0/anderson_tol1e-06_cap100_wide_tight_s0.pt": "2883ccea4ffdcda13233cf5151361addd2b811c03fca458235e2351a402c4a3a",
+        "preflight/smoke_anderson_tighter/runs/anderson_tol1e-06_cap100_wide_tight_s0/ckpt.pt": "a598b18b880a6068c8ffb544c20d4a5687330a5ac5c41fc540a662b0e37f8e32",
+        "preflight/smoke_anderson_tighter/runs/anderson_tol1e-06_cap100_wide_tight_s0/ckpt_step_000000256.pt": "a598b18b880a6068c8ffb544c20d4a5687330a5ac5c41fc540a662b0e37f8e32",
+        "preflight/smoke_anderson_tighter/runtime_precision.json": "f4479541e0a178c4a50296ea611efda9c8060c7a3129b6bcb75a8ea74dca6d3b",
+        "preflight/smoke_anderson_tighter/telemetry_summary.json": "964e3fdc2ab4b5d482d3e2a21e5001736d696d5b28fc4436ca38435c27bdc122",
+        "preflight/smoke_anderson_tighter_eval/evaluation.json": "20bef32fb2cb2b7b08aaa5d9924e1deb7c434dbce1b0de7402422f563d0e7067",
+        "preflight/smoke_anderson_tighter_eval/runtime_precision.json": "9d341aba73cbbb4a6246f6b6fe227d5cc805b42a144ffb3bd9316468dd47b10c",
+        "preflight/smoke_newton/DONE.json": "27327b360dadfb856ee4d536b1e913132746c9883160dea287b129b2f15d0cd9",
+        "preflight/smoke_newton/actor_kwargs.json": "5f7186ca837f6ec7761f7b8f7a82e3bd5c5c136bfe114055f6b6c91fced056c0",
+        "preflight/smoke_newton/manifest.json": "124c4556b867c17706b08a0fd90452fd862d0d5a3b23bf396c956ee631ead142",
+        "preflight/smoke_newton/runs/newton_wide_tight_s0/ckpt.pt": "1c42c53e3ea952783c80555e0e4e4d410a7110ead608a4390919213aada07fa4",
+        "preflight/smoke_newton/runs/newton_wide_tight_s0/ckpt_step_000000256.pt": "1c42c53e3ea952783c80555e0e4e4d410a7110ead608a4390919213aada07fa4",
+        "preflight/smoke_newton/runs/newton_wide_tight_s0/newton_wide_tight_s0.pt": "4ebcc5a586cf5035f72fb67d2296570c4e8441b6e8aac0c9a45e8b838d0c43e7",
+        "preflight/smoke_newton/runtime_precision.json": "7c6f4fff0a4c0cbec5d3ceea5020cb96b89cae84195415ba8a3c224bba96d5b0",
+        "preflight/smoke_newton/telemetry_summary.json": "138f32486ea3325de3666f52a7e38080c8164f694a6175b80d88ce621bbad01a",
+        "preflight/smoke_newton_eval/evaluation.json": "aa680962497110d8e879727329aeacccec2b64f574ca9d00e196606dcf63827f",
+        "preflight/smoke_newton_eval/runtime_precision.json": "6c1ac0fc4a41a3a63425e8b3c41af58a366d8a6459245b96290b5c8ec96eec23",
+        "results/anderson_s2/DONE.json": "b2f9bb899499576adcbb3ff682aa97e2de8648a623b71521f338c31d92a04d20",
+        "results/anderson_s2/actor_kwargs.json": "5f7186ca837f6ec7761f7b8f7a82e3bd5c5c136bfe114055f6b6c91fced056c0",
+        "results/anderson_s2/manifest.json": "4d3ab8dad8f3ea0c1a48dce82433f2013d10593e8257fbe889847280bc97c667",
+        "results/anderson_s2/runs/anderson_wide_tight_s2/anderson_wide_tight_s2.pt": "8b239489b44ae24eba29c3bb07839bfde14fa4af4ac243f37623071597157f0b",
+        "results/anderson_s2/runs/anderson_wide_tight_s2/ckpt.pt": "4429229b42c26ae735d7af3cc9e51579871fb47fff005f73910986e4a874f9dc",
+        "results/anderson_s2/runs/anderson_wide_tight_s2/ckpt_step_000025000.pt": "c457b362b9856e43c3a0074d9883986ee27f5204817b20262d7deaf406d072d3",
+        "results/anderson_s2/runs/anderson_wide_tight_s2/ckpt_step_000050001.pt": "84484bdabb640b046d11446a719541f90bc582a2a5448a3d3fd1979dcafabd03",
+        "results/anderson_s2/runs/anderson_wide_tight_s2/ckpt_step_000075006.pt": "0ec6f17c96016c5f4329688acdc6983ddcd501c384064956ef87a9220d9743f6",
+        "results/anderson_s2/runs/anderson_wide_tight_s2/ckpt_step_000100008.pt": "186f77f9124729a65e69108bee0978c15a969c70acdf4d0d20d3052980a46c73",
+        "results/anderson_s2/runs/anderson_wide_tight_s2/ckpt_step_000125015.pt": "decb2df40aeadf1b4beb477aab1d7e51eac973d5aee7228269163aadffea16d3",
+        "results/anderson_s2/runs/anderson_wide_tight_s2/ckpt_step_000150017.pt": "6f844921cef5e15f09a428df571b551f0257ff7fac4299925db6c0cb0d243c5c",
+        "results/anderson_s2/runs/anderson_wide_tight_s2/ckpt_step_000175020.pt": "3a971cc968e0ea7b85f303076d703a1f66539ac92398f563b4eaa433153500ed",
+        "results/anderson_s2/runs/anderson_wide_tight_s2/ckpt_step_000200005.pt": "4429229b42c26ae735d7af3cc9e51579871fb47fff005f73910986e4a874f9dc",
+        "results/anderson_s2/runtime_precision.json": "7c6f4fff0a4c0cbec5d3ceea5020cb96b89cae84195415ba8a3c224bba96d5b0",
+        "results/anderson_s2/telemetry_summary.json": "4a61523edf5b753bd918e547a22b323fed5860e3eaf7a948e33b3e92b8ac70f7",
+        "results/newton_s1/runs/newton_wide_tight_s1/ckpt.pt": "45f76abe25df31d61fb7707c3b1eef34531be4a19ac718419e042d38a9e8cec6",
+        "results/newton_s1/runs/newton_wide_tight_s1/ckpt_step_000025003.pt": "1efa72ebd5f091ed461fa40b330d4819cf9c7dad3d591ef6726449c4f43388d4",
+        "results/newton_s1/runs/newton_wide_tight_s1/ckpt_step_000050003.pt": "62efcc1aba49c76201e2ff908f44184f7ac3a6391aeaefe55cc06dd69206fecb",
+        "results/newton_s1/runs/newton_wide_tight_s1/ckpt_step_000075005.pt": "45f76abe25df31d61fb7707c3b1eef34531be4a19ac718419e042d38a9e8cec6",
+        "results/newton_s2/runs/newton_wide_tight_s2/ckpt.pt": "695b7c5b89063f23cbac8f42e23c9f8f207820122ec456b292806c43afc10848",
+        "results/newton_s2/runs/newton_wide_tight_s2/ckpt_step_000025002.pt": "777d16d1517ca22f6ecf645faf9cde73da25331b6ef0143b08fc54ead9f97bfc",
+        "results/newton_s2/runs/newton_wide_tight_s2/ckpt_step_000050002.pt": "695b7c5b89063f23cbac8f42e23c9f8f207820122ec456b292806c43afc10848",
+        "results/newton_s3/runs/newton_wide_tight_s3/ckpt.pt": "09dbfc5916d8ebe928794604c473d68eba8121ecd589b4f3e7c225c1326c24af",
+        "results/newton_s3/runs/newton_wide_tight_s3/ckpt_step_000025000.pt": "49b42647e7cfaba2f3a88ca867a3b4bbeac95c3026d112f042665382b88fe131",
+        "results/newton_s3/runs/newton_wide_tight_s3/ckpt_step_000050003.pt": "09dbfc5916d8ebe928794604c473d68eba8121ecd589b4f3e7c225c1326c24af",
+        "validation/historical_fixed_bank.json": "a14ee772cf9ca41ecbdff2bbed03a06388c94b7df83a5e7417f72870cb4aa5bd",
+        "validation/numerical_preflight.py": "91e70af30c5ba6e271248581891e7e6583d2fcff13c2678a590216674825186f",
+        "validation/run_synthetic_cpu_check.py": "7ca0d7662a5a3e87b8f8c74a31bfa9897d1125a92b7b3b9e889476bbf9d8888c",
+        "validation/synthetic_cpu_88eevo6j/capsule.pt": "909b2dc93a8ddf44c552f2dedcf0a2dbe694c071b1944f9ef5b9fd6d4719db7e",
+        "validation/synthetic_cpu_88eevo6j/forward_raw.pt": "616d0d1f9f2eab0b68759e3d60b026c12995cf9fc475841e2e5f6af4423c1227",
+        "validation/synthetic_cpu_8xqh1vml/capsule.pt": "909b2dc93a8ddf44c552f2dedcf0a2dbe694c071b1944f9ef5b9fd6d4719db7e",
+        "validation/synthetic_cpu_8xqh1vml/forward_raw.pt": "295bff64361ddc90a4f26845a830bd4ebec9854b05afc6eff5c3a5b8b26c50ad",
+        "validation/test_numerical_preflight.py": "4b22aed2345a23a0bbd5bd86a5d7cb105648fa05932d8b8794ed38a0199e8be3"
+      },
+      "accepted_attempts": [
+        "anderson_s2",
+        "anderson_s2_eval",
+        "smoke_anderson_eval",
+        "smoke_anderson_highcap_eval",
+        "smoke_anderson_tighter_eval",
+        "smoke_newton_eval"
+      ],
+      "local_free_bytes": 173921669120
+    }
+  },
+  "local_sync": {
+    "at": 1794396438.2987578,
+    "result": "ok",
+    "index_sha256": "bc4368b04040559f19b077cc955053719f7bf31f8bc9d370faa2f624a1c0ff43",
+    "verified_files": 131,
+    "mismatches": [],
+    "accepted_attempts": [
+      "anderson_s2",
+      "anderson_s2_eval",
+      "smoke_anderson_eval",
+      "smoke_anderson_highcap_eval",
+      "smoke_anderson_tighter_eval",
+      "smoke_newton_eval"
+    ],
+    "selected_bytes": 322917983,
+    "local_free_bytes": 173921669120
+  },
+  "services": {
+    "sync": {
+      "label": "com.codex.deflow-20261111-v3-sync",
+      "exit_code": 0,
+      "state": "{\n\t\"StandardOutPath\" = \"/Users/ruslanageev/dev/DEFLOW/rebuttal/common/operations/sync-launchd.log\";\n\t\"LimitLoadToSessionType\" = \"Aqua\";\n\t\"StandardErrorPath\" = \"/Users/ruslanageev/dev/DEFLOW/rebuttal/common/operations/sync-launchd.err\";\n\t\"Label\" = \"com.codex.deflow-20261111-v3-sync\";\n\t\"OnDemand\" = true;\n\t\"LastExitStatus\" = 0;\n\t\"Program\" = \"/Library/Frameworks/Python.framework/Versions/3.10/bin/python3\";\n\t\"ProgramArguments\" = (\n\t\t\"/Library/Frameworks/Python.framework/Versions/3.10/bin/python3\";\n\t\t\"/Users/ruslanageev/dev/DEFLOW/rebuttal/experiments/E01-solver-comparison/runs/deflow-campaign-20261111/revision3/ops/sync_local.py\";\n\t);\n};\n"
+    },
+    "keepawake": {
+      "label": "com.codex.deflow-rebuttal-keepawake-v2",
+      "exit_code": 0,
+      "state": "{\n\t\"StandardOutPath\" = \"/Users/ruslanageev/dev/DEFLOW/rebuttal/common/operations/keepawake-launchd.log\";\n\t\"LimitLoadToSessionType\" = \"Aqua\";\n\t\"StandardErrorPath\" = \"/Users/ruslanageev/dev/DEFLOW/rebuttal/common/operations/keepawake-launchd.err\";\n\t\"Label\" = \"com.codex.deflow-rebuttal-keepawake-v2\";\n\t\"OnDemand\" = true;\n\t\"LastExitStatus\" = 0;\n\t\"PID\" = 98592;\n\t\"Program\" = \"/usr/bin/caffeinate\";\n\t\"ProgramArguments\" = (\n\t\t\"/usr/bin/caffeinate\";\n\t\t\"-i\";\n\t\t\"-s\";\n\t\t\"/Library/Frameworks/Python.framework/Versions/3.10/bin/python3\";\n\t\t\"/Users/ruslanageev/dev/DEFLOW/rebuttal/experiments/E01-solver-comparison/runs/deflow-campaign-20261111/revision3/ops/keepawake.py\";\n\t);\n};\n"
+    }
+  },
+  "independent_evaluation_check": {
+    "run_id": "anderson_s2",
+    "episode_count": 1000,
+    "summary_recomputed": [
+      "total_success",
+      "mean_return"
+    ],
+    "checkpoint_sha256": "4429229b42c26ae735d7af3cc9e51579871fb47fff005f73910986e4a874f9dc",
+    "metrics": {
+      "p_i": [
+        0.244,
+        0.238,
+        0.235,
+        0.232
+      ],
+      "total_success": 0.949,
+      "successful_goal_entropy_nats": 1.3861199331138123,
+      "successful_goal_entropy_normalized": 0.9998741767903194,
+      "u4": 0.66145462359175,
+      "u16": 0.9868217914324604,
+      "mean_return": -8.105148948183865
+    },
+    "training_seconds": 8571.401953458786,
+    "evaluation_seconds": 6.227883577346802
+  },
+  "authority": "Existing coordinator owns exact frozen queue. No launches, retries, resumes, source/config changes, signals or cleanup performed by takeover.",
+  "preservation": "Compact mirror is not a full raw backup. All originals remain on server. No remote deletion authorized.",
+  "completion_gate": "12 accepted training/evaluation pairs and nine accepted audits plus FINAL_SYNC_ACK matching local final artifacts. Record failures without retry."
+}

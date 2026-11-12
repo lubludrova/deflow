@@ -1,0 +1,77 @@
+{
+  "tests": "13 passed, CPU",
+  "scientific_training_started": false,
+  "cuda_validated": false,
+  "checks": {
+    "newton_smoke": {
+      "exit_code": 0,
+      "elapsed_seconds": 4.472851991653442,
+      "checkpoints": [
+        {
+          "path": "/private/tmp/deflow-final-newton-smoke/runs/newton_wide_tight_s1/ckpt.pt",
+          "global_step": 256
+        },
+        {
+          "path": "/private/tmp/deflow-final-newton-smoke/runs/newton_wide_tight_s1/ckpt_step_000000256.pt",
+          "global_step": 256
+        }
+      ]
+    },
+    "anderson_smoke": {
+      "exit_code": 0,
+      "elapsed_seconds": 3.967420816421509,
+      "checkpoints": [
+        {
+          "path": "/private/tmp/deflow-final-anderson-smoke/runs/anderson_wide_tight_s1/ckpt.pt",
+          "global_step": 256
+        },
+        {
+          "path": "/private/tmp/deflow-final-anderson-smoke/runs/anderson_wide_tight_s1/ckpt_step_000000256.pt",
+          "global_step": 256
+        }
+      ]
+    },
+    "evaluation": {
+      "solver": "newton",
+      "checkpoint_sha256": "52b2232c1980ce58ed158909710af7220e215e9f0c228f391e8fa53de0523a72",
+      "checkpoint": "/private/tmp/deflow-final-newton-smoke/runs/newton_wide_tight_s1/ckpt_step_000000256.pt",
+      "summary": {
+        "p_i": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "total_success": 0.0,
+        "successful_goal_entropy_nats": -0.0,
+        "successful_goal_entropy_normalized": -0.0,
+        "u4": 0.0,
+        "u16": 0.0,
+        "mean_return": -112.32824781537056
+      },
+      "eval_seed": 1
+    },
+    "historical_sensitivity_cli": {
+      "passed": true,
+      "inputs": 8,
+      "scientific_result": false
+    }
+  },
+  "limitations": [
+    "Local Torch2.13 differs from repository pin2.5.1",
+    "CUDA preflight on supplied server required",
+    "Historical B8 bank is only compatibility evidence",
+    "Target/temperature states captured but full causal effects not established"
+  ],
+  "package_sha256": {
+    "install_into_deflow.py": "c3fe48a21146f3fbdf74026d925976382b9014d98d9f0e5fd7b6374c9ab0b30b",
+    "deflow_rebuttal/prepare_inputs.py": "80893e90208e4e912104fea318634d79a504ef23cc2b6a966fab671ab07d9fbb",
+    "deflow_rebuttal/audit.py": "adbb0ea6966c56c1901a183affb655fd27cf84e278540a8b1114819f6328f1b6",
+    "deflow_rebuttal/run_docking.py": "093c7095867fa2a97d38ba61d9d483a9e3cdedf72c6a0a4ba3c779047672d4f4",
+    "deflow_rebuttal/__init__.py": "bb1453bff7053d16daa30c920e327a4321f2b67d8cb1a9f3f77997be12909a91",
+    "deflow_rebuttal/sequential_newton.py": "e7c24ebef16db7bd2e16101c08625294ba4902449e774281b9f5f0fca0a3a6d8",
+    "deflow_rebuttal/test_audit.py": "39e4d6e960ddb275e550fa5afbafd1ec188471bee0cde4bbcbc55d725aca2987",
+    "deflow_rebuttal/test_solver.py": "b2072803ce51db7958b7f6331f88345ffc614d27c609d8d9fc0bd79489a6bb7c",
+    "deflow_rebuttal/evaluate.py": "ce9ce9f8c9c2eab7b0e858afdb646995ec4958c6b1fc9d9937ccb004ffc2a0e8"
+  }
+}

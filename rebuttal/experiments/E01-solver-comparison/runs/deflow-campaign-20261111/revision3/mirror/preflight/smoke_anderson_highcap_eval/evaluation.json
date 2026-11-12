@@ -1,0 +1,87 @@
+{
+  "precision_policy": "strict_fp32",
+  "runtime_precision": {
+    "matmul_precision": "highest",
+    "matmul_allow_tf32": false,
+    "cudnn_allow_tf32": false,
+    "autocast_cuda": false,
+    "autocast_cpu": false,
+    "default_dtype": "torch.float32",
+    "torch": "2.5.1+cu124",
+    "cuda": "12.4",
+    "cudnn": 90100,
+    "backend_environment": {}
+  },
+  "package_sha256": {
+    "test_precision.py": "4aa05f012ee04290f4b3e7d5230adf805c9b4bcba5dfe8d93ff1383a22968da5",
+    "__init__.py": "bb1453bff7053d16daa30c920e327a4321f2b67d8cb1a9f3f77997be12909a91",
+    "precision.py": "538963ed417e294db4c4bf78605671463e6f9263222073b5e0e2404e3a3dbe92",
+    "prepare_inputs.py": "13c9ffbac77395c8d2b9cd153408214d3c5d212a341250b042637509aa58030b",
+    "sequential_newton.py": "e7c24ebef16db7bd2e16101c08625294ba4902449e774281b9f5f0fca0a3a6d8",
+    "test_audit.py": "610bc8e4230cb497d0024b93873c61d7e050b87d0d91d3a7f512d14fcc90e1b8",
+    "test_solver.py": "b2072803ce51db7958b7f6331f88345ffc614d27c609d8d9fc0bd79489a6bb7c",
+    "evaluate.py": "b5e50a8fc7131fd765c4207e837d310f3168b5e897f004696d16746e9984b8f1",
+    "audit.py": "6dcff6cb6b5c2e3f58b4c98b22c99551598c8512f1c08ebaf9c6e0ecbcd7d48d",
+    "run_docking.py": "e6f32b01bbbc00bffaa1852c757d8d940a4fe9e3ab792b90e063013cf7ce0cf2"
+  },
+  "source_sha256": {
+    "sac_anderson_flow.py": "ba94c8e1f66a41bc6b828ec78d52a1d0ca53573428a771c52c73ea7196205bb5",
+    "sac_flow_parent.py": "84f00325205c5e7e78b49d50879be56d861e1d715d347f40560dfc220f3ad761",
+    "sac_gaussian_baseline.py": "2d4d33f90aaa97b2580c4ae7f159f0290ca78d12d865c8f899fc45c81ef75964",
+    "dime_actor.py": "2792ac803dd3229e66fbe36c872589476ea750159831fbb9a8b95d7ee0fb3790",
+    "qsm_actor.py": "70e33a61d900d2503d2f2e91157552fdc2a2d2da861c41fbc6bd260a4b292e2d",
+    "multigoal_docking_env.py": "05a1c9a3b046d6260ef0055834b594a12ac391a3ab80faf1a444369276edb986",
+    "step_accounting.py": "0d3343cc0b3e87729b1980d927728b31ec835944adee6eeb3cbcb824f4fd24f1",
+    "run_multigoal_docking_full.py": "7adaaf6a735d5a629fa45e070841c1d83185405b9a1dabce521932b6103155ac",
+    "evaluate_multigoal_docking_full.py": "244d093da999c6df7e5382db1462e8060f209db4a4f7591c6439b2ca1bad4530"
+  },
+  "actor_kwargs_sha256": "a8b64da14cbc9177294c45a0f78f7fe3dc031e7a542c6d3760e3f39537dacbb9",
+  "solver": "anderson",
+  "checkpoint_sha256": "96a6c3ee0941ccdc9ba9a949595b61b5397bd2fcd9ba7d04a2e48c5b877cc3eb",
+  "checkpoint": "/home/featurize/deflow-campaign-20261111/revision3/preflight/smoke_anderson_highcap/runs/anderson_tol1e-05_cap500_wide_tight_s0/ckpt.pt",
+  "episodes": [
+    {
+      "episode": 0,
+      "goal": -1,
+      "success": 0,
+      "return": -175.80943822860718,
+      "docking_distance": null
+    },
+    {
+      "episode": 1,
+      "goal": -1,
+      "success": 0,
+      "return": -173.06112480163574,
+      "docking_distance": null
+    },
+    {
+      "episode": 2,
+      "goal": -1,
+      "success": 0,
+      "return": -182.55823016166687,
+      "docking_distance": null
+    },
+    {
+      "episode": 3,
+      "goal": -1,
+      "success": 0,
+      "return": -164.2812168598175,
+      "docking_distance": null
+    }
+  ],
+  "summary": {
+    "p_i": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "total_success": 0.0,
+    "successful_goal_entropy_nats": -0.0,
+    "successful_goal_entropy_normalized": -0.0,
+    "u4": 0.0,
+    "u16": 0.0,
+    "mean_return": -173.92750251293182
+  },
+  "eval_seed": 26152
+}

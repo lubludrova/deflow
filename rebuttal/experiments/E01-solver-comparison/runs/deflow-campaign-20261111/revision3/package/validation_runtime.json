@@ -1,0 +1,37 @@
+{
+  "review": "runtime_audit",
+  "date": "2026-11-10",
+  "audit_tests": {
+    "passed": 4,
+    "failed": 0
+  },
+  "cpu_smoke": {
+    "exit_code": 0,
+    "elapsed_seconds": 4.665563106536865,
+    "checkpoints": [
+      {
+        "path": "/private/tmp/deflow-review-smoke-v2/runs/newton_wide_tight_s0/ckpt.pt",
+        "global_step": 256
+      },
+      {
+        "path": "/private/tmp/deflow-review-smoke-v2/runs/newton_wide_tight_s0/ckpt_step_000000256.pt",
+        "global_step": 256
+      }
+    ]
+  },
+  "historical_audit": {
+    "output": "/private/tmp/deflow-historical-audit-v2",
+    "batch": 8,
+    "reference_valid": 8,
+    "loss": "probe_NOT_SAC",
+    "scientific_result": false
+  },
+  "validated_sha256": {
+    "audit.py": "6a4c5457582c0b362b4356bc01d1c86148a7d2dabc44502cdfe94634020d0a28",
+    "test_audit.py": "39e4d6e960ddb275e550fa5afbafd1ec188471bee0cde4bbcbc55d725aca2987",
+    "sequential_newton.py": "e7c24ebef16db7bd2e16101c08625294ba4902449e774281b9f5f0fca0a3a6d8",
+    "run_docking.py": "093c7095867fa2a97d38ba61d9d483a9e3cdedf72c6a0a4ba3c779047672d4f4"
+  },
+  "cuda_tested": false,
+  "training_campaign_started": false
+}

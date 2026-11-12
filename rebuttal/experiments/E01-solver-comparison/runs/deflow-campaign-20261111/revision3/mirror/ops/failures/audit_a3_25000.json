@@ -1,0 +1,12 @@
+{
+  "seed": 3,
+  "target_step": 25000,
+  "run_id": "anderson_s3",
+  "source_run_state": "EVALUATION_FINISHED",
+  "rule": "Nearest eligible full-batch training/actor_grad capsule. Ties: smaller actual step, then lexical path.",
+  "actual_step": 24087,
+  "path": "/home/featurize/deflow-campaign-20261111/revision3/results/anderson_s3/capsule_00023000.pt",
+  "sha256": "70ecc969c4a04f728031a87e8eb383c250abde3e4c1298085e45d8fca855f395",
+  "state": "FAILED",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/featurize/deflow-campaign-20261111/revision3/ops/campaign.py\", line 95, in audit_seed\n    sync_gate()\n  File \"/home/featurize/deflow-campaign-20261111/revision3/ops/common.py\", line 272, in sync_gate\n    latch_check()\n  File \"/home/featurize/deflow-campaign-20261111/revision3/ops/common.py\", line 101, in latch_check\n    raise RuntimeError('Campaign STOP requested')\nRuntimeError: Campaign STOP requested\n"
+}

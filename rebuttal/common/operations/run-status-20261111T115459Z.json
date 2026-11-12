@@ -1,0 +1,192 @@
+{
+  "observed_at": "2026-11-11T11:54:59.028139+00:00",
+  "coordinator_identity_verified": true,
+  "runs": {
+    "newton_s1": {
+      "state": "RUNNING",
+      "gpu_slot": 0,
+      "metrics": null,
+      "started_at": 1794378770.2658558,
+      "step": 85381,
+      "identity_verified": true,
+      "recent_sps": 1.4935471204183368,
+      "eta_seconds": 76758.20764723461,
+      "elapsed_seconds": 19328.236965179443,
+      "gpu_util": {
+        "samples": 19,
+        "mean": 18.789473684210527,
+        "p95": 23,
+        "peak": 23,
+        "memory_used_mib": 856
+      },
+      "co_runners": [],
+      "progress_age_seconds": 0.5786166191101074,
+      "scalars": {
+        "charts/avg_episode_reward": {
+          "step": 85252,
+          "value": -20.38094139099121,
+          "age_seconds": 85.85352540016174
+        },
+        "charts/eval_return_det": {
+          "step": 80026,
+          "value": -4.914644718170166,
+          "age_seconds": 2412.9803655147552
+        }
+      }
+    },
+    "newton_s2": {
+      "state": "RUNNING",
+      "gpu_slot": 1,
+      "metrics": null,
+      "started_at": 1794387448.1928828,
+      "step": 61014,
+      "identity_verified": true,
+      "recent_sps": 2.713389904289422,
+      "eta_seconds": 51237.3838275956,
+      "elapsed_seconds": 10650.444492816925,
+      "gpu_util": {
+        "samples": 19,
+        "mean": 16.63157894736842,
+        "p95": 21,
+        "peak": 22,
+        "memory_used_mib": 854
+      },
+      "co_runners": [],
+      "progress_age_seconds": 0.24292659759521484,
+      "scalars": {
+        "charts/avg_episode_reward": {
+          "step": 60202,
+          "value": -9.061240196228027,
+          "age_seconds": 309.93524956703186
+        },
+        "charts/eval_return_det": {
+          "step": 60021,
+          "value": -5.6881937980651855,
+          "age_seconds": 378.6715655326843
+        }
+      }
+    },
+    "newton_s3": {
+      "state": "RUNNING",
+      "gpu_slot": 2,
+      "metrics": null,
+      "started_at": 1794378770.3189833,
+      "step": 68793,
+      "identity_verified": true,
+      "recent_sps": 1.3178356944867677,
+      "eta_seconds": 99579.18164533193,
+      "elapsed_seconds": 19328.228073120117,
+      "gpu_util": {
+        "samples": 19,
+        "mean": 18.57894736842105,
+        "p95": 20,
+        "peak": 20,
+        "memory_used_mib": 856
+      },
+      "co_runners": [],
+      "progress_age_seconds": 1.0929591655731201,
+      "scalars": {
+        "charts/avg_episode_reward": {
+          "step": 68180,
+          "value": -13.247579574584961,
+          "age_seconds": 452.8204164505005
+        },
+        "charts/eval_return_det": {
+          "step": 60018,
+          "value": -1.2028284072875977,
+          "age_seconds": 4479.13797044754
+        }
+      }
+    },
+    "anderson_s1": {
+      "state": "PLANNED",
+      "gpu_slot": 0,
+      "metrics": null,
+      "started_at": null
+    },
+    "anderson_s2": {
+      "state": "EVALUATION_FINISHED",
+      "gpu_slot": 1,
+      "metrics": {
+        "p_i": [
+          0.244,
+          0.238,
+          0.235,
+          0.232
+        ],
+        "total_success": 0.949,
+        "successful_goal_entropy_nats": 1.3861199331138123,
+        "successful_goal_entropy_normalized": 0.9998741767903194,
+        "u4": 0.66145462359175,
+        "u16": 0.9868217914324604,
+        "mean_return": -8.105148948183865
+      },
+      "started_at": 1794378770.2576377,
+      "step": 200005,
+      "training_seconds": 8571.401953458786,
+      "evaluation_seconds": 6.227883577346802
+    },
+    "anderson_s3": {
+      "state": "PLANNED",
+      "gpu_slot": 2,
+      "metrics": null,
+      "started_at": null
+    },
+    "anderson_tighter_s1": {
+      "state": "PLANNED",
+      "gpu_slot": 0,
+      "metrics": null,
+      "started_at": null
+    },
+    "anderson_tighter_s2": {
+      "state": "PLANNED",
+      "gpu_slot": 1,
+      "metrics": null,
+      "started_at": null
+    },
+    "anderson_tighter_s3": {
+      "state": "PLANNED",
+      "gpu_slot": 2,
+      "metrics": null,
+      "started_at": null
+    },
+    "anderson_highcap_s1": {
+      "state": "PLANNED",
+      "gpu_slot": 0,
+      "metrics": null,
+      "started_at": null
+    },
+    "anderson_highcap_s2": {
+      "state": "PLANNED",
+      "gpu_slot": 1,
+      "metrics": null,
+      "started_at": null
+    },
+    "anderson_highcap_s3": {
+      "state": "PLANNED",
+      "gpu_slot": 2,
+      "metrics": null,
+      "started_at": null
+    }
+  },
+  "audits": {
+    "audit_a1_25000": "PLANNED",
+    "audit_a1_100000": "PLANNED",
+    "audit_a1_200000": "PLANNED",
+    "audit_a2_25000": "PLANNED",
+    "audit_a2_100000": "PLANNED",
+    "audit_a2_200000": "PLANNED",
+    "audit_a3_25000": "PLANNED",
+    "audit_a3_100000": "PLANNED",
+    "audit_a3_200000": "PLANNED"
+  },
+  "counts": {
+    "runs": 12,
+    "evaluated": 1,
+    "audits": 9,
+    "audits_finished": 0
+  },
+  "sync_age_seconds": 35.76284408569336,
+  "sync_result": "ok",
+  "alerts": []
+}

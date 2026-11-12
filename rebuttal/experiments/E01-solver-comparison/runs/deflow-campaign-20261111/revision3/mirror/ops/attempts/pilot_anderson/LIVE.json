@@ -1,0 +1,164 @@
+{
+  "campaign_id": "deflow-campaign-20261111-revision3",
+  "contract_sha256": "300614d6c0abfbb1bbd5f722effbc5c00774f7213c7598dc68b6527c0225c0ea",
+  "precision_policy": "strict_fp32",
+  "run_id": "pilot_anderson",
+  "attempt_id": 0,
+  "argv": [
+    "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python",
+    "-m",
+    "deflow_rebuttal.run_docking",
+    "--repo",
+    "/home/featurize/deflow-campaign-20261111/revision3/DEFlow",
+    "--output",
+    "/home/featurize/deflow-campaign-20261111/revision3/preflight/pilot_anderson",
+    "--solver",
+    "anderson",
+    "--seed",
+    "0",
+    "--steps",
+    "8000",
+    "--execute",
+    "--precision-policy",
+    "strict_fp32"
+  ],
+  "cwd": "/home/featurize/deflow-campaign-20261111/revision3/package",
+  "gpu_slot": 1,
+  "gpu_uuid": "GPU-8c5841b8-9c0d-e867-7e29-7714a772fa58",
+  "environment": {
+    "PYTHONPATH": "/home/featurize/deflow-campaign-20261111/revision3/package",
+    "DEFLOW_ENGINE": "/home/featurize/deflow-campaign-20261111/revision3/DEFlow/src/docking_full/sac_anderson_flow.py",
+    "CUDA_VISIBLE_DEVICES": "GPU-8c5841b8-9c0d-e867-7e29-7714a772fa58"
+  },
+  "command_sha256": "9c533cea21efaca0e908ed572a5c76fd74aae9ec19abe9187a00cf55593de11f",
+  "claimed_at": 1794378165.950713,
+  "capacity_sample": {
+    "at": 1794378166.0614815,
+    "gpus": [
+      [
+        "0",
+        "GPU-25aeeb0b-2f1a-6068-db50-71c18174ccba",
+        "4",
+        "24106",
+        "0"
+      ],
+      [
+        "1",
+        "GPU-8c5841b8-9c0d-e867-7e29-7714a772fa58",
+        "4",
+        "24106",
+        "0"
+      ],
+      [
+        "2",
+        "GPU-911aa272-5dd1-019f-9636-accc89c876da",
+        "4",
+        "24106",
+        "0"
+      ]
+    ],
+    "processes": []
+  },
+  "log": "/home/featurize/deflow-campaign-20261111/revision3/ops/logs/pilot_anderson.log",
+  "run_path": "/home/featurize/deflow-campaign-20261111/revision3/preflight/pilot_anderson",
+  "retry_budget": 0,
+  "resume": false,
+  "identity": {
+    "pid": 43606,
+    "process_start_ticks": 4846628,
+    "boot_id": "4dfe31ec-070c-4dde-80cb-8b843303addc",
+    "process_group": 43606,
+    "session": 43606,
+    "cmdline": "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python -m deflow_rebuttal.run_docking --repo /home/featurize/deflow-campaign-20261111/revision3/DEFlow --output /home/featurize/deflow-campaign-20261111/revision3/preflight/pilot_anderson --solver anderson --seed 0 --steps 8000 --execute --precision-policy strict_fp32 ",
+    "cwd": "/home/featurize/deflow-campaign-20261111/revision3/package"
+  },
+  "pid": 43606,
+  "started_at": 1794378165.950713,
+  "state": "RUNNING",
+  "observed_at": 1794378342.8307536,
+  "telemetry": {
+    "step": 7990,
+    "last_telemetry_age_seconds": 0.04797863960266113,
+    "last_solver_call": {
+      "call": 4557,
+      "global_step": 7990,
+      "role": "training/target_or_eval_logp",
+      "batch": 1024,
+      "steps": 4,
+      "solver": "anderson",
+      "solver_seconds": 0.022008615000231657,
+      "cap_hit": true,
+      "common_abs_residual": {
+        "nonfinite": 0,
+        "count": 4096,
+        "p50": 6.786166295569274e-07,
+        "p95": 2.1150560769456206e-05,
+        "max": 0.013494940474629402
+      },
+      "failed_samples": 111,
+      "failed_local_steps": 275,
+      "native": {
+        "n_iter": 25,
+        "res_curve": [
+          0.1485789269208908,
+          0.05987153202295303,
+          0.02126172184944153,
+          0.014012583531439304,
+          0.008956292644143105,
+          0.006108570843935013,
+          0.004802081733942032,
+          0.0031123743392527103,
+          0.001941575319506228,
+          0.0012155257863923907,
+          0.0008565731695853174,
+          0.0005697776796296239,
+          0.00030901117133907974,
+          0.00024256555479951203,
+          0.00018492541857995093,
+          0.00014212948735803366,
+          0.00011674992856569588,
+          0.0001023154181893915,
+          8.56383703649044e-05,
+          7.220030238386244e-05,
+          6.154546281322837e-05,
+          5.3460695198737085e-05,
+          4.6857938286848366e-05
+        ],
+        "res_last": 4.6857938286848366e-05,
+        "res_p50": 8.614292710262816e-07,
+        "res_p95": 3.622372605605051e-05,
+        "res_max": 0.019785115495324135,
+        "res_fail_frac": 0.109375,
+        "abs_res_p95": 9.069418592844158e-05,
+        "abs_res_max": 0.030895989388227463,
+        "tolerance": 1e-05,
+        "iteration_limit": 25,
+        "mean_criterion_met": false,
+        "iteration_limit_reached": true,
+        "budget_exhausted_without_convergence": true,
+        "stop_reason": "iteration_limit",
+        "convergence_scope": "native batch mean, not all samples",
+        "anderson_history_lstsq_count": 23
+      },
+      "work": {
+        "nfe_total": 102400,
+        "jacobian_evals_total": 0,
+        "linear_solves_total": 0
+      },
+      "telemetry_extra_field_positions": 4096,
+      "totals": {
+        "calls": 1998,
+        "samples": 2045952,
+        "local_steps": 8183808,
+        "failed_samples": 245104,
+        "failed_local_steps": 625474,
+        "cap_calls": 1801,
+        "mean_converged_calls": 218,
+        "unconverged_budget_calls": 1780,
+        "newton_status_counts": {},
+        "newton_converged_samples": 0,
+        "newton_budget_exhausted_calls": 0
+      }
+    }
+  }
+}

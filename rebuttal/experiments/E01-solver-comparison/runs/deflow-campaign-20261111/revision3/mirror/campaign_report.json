@@ -1,0 +1,1375 @@
+{
+  "observed_at": 1794469216.802723,
+  "campaign_id": "deflow-campaign-20261111-revision3",
+  "contract_sha256": "300614d6c0abfbb1bbd5f722effbc5c00774f7213c7598dc68b6527c0225c0ea",
+  "precision_policy": "strict_fp32",
+  "counts": {
+    "runs": 12,
+    "evaluated": 1,
+    "audits": 9,
+    "audits_finished": 0
+  },
+  "runs": {
+    "newton_s1": {
+      "state": "INTERRUPTED",
+      "seed": 1,
+      "gpu_slot": 0,
+      "started_at": 1794378770.2658558,
+      "error": "Traceback (most recent call last):\n  File \"/home/featurize/deflow-campaign-20261111/revision3/ops/common.py\", line 343, in execute\n    raise RuntimeError('Owned child stopped by campaign STOP')\nRuntimeError: Owned child stopped by campaign STOP\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/home/featurize/deflow-campaign-20261111/revision3/ops/campaign.py\", line 34, in train_slot\n    training = execute(run_id, train_argv(job, run), slot, run, scientific=True, required=previous)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/featurize/deflow-campaign-20261111/revision3/ops/common.py\", line 359, in execute\n    write(attempt / 'STOP_RECEIPT.json', terminate_owned(process, owned))\n                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/featurize/deflow-campaign-20261111/revision3/ops/common.py\", line 195, in terminate_owned\n    raise RuntimeError('Refusing termination with changed leader identity')\nRuntimeError: Refusing termination with changed leader identity\n"
+    },
+    "newton_s2": {
+      "state": "FAILED",
+      "seed": 2,
+      "gpu_slot": 1,
+      "started_at": 1794387448.1928828,
+      "error": "Traceback (most recent call last):\n  File \"/home/featurize/deflow-campaign-20261111/revision3/ops/campaign.py\", line 34, in train_slot\n    training = execute(run_id, train_argv(job, run), slot, run, scientific=True, required=previous)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/featurize/deflow-campaign-20261111/revision3/ops/common.py\", line 354, in execute\n    raise RuntimeError(f'{run_id} exited {code}. See {log}')\nRuntimeError: newton_s2 exited 1. See /home/featurize/deflow-campaign-20261111/revision3/ops/logs/newton_s2.log\n"
+    },
+    "newton_s3": {
+      "state": "FAILED",
+      "seed": 3,
+      "gpu_slot": 2,
+      "started_at": 1794378770.3189833,
+      "checkpoint": "/home/featurize/deflow-campaign-20261111/revision3/results/newton_s3/runs/newton_wide_tight_s3/ckpt.pt",
+      "training": {
+        "campaign_id": "deflow-campaign-20261111-revision3",
+        "contract_sha256": "300614d6c0abfbb1bbd5f722effbc5c00774f7213c7598dc68b6527c0225c0ea",
+        "precision_policy": "strict_fp32",
+        "run_id": "newton_s3",
+        "attempt_id": 0,
+        "argv": [
+          "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python",
+          "-m",
+          "deflow_rebuttal.run_docking",
+          "--repo",
+          "/home/featurize/deflow-campaign-20261111/revision3/DEFlow",
+          "--output",
+          "/home/featurize/deflow-campaign-20261111/revision3/results/newton_s3",
+          "--solver",
+          "newton",
+          "--seed",
+          "3",
+          "--steps",
+          "200000",
+          "--execute",
+          "--precision-policy",
+          "strict_fp32"
+        ],
+        "cwd": "/home/featurize/deflow-campaign-20261111/revision3/package",
+        "gpu_slot": 2,
+        "gpu_uuid": "GPU-911aa272-5dd1-019f-9636-accc89c876da",
+        "environment": {
+          "PYTHONPATH": "/home/featurize/deflow-campaign-20261111/revision3/package",
+          "DEFLOW_ENGINE": "/home/featurize/deflow-campaign-20261111/revision3/DEFlow/src/docking_full/sac_anderson_flow.py",
+          "CUDA_VISIBLE_DEVICES": "GPU-911aa272-5dd1-019f-9636-accc89c876da"
+        },
+        "command_sha256": "4613a5f31975aecd8b1b43520cc692bb3bc39630501a8796550490c79e7ace77",
+        "claimed_at": 1794378770.450943,
+        "capacity_sample": {
+          "at": 1794378770.588756,
+          "gpus": [
+            [
+              "0",
+              "GPU-25aeeb0b-2f1a-6068-db50-71c18174ccba",
+              "1",
+              "24109",
+              "0"
+            ],
+            [
+              "1",
+              "GPU-8c5841b8-9c0d-e867-7e29-7714a772fa58",
+              "1",
+              "24109",
+              "0"
+            ],
+            [
+              "2",
+              "GPU-911aa272-5dd1-019f-9636-accc89c876da",
+              "1",
+              "24109",
+              "0"
+            ]
+          ],
+          "processes": []
+        },
+        "log": "/home/featurize/deflow-campaign-20261111/revision3/ops/logs/newton_s3.log",
+        "run_path": "/home/featurize/deflow-campaign-20261111/revision3/results/newton_s3",
+        "retry_budget": 0,
+        "resume": false,
+        "identity": {
+          "pid": 45018,
+          "process_start_ticks": 4907086,
+          "boot_id": "4dfe31ec-070c-4dde-80cb-8b843303addc",
+          "process_group": 45018,
+          "session": 45018,
+          "cmdline": "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python -m deflow_rebuttal.run_docking --repo /home/featurize/deflow-campaign-20261111/revision3/DEFlow --output /home/featurize/deflow-campaign-20261111/revision3/results/newton_s3 --solver newton --seed 3 --steps 200000 --execute --precision-policy strict_fp32 ",
+          "cwd": "/home/featurize/deflow-campaign-20261111/revision3/package"
+        },
+        "pid": 45018,
+        "started_at": 1794378770.450943,
+        "state": "EXITED",
+        "exit_code": 0,
+        "finished_at": 1794450035.0592318,
+        "elapsed_seconds": 71264.60828971863
+      },
+      "error": "Traceback (most recent call last):\n  File \"/home/featurize/deflow-campaign-20261111/revision3/ops/campaign.py\", line 40, in train_slot\n    evaluation = evaluate(run_id + '_eval', run, checkpoint, ROOT / 'evaluations' / run_id, 1000, slot, scientific=True)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/featurize/deflow-campaign-20261111/revision3/ops/common.py\", line 458, in evaluate\n    result = execute(run_id, [PYTHON, '-m', 'deflow_rebuttal.evaluate', '--repo', str(REPO),\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/featurize/deflow-campaign-20261111/revision3/ops/common.py\", line 303, in execute\n    sync_gate(required)\n  File \"/home/featurize/deflow-campaign-20261111/revision3/ops/common.py\", line 274, in sync_gate\n    health_gate()\n  File \"/home/featurize/deflow-campaign-20261111/revision3/ops/common.py\", line 261, in health_gate\n    raise RuntimeError('Monitor failure or global admission block')\nRuntimeError: Monitor failure or global admission block\n"
+    },
+    "anderson_s1": {
+      "state": "BLOCKED",
+      "seed": 1,
+      "gpu_slot": 0,
+      "reason": "Coordinator stopped or failed"
+    },
+    "anderson_s2": {
+      "state": "EVALUATION_FINISHED",
+      "seed": 2,
+      "gpu_slot": 1,
+      "started_at": 1794378770.2576377,
+      "checkpoint": "/home/featurize/deflow-campaign-20261111/revision3/results/anderson_s2/runs/anderson_wide_tight_s2/ckpt_step_000200005.pt",
+      "training": {
+        "campaign_id": "deflow-campaign-20261111-revision3",
+        "contract_sha256": "300614d6c0abfbb1bbd5f722effbc5c00774f7213c7598dc68b6527c0225c0ea",
+        "precision_policy": "strict_fp32",
+        "run_id": "anderson_s2",
+        "attempt_id": 0,
+        "argv": [
+          "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python",
+          "-m",
+          "deflow_rebuttal.run_docking",
+          "--repo",
+          "/home/featurize/deflow-campaign-20261111/revision3/DEFlow",
+          "--output",
+          "/home/featurize/deflow-campaign-20261111/revision3/results/anderson_s2",
+          "--solver",
+          "anderson",
+          "--seed",
+          "2",
+          "--steps",
+          "200000",
+          "--execute",
+          "--precision-policy",
+          "strict_fp32"
+        ],
+        "cwd": "/home/featurize/deflow-campaign-20261111/revision3/package",
+        "gpu_slot": 1,
+        "gpu_uuid": "GPU-8c5841b8-9c0d-e867-7e29-7714a772fa58",
+        "environment": {
+          "PYTHONPATH": "/home/featurize/deflow-campaign-20261111/revision3/package",
+          "DEFLOW_ENGINE": "/home/featurize/deflow-campaign-20261111/revision3/DEFlow/src/docking_full/sac_anderson_flow.py",
+          "CUDA_VISIBLE_DEVICES": "GPU-8c5841b8-9c0d-e867-7e29-7714a772fa58"
+        },
+        "command_sha256": "20f42eb73260bc4ed86f9ff3e68b83812bd28f8340b5fbbdf16d3ad920125e06",
+        "claimed_at": 1794378770.4230478,
+        "capacity_sample": {
+          "at": 1794378770.545177,
+          "gpus": [
+            [
+              "0",
+              "GPU-25aeeb0b-2f1a-6068-db50-71c18174ccba",
+              "1",
+              "24109",
+              "0"
+            ],
+            [
+              "1",
+              "GPU-8c5841b8-9c0d-e867-7e29-7714a772fa58",
+              "1",
+              "24109",
+              "0"
+            ],
+            [
+              "2",
+              "GPU-911aa272-5dd1-019f-9636-accc89c876da",
+              "1",
+              "24109",
+              "0"
+            ]
+          ],
+          "processes": []
+        },
+        "log": "/home/featurize/deflow-campaign-20261111/revision3/ops/logs/anderson_s2.log",
+        "run_path": "/home/featurize/deflow-campaign-20261111/revision3/results/anderson_s2",
+        "retry_budget": 0,
+        "resume": false,
+        "identity": {
+          "pid": 45016,
+          "process_start_ticks": 4907080,
+          "boot_id": "4dfe31ec-070c-4dde-80cb-8b843303addc",
+          "process_group": 45016,
+          "session": 45016,
+          "cmdline": "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python -m deflow_rebuttal.run_docking --repo /home/featurize/deflow-campaign-20261111/revision3/DEFlow --output /home/featurize/deflow-campaign-20261111/revision3/results/anderson_s2 --solver anderson --seed 2 --steps 200000 --execute --precision-policy strict_fp32 ",
+          "cwd": "/home/featurize/deflow-campaign-20261111/revision3/package"
+        },
+        "pid": 45016,
+        "started_at": 1794378770.4230478,
+        "state": "EXITED",
+        "exit_code": 0,
+        "finished_at": 1794387341.8250005,
+        "elapsed_seconds": 8571.401953458786
+      },
+      "evaluation": {
+        "campaign_id": "deflow-campaign-20261111-revision3",
+        "contract_sha256": "300614d6c0abfbb1bbd5f722effbc5c00774f7213c7598dc68b6527c0225c0ea",
+        "precision_policy": "strict_fp32",
+        "run_id": "anderson_s2_eval",
+        "attempt_id": 0,
+        "argv": [
+          "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python",
+          "-m",
+          "deflow_rebuttal.evaluate",
+          "--repo",
+          "/home/featurize/deflow-campaign-20261111/revision3/DEFlow",
+          "--run",
+          "/home/featurize/deflow-campaign-20261111/revision3/results/anderson_s2",
+          "--checkpoint",
+          "/home/featurize/deflow-campaign-20261111/revision3/results/anderson_s2/runs/anderson_wide_tight_s2/ckpt_step_000200005.pt",
+          "--output",
+          "/home/featurize/deflow-campaign-20261111/revision3/evaluations/anderson_s2",
+          "--episodes",
+          "1000",
+          "--eval-seed",
+          "26152",
+          "--device",
+          "cuda"
+        ],
+        "cwd": "/home/featurize/deflow-campaign-20261111/revision3/package",
+        "gpu_slot": 1,
+        "gpu_uuid": "GPU-8c5841b8-9c0d-e867-7e29-7714a772fa58",
+        "environment": {
+          "PYTHONPATH": "/home/featurize/deflow-campaign-20261111/revision3/package",
+          "DEFLOW_ENGINE": "/home/featurize/deflow-campaign-20261111/revision3/DEFlow/src/docking_full/sac_anderson_flow.py",
+          "CUDA_VISIBLE_DEVICES": "GPU-8c5841b8-9c0d-e867-7e29-7714a772fa58"
+        },
+        "command_sha256": "747067ca2dba21748be897b9e09c2de7c0abb4deb89ab90ccee6833c3ae54aef",
+        "claimed_at": 1794387341.8711298,
+        "capacity_sample": {
+          "at": 1794387341.984047,
+          "gpus": [
+            [
+              "0",
+              "GPU-25aeeb0b-2f1a-6068-db50-71c18174ccba",
+              "856",
+              "23255",
+              "18"
+            ],
+            [
+              "1",
+              "GPU-8c5841b8-9c0d-e867-7e29-7714a772fa58",
+              "1",
+              "24109",
+              "0"
+            ],
+            [
+              "2",
+              "GPU-911aa272-5dd1-019f-9636-accc89c876da",
+              "854",
+              "23257",
+              "17"
+            ]
+          ],
+          "processes": [
+            [
+              "GPU-25aeeb0b-2f1a-6068-db50-71c18174ccba",
+              "45017",
+              "846"
+            ],
+            [
+              "GPU-911aa272-5dd1-019f-9636-accc89c876da",
+              "45018",
+              "844"
+            ]
+          ]
+        },
+        "log": "/home/featurize/deflow-campaign-20261111/revision3/ops/logs/anderson_s2_eval.log",
+        "run_path": "/home/featurize/deflow-campaign-20261111/revision3/evaluations/anderson_s2",
+        "retry_budget": 0,
+        "resume": false,
+        "identity": {
+          "pid": 57905,
+          "process_start_ticks": 5764198,
+          "boot_id": "4dfe31ec-070c-4dde-80cb-8b843303addc",
+          "process_group": 57905,
+          "session": 57905,
+          "cmdline": "/home/featurize/deflow-campaign-20261111/revision3/venv/bin/python -m deflow_rebuttal.evaluate --repo /home/featurize/deflow-campaign-20261111/revision3/DEFlow --run /home/featurize/deflow-campaign-20261111/revision3/results/anderson_s2 --checkpoint /home/featurize/deflow-campaign-20261111/revision3/results/anderson_s2/runs/anderson_wide_tight_s2/ckpt_step_000200005.pt --output /home/featurize/deflow-campaign-20261111/revision3/evaluations/anderson_s2 --episodes 1000 --eval-seed 26152 --device cuda ",
+          "cwd": "/home/featurize/deflow-campaign-20261111/revision3/package"
+        },
+        "pid": 57905,
+        "started_at": 1794387341.8711298,
+        "state": "EXITED",
+        "exit_code": 0,
+        "finished_at": 1794387348.0990129,
+        "elapsed_seconds": 6.227883577346802
+      },
+      "metrics": {
+        "p_i": [
+          0.244,
+          0.238,
+          0.235,
+          0.232
+        ],
+        "total_success": 0.949,
+        "successful_goal_entropy_nats": 1.3861199331138123,
+        "successful_goal_entropy_normalized": 0.9998741767903194,
+        "u4": 0.66145462359175,
+        "u16": 0.9868217914324604,
+        "mean_return": -8.105148948183865
+      }
+    },
+    "anderson_s3": {
+      "state": "BLOCKED",
+      "seed": 3,
+      "gpu_slot": 2,
+      "reason": "Coordinator stopped or failed"
+    },
+    "anderson_tighter_s1": {
+      "state": "BLOCKED",
+      "seed": 1,
+      "gpu_slot": 0,
+      "reason": "Coordinator stopped or failed"
+    },
+    "anderson_tighter_s2": {
+      "state": "BLOCKED",
+      "seed": 2,
+      "gpu_slot": 1,
+      "reason": "Coordinator stopped or failed"
+    },
+    "anderson_tighter_s3": {
+      "state": "BLOCKED",
+      "seed": 3,
+      "gpu_slot": 2,
+      "reason": "Coordinator stopped or failed"
+    },
+    "anderson_highcap_s1": {
+      "state": "BLOCKED",
+      "seed": 1,
+      "gpu_slot": 0,
+      "reason": "Coordinator stopped or failed"
+    },
+    "anderson_highcap_s2": {
+      "state": "BLOCKED",
+      "seed": 2,
+      "gpu_slot": 1,
+      "reason": "Coordinator stopped or failed"
+    },
+    "anderson_highcap_s3": {
+      "state": "BLOCKED",
+      "seed": 3,
+      "gpu_slot": 2,
+      "reason": "Coordinator stopped or failed"
+    }
+  },
+  "audits": {
+    "audit_a1_25000": {
+      "state": "BLOCKED",
+      "seed": 1,
+      "target_step": 25000,
+      "reason": "Coordinator stopped or failed"
+    },
+    "audit_a1_100000": {
+      "state": "BLOCKED",
+      "seed": 1,
+      "target_step": 100000,
+      "reason": "Coordinator stopped or failed"
+    },
+    "audit_a1_200000": {
+      "state": "BLOCKED",
+      "seed": 1,
+      "target_step": 200000,
+      "reason": "Coordinator stopped or failed"
+    },
+    "audit_a2_25000": {
+      "state": "BLOCKED",
+      "seed": 2,
+      "target_step": 25000,
+      "reason": "Coordinator stopped or failed"
+    },
+    "audit_a2_100000": {
+      "state": "BLOCKED",
+      "seed": 2,
+      "target_step": 100000,
+      "reason": "Coordinator stopped or failed"
+    },
+    "audit_a2_200000": {
+      "state": "BLOCKED",
+      "seed": 2,
+      "target_step": 200000,
+      "reason": "Coordinator stopped or failed"
+    },
+    "audit_a3_25000": {
+      "state": "BLOCKED",
+      "seed": 3,
+      "target_step": 25000,
+      "reason": "Coordinator stopped or failed"
+    },
+    "audit_a3_100000": {
+      "state": "BLOCKED",
+      "seed": 3,
+      "target_step": 100000,
+      "reason": "Coordinator stopped or failed"
+    },
+    "audit_a3_200000": {
+      "state": "BLOCKED",
+      "seed": 3,
+      "target_step": 200000,
+      "reason": "Coordinator stopped or failed"
+    }
+  },
+  "training_telemetry": {
+    "newton_s1": {
+      "calls": 182000,
+      "roles": {
+        "training/target_or_eval_logp": {
+          "calls": 79675,
+          "samples": 81587200,
+          "local_steps": 326348800,
+          "failed_samples": 3011242,
+          "failed_local_steps": 3336283,
+          "cap_calls": 12300,
+          "mean_converged_calls": 0,
+          "unconverged_budget_calls": 0,
+          "newton_status_counts": {
+            "0": 323120443,
+            "1": 16429,
+            "2": 0,
+            "3": 0,
+            "4": 3211927,
+            "5": 1
+          },
+          "newton_converged_samples": 78679270,
+          "newton_budget_exhausted_calls": 11264
+        },
+        "training/actor_grad": {
+          "calls": 79674,
+          "samples": 81586176,
+          "local_steps": 326344704,
+          "failed_samples": 2716025,
+          "failed_local_steps": 3081987,
+          "cap_calls": 10102,
+          "mean_converged_calls": 0,
+          "unconverged_budget_calls": 0,
+          "newton_status_counts": {
+            "0": 323365286,
+            "1": 15268,
+            "2": 0,
+            "3": 0,
+            "4": 2964150,
+            "5": 0
+          },
+          "newton_converged_samples": 78968253,
+          "newton_budget_exhausted_calls": 9292
+        },
+        "training/rollout_or_eval_action": {
+          "calls": 22504,
+          "samples": 180032,
+          "local_steps": 720128,
+          "failed_samples": 5170,
+          "failed_local_steps": 5628,
+          "cap_calls": 25,
+          "mean_converged_calls": 0,
+          "unconverged_budget_calls": 0,
+          "newton_status_counts": {
+            "0": 714779,
+            "1": 24,
+            "2": 0,
+            "3": 0,
+            "4": 5325,
+            "5": 0
+          },
+          "newton_converged_samples": 175134,
+          "newton_budget_exhausted_calls": 24
+        },
+        "evaluation/deterministic_action": {
+          "calls": 147,
+          "samples": 735,
+          "local_steps": 2940,
+          "failed_samples": 51,
+          "failed_local_steps": 51,
+          "cap_calls": 0,
+          "mean_converged_calls": 0,
+          "unconverged_budget_calls": 0,
+          "newton_status_counts": {
+            "0": 2891,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 49,
+            "5": 0
+          },
+          "newton_converged_samples": 686,
+          "newton_budget_exhausted_calls": 0
+        }
+      }
+    },
+    "newton_s2": {
+      "calls": 145990,
+      "roles": {
+        "training/target_or_eval_logp": {
+          "calls": 63952,
+          "samples": 65486848,
+          "local_steps": 261947392,
+          "failed_samples": 651401,
+          "failed_local_steps": 677606,
+          "cap_calls": 2264,
+          "mean_converged_calls": 0,
+          "unconverged_budget_calls": 0,
+          "newton_status_counts": {
+            "0": 261351158,
+            "1": 2428,
+            "2": 0,
+            "3": 0,
+            "4": 593804,
+            "5": 2
+          },
+          "newton_converged_samples": 64916084,
+          "newton_budget_exhausted_calls": 2053
+        },
+        "training/actor_grad": {
+          "calls": 63952,
+          "samples": 65486848,
+          "local_steps": 261947392,
+          "failed_samples": 474694,
+          "failed_local_steps": 495186,
+          "cap_calls": 1759,
+          "mean_converged_calls": 0,
+          "unconverged_budget_calls": 0,
+          "newton_status_counts": {
+            "0": 261528755,
+            "1": 1825,
+            "2": 0,
+            "3": 0,
+            "4": 416811,
+            "5": 1
+          },
+          "newton_converged_samples": 65088122,
+          "newton_budget_exhausted_calls": 1579
+        },
+        "training/rollout_or_eval_action": {
+          "calls": 18003,
+          "samples": 144024,
+          "local_steps": 576096,
+          "failed_samples": 1230,
+          "failed_local_steps": 1273,
+          "cap_calls": 3,
+          "mean_converged_calls": 0,
+          "unconverged_budget_calls": 0,
+          "newton_status_counts": {
+            "0": 575083,
+            "1": 2,
+            "2": 0,
+            "3": 0,
+            "4": 1011,
+            "5": 0
+          },
+          "newton_converged_samples": 143053,
+          "newton_budget_exhausted_calls": 2
+        },
+        "evaluation/deterministic_action": {
+          "calls": 83,
+          "samples": 415,
+          "local_steps": 1660,
+          "failed_samples": 7,
+          "failed_local_steps": 7,
+          "cap_calls": 0,
+          "mean_converged_calls": 0,
+          "unconverged_budget_calls": 0,
+          "newton_status_counts": {
+            "0": 1656,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 4,
+            "5": 0
+          },
+          "newton_converged_samples": 411,
+          "newton_budget_exhausted_calls": 0
+        }
+      }
+    },
+    "newton_s3": {
+      "calls": 223837,
+      "roles": {
+        "training/target_or_eval_logp": {
+          "calls": 98004,
+          "samples": 100356096,
+          "local_steps": 401424384,
+          "failed_samples": 2672870,
+          "failed_local_steps": 2927017,
+          "cap_calls": 6317,
+          "mean_converged_calls": 0,
+          "unconverged_budget_calls": 0,
+          "newton_status_counts": {
+            "0": 398662959,
+            "1": 10896,
+            "2": 0,
+            "3": 0,
+            "4": 2750529,
+            "5": 0
+          },
+          "newton_converged_samples": 97842737,
+          "newton_budget_exhausted_calls": 5866
+        },
+        "training/actor_grad": {
+          "calls": 98004,
+          "samples": 100356096,
+          "local_steps": 401424384,
+          "failed_samples": 2525170,
+          "failed_local_steps": 2781912,
+          "cap_calls": 5388,
+          "mean_converged_calls": 0,
+          "unconverged_budget_calls": 0,
+          "newton_status_counts": {
+            "0": 398795797,
+            "1": 10735,
+            "2": 0,
+            "3": 0,
+            "4": 2617851,
+            "5": 1
+          },
+          "newton_converged_samples": 97978589,
+          "newton_budget_exhausted_calls": 5051
+        },
+        "training/rollout_or_eval_action": {
+          "calls": 27616,
+          "samples": 220928,
+          "local_steps": 883712,
+          "failed_samples": 3828,
+          "failed_local_steps": 4498,
+          "cap_calls": 15,
+          "mean_converged_calls": 0,
+          "unconverged_budget_calls": 0,
+          "newton_status_counts": {
+            "0": 879652,
+            "1": 12,
+            "2": 0,
+            "3": 0,
+            "4": 4048,
+            "5": 0
+          },
+          "newton_converged_samples": 217529,
+          "newton_budget_exhausted_calls": 12
+        },
+        "evaluation/deterministic_action": {
+          "calls": 213,
+          "samples": 1065,
+          "local_steps": 4260,
+          "failed_samples": 31,
+          "failed_local_steps": 32,
+          "cap_calls": 0,
+          "mean_converged_calls": 0,
+          "unconverged_budget_calls": 0,
+          "newton_status_counts": {
+            "0": 4230,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 30,
+            "5": 0
+          },
+          "newton_converged_samples": 1035,
+          "newton_budget_exhausted_calls": 0
+        }
+      }
+    },
+    "anderson_s1": {
+      "calls": 223941,
+      "roles": {
+        "training/target_or_eval_logp": {
+          "calls": 98001,
+          "samples": 100353024,
+          "local_steps": 401412096,
+          "failed_samples": 33377681,
+          "failed_local_steps": 76279702,
+          "cap_calls": 97808,
+          "mean_converged_calls": 263,
+          "unconverged_budget_calls": 97738,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        },
+        "training/actor_grad": {
+          "calls": 98001,
+          "samples": 100353024,
+          "local_steps": 401412096,
+          "failed_samples": 32022296,
+          "failed_local_steps": 70738843,
+          "cap_calls": 97827,
+          "mean_converged_calls": 187,
+          "unconverged_budget_calls": 97814,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        },
+        "training/rollout_or_eval_action": {
+          "calls": 27811,
+          "samples": 222488,
+          "local_steps": 889952,
+          "failed_samples": 85140,
+          "failed_local_steps": 185150,
+          "cap_calls": 24263,
+          "mean_converged_calls": 4565,
+          "unconverged_budget_calls": 23246,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        },
+        "evaluation/deterministic_action": {
+          "calls": 128,
+          "samples": 640,
+          "local_steps": 2560,
+          "failed_samples": 301,
+          "failed_local_steps": 617,
+          "cap_calls": 70,
+          "mean_converged_calls": 69,
+          "unconverged_budget_calls": 59,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        }
+      }
+    },
+    "anderson_s2": {
+      "calls": 223955,
+      "roles": {
+        "training/target_or_eval_logp": {
+          "calls": 98003,
+          "samples": 100355072,
+          "local_steps": 401420288,
+          "failed_samples": 39085172,
+          "failed_local_steps": 84962660,
+          "cap_calls": 97767,
+          "mean_converged_calls": 302,
+          "unconverged_budget_calls": 97701,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        },
+        "training/actor_grad": {
+          "calls": 98003,
+          "samples": 100355072,
+          "local_steps": 401420288,
+          "failed_samples": 37507053,
+          "failed_local_steps": 78583646,
+          "cap_calls": 97811,
+          "mean_converged_calls": 215,
+          "unconverged_budget_calls": 97788,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        },
+        "training/rollout_or_eval_action": {
+          "calls": 27824,
+          "samples": 222592,
+          "local_steps": 890368,
+          "failed_samples": 98516,
+          "failed_local_steps": 208494,
+          "cap_calls": 24355,
+          "mean_converged_calls": 4367,
+          "unconverged_budget_calls": 23457,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        },
+        "evaluation/deterministic_action": {
+          "calls": 125,
+          "samples": 625,
+          "local_steps": 2500,
+          "failed_samples": 354,
+          "failed_local_steps": 685,
+          "cap_calls": 73,
+          "mean_converged_calls": 56,
+          "unconverged_budget_calls": 69,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        }
+      }
+    },
+    "anderson_s3": {
+      "calls": 223979,
+      "roles": {
+        "training/target_or_eval_logp": {
+          "calls": 98006,
+          "samples": 100358144,
+          "local_steps": 401432576,
+          "failed_samples": 37351655,
+          "failed_local_steps": 84743742,
+          "cap_calls": 97785,
+          "mean_converged_calls": 326,
+          "unconverged_budget_calls": 97680,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        },
+        "training/actor_grad": {
+          "calls": 98006,
+          "samples": 100358144,
+          "local_steps": 401432576,
+          "failed_samples": 35317058,
+          "failed_local_steps": 77581479,
+          "cap_calls": 97831,
+          "mean_converged_calls": 187,
+          "unconverged_budget_calls": 97819,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        },
+        "training/rollout_or_eval_action": {
+          "calls": 27840,
+          "samples": 222720,
+          "local_steps": 890880,
+          "failed_samples": 94293,
+          "failed_local_steps": 205635,
+          "cap_calls": 24428,
+          "mean_converged_calls": 4527,
+          "unconverged_budget_calls": 23313,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        },
+        "evaluation/deterministic_action": {
+          "calls": 127,
+          "samples": 635,
+          "local_steps": 2540,
+          "failed_samples": 328,
+          "failed_local_steps": 663,
+          "cap_calls": 75,
+          "mean_converged_calls": 60,
+          "unconverged_budget_calls": 67,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        }
+      }
+    },
+    "anderson_tighter_s1": {
+      "calls": 224040,
+      "roles": {
+        "training/target_or_eval_logp": {
+          "calls": 98002,
+          "samples": 100354048,
+          "local_steps": 401416192,
+          "failed_samples": 2104478,
+          "failed_local_steps": 2636857,
+          "cap_calls": 14981,
+          "mean_converged_calls": 83680,
+          "unconverged_budget_calls": 14322,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        },
+        "training/actor_grad": {
+          "calls": 98002,
+          "samples": 100354048,
+          "local_steps": 401416192,
+          "failed_samples": 1600879,
+          "failed_local_steps": 2171116,
+          "cap_calls": 10217,
+          "mean_converged_calls": 88198,
+          "unconverged_budget_calls": 9804,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        },
+        "training/rollout_or_eval_action": {
+          "calls": 27907,
+          "samples": 223256,
+          "local_steps": 893024,
+          "failed_samples": 2480,
+          "failed_local_steps": 2747,
+          "cap_calls": 608,
+          "mean_converged_calls": 27371,
+          "unconverged_budget_calls": 536,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        },
+        "evaluation/deterministic_action": {
+          "calls": 129,
+          "samples": 645,
+          "local_steps": 2580,
+          "failed_samples": 6,
+          "failed_local_steps": 16,
+          "cap_calls": 2,
+          "mean_converged_calls": 127,
+          "unconverged_budget_calls": 2,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        }
+      }
+    },
+    "anderson_tighter_s2": {
+      "calls": 223896,
+      "roles": {
+        "training/target_or_eval_logp": {
+          "calls": 98001,
+          "samples": 100353024,
+          "local_steps": 401412096,
+          "failed_samples": 2098298,
+          "failed_local_steps": 2693381,
+          "cap_calls": 46841,
+          "mean_converged_calls": 51842,
+          "unconverged_budget_calls": 46159,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        },
+        "training/actor_grad": {
+          "calls": 98001,
+          "samples": 100353024,
+          "local_steps": 401412096,
+          "failed_samples": 2315571,
+          "failed_local_steps": 2963994,
+          "cap_calls": 31091,
+          "mean_converged_calls": 67311,
+          "unconverged_budget_calls": 30690,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        },
+        "training/rollout_or_eval_action": {
+          "calls": 27766,
+          "samples": 222128,
+          "local_steps": 888512,
+          "failed_samples": 5300,
+          "failed_local_steps": 5989,
+          "cap_calls": 2041,
+          "mean_converged_calls": 25800,
+          "unconverged_budget_calls": 1966,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        },
+        "evaluation/deterministic_action": {
+          "calls": 128,
+          "samples": 640,
+          "local_steps": 2560,
+          "failed_samples": 12,
+          "failed_local_steps": 12,
+          "cap_calls": 5,
+          "mean_converged_calls": 123,
+          "unconverged_budget_calls": 5,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        }
+      }
+    },
+    "anderson_tighter_s3": {
+      "calls": 223954,
+      "roles": {
+        "training/target_or_eval_logp": {
+          "calls": 98006,
+          "samples": 100358144,
+          "local_steps": 401432576,
+          "failed_samples": 2389384,
+          "failed_local_steps": 2804318,
+          "cap_calls": 34051,
+          "mean_converged_calls": 65344,
+          "unconverged_budget_calls": 32662,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        },
+        "training/actor_grad": {
+          "calls": 98006,
+          "samples": 100358144,
+          "local_steps": 401432576,
+          "failed_samples": 2059532,
+          "failed_local_steps": 2544344,
+          "cap_calls": 13082,
+          "mean_converged_calls": 86037,
+          "unconverged_budget_calls": 11969,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        },
+        "training/rollout_or_eval_action": {
+          "calls": 27817,
+          "samples": 222536,
+          "local_steps": 890144,
+          "failed_samples": 4803,
+          "failed_local_steps": 5122,
+          "cap_calls": 2054,
+          "mean_converged_calls": 25872,
+          "unconverged_budget_calls": 1945,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        },
+        "evaluation/deterministic_action": {
+          "calls": 125,
+          "samples": 625,
+          "local_steps": 2500,
+          "failed_samples": 4,
+          "failed_local_steps": 4,
+          "cap_calls": 4,
+          "mean_converged_calls": 122,
+          "unconverged_budget_calls": 3,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        }
+      }
+    },
+    "anderson_highcap_s1": {
+      "calls": 223879,
+      "roles": {
+        "training/target_or_eval_logp": {
+          "calls": 98002,
+          "samples": 100354048,
+          "local_steps": 401416192,
+          "failed_samples": 4671283,
+          "failed_local_steps": 6625386,
+          "cap_calls": 16362,
+          "mean_converged_calls": 81658,
+          "unconverged_budget_calls": 16344,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        },
+        "training/actor_grad": {
+          "calls": 98002,
+          "samples": 100354048,
+          "local_steps": 401416192,
+          "failed_samples": 7161497,
+          "failed_local_steps": 10742728,
+          "cap_calls": 195,
+          "mean_converged_calls": 97807,
+          "unconverged_budget_calls": 195,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        },
+        "training/rollout_or_eval_action": {
+          "calls": 27746,
+          "samples": 221968,
+          "local_steps": 887872,
+          "failed_samples": 45326,
+          "failed_local_steps": 71150,
+          "cap_calls": 35,
+          "mean_converged_calls": 27712,
+          "unconverged_budget_calls": 34,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        },
+        "evaluation/deterministic_action": {
+          "calls": 129,
+          "samples": 645,
+          "local_steps": 2580,
+          "failed_samples": 237,
+          "failed_local_steps": 306,
+          "cap_calls": 0,
+          "mean_converged_calls": 129,
+          "unconverged_budget_calls": 0,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        }
+      }
+    },
+    "anderson_highcap_s2": {
+      "calls": 223901,
+      "roles": {
+        "training/target_or_eval_logp": {
+          "calls": 98003,
+          "samples": 100355072,
+          "local_steps": 401420288,
+          "failed_samples": 6452485,
+          "failed_local_steps": 8084129,
+          "cap_calls": 6197,
+          "mean_converged_calls": 91808,
+          "unconverged_budget_calls": 6195,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        },
+        "training/actor_grad": {
+          "calls": 98003,
+          "samples": 100355072,
+          "local_steps": 401420288,
+          "failed_samples": 8594664,
+          "failed_local_steps": 11150869,
+          "cap_calls": 90,
+          "mean_converged_calls": 97913,
+          "unconverged_budget_calls": 90,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        },
+        "training/rollout_or_eval_action": {
+          "calls": 27767,
+          "samples": 222136,
+          "local_steps": 888544,
+          "failed_samples": 48905,
+          "failed_local_steps": 71383,
+          "cap_calls": 10,
+          "mean_converged_calls": 27757,
+          "unconverged_budget_calls": 10,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        },
+        "evaluation/deterministic_action": {
+          "calls": 128,
+          "samples": 640,
+          "local_steps": 2560,
+          "failed_samples": 305,
+          "failed_local_steps": 479,
+          "cap_calls": 0,
+          "mean_converged_calls": 128,
+          "unconverged_budget_calls": 0,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        }
+      }
+    },
+    "anderson_highcap_s3": {
+      "calls": 223876,
+      "roles": {
+        "training/target_or_eval_logp": {
+          "calls": 98006,
+          "samples": 100358144,
+          "local_steps": 401432576,
+          "failed_samples": 4745629,
+          "failed_local_steps": 7258525,
+          "cap_calls": 4712,
+          "mean_converged_calls": 93298,
+          "unconverged_budget_calls": 4708,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        },
+        "training/actor_grad": {
+          "calls": 98006,
+          "samples": 100358144,
+          "local_steps": 401432576,
+          "failed_samples": 6089353,
+          "failed_local_steps": 9298416,
+          "cap_calls": 1114,
+          "mean_converged_calls": 96893,
+          "unconverged_budget_calls": 1113,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        },
+        "training/rollout_or_eval_action": {
+          "calls": 27734,
+          "samples": 221872,
+          "local_steps": 887488,
+          "failed_samples": 44418,
+          "failed_local_steps": 69648,
+          "cap_calls": 18,
+          "mean_converged_calls": 27716,
+          "unconverged_budget_calls": 18,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        },
+        "evaluation/deterministic_action": {
+          "calls": 130,
+          "samples": 650,
+          "local_steps": 2600,
+          "failed_samples": 205,
+          "failed_local_steps": 240,
+          "cap_calls": 0,
+          "mean_converged_calls": 130,
+          "unconverged_budget_calls": 0,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        }
+      }
+    }
+  },
+  "evaluation_telemetry": {
+    "newton_s3": {
+      "calls": 62,
+      "roles": {
+        "evaluation/rollout_or_eval_action": {
+          "calls": 62,
+          "samples": 7089,
+          "local_steps": 28356,
+          "failed_samples": 13,
+          "failed_local_steps": 13,
+          "cap_calls": 0,
+          "mean_converged_calls": 0,
+          "unconverged_budget_calls": 0,
+          "newton_status_counts": {
+            "0": 28354,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 2,
+            "5": 0
+          },
+          "newton_converged_samples": 7087,
+          "newton_budget_exhausted_calls": 0
+        }
+      }
+    },
+    "anderson_s1": {
+      "calls": 71,
+      "roles": {
+        "evaluation/rollout_or_eval_action": {
+          "calls": 71,
+          "samples": 7906,
+          "local_steps": 31624,
+          "failed_samples": 2843,
+          "failed_local_steps": 6330,
+          "cap_calls": 66,
+          "mean_converged_calls": 7,
+          "unconverged_budget_calls": 64,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        }
+      }
+    },
+    "anderson_s2": {
+      "calls": 74,
+      "roles": {
+        "evaluation/rollout_or_eval_action": {
+          "calls": 74,
+          "samples": 8127,
+          "local_steps": 32508,
+          "failed_samples": 3030,
+          "failed_local_steps": 6552,
+          "cap_calls": 67,
+          "mean_converged_calls": 10,
+          "unconverged_budget_calls": 64,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        }
+      }
+    },
+    "anderson_s3": {
+      "calls": 72,
+      "roles": {
+        "evaluation/rollout_or_eval_action": {
+          "calls": 72,
+          "samples": 8255,
+          "local_steps": 33020,
+          "failed_samples": 2921,
+          "failed_local_steps": 7047,
+          "cap_calls": 66,
+          "mean_converged_calls": 11,
+          "unconverged_budget_calls": 61,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        }
+      }
+    },
+    "anderson_tighter_s1": {
+      "calls": 76,
+      "roles": {
+        "evaluation/rollout_or_eval_action": {
+          "calls": 76,
+          "samples": 8089,
+          "local_steps": 32356,
+          "failed_samples": 149,
+          "failed_local_steps": 214,
+          "cap_calls": 2,
+          "mean_converged_calls": 74,
+          "unconverged_budget_calls": 2,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        }
+      }
+    },
+    "anderson_tighter_s2": {
+      "calls": 73,
+      "roles": {
+        "evaluation/rollout_or_eval_action": {
+          "calls": 73,
+          "samples": 7941,
+          "local_steps": 31764,
+          "failed_samples": 151,
+          "failed_local_steps": 181,
+          "cap_calls": 2,
+          "mean_converged_calls": 71,
+          "unconverged_budget_calls": 2,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        }
+      }
+    },
+    "anderson_tighter_s3": {
+      "calls": 70,
+      "roles": {
+        "evaluation/rollout_or_eval_action": {
+          "calls": 70,
+          "samples": 7971,
+          "local_steps": 31884,
+          "failed_samples": 152,
+          "failed_local_steps": 198,
+          "cap_calls": 2,
+          "mean_converged_calls": 69,
+          "unconverged_budget_calls": 1,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        }
+      }
+    },
+    "anderson_highcap_s1": {
+      "calls": 70,
+      "roles": {
+        "evaluation/rollout_or_eval_action": {
+          "calls": 70,
+          "samples": 7963,
+          "local_steps": 31852,
+          "failed_samples": 895,
+          "failed_local_steps": 1403,
+          "cap_calls": 0,
+          "mean_converged_calls": 70,
+          "unconverged_budget_calls": 0,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        }
+      }
+    },
+    "anderson_highcap_s2": {
+      "calls": 72,
+      "roles": {
+        "evaluation/rollout_or_eval_action": {
+          "calls": 72,
+          "samples": 8291,
+          "local_steps": 33164,
+          "failed_samples": 993,
+          "failed_local_steps": 1559,
+          "cap_calls": 0,
+          "mean_converged_calls": 72,
+          "unconverged_budget_calls": 0,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        }
+      }
+    },
+    "anderson_highcap_s3": {
+      "calls": 74,
+      "roles": {
+        "evaluation/rollout_or_eval_action": {
+          "calls": 74,
+          "samples": 8168,
+          "local_steps": 32672,
+          "failed_samples": 879,
+          "failed_local_steps": 1248,
+          "cap_calls": 0,
+          "mean_converged_calls": 74,
+          "unconverged_budget_calls": 0,
+          "newton_status_counts": {},
+          "newton_converged_samples": 0,
+          "newton_budget_exhausted_calls": 0
+        }
+      }
+    }
+  }
+}

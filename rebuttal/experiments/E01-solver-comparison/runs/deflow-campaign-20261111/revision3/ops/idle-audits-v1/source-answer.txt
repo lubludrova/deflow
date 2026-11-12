@@ -1,0 +1,103 @@
+**Сейчас самый сильный вывод — увеличение бюджета solver заметно снижает недосходимость и немного улучшает итоговую успешность. Но эти результаты пока не доказывают ни необходимость joint formulation, ни точность gradients при несошедшемся решении.**
+
+Ниже опираюсь на ваш срез **12 ноября, 08:34**, синхронизированные результаты и приложенный разбор. Это не новый live-мониторинг.
+
+**Что уже можно утверждать**
+
+По завершённым оценкам получаются следующие результаты. Для A/H указаны mean ± sample SD по трём training seeds, каждый оценён на 1000 эпизодах:
+
+| Условие | U4 | Success | Eval return |
+|---|---:|---:|---:|
+| A: tol $10^{-5}$, cap 25 | 0.6652 ± 0.0033 | 96.17 ± 1.10% | −7.87 ± 0.43 |
+| H: tol $10^{-5}$, cap 500 | 0.6743 ± 0.0041 | 98.20 ± 0.70% | −7.77 ± 0.41 |
+| T: tol $10^{-6}$, cap 100, **только seed 2** | 0.6746 | 98.10% | −7.31 |
+
+H улучшает U4 на всех трёх парных seeds: **+0.0088, +0.0151, +0.0033**. Среднее улучшение — **+0.0091 U4 и +2.03 процентного пункта success**. Это согласованное направление на небольшой выборке. Улучшение return гораздо скромнее.
+
+Однако checkpoints оцениваются со своими training solver settings. Поэтому результат относится ко всей процедуре **«обучение + финальный sampling»**. Пока нельзя приписать весь выигрыш именно улучшению обучения. Для разделения этих эффектов потребовалась бы перекрёстная оценка одинаковых checkpoints с разными настройками solver.
+
+Есть и более прямой ответ на вопрос ревьюера о numerical stability. В завершённой training telemetry:
+
+| Actor updates | A25 | H500 |
+|---|---:|---:|
+| Вызовы, исчерпавшие бюджет без native convergence | 99.78–99.81% | 0.09–1.14% |
+| Sample-trajectories, не прошедшие общий residual test | 31.91–37.37% | 6.07–8.56% |
+
+Это диапазоны по seeds. В первой строке знаменатель — вызовы solver, во второй — обработанные sample-trajectories. **Эти проценты нельзя сравнивать между строками как одну метрику.**
+
+Здесь важны сразу два вывода:
+
+- Больший cap существенно улучшает сходимость.
+- Даже H500 не обеспечивает сходимость каждого sample. Выполнение native stopping criterion не заменяет проверку отдельных residuals.
+
+При этом частота residual failures ещё не сообщает величину ошибки density, SAC loss или gradients. Именно этот пробел должны закрыть парные аудиты.
+
+**Что меняет диагностика Newton**
+
+[Численный разбор N3](/Users/ruslanageev/dev/DEFLOW/rebuttal/experiments/E01-solver-comparison/analysis/newton-investigation-20261112/implementation/report.md) подтверждает, что проблема не сводится к FP32: на одном полном batch CPU replay даёт **558/1024 failures в FP32 и 556/1024 в FP64**. На сохранённой GPU-траектории переход от $q$ к используемому actor readout $g(q)$ меняет squashed action с **P95 L2 = 0.336**.
+
+Это содержательное свидетельство рассогласования при недосходимости. Но:
+
+- Это **не измерение ошибки полного SAC gradient** относительно валидированного эталона.
+- Это **не установленная причина отказа N2**. Для N2 подтверждён non-finite actor loss.
+- Восстановление промежуточного eval N3 не позволяет описывать его как необратимо разрушившееся обучение.
+- Проверялась конкретная реализация damped Newton. Найдены случаи, где она пропускает существующие хорошо обусловленные корни. Поэтому её неудача не доказывает принципиальный недостаток sequential implicit Euler.
+
+**Как я изменил бы линию ответа**
+
+Сохранил бы порядок **W1 → Q → W2**. Сначала прямо признаём математическую эквивалентность точных систем. Затем предъявляем новые результаты и объясняем, какую часть вопроса о численной надёжности они закрывают. В конце ограничиваем практический вывод.
+
+Главный тезис теперь такой: **успешное покрытие сохраняется при существенно более строгом решении и даже немного улучшается, однако residual failures требуют отдельной проверки objective и gradients.** Это сильнее и точнее, чем попытка представить неудачу Newton доказательством необходимости joint solver.
+
+Ниже обновлённый единый черновик. **4617 символов**, включая Markdown, таблицы, формулы и курсивную рабочую пометку. До принятого общего лимита 5000 остаётся **383 символа**. После заполнения таблицы и удаления пометки нужно пересчитать окончательный текст. Ничего в файлы не сохранял.
+
+Thank you for recognizing the technical contribution and successful diversity results. The new results clarify solver-budget sensitivity, while leaving some questions open.
+
+**W1: “necessity of solving all intermediate actions jointly”**
+
+Joint solving is not mathematically necessary. Equations (7)–(8) have the same roots and define the same policy on a selected regular branch. Our contribution combines implicit sampling, implicit differentiation, and final-action density within SAC. The explicit ablation does not isolate a joint-solver advantage.
+
+We compare sequential damped Newton (N) and joint Anderson on wide-navigation/tight-docking MultiGoal: four steps, batch 1024, strict FP32, three fixed seeds, 200k transitions, and 1,000 stochastic evaluation episodes per policy. Anderson uses A=$10^{-5}/25$, H=$10^{-5}/500$, T=$10^{-6}/100$ (tolerance/cap). N uses rtol/atol=$10^{-5}/10^{-7}$, cap 25 per step.
+
+|Condition|Evaluated/planned|U4|Success (%)|
+|---|---|---|---|
+|A|3/3|0.6652 ± 0.0033|96.17 ± 1.10|
+|H|3/3|0.6743 ± 0.0041|98.20 ± 0.70|
+|T|1/3|0.6746|98.10|
+|N|0/3|pending|pending|
+
+A/H entries are mean ± sample SD over training seeds. H improves U4 in all three seed pairs, by 0.0091 on average, and success by 2.03 percentage points. This is a consistent direction in a small sample, not established general superiority. Each policy is evaluated with its training solver, so this comparison includes both learning and evaluation effects.
+
+N2 terminated at step 131,908 with non-finite actor loss. N1/N3 and T1/T3 remain unfinished. This tests one Newton implementation, not the necessity of joint solving. Solver family changes with organization, and both retain dense backward. Appendix A.2 permits a structured backward.
+
+**Q: “How reliable are the policy gradients and action densities when the equilibrium solver does not converge?”**
+
+Exactness is not guaranteed. Equation (13) is conditional on equilibrium. Training telemetry now separates cap events, native stopping failures, and fresh per-sample residual failures. Across completed seeds, actor-update statistics are:
+
+|Condition|Budget exhausted without native convergence (%)|Fresh failed trajectories (%)|
+|---|---|---|
+|A|99.78–99.81|31.91–37.37|
+|H|0.09–1.14|6.07–8.56|
+
+These are per-seed ranges over approximately 98k actor calls, batch 1024. A trajectory fails if any local residual exceeds $10^{-7}+10^{-5}\max(\|a_k\|_2,\|a_{k-1}\|_2)$. Larger budgets greatly reduce these failures, but H is not an all-sample convergence certificate. A/H isolates the cap intervention in the full pipeline. A/T changes both cap and tolerance. Jacobian-regularization sensitivity remains untested.
+
+A targeted N3 batch at step 78,398 had 559/1024 native failures on GPU and 556/1024 in CPU FP64 replay. On the saved trajectory, changing the readout from $q$ to $g(q)$ changed the squashed action by P95 L2=0.336. Rollout/targets use $q$, whereas actor updates use $g(q)$ with an approximate implicit backward. This shared approximation can matter far from equilibrium, but these measurements do not establish the cause of N2's failure.
+
+Nine planned audits compare A25/A100/A500 (tol $10^{-5}$) and N on identical recorded A-policy batches near 25k/100k/200k, using the saved SAC actor objective and a validated FP64 reference.
+
+|Solver|Forward ms|P95 log-density error|Relative gradient error|$\Delta L_\pi$|
+|---|---|---|---|---|
+|A25|…|…|…|…|
+|A100|…|…|…|…|
+|A500|…|…|…|…|
+|N|…|…|…|…|
+
+*Аудиты ещё не готовы. Добавить validated-reference counts. Не публиковать gradient error при невалидном full-batch reference.*
+
+The reference retains safeguards, so agreement does not certify finite-sampler likelihood, finite-solver sensitivities, or all critic-target/temperature errors. These A-policy audits do not cover all N-policy failure regimes. Docking also does not resolve PushWall's tighter P95 gradient discrepancy of 50.3% (Table 3).
+
+**W2: “Limited practical performance improvements relative to the computational and numerical costs.”**
+
+We agree that general superiority is not established. SAC leads aggregate MuJoCo return and PegInsertSide success (72.3% vs 39.3%). DIME leads PickCube (93.0% vs 87.3%). DEFlow's ButtonPressWall/PushWall success is only 8.7%/0.3% (Tables 5–6).
+
+The clearest benefit remains successful coverage of multiple precise goals (Table 1). Manipulation averages compare complete recipes over training steps, not elapsed time. Packed training durations are not clean solver-speed benchmarks. The new results support a solver-budget trade-off within DEFlow, not an equal-time advantage over SAC/SAC-Flow/DIME.

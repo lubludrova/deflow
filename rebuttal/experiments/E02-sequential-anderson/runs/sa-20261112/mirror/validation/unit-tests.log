@@ -1,0 +1,54 @@
+test_candidate_newton_refinement (deflow_rebuttal.test_audit.AuditTests.test_candidate_newton_refinement) ... ok
+test_common_readout_matches_native_action_density_gradient (deflow_rebuttal.test_audit.AuditTests.test_common_readout_matches_native_action_density_gradient) ... ok
+test_native_high_cap_early_stop_and_unconverged_limit (deflow_rebuttal.test_audit.AuditTests.test_native_high_cap_early_stop_and_unconverged_limit) ... ok
+test_reference_is_validated_by_equations (deflow_rebuttal.test_audit.AuditTests.test_reference_is_validated_by_equations) ... ok
+test_failed_and_nonfinite_are_not_convergence (deflow_rebuttal.test_audit.ConvergenceStatusTests.test_failed_and_nonfinite_are_not_convergence) ... ok
+test_last_iteration_can_converge (deflow_rebuttal.test_audit.ConvergenceStatusTests.test_last_iteration_can_converge) ... ok
+test_historical_constructor_metadata_strict_json (deflow_rebuttal.test_audit.SerializationTests.test_historical_constructor_metadata_strict_json) ... ok
+test_four_arm_effective_constructor_roundtrip (deflow_rebuttal.test_precision.DispatchTests.test_four_arm_effective_constructor_roundtrip) ... ok
+test_newton_budget_accounting_separates_cap_from_failure (deflow_rebuttal.test_precision.DispatchTests.test_newton_budget_accounting_separates_cap_from_failure) ... ok
+test_newton_dispatch_native_backward_and_exception_restoration (deflow_rebuttal.test_precision.DispatchTests.test_newton_dispatch_native_backward_and_exception_restoration) ... ok
+test_engine_override_point_honors_args (deflow_rebuttal.test_precision.PrecisionTests.test_engine_override_point_honors_args) ... ok
+test_overrides_autocast_and_non_fp32_rejected (deflow_rebuttal.test_precision.PrecisionTests.test_overrides_autocast_and_non_fp32_rejected) ... ok
+test_policy_restores_contaminated_backend (deflow_rebuttal.test_precision.PrecisionTests.test_policy_restores_contaminated_backend) ... ok
+test_affine_closed_form_and_work (deflow_rebuttal.test_sequential_anderson.SequentialAndersonTests.test_affine_closed_form_and_work) ... ok
+test_failure_at_early_step_remains_visible (deflow_rebuttal.test_sequential_anderson.SequentialAndersonTests.test_failure_at_early_step_remains_visible) ... FAIL
+test_init_is_previous_root_and_history_is_reset (deflow_rebuttal.test_sequential_anderson.SequentialAndersonTests.test_init_is_previous_root_and_history_is_reset) ... ok
+test_native_backward_and_density_at_identical_trajectory (deflow_rebuttal.test_sequential_anderson.SequentialAndersonTests.test_native_backward_and_density_at_identical_trajectory) ... ok
+test_one_step_is_native_kernel (deflow_rebuttal.test_sequential_anderson.SequentialAndersonTests.test_one_step_is_native_kernel) ... FAIL
+test_armijo_damps_cubic_and_reports_exhaustion (deflow_rebuttal.test_solver.SequentialNewtonTests.test_armijo_damps_cubic_and_reports_exhaustion) ... ok
+test_batch_permutation_and_single_sample_equivalence (deflow_rebuttal.test_solver.SequentialNewtonTests.test_batch_permutation_and_single_sample_equivalence) ... ok
+test_failed_early_step_is_not_erased_by_later_convergence (deflow_rebuttal.test_solver.SequentialNewtonTests.test_failed_early_step_is_not_erased_by_later_convergence) ... ok
+test_finite_value_nonfinite_jacobian_is_reported (deflow_rebuttal.test_solver.SequentialNewtonTests.test_finite_value_nonfinite_jacobian_is_reported) ... ok
+test_fp32_supported (deflow_rebuttal.test_solver.SequentialNewtonTests.test_fp32_supported) ... ok
+test_iteration_exhaustion_has_finite_last_accepted_iterate (deflow_rebuttal.test_solver.SequentialNewtonTests.test_iteration_exhaustion_has_finite_last_accepted_iterate) ... ok
+test_linear_affine_matches_closed_form_and_exact_budget (deflow_rebuttal.test_solver.SequentialNewtonTests.test_linear_affine_matches_closed_form_and_exact_budget) ... ok
+test_singular_nonfinite_and_good_rows_do_not_contaminate (deflow_rebuttal.test_solver.SequentialNewtonTests.test_singular_nonfinite_and_good_rows_do_not_contaminate) ... ok
+test_zero_field_initial_convergence_and_detached_output (deflow_rebuttal.test_solver.SequentialNewtonTests.test_zero_field_initial_convergence_and_detached_output) ... ok
+
+======================================================================
+FAIL: test_failure_at_early_step_remains_visible (deflow_rebuttal.test_sequential_anderson.SequentialAndersonTests.test_failure_at_early_step_remains_visible)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/featurize/deflow-sequential-anderson-20261112/code/package/deflow_rebuttal/test_sequential_anderson.py", line 64, in test_failure_at_early_step_remains_visible
+    self.assertTrue(native['per_step'][1]['mean_criterion_met'])
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_one_step_is_native_kernel (deflow_rebuttal.test_sequential_anderson.SequentialAndersonTests.test_one_step_is_native_kernel)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/featurize/deflow-sequential-anderson-20261112/code/package/deflow_rebuttal/test_sequential_anderson.py", line 55, in test_one_step_is_native_kernel
+    torch.testing.assert_close(q[:,0], expected, rtol=0, atol=0)
+  File "/home/featurize/deflow-sequential-anderson-20261112/venv/lib/python3.11/site-packages/torch/testing/_comparison.py", line 1519, in assert_close
+    raise error_metas[0].to_error(msg)
+AssertionError: Tensor-likes are not equal!
+
+Mismatched elements: 1 / 14 (7.1%)
+Greatest absolute difference: 2.9802322387695312e-08 at index (0, 1)
+Greatest relative difference: 7.653655842432272e-08 at index (0, 1)
+
+----------------------------------------------------------------------
+Ran 27 tests in 2.011s
+
+FAILED (failures=2)
