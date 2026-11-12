@@ -63,3 +63,17 @@ docs/*
 !/rebuttal/experiments/E02-sequential-anderson/runs/sa-20261112/validation/inputs/*.pt
 !/rebuttal/experiments/E02-sequential-anderson/runs/sa-20261112/mirror/validation/fixed-capsules-v3/*_raw.pt
 !/rebuttal/experiments/E03-tighter-anderson-audit/runs/*/mirror/audits/*/raw.pt
+
+# Local server-retirement data and transient transport state.
+/rebuttal/common/operations/server-retirement-13534-20261112/data/
+/rebuttal/common/operations/server-retirement-13534-20261112/transfer*
+/rebuttal/common/operations/server-retirement-13534-20261112/TRANSFER*
+/rebuttal/common/operations/server-retirement-13534-20261112/files*.txt
+# E06 fixed audit inputs and raw evidence, not training checkpoints.
+!/rebuttal/experiments/E06-anderson-table-audit/runs/*/inputs/*.pt
+!/rebuttal/experiments/E06-anderson-table-audit/runs/*/baseline/*/raw.pt
+!/rebuttal/experiments/E06-anderson-table-audit/runs/*/mirror/audits/*/raw.pt
+
+/rebuttal/experiments/E06-anderson-table-audit/analysis/dkt6.before-table-update.md
+/rebuttal/experiments/E06-anderson-table-audit/runs/*/SYNC_WATCH_PID.json
+/rebuttal/experiments/E06-anderson-table-audit/runs/*/sync-watch.log

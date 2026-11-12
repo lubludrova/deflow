@@ -1,0 +1,7061 @@
+{
+  "precision_policy": "strict_fp32",
+  "runtime_precision": {
+    "matmul_precision": "highest",
+    "matmul_allow_tf32": false,
+    "cudnn_allow_tf32": false,
+    "autocast_cuda": false,
+    "autocast_cpu": false,
+    "default_dtype": "torch.float32",
+    "torch": "2.7.1+cu128",
+    "cuda": "12.8",
+    "cudnn": 90701,
+    "backend_environment": {}
+  },
+  "package_sha256": {
+    "test_precision.py": "4aa05f012ee04290f4b3e7d5230adf805c9b4bcba5dfe8d93ff1383a22968da5",
+    "test_sequential_anderson.py": "cd8d139f56b12968447b0630cfde7977f789caa9b142eec877a8589fc60da6f0",
+    "__init__.py": "bb1453bff7053d16daa30c920e327a4321f2b67d8cb1a9f3f77997be12909a91",
+    "precision.py": "538963ed417e294db4c4bf78605671463e6f9263222073b5e0e2404e3a3dbe92",
+    "prepare_inputs.py": "13c9ffbac77395c8d2b9cd153408214d3c5d212a341250b042637509aa58030b",
+    "sequential_newton.py": "e7c24ebef16db7bd2e16101c08625294ba4902449e774281b9f5f0fca0a3a6d8",
+    "test_audit.py": "610bc8e4230cb497d0024b93873c61d7e050b87d0d91d3a7f512d14fcc90e1b8",
+    "sequential_anderson.py": "bccc438e476f93e2adc625bd47924baf85c5fd87de0d5a7fc05091d9dd71a76d",
+    "test_solver.py": "b2072803ce51db7958b7f6331f88345ffc614d27c609d8d9fc0bd79489a6bb7c",
+    "evaluate.py": "898a38155612b53bde39cbb4762aa7d5a65368bda9e242bd301b9cd7233f0c4a",
+    "audit.py": "6dcff6cb6b5c2e3f58b4c98b22c99551598c8512f1c08ebaf9c6e0ecbcd7d48d",
+    "run_docking.py": "3892450c54e4746a3b8a9d7462d22249742509ec0c8c9c923655f44eef324e64"
+  },
+  "source_sha256": {
+    "sac_anderson_flow.py": "ba94c8e1f66a41bc6b828ec78d52a1d0ca53573428a771c52c73ea7196205bb5",
+    "sac_flow_parent.py": "84f00325205c5e7e78b49d50879be56d861e1d715d347f40560dfc220f3ad761",
+    "sac_gaussian_baseline.py": "2d4d33f90aaa97b2580c4ae7f159f0290ca78d12d865c8f899fc45c81ef75964",
+    "dime_actor.py": "2792ac803dd3229e66fbe36c872589476ea750159831fbb9a8b95d7ee0fb3790",
+    "qsm_actor.py": "70e33a61d900d2503d2f2e91157552fdc2a2d2da861c41fbc6bd260a4b292e2d",
+    "multigoal_docking_env.py": "05a1c9a3b046d6260ef0055834b594a12ac391a3ab80faf1a444369276edb986",
+    "step_accounting.py": "0d3343cc0b3e87729b1980d927728b31ec835944adee6eeb3cbcb824f4fd24f1",
+    "run_multigoal_docking_full.py": "7adaaf6a735d5a629fa45e070841c1d83185405b9a1dabce521932b6103155ac",
+    "evaluate_multigoal_docking_full.py": "244d093da999c6df7e5382db1462e8060f209db4a4f7591c6439b2ca1bad4530"
+  },
+  "actor_kwargs_sha256": "af5c54908a728534ea951ff4ef543b03e1587edd1912135a75e4f1f0d34a90de",
+  "solver": "anderson",
+  "checkpoint_sha256": "659f36045b17be6bcc797a423d2ece1618f73eb4f549e06d79c99d51f502de36",
+  "checkpoint": "/home/featurize/deflow-joint-anderson-a100-20261112-restart1/results/joint_anderson_a100_s1/runs/anderson_tol1e-05_cap100_wide_tight_s1/ckpt_step_000200006.pt",
+  "episodes": [
+    {
+      "episode": 0,
+      "goal": 1,
+      "success": 1,
+      "return": -14.399420078843832,
+      "docking_distance": 0.057717736810445786
+    },
+    {
+      "episode": 1,
+      "goal": 0,
+      "success": 1,
+      "return": -7.2739514000713825,
+      "docking_distance": 0.04353146627545357
+    },
+    {
+      "episode": 2,
+      "goal": 0,
+      "success": 1,
+      "return": -5.736144544556737,
+      "docking_distance": 0.028870048001408577
+    },
+    {
+      "episode": 3,
+      "goal": 2,
+      "success": 1,
+      "return": -2.771176990121603,
+      "docking_distance": 0.035351451486349106
+    },
+    {
+      "episode": 4,
+      "goal": 1,
+      "success": 1,
+      "return": -7.105595953762531,
+      "docking_distance": 0.03246576339006424
+    },
+    {
+      "episode": 5,
+      "goal": 2,
+      "success": 1,
+      "return": -15.775235713459551,
+      "docking_distance": 0.015073061920702457
+    },
+    {
+      "episode": 6,
+      "goal": 2,
+      "success": 1,
+      "return": -7.655013725161552,
+      "docking_distance": 0.025318488478660583
+    },
+    {
+      "episode": 7,
+      "goal": 2,
+      "success": 1,
+      "return": -12.001489458605647,
+      "docking_distance": 0.02575880102813244
+    },
+    {
+      "episode": 8,
+      "goal": 3,
+      "success": 0,
+      "return": -18.85335338115692,
+      "docking_distance": 0.583926796913147
+    },
+    {
+      "episode": 9,
+      "goal": 2,
+      "success": 1,
+      "return": -2.114965543150902,
+      "docking_distance": 0.03400413691997528
+    },
+    {
+      "episode": 10,
+      "goal": 0,
+      "success": 1,
+      "return": -2.7146643036976457,
+      "docking_distance": 0.003238522447645664
+    },
+    {
+      "episode": 11,
+      "goal": 2,
+      "success": 1,
+      "return": -5.491093643009663,
+      "docking_distance": 0.037986405193805695
+    },
+    {
+      "episode": 12,
+      "goal": 3,
+      "success": 0,
+      "return": -17.11484307050705,
+      "docking_distance": 0.9515050649642944
+    },
+    {
+      "episode": 13,
+      "goal": 0,
+      "success": 1,
+      "return": -5.938336346298456,
+      "docking_distance": 0.05213398113846779
+    },
+    {
+      "episode": 14,
+      "goal": 1,
+      "success": 1,
+      "return": -2.2499392144382,
+      "docking_distance": 0.03857799991965294
+    },
+    {
+      "episode": 15,
+      "goal": 3,
+      "success": 0,
+      "return": -17.264354646205902,
+      "docking_distance": 0.6756474375724792
+    },
+    {
+      "episode": 16,
+      "goal": 2,
+      "success": 1,
+      "return": -5.576787054538727,
+      "docking_distance": 0.04918098449707031
+    },
+    {
+      "episode": 17,
+      "goal": 3,
+      "success": 0,
+      "return": -20.27228218317032,
+      "docking_distance": 0.4347767233848572
+    },
+    {
+      "episode": 18,
+      "goal": 0,
+      "success": 1,
+      "return": -12.274246405810118,
+      "docking_distance": 0.03376109525561333
+    },
+    {
+      "episode": 19,
+      "goal": 0,
+      "success": 1,
+      "return": -6.709083203226328,
+      "docking_distance": 0.05610758438706398
+    },
+    {
+      "episode": 20,
+      "goal": 1,
+      "success": 1,
+      "return": -3.572365801781416,
+      "docking_distance": 0.05334083363413811
+    },
+    {
+      "episode": 21,
+      "goal": 2,
+      "success": 1,
+      "return": -2.461990689858794,
+      "docking_distance": 0.028698598966002464
+    },
+    {
+      "episode": 22,
+      "goal": 0,
+      "success": 1,
+      "return": -16.61336339265108,
+      "docking_distance": 0.04126764088869095
+    },
+    {
+      "episode": 23,
+      "goal": 1,
+      "success": 1,
+      "return": -9.018157981336117,
+      "docking_distance": 0.04250910133123398
+    },
+    {
+      "episode": 24,
+      "goal": 2,
+      "success": 1,
+      "return": -5.382303316146135,
+      "docking_distance": 0.042569953948259354
+    },
+    {
+      "episode": 25,
+      "goal": 2,
+      "success": 1,
+      "return": -6.508853254839778,
+      "docking_distance": 0.028968272730708122
+    },
+    {
+      "episode": 26,
+      "goal": 3,
+      "success": 0,
+      "return": -17.215471476316452,
+      "docking_distance": 1.3201103210449219
+    },
+    {
+      "episode": 27,
+      "goal": 0,
+      "success": 1,
+      "return": -25.83554845675826,
+      "docking_distance": 0.039371784776449203
+    },
+    {
+      "episode": 28,
+      "goal": 1,
+      "success": 1,
+      "return": -9.104457192122936,
+      "docking_distance": 0.0453413650393486
+    },
+    {
+      "episode": 29,
+      "goal": 0,
+      "success": 1,
+      "return": -3.034967487677932,
+      "docking_distance": 0.018488412722945213
+    },
+    {
+      "episode": 30,
+      "goal": 1,
+      "success": 1,
+      "return": -4.385690834373236,
+      "docking_distance": 0.055811312049627304
+    },
+    {
+      "episode": 31,
+      "goal": 0,
+      "success": 1,
+      "return": -8.440786264836788,
+      "docking_distance": 0.05029162019491196
+    },
+    {
+      "episode": 32,
+      "goal": 2,
+      "success": 1,
+      "return": -3.624471366405487,
+      "docking_distance": 0.030623555183410645
+    },
+    {
+      "episode": 33,
+      "goal": 0,
+      "success": 1,
+      "return": -2.9887187965214252,
+      "docking_distance": 0.037052784115076065
+    },
+    {
+      "episode": 34,
+      "goal": 0,
+      "success": 1,
+      "return": -3.079115528613329,
+      "docking_distance": 0.02765907719731331
+    },
+    {
+      "episode": 35,
+      "goal": 1,
+      "success": 1,
+      "return": -13.297852715477347,
+      "docking_distance": 0.02933379076421261
+    },
+    {
+      "episode": 36,
+      "goal": 0,
+      "success": 1,
+      "return": -5.9553132727742195,
+      "docking_distance": 0.02806878834962845
+    },
+    {
+      "episode": 37,
+      "goal": 0,
+      "success": 1,
+      "return": -5.399739310145378,
+      "docking_distance": 0.03763966262340546
+    },
+    {
+      "episode": 38,
+      "goal": 1,
+      "success": 1,
+      "return": -5.229006800800562,
+      "docking_distance": 0.015385661274194717
+    },
+    {
+      "episode": 39,
+      "goal": 2,
+      "success": 1,
+      "return": -7.791150673292577,
+      "docking_distance": 0.013462497852742672
+    },
+    {
+      "episode": 40,
+      "goal": 0,
+      "success": 1,
+      "return": -7.13372141122818,
+      "docking_distance": 0.047698259353637695
+    },
+    {
+      "episode": 41,
+      "goal": 2,
+      "success": 1,
+      "return": -4.297004722058773,
+      "docking_distance": 0.050946466624736786
+    },
+    {
+      "episode": 42,
+      "goal": 0,
+      "success": 1,
+      "return": -3.519175872206688,
+      "docking_distance": 0.03886549174785614
+    },
+    {
+      "episode": 43,
+      "goal": 2,
+      "success": 1,
+      "return": -5.9003506395965815,
+      "docking_distance": 0.02365303970873356
+    },
+    {
+      "episode": 44,
+      "goal": 3,
+      "success": 0,
+      "return": -18.06704491376877,
+      "docking_distance": 0.2097184658050537
+    },
+    {
+      "episode": 45,
+      "goal": 1,
+      "success": 1,
+      "return": -4.3480792455375195,
+      "docking_distance": 0.041959088295698166
+    },
+    {
+      "episode": 46,
+      "goal": 0,
+      "success": 1,
+      "return": -3.9666445795446634,
+      "docking_distance": 0.02364235557615757
+    },
+    {
+      "episode": 47,
+      "goal": 0,
+      "success": 1,
+      "return": -7.958526685833931,
+      "docking_distance": 0.03780408203601837
+    },
+    {
+      "episode": 48,
+      "goal": 0,
+      "success": 1,
+      "return": -5.598626237362623,
+      "docking_distance": 0.059985678642988205
+    },
+    {
+      "episode": 49,
+      "goal": 0,
+      "success": 1,
+      "return": -1.8479875810444355,
+      "docking_distance": 0.04509972408413887
+    },
+    {
+      "episode": 50,
+      "goal": 0,
+      "success": 1,
+      "return": -2.296016179025173,
+      "docking_distance": 0.05355241149663925
+    },
+    {
+      "episode": 51,
+      "goal": 1,
+      "success": 1,
+      "return": -8.732094328850508,
+      "docking_distance": 0.045970212668180466
+    },
+    {
+      "episode": 52,
+      "goal": 2,
+      "success": 1,
+      "return": -9.922558445483446,
+      "docking_distance": 0.018153328448534012
+    },
+    {
+      "episode": 53,
+      "goal": 2,
+      "success": 1,
+      "return": -9.87908747419715,
+      "docking_distance": 0.031028177589178085
+    },
+    {
+      "episode": 54,
+      "goal": 1,
+      "success": 1,
+      "return": -2.0329124722629786,
+      "docking_distance": 0.026454785838723183
+    },
+    {
+      "episode": 55,
+      "goal": 0,
+      "success": 1,
+      "return": -7.04444707557559,
+      "docking_distance": 0.021747779101133347
+    },
+    {
+      "episode": 56,
+      "goal": 2,
+      "success": 1,
+      "return": -15.151596098206937,
+      "docking_distance": 0.0092371990904212
+    },
+    {
+      "episode": 57,
+      "goal": 1,
+      "success": 1,
+      "return": -5.111046366393566,
+      "docking_distance": 0.04662131518125534
+    },
+    {
+      "episode": 58,
+      "goal": 0,
+      "success": 0,
+      "return": -13.311963621526957,
+      "docking_distance": 0.061214808374643326
+    },
+    {
+      "episode": 59,
+      "goal": 3,
+      "success": 0,
+      "return": -34.2743818461895,
+      "docking_distance": 0.7605628967285156
+    },
+    {
+      "episode": 60,
+      "goal": 1,
+      "success": 1,
+      "return": -2.979776833206415,
+      "docking_distance": 0.04311487451195717
+    },
+    {
+      "episode": 61,
+      "goal": 0,
+      "success": 1,
+      "return": -6.2899228651076555,
+      "docking_distance": 0.020053954795002937
+    },
+    {
+      "episode": 62,
+      "goal": 1,
+      "success": 1,
+      "return": -5.4145891815423965,
+      "docking_distance": 0.05103100836277008
+    },
+    {
+      "episode": 63,
+      "goal": 0,
+      "success": 1,
+      "return": -4.282132102176547,
+      "docking_distance": 0.023883355781435966
+    },
+    {
+      "episode": 64,
+      "goal": 3,
+      "success": 0,
+      "return": -12.518453255295753,
+      "docking_distance": 0.1927518993616104
+    },
+    {
+      "episode": 65,
+      "goal": 1,
+      "success": 1,
+      "return": -12.89895059634,
+      "docking_distance": 0.00805171299725771
+    },
+    {
+      "episode": 66,
+      "goal": 2,
+      "success": 1,
+      "return": -4.840938489884138,
+      "docking_distance": 0.03424606844782829
+    },
+    {
+      "episode": 67,
+      "goal": 2,
+      "success": 1,
+      "return": -4.218229975551367,
+      "docking_distance": 0.03611811622977257
+    },
+    {
+      "episode": 68,
+      "goal": 3,
+      "success": 0,
+      "return": -22.049370110034943,
+      "docking_distance": 0.6375470757484436
+    },
+    {
+      "episode": 69,
+      "goal": 2,
+      "success": 1,
+      "return": -6.882920764386654,
+      "docking_distance": 0.04429330676794052
+    },
+    {
+      "episode": 70,
+      "goal": 3,
+      "success": 0,
+      "return": -18.297122418880463,
+      "docking_distance": 1.3779529333114624
+    },
+    {
+      "episode": 71,
+      "goal": 0,
+      "success": 1,
+      "return": -4.477186657488346,
+      "docking_distance": 0.04727468639612198
+    },
+    {
+      "episode": 72,
+      "goal": 2,
+      "success": 1,
+      "return": -4.016703806817532,
+      "docking_distance": 0.05363651365041733
+    },
+    {
+      "episode": 73,
+      "goal": 0,
+      "success": 1,
+      "return": -3.004628193564713,
+      "docking_distance": 0.009740364737808704
+    },
+    {
+      "episode": 74,
+      "goal": 0,
+      "success": 1,
+      "return": -6.836961675435305,
+      "docking_distance": 0.03990139439702034
+    },
+    {
+      "episode": 75,
+      "goal": 0,
+      "success": 1,
+      "return": -5.848194148391485,
+      "docking_distance": 0.046277668327093124
+    },
+    {
+      "episode": 76,
+      "goal": 0,
+      "success": 1,
+      "return": -4.506159570068121,
+      "docking_distance": 0.03584882244467735
+    },
+    {
+      "episode": 77,
+      "goal": 1,
+      "success": 1,
+      "return": -6.735866766422987,
+      "docking_distance": 0.03998325392603874
+    },
+    {
+      "episode": 78,
+      "goal": 0,
+      "success": 1,
+      "return": -2.45196520909667,
+      "docking_distance": 0.05042242631316185
+    },
+    {
+      "episode": 79,
+      "goal": 0,
+      "success": 1,
+      "return": -5.203975398093462,
+      "docking_distance": 0.03968103602528572
+    },
+    {
+      "episode": 80,
+      "goal": 0,
+      "success": 1,
+      "return": -13.47754506394267,
+      "docking_distance": 0.03951011225581169
+    },
+    {
+      "episode": 81,
+      "goal": 2,
+      "success": 1,
+      "return": -5.428704912774265,
+      "docking_distance": 0.008328135125339031
+    },
+    {
+      "episode": 82,
+      "goal": 0,
+      "success": 1,
+      "return": -5.502387261018157,
+      "docking_distance": 0.021386688575148582
+    },
+    {
+      "episode": 83,
+      "goal": 3,
+      "success": 0,
+      "return": -13.322751224040985,
+      "docking_distance": 0.9731093049049377
+    },
+    {
+      "episode": 84,
+      "goal": 2,
+      "success": 1,
+      "return": -3.934478636831045,
+      "docking_distance": 0.04245549067854881
+    },
+    {
+      "episode": 85,
+      "goal": 0,
+      "success": 1,
+      "return": -6.509909272193909,
+      "docking_distance": 0.02201288938522339
+    },
+    {
+      "episode": 86,
+      "goal": 1,
+      "success": 1,
+      "return": -2.835051406174898,
+      "docking_distance": 0.0120423324406147
+    },
+    {
+      "episode": 87,
+      "goal": 2,
+      "success": 1,
+      "return": -9.858878917992115,
+      "docking_distance": 0.057385243475437164
+    },
+    {
+      "episode": 88,
+      "goal": 0,
+      "success": 1,
+      "return": -18.76435697451234,
+      "docking_distance": 0.045747313648462296
+    },
+    {
+      "episode": 89,
+      "goal": 3,
+      "success": 0,
+      "return": -22.806561529636383,
+      "docking_distance": 0.5391372442245483
+    },
+    {
+      "episode": 90,
+      "goal": 2,
+      "success": 1,
+      "return": -3.9679006300866604,
+      "docking_distance": 0.029617663472890854
+    },
+    {
+      "episode": 91,
+      "goal": 2,
+      "success": 1,
+      "return": -9.162564433645457,
+      "docking_distance": 0.005995071958750486
+    },
+    {
+      "episode": 92,
+      "goal": 0,
+      "success": 1,
+      "return": -4.7205126620829105,
+      "docking_distance": 0.05392870679497719
+    },
+    {
+      "episode": 93,
+      "goal": 0,
+      "success": 1,
+      "return": -21.080784007674083,
+      "docking_distance": 0.0026617494877427816
+    },
+    {
+      "episode": 94,
+      "goal": 0,
+      "success": 1,
+      "return": -5.6517875753343105,
+      "docking_distance": 0.038553472608327866
+    },
+    {
+      "episode": 95,
+      "goal": 3,
+      "success": 0,
+      "return": -27.389854073524475,
+      "docking_distance": 0.9239267110824585
+    },
+    {
+      "episode": 96,
+      "goal": 3,
+      "success": 0,
+      "return": -16.98626536130905,
+      "docking_distance": 0.6502739191055298
+    },
+    {
+      "episode": 97,
+      "goal": 1,
+      "success": 1,
+      "return": -2.808371029794216,
+      "docking_distance": 0.037860237061977386
+    },
+    {
+      "episode": 98,
+      "goal": 0,
+      "success": 1,
+      "return": -2.0385840386152267,
+      "docking_distance": 0.023645803332328796
+    },
+    {
+      "episode": 99,
+      "goal": 1,
+      "success": 1,
+      "return": -5.380700208246708,
+      "docking_distance": 0.017129220068454742
+    },
+    {
+      "episode": 100,
+      "goal": 2,
+      "success": 1,
+      "return": -4.781003005802631,
+      "docking_distance": 0.0393037274479866
+    },
+    {
+      "episode": 101,
+      "goal": 0,
+      "success": 1,
+      "return": -8.49471541494131,
+      "docking_distance": 0.0595334991812706
+    },
+    {
+      "episode": 102,
+      "goal": 0,
+      "success": 1,
+      "return": -5.6541155744344,
+      "docking_distance": 0.030306177213788033
+    },
+    {
+      "episode": 103,
+      "goal": 2,
+      "success": 1,
+      "return": -7.409419992938638,
+      "docking_distance": 0.029322663322091103
+    },
+    {
+      "episode": 104,
+      "goal": 2,
+      "success": 1,
+      "return": -7.485551184043288,
+      "docking_distance": 0.02561832033097744
+    },
+    {
+      "episode": 105,
+      "goal": 2,
+      "success": 1,
+      "return": -11.114899098873138,
+      "docking_distance": 0.028890609741210938
+    },
+    {
+      "episode": 106,
+      "goal": 1,
+      "success": 1,
+      "return": -4.510439118370414,
+      "docking_distance": 0.024967094883322716
+    },
+    {
+      "episode": 107,
+      "goal": 0,
+      "success": 1,
+      "return": -9.81466756388545,
+      "docking_distance": 0.03320590779185295
+    },
+    {
+      "episode": 108,
+      "goal": 1,
+      "success": 1,
+      "return": -10.94103568047285,
+      "docking_distance": 0.05411272495985031
+    },
+    {
+      "episode": 109,
+      "goal": 0,
+      "success": 1,
+      "return": -3.5343006663024426,
+      "docking_distance": 0.036802273243665695
+    },
+    {
+      "episode": 110,
+      "goal": 0,
+      "success": 1,
+      "return": -9.344364039599895,
+      "docking_distance": 0.04629569500684738
+    },
+    {
+      "episode": 111,
+      "goal": 1,
+      "success": 1,
+      "return": -7.9703538082540035,
+      "docking_distance": 0.03327163681387901
+    },
+    {
+      "episode": 112,
+      "goal": 0,
+      "success": 1,
+      "return": -3.215581376105547,
+      "docking_distance": 0.05838501825928688
+    },
+    {
+      "episode": 113,
+      "goal": 1,
+      "success": 1,
+      "return": -5.270745165646076,
+      "docking_distance": 0.03483254462480545
+    },
+    {
+      "episode": 114,
+      "goal": 1,
+      "success": 1,
+      "return": -7.574228595942259,
+      "docking_distance": 0.03329245373606682
+    },
+    {
+      "episode": 115,
+      "goal": 2,
+      "success": 1,
+      "return": -10.23542806506157,
+      "docking_distance": 0.04638683795928955
+    },
+    {
+      "episode": 116,
+      "goal": 2,
+      "success": 1,
+      "return": -8.023100889287889,
+      "docking_distance": 0.01034692581743002
+    },
+    {
+      "episode": 117,
+      "goal": 0,
+      "success": 1,
+      "return": -3.3472955264151096,
+      "docking_distance": 0.021020475775003433
+    },
+    {
+      "episode": 118,
+      "goal": 2,
+      "success": 1,
+      "return": -5.189770217984915,
+      "docking_distance": 0.033935364335775375
+    },
+    {
+      "episode": 119,
+      "goal": 2,
+      "success": 1,
+      "return": -4.118033587932587,
+      "docking_distance": 0.03651466965675354
+    },
+    {
+      "episode": 120,
+      "goal": 0,
+      "success": 1,
+      "return": -15.299125507473946,
+      "docking_distance": 0.04161033034324646
+    },
+    {
+      "episode": 121,
+      "goal": 2,
+      "success": 1,
+      "return": -1.671145997941494,
+      "docking_distance": 0.03235121816396713
+    },
+    {
+      "episode": 122,
+      "goal": 3,
+      "success": 0,
+      "return": -23.219964921474457,
+      "docking_distance": 1.0266026258468628
+    },
+    {
+      "episode": 123,
+      "goal": 0,
+      "success": 1,
+      "return": -5.791526656597853,
+      "docking_distance": 0.040105681866407394
+    },
+    {
+      "episode": 124,
+      "goal": 1,
+      "success": 1,
+      "return": -2.252837985754013,
+      "docking_distance": 0.032083481550216675
+    },
+    {
+      "episode": 125,
+      "goal": 3,
+      "success": 0,
+      "return": -15.47773027420044,
+      "docking_distance": 0.7786394357681274
+    },
+    {
+      "episode": 126,
+      "goal": 0,
+      "success": 1,
+      "return": -10.312915202230215,
+      "docking_distance": 0.04526602849364281
+    },
+    {
+      "episode": 127,
+      "goal": 2,
+      "success": 1,
+      "return": -5.37252782844007,
+      "docking_distance": 0.02570526860654354
+    },
+    {
+      "episode": 128,
+      "goal": 0,
+      "success": 1,
+      "return": -7.90014910325408,
+      "docking_distance": 0.025595124810934067
+    },
+    {
+      "episode": 129,
+      "goal": 0,
+      "success": 1,
+      "return": -3.1808514557778835,
+      "docking_distance": 0.05089857801795006
+    },
+    {
+      "episode": 130,
+      "goal": 2,
+      "success": 1,
+      "return": -3.291837204247713,
+      "docking_distance": 0.054461825639009476
+    },
+    {
+      "episode": 131,
+      "goal": 3,
+      "success": 0,
+      "return": -16.150010585784912,
+      "docking_distance": 0.5465667247772217
+    },
+    {
+      "episode": 132,
+      "goal": 2,
+      "success": 1,
+      "return": -6.695491284132004,
+      "docking_distance": 0.05239143967628479
+    },
+    {
+      "episode": 133,
+      "goal": 3,
+      "success": 0,
+      "return": -16.987320125102997,
+      "docking_distance": 0.6324940919876099
+    },
+    {
+      "episode": 134,
+      "goal": 1,
+      "success": 1,
+      "return": -6.706743068993092,
+      "docking_distance": 0.02265847474336624
+    },
+    {
+      "episode": 135,
+      "goal": 1,
+      "success": 1,
+      "return": -5.935931913554668,
+      "docking_distance": 0.03857868164777756
+    },
+    {
+      "episode": 136,
+      "goal": 0,
+      "success": 1,
+      "return": -2.768333913758397,
+      "docking_distance": 0.019891859963536263
+    },
+    {
+      "episode": 137,
+      "goal": 0,
+      "success": 1,
+      "return": -2.4264390096068382,
+      "docking_distance": 0.05081280320882797
+    },
+    {
+      "episode": 138,
+      "goal": 2,
+      "success": 1,
+      "return": -6.287013594061136,
+      "docking_distance": 0.00895858183503151
+    },
+    {
+      "episode": 139,
+      "goal": 1,
+      "success": 1,
+      "return": -4.416119324043393,
+      "docking_distance": 0.019796298816800117
+    },
+    {
+      "episode": 140,
+      "goal": 1,
+      "success": 1,
+      "return": -5.483515560626984,
+      "docking_distance": 0.03088247776031494
+    },
+    {
+      "episode": 141,
+      "goal": 0,
+      "success": 1,
+      "return": -6.534965004771948,
+      "docking_distance": 0.02448078617453575
+    },
+    {
+      "episode": 142,
+      "goal": 1,
+      "success": 1,
+      "return": -4.246587825939059,
+      "docking_distance": 0.029955757781863213
+    },
+    {
+      "episode": 143,
+      "goal": 2,
+      "success": 1,
+      "return": -6.021262113004923,
+      "docking_distance": 0.05113542452454567
+    },
+    {
+      "episode": 144,
+      "goal": 2,
+      "success": 1,
+      "return": -5.787193287163973,
+      "docking_distance": 0.04034661129117012
+    },
+    {
+      "episode": 145,
+      "goal": 2,
+      "success": 1,
+      "return": -8.48862986639142,
+      "docking_distance": 0.03383486345410347
+    },
+    {
+      "episode": 146,
+      "goal": 0,
+      "success": 1,
+      "return": -4.7878153175115585,
+      "docking_distance": 0.04185186326503754
+    },
+    {
+      "episode": 147,
+      "goal": 3,
+      "success": 0,
+      "return": -20.933411091566086,
+      "docking_distance": 0.5502864718437195
+    },
+    {
+      "episode": 148,
+      "goal": 0,
+      "success": 1,
+      "return": -2.1669631456024945,
+      "docking_distance": 0.004973814357072115
+    },
+    {
+      "episode": 149,
+      "goal": 3,
+      "success": 0,
+      "return": -21.869420170783997,
+      "docking_distance": 1.0556498765945435
+    },
+    {
+      "episode": 150,
+      "goal": 2,
+      "success": 1,
+      "return": -3.9167987667024136,
+      "docking_distance": 0.048300500959157944
+    },
+    {
+      "episode": 151,
+      "goal": 2,
+      "success": 1,
+      "return": -1.7781277894973755,
+      "docking_distance": 0.041936278343200684
+    },
+    {
+      "episode": 152,
+      "goal": 0,
+      "success": 1,
+      "return": -10.683769170194864,
+      "docking_distance": 0.02166009321808815
+    },
+    {
+      "episode": 153,
+      "goal": 0,
+      "success": 1,
+      "return": -9.311947468668222,
+      "docking_distance": 0.05753690376877785
+    },
+    {
+      "episode": 154,
+      "goal": 0,
+      "success": 1,
+      "return": -5.957717876881361,
+      "docking_distance": 0.05754778906702995
+    },
+    {
+      "episode": 155,
+      "goal": 2,
+      "success": 1,
+      "return": -3.2060022242367268,
+      "docking_distance": 0.0446617491543293
+    },
+    {
+      "episode": 156,
+      "goal": 1,
+      "success": 0,
+      "return": -15.577016070485115,
+      "docking_distance": 0.06420250236988068
+    },
+    {
+      "episode": 157,
+      "goal": 2,
+      "success": 1,
+      "return": -6.328540600836277,
+      "docking_distance": 0.019202955067157745
+    },
+    {
+      "episode": 158,
+      "goal": 2,
+      "success": 1,
+      "return": -1.8644339963793755,
+      "docking_distance": 0.039803437888622284
+    },
+    {
+      "episode": 159,
+      "goal": 0,
+      "success": 1,
+      "return": -1.6435478255152702,
+      "docking_distance": 0.01863192766904831
+    },
+    {
+      "episode": 160,
+      "goal": 0,
+      "success": 1,
+      "return": -9.801287852227688,
+      "docking_distance": 0.03297736495733261
+    },
+    {
+      "episode": 161,
+      "goal": 1,
+      "success": 1,
+      "return": -4.06917430460453,
+      "docking_distance": 0.05251319706439972
+    },
+    {
+      "episode": 162,
+      "goal": 2,
+      "success": 1,
+      "return": -9.674728285521269,
+      "docking_distance": 0.032629143446683884
+    },
+    {
+      "episode": 163,
+      "goal": 0,
+      "success": 1,
+      "return": -6.228080376982689,
+      "docking_distance": 0.03700344264507294
+    },
+    {
+      "episode": 164,
+      "goal": 0,
+      "success": 1,
+      "return": -12.290133817121387,
+      "docking_distance": 0.010552449151873589
+    },
+    {
+      "episode": 165,
+      "goal": 2,
+      "success": 1,
+      "return": -6.7286437433212996,
+      "docking_distance": 0.028954414650797844
+    },
+    {
+      "episode": 166,
+      "goal": 0,
+      "success": 1,
+      "return": -6.223602909594774,
+      "docking_distance": 0.03478254750370979
+    },
+    {
+      "episode": 167,
+      "goal": 1,
+      "success": 1,
+      "return": -2.659556496888399,
+      "docking_distance": 0.043510664254426956
+    },
+    {
+      "episode": 168,
+      "goal": 0,
+      "success": 1,
+      "return": -4.2739853616803885,
+      "docking_distance": 0.023876672610640526
+    },
+    {
+      "episode": 169,
+      "goal": 2,
+      "success": 1,
+      "return": -7.119630230590701,
+      "docking_distance": 0.02126009576022625
+    },
+    {
+      "episode": 170,
+      "goal": 2,
+      "success": 1,
+      "return": -7.842732783406973,
+      "docking_distance": 0.037936981767416
+    },
+    {
+      "episode": 171,
+      "goal": 2,
+      "success": 1,
+      "return": -3.3957065418362617,
+      "docking_distance": 0.05718500167131424
+    },
+    {
+      "episode": 172,
+      "goal": 1,
+      "success": 1,
+      "return": -6.369929391890764,
+      "docking_distance": 0.033850569278001785
+    },
+    {
+      "episode": 173,
+      "goal": 2,
+      "success": 1,
+      "return": -4.544618386775255,
+      "docking_distance": 0.05118848755955696
+    },
+    {
+      "episode": 174,
+      "goal": 2,
+      "success": 1,
+      "return": -2.371361877769232,
+      "docking_distance": 0.04366203770041466
+    },
+    {
+      "episode": 175,
+      "goal": 0,
+      "success": 1,
+      "return": -4.7749914936721325,
+      "docking_distance": 0.04885689541697502
+    },
+    {
+      "episode": 176,
+      "goal": 0,
+      "success": 1,
+      "return": -3.9830212965607643,
+      "docking_distance": 0.059032656252384186
+    },
+    {
+      "episode": 177,
+      "goal": 1,
+      "success": 1,
+      "return": -11.372175354510546,
+      "docking_distance": 0.04574083164334297
+    },
+    {
+      "episode": 178,
+      "goal": 3,
+      "success": 0,
+      "return": -14.914689540863037,
+      "docking_distance": 0.3592532277107239
+    },
+    {
+      "episode": 179,
+      "goal": 1,
+      "success": 1,
+      "return": -5.98110412620008,
+      "docking_distance": 0.015790244564414024
+    },
+    {
+      "episode": 180,
+      "goal": 1,
+      "success": 1,
+      "return": -7.608222575858235,
+      "docking_distance": 0.020301612094044685
+    },
+    {
+      "episode": 181,
+      "goal": 0,
+      "success": 1,
+      "return": -6.867665097117424,
+      "docking_distance": 0.023632898926734924
+    },
+    {
+      "episode": 182,
+      "goal": 2,
+      "success": 0,
+      "return": -22.12725169956684,
+      "docking_distance": 0.06057371199131012
+    },
+    {
+      "episode": 183,
+      "goal": 2,
+      "success": 1,
+      "return": -6.692143253982067,
+      "docking_distance": 0.023383907973766327
+    },
+    {
+      "episode": 184,
+      "goal": 1,
+      "success": 1,
+      "return": -2.688005522824824,
+      "docking_distance": 0.013514981605112553
+    },
+    {
+      "episode": 185,
+      "goal": 3,
+      "success": 0,
+      "return": -14.080463409423828,
+      "docking_distance": 1.3390682935714722
+    },
+    {
+      "episode": 186,
+      "goal": 3,
+      "success": 0,
+      "return": -14.500255584716797,
+      "docking_distance": 0.6687971949577332
+    },
+    {
+      "episode": 187,
+      "goal": 0,
+      "success": 1,
+      "return": -11.306107580661774,
+      "docking_distance": 0.03860121965408325
+    },
+    {
+      "episode": 188,
+      "goal": 0,
+      "success": 1,
+      "return": -2.4105535373091698,
+      "docking_distance": 0.03854461759328842
+    },
+    {
+      "episode": 189,
+      "goal": 0,
+      "success": 1,
+      "return": -3.370363309979439,
+      "docking_distance": 0.05153818428516388
+    },
+    {
+      "episode": 190,
+      "goal": 2,
+      "success": 1,
+      "return": -14.265976816415787,
+      "docking_distance": 0.04844704270362854
+    },
+    {
+      "episode": 191,
+      "goal": 2,
+      "success": 1,
+      "return": -9.519889174029231,
+      "docking_distance": 0.014036832377314568
+    },
+    {
+      "episode": 192,
+      "goal": 1,
+      "success": 0,
+      "return": -17.42996772378683,
+      "docking_distance": 0.11608501523733139
+    },
+    {
+      "episode": 193,
+      "goal": 1,
+      "success": 1,
+      "return": -6.025237450376153,
+      "docking_distance": 0.024618038907647133
+    },
+    {
+      "episode": 194,
+      "goal": 2,
+      "success": 1,
+      "return": -8.61574238538742,
+      "docking_distance": 0.05769336223602295
+    },
+    {
+      "episode": 195,
+      "goal": 2,
+      "success": 1,
+      "return": -10.005195194855332,
+      "docking_distance": 0.02204045094549656
+    },
+    {
+      "episode": 196,
+      "goal": 2,
+      "success": 1,
+      "return": -2.7798636481165886,
+      "docking_distance": 0.010903291404247284
+    },
+    {
+      "episode": 197,
+      "goal": 0,
+      "success": 1,
+      "return": -19.397189144045115,
+      "docking_distance": 0.03842157498002052
+    },
+    {
+      "episode": 198,
+      "goal": 2,
+      "success": 1,
+      "return": -8.414471734315157,
+      "docking_distance": 0.021741140633821487
+    },
+    {
+      "episode": 199,
+      "goal": 0,
+      "success": 1,
+      "return": -5.535612209700048,
+      "docking_distance": 0.012383385561406612
+    },
+    {
+      "episode": 200,
+      "goal": 1,
+      "success": 1,
+      "return": -6.31694832444191,
+      "docking_distance": 0.018000751733779907
+    },
+    {
+      "episode": 201,
+      "goal": 1,
+      "success": 1,
+      "return": -16.718142250552773,
+      "docking_distance": 0.028318146243691444
+    },
+    {
+      "episode": 202,
+      "goal": 1,
+      "success": 1,
+      "return": -5.014760598540306,
+      "docking_distance": 0.03250439465045929
+    },
+    {
+      "episode": 203,
+      "goal": 3,
+      "success": 0,
+      "return": -26.85064607858658,
+      "docking_distance": 0.8015936017036438
+    },
+    {
+      "episode": 204,
+      "goal": 1,
+      "success": 1,
+      "return": -3.9851019345223904,
+      "docking_distance": 0.05678253993391991
+    },
+    {
+      "episode": 205,
+      "goal": 2,
+      "success": 1,
+      "return": -7.6435625068843365,
+      "docking_distance": 0.034047674387693405
+    },
+    {
+      "episode": 206,
+      "goal": 0,
+      "success": 1,
+      "return": -7.358586180955172,
+      "docking_distance": 0.040073323994874954
+    },
+    {
+      "episode": 207,
+      "goal": 0,
+      "success": 1,
+      "return": -5.98712382465601,
+      "docking_distance": 0.020803488790988922
+    },
+    {
+      "episode": 208,
+      "goal": 3,
+      "success": 0,
+      "return": -24.199274361133575,
+      "docking_distance": 1.1350940465927124
+    },
+    {
+      "episode": 209,
+      "goal": 2,
+      "success": 1,
+      "return": -4.959097534418106,
+      "docking_distance": 0.03553929924964905
+    },
+    {
+      "episode": 210,
+      "goal": 0,
+      "success": 1,
+      "return": -9.796533204615116,
+      "docking_distance": 0.029487289488315582
+    },
+    {
+      "episode": 211,
+      "goal": 2,
+      "success": 1,
+      "return": -7.410956971347332,
+      "docking_distance": 0.04658257216215134
+    },
+    {
+      "episode": 212,
+      "goal": 3,
+      "success": 0,
+      "return": -17.658426076173782,
+      "docking_distance": 0.41561368107795715
+    },
+    {
+      "episode": 213,
+      "goal": 0,
+      "success": 1,
+      "return": -7.815699137747288,
+      "docking_distance": 0.026365555822849274
+    },
+    {
+      "episode": 214,
+      "goal": 0,
+      "success": 1,
+      "return": -6.4047731757164,
+      "docking_distance": 0.04119604825973511
+    },
+    {
+      "episode": 215,
+      "goal": 2,
+      "success": 1,
+      "return": -5.848874557763338,
+      "docking_distance": 0.035107363015413284
+    },
+    {
+      "episode": 216,
+      "goal": 3,
+      "success": 0,
+      "return": -22.6839941740036,
+      "docking_distance": 1.136993408203125
+    },
+    {
+      "episode": 217,
+      "goal": 0,
+      "success": 1,
+      "return": -11.28946004807949,
+      "docking_distance": 0.030881211161613464
+    },
+    {
+      "episode": 218,
+      "goal": 2,
+      "success": 1,
+      "return": -5.02338682115078,
+      "docking_distance": 0.03713248670101166
+    },
+    {
+      "episode": 219,
+      "goal": 0,
+      "success": 1,
+      "return": -3.701130447909236,
+      "docking_distance": 0.025807199999690056
+    },
+    {
+      "episode": 220,
+      "goal": 2,
+      "success": 1,
+      "return": -5.087376352399588,
+      "docking_distance": 0.05680665001273155
+    },
+    {
+      "episode": 221,
+      "goal": 2,
+      "success": 1,
+      "return": -14.214758574962616,
+      "docking_distance": 0.037664711475372314
+    },
+    {
+      "episode": 222,
+      "goal": 0,
+      "success": 1,
+      "return": -2.2463833056390285,
+      "docking_distance": 0.04478919133543968
+    },
+    {
+      "episode": 223,
+      "goal": 0,
+      "success": 1,
+      "return": -2.533945832401514,
+      "docking_distance": 0.03593740239739418
+    },
+    {
+      "episode": 224,
+      "goal": 0,
+      "success": 1,
+      "return": -7.564079103991389,
+      "docking_distance": 0.025008080527186394
+    },
+    {
+      "episode": 225,
+      "goal": 2,
+      "success": 1,
+      "return": -6.188160573132336,
+      "docking_distance": 0.009942923672497272
+    },
+    {
+      "episode": 226,
+      "goal": 0,
+      "success": 1,
+      "return": -2.6948962658643723,
+      "docking_distance": 0.03403376042842865
+    },
+    {
+      "episode": 227,
+      "goal": 2,
+      "success": 1,
+      "return": -5.098643988370895,
+      "docking_distance": 0.03386375308036804
+    },
+    {
+      "episode": 228,
+      "goal": 0,
+      "success": 1,
+      "return": -4.17605684697628,
+      "docking_distance": 0.04959569871425629
+    },
+    {
+      "episode": 229,
+      "goal": 0,
+      "success": 1,
+      "return": -10.239999625831842,
+      "docking_distance": 0.03563776984810829
+    },
+    {
+      "episode": 230,
+      "goal": 3,
+      "success": 1,
+      "return": -14.474442759528756,
+      "docking_distance": 0.023520449176430702
+    },
+    {
+      "episode": 231,
+      "goal": 0,
+      "success": 1,
+      "return": -6.483646875247359,
+      "docking_distance": 0.024875765666365623
+    },
+    {
+      "episode": 232,
+      "goal": 3,
+      "success": 0,
+      "return": -15.603523284196854,
+      "docking_distance": 0.36534568667411804
+    },
+    {
+      "episode": 233,
+      "goal": 2,
+      "success": 1,
+      "return": -3.057793214917183,
+      "docking_distance": 0.036232709884643555
+    },
+    {
+      "episode": 234,
+      "goal": 2,
+      "success": 1,
+      "return": -4.636677011847496,
+      "docking_distance": 0.04820375144481659
+    },
+    {
+      "episode": 235,
+      "goal": 3,
+      "success": 0,
+      "return": -31.45392209291458,
+      "docking_distance": 0.9531208276748657
+    },
+    {
+      "episode": 236,
+      "goal": 0,
+      "success": 1,
+      "return": -7.120195395313203,
+      "docking_distance": 0.013479477725923061
+    },
+    {
+      "episode": 237,
+      "goal": 0,
+      "success": 1,
+      "return": -2.3702141381800175,
+      "docking_distance": 0.04844659939408302
+    },
+    {
+      "episode": 238,
+      "goal": 0,
+      "success": 1,
+      "return": -3.060080371797085,
+      "docking_distance": 0.046523161232471466
+    },
+    {
+      "episode": 239,
+      "goal": 3,
+      "success": 0,
+      "return": -28.75175367295742,
+      "docking_distance": 1.7863637208938599
+    },
+    {
+      "episode": 240,
+      "goal": 1,
+      "success": 1,
+      "return": -5.510900631546974,
+      "docking_distance": 0.042307689785957336
+    },
+    {
+      "episode": 241,
+      "goal": 0,
+      "success": 1,
+      "return": -8.41788126155734,
+      "docking_distance": 0.028780806809663773
+    },
+    {
+      "episode": 242,
+      "goal": 0,
+      "success": 1,
+      "return": -7.183782033622265,
+      "docking_distance": 0.036120884120464325
+    },
+    {
+      "episode": 243,
+      "goal": 3,
+      "success": 0,
+      "return": -16.233944475650787,
+      "docking_distance": 0.5476548671722412
+    },
+    {
+      "episode": 244,
+      "goal": 0,
+      "success": 1,
+      "return": -5.703377675265074,
+      "docking_distance": 0.023775171488523483
+    },
+    {
+      "episode": 245,
+      "goal": 0,
+      "success": 1,
+      "return": -8.137909855693579,
+      "docking_distance": 0.04489370808005333
+    },
+    {
+      "episode": 246,
+      "goal": 0,
+      "success": 1,
+      "return": -2.753220658749342,
+      "docking_distance": 0.049760203808546066
+    },
+    {
+      "episode": 247,
+      "goal": 2,
+      "success": 1,
+      "return": -4.634492754936218,
+      "docking_distance": 0.02796033024787903
+    },
+    {
+      "episode": 248,
+      "goal": 0,
+      "success": 1,
+      "return": -2.6208896599709988,
+      "docking_distance": 0.041808661073446274
+    },
+    {
+      "episode": 249,
+      "goal": 0,
+      "success": 1,
+      "return": -2.322379756718874,
+      "docking_distance": 0.05873887613415718
+    },
+    {
+      "episode": 250,
+      "goal": 1,
+      "success": 1,
+      "return": -4.138676796108484,
+      "docking_distance": 0.027940306812524796
+    },
+    {
+      "episode": 251,
+      "goal": 3,
+      "success": 0,
+      "return": -16.467845737934113,
+      "docking_distance": 0.9689894914627075
+    },
+    {
+      "episode": 252,
+      "goal": 0,
+      "success": 1,
+      "return": -10.318479899317026,
+      "docking_distance": 0.03151983395218849
+    },
+    {
+      "episode": 253,
+      "goal": 2,
+      "success": 0,
+      "return": -17.134204890578985,
+      "docking_distance": 0.061308469623327255
+    },
+    {
+      "episode": 254,
+      "goal": 1,
+      "success": 1,
+      "return": -6.926093748770654,
+      "docking_distance": 0.00944011565297842
+    },
+    {
+      "episode": 255,
+      "goal": 1,
+      "success": 1,
+      "return": -5.34736636839807,
+      "docking_distance": 0.020461177453398705
+    },
+    {
+      "episode": 256,
+      "goal": 0,
+      "success": 1,
+      "return": -5.238704586401582,
+      "docking_distance": 0.012763166800141335
+    },
+    {
+      "episode": 257,
+      "goal": 2,
+      "success": 1,
+      "return": -6.337420450523496,
+      "docking_distance": 0.01806269772350788
+    },
+    {
+      "episode": 258,
+      "goal": 0,
+      "success": 1,
+      "return": -4.84968651458621,
+      "docking_distance": 0.0267987959086895
+    },
+    {
+      "episode": 259,
+      "goal": 0,
+      "success": 1,
+      "return": -11.261396542191505,
+      "docking_distance": 0.02074553072452545
+    },
+    {
+      "episode": 260,
+      "goal": 1,
+      "success": 1,
+      "return": -6.069087387062609,
+      "docking_distance": 0.01144713256508112
+    },
+    {
+      "episode": 261,
+      "goal": 2,
+      "success": 1,
+      "return": -1.584413405507803,
+      "docking_distance": 0.03566354140639305
+    },
+    {
+      "episode": 262,
+      "goal": 2,
+      "success": 1,
+      "return": -10.582572292536497,
+      "docking_distance": 0.04828352853655815
+    },
+    {
+      "episode": 263,
+      "goal": 0,
+      "success": 1,
+      "return": -6.717062525451183,
+      "docking_distance": 0.055820636451244354
+    },
+    {
+      "episode": 264,
+      "goal": 1,
+      "success": 1,
+      "return": -13.715132359415293,
+      "docking_distance": 0.02362731471657753
+    },
+    {
+      "episode": 265,
+      "goal": 2,
+      "success": 1,
+      "return": -5.520379431545734,
+      "docking_distance": 0.04342610388994217
+    },
+    {
+      "episode": 266,
+      "goal": 2,
+      "success": 1,
+      "return": -7.071581643074751,
+      "docking_distance": 0.03721765801310539
+    },
+    {
+      "episode": 267,
+      "goal": 2,
+      "success": 1,
+      "return": -13.765993367880583,
+      "docking_distance": 0.020010661333799362
+    },
+    {
+      "episode": 268,
+      "goal": 2,
+      "success": 1,
+      "return": -1.7546367980539799,
+      "docking_distance": 0.03378525748848915
+    },
+    {
+      "episode": 269,
+      "goal": 1,
+      "success": 0,
+      "return": -18.093214482069016,
+      "docking_distance": 0.07327088713645935
+    },
+    {
+      "episode": 270,
+      "goal": 3,
+      "success": 0,
+      "return": -26.255594849586487,
+      "docking_distance": 1.4854336977005005
+    },
+    {
+      "episode": 271,
+      "goal": 2,
+      "success": 1,
+      "return": -5.323003865778446,
+      "docking_distance": 0.03393087536096573
+    },
+    {
+      "episode": 272,
+      "goal": 1,
+      "success": 0,
+      "return": -19.128011256456375,
+      "docking_distance": 0.07154771685600281
+    },
+    {
+      "episode": 273,
+      "goal": 2,
+      "success": 1,
+      "return": -4.0189149817451835,
+      "docking_distance": 0.009092523716390133
+    },
+    {
+      "episode": 274,
+      "goal": 3,
+      "success": 0,
+      "return": -15.095477759838104,
+      "docking_distance": 0.9197420477867126
+    },
+    {
+      "episode": 275,
+      "goal": 2,
+      "success": 1,
+      "return": -3.036417467519641,
+      "docking_distance": 0.020364737138152122
+    },
+    {
+      "episode": 276,
+      "goal": 3,
+      "success": 0,
+      "return": -15.010551393032074,
+      "docking_distance": 0.6032034754753113
+    },
+    {
+      "episode": 277,
+      "goal": 0,
+      "success": 1,
+      "return": -8.640293189324439,
+      "docking_distance": 0.015560039319097996
+    },
+    {
+      "episode": 278,
+      "goal": 2,
+      "success": 1,
+      "return": -4.093709639273584,
+      "docking_distance": 0.008862367831170559
+    },
+    {
+      "episode": 279,
+      "goal": 1,
+      "success": 1,
+      "return": -5.164588360115886,
+      "docking_distance": 0.0189571063965559
+    },
+    {
+      "episode": 280,
+      "goal": 0,
+      "success": 1,
+      "return": -1.4554640669375658,
+      "docking_distance": 0.012895168736577034
+    },
+    {
+      "episode": 281,
+      "goal": 0,
+      "success": 1,
+      "return": -2.7546705715358257,
+      "docking_distance": 0.03813500329852104
+    },
+    {
+      "episode": 282,
+      "goal": 2,
+      "success": 1,
+      "return": -4.005484307184815,
+      "docking_distance": 0.021026277914643288
+    },
+    {
+      "episode": 283,
+      "goal": 0,
+      "success": 1,
+      "return": -5.868046556599438,
+      "docking_distance": 0.015155469067394733
+    },
+    {
+      "episode": 284,
+      "goal": 1,
+      "success": 1,
+      "return": -4.534402262419462,
+      "docking_distance": 0.04548509046435356
+    },
+    {
+      "episode": 285,
+      "goal": 3,
+      "success": 0,
+      "return": -18.357632726430893,
+      "docking_distance": 0.4924512803554535
+    },
+    {
+      "episode": 286,
+      "goal": 1,
+      "success": 1,
+      "return": -4.2020439095795155,
+      "docking_distance": 0.05744178965687752
+    },
+    {
+      "episode": 287,
+      "goal": 1,
+      "success": 1,
+      "return": -9.365506663918495,
+      "docking_distance": 0.025593414902687073
+    },
+    {
+      "episode": 288,
+      "goal": 3,
+      "success": 0,
+      "return": -16.584299325942993,
+      "docking_distance": 0.8688861727714539
+    },
+    {
+      "episode": 289,
+      "goal": 0,
+      "success": 1,
+      "return": -7.76445696502924,
+      "docking_distance": 0.04293588548898697
+    },
+    {
+      "episode": 290,
+      "goal": 1,
+      "success": 1,
+      "return": -4.834525357931852,
+      "docking_distance": 0.03445984050631523
+    },
+    {
+      "episode": 291,
+      "goal": 3,
+      "success": 1,
+      "return": -10.363443084061146,
+      "docking_distance": 0.048889823257923126
+    },
+    {
+      "episode": 292,
+      "goal": 2,
+      "success": 1,
+      "return": -3.268033180385828,
+      "docking_distance": 0.04034611955285072
+    },
+    {
+      "episode": 293,
+      "goal": 1,
+      "success": 1,
+      "return": -15.977960500866175,
+      "docking_distance": 0.02092597261071205
+    },
+    {
+      "episode": 294,
+      "goal": 2,
+      "success": 1,
+      "return": -7.294049728661776,
+      "docking_distance": 0.03491150215268135
+    },
+    {
+      "episode": 295,
+      "goal": 2,
+      "success": 1,
+      "return": -9.85132615827024,
+      "docking_distance": 0.02739151380956173
+    },
+    {
+      "episode": 296,
+      "goal": 2,
+      "success": 1,
+      "return": -9.17561397049576,
+      "docking_distance": 0.014250428415834904
+    },
+    {
+      "episode": 297,
+      "goal": 1,
+      "success": 1,
+      "return": -2.1248274706304073,
+      "docking_distance": 0.04364743456244469
+    },
+    {
+      "episode": 298,
+      "goal": 0,
+      "success": 1,
+      "return": -4.344141602516174,
+      "docking_distance": 0.03239309787750244
+    },
+    {
+      "episode": 299,
+      "goal": 0,
+      "success": 1,
+      "return": -11.793041784316301,
+      "docking_distance": 0.04706122353672981
+    },
+    {
+      "episode": 300,
+      "goal": 1,
+      "success": 1,
+      "return": -6.2779178116470575,
+      "docking_distance": 0.025162944570183754
+    },
+    {
+      "episode": 301,
+      "goal": 0,
+      "success": 1,
+      "return": -7.6003251522779465,
+      "docking_distance": 0.026051387190818787
+    },
+    {
+      "episode": 302,
+      "goal": 1,
+      "success": 1,
+      "return": -3.5096713230013847,
+      "docking_distance": 0.033755771815776825
+    },
+    {
+      "episode": 303,
+      "goal": 2,
+      "success": 1,
+      "return": -9.001642402261496,
+      "docking_distance": 0.03174581751227379
+    },
+    {
+      "episode": 304,
+      "goal": 1,
+      "success": 0,
+      "return": -18.415710769593716,
+      "docking_distance": 0.07234223932027817
+    },
+    {
+      "episode": 305,
+      "goal": 2,
+      "success": 1,
+      "return": -6.2257663160562515,
+      "docking_distance": 0.05490870773792267
+    },
+    {
+      "episode": 306,
+      "goal": 0,
+      "success": 1,
+      "return": -7.437375225126743,
+      "docking_distance": 0.028904952108860016
+    },
+    {
+      "episode": 307,
+      "goal": 0,
+      "success": 1,
+      "return": -6.603007420897484,
+      "docking_distance": 0.0414147824048996
+    },
+    {
+      "episode": 308,
+      "goal": 2,
+      "success": 1,
+      "return": -12.701591338962317,
+      "docking_distance": 0.043320801109075546
+    },
+    {
+      "episode": 309,
+      "goal": 1,
+      "success": 1,
+      "return": -6.639867320656776,
+      "docking_distance": 0.043059006333351135
+    },
+    {
+      "episode": 310,
+      "goal": 0,
+      "success": 1,
+      "return": -5.893604073673487,
+      "docking_distance": 0.05687114968895912
+    },
+    {
+      "episode": 311,
+      "goal": 1,
+      "success": 1,
+      "return": -5.057577988132834,
+      "docking_distance": 0.025389691814780235
+    },
+    {
+      "episode": 312,
+      "goal": 3,
+      "success": 0,
+      "return": -18.192821621894836,
+      "docking_distance": 0.8572700023651123
+    },
+    {
+      "episode": 313,
+      "goal": 1,
+      "success": 1,
+      "return": -4.870320398360491,
+      "docking_distance": 0.04180030897259712
+    },
+    {
+      "episode": 314,
+      "goal": 2,
+      "success": 1,
+      "return": -2.546370418742299,
+      "docking_distance": 0.021243782714009285
+    },
+    {
+      "episode": 315,
+      "goal": 2,
+      "success": 1,
+      "return": -3.5353983528912067,
+      "docking_distance": 0.047970641404390335
+    },
+    {
+      "episode": 316,
+      "goal": 1,
+      "success": 0,
+      "return": -13.596658702939749,
+      "docking_distance": 0.06156044825911522
+    },
+    {
+      "episode": 317,
+      "goal": 1,
+      "success": 1,
+      "return": -9.88031291635707,
+      "docking_distance": 0.004384752828627825
+    },
+    {
+      "episode": 318,
+      "goal": 1,
+      "success": 1,
+      "return": -12.949194648303092,
+      "docking_distance": 0.014114179648458958
+    },
+    {
+      "episode": 319,
+      "goal": 0,
+      "success": 1,
+      "return": -7.066539581865072,
+      "docking_distance": 0.02451300248503685
+    },
+    {
+      "episode": 320,
+      "goal": 1,
+      "success": 1,
+      "return": -10.190028941258788,
+      "docking_distance": 0.029173826798796654
+    },
+    {
+      "episode": 321,
+      "goal": 0,
+      "success": 1,
+      "return": -4.688863538205624,
+      "docking_distance": 0.04706075042486191
+    },
+    {
+      "episode": 322,
+      "goal": 0,
+      "success": 1,
+      "return": -5.506183061748743,
+      "docking_distance": 0.02531937137246132
+    },
+    {
+      "episode": 323,
+      "goal": 0,
+      "success": 1,
+      "return": -5.5699881836771965,
+      "docking_distance": 0.04344480484724045
+    },
+    {
+      "episode": 324,
+      "goal": 1,
+      "success": 1,
+      "return": -7.266266323626041,
+      "docking_distance": 0.056343890726566315
+    },
+    {
+      "episode": 325,
+      "goal": 2,
+      "success": 1,
+      "return": -2.8012494733557105,
+      "docking_distance": 0.010319887660443783
+    },
+    {
+      "episode": 326,
+      "goal": 2,
+      "success": 1,
+      "return": -5.036127012223005,
+      "docking_distance": 0.033553462475538254
+    },
+    {
+      "episode": 327,
+      "goal": 3,
+      "success": 0,
+      "return": -38.02154713869095,
+      "docking_distance": 0.8067176938056946
+    },
+    {
+      "episode": 328,
+      "goal": 0,
+      "success": 1,
+      "return": -4.498590175062418,
+      "docking_distance": 0.04870695248246193
+    },
+    {
+      "episode": 329,
+      "goal": 1,
+      "success": 1,
+      "return": -12.917806459590793,
+      "docking_distance": 0.016851020976901054
+    },
+    {
+      "episode": 330,
+      "goal": 1,
+      "success": 1,
+      "return": -2.232824072241783,
+      "docking_distance": 0.03280667960643768
+    },
+    {
+      "episode": 331,
+      "goal": 2,
+      "success": 1,
+      "return": -1.8204903714358807,
+      "docking_distance": 0.035814713686704636
+    },
+    {
+      "episode": 332,
+      "goal": 2,
+      "success": 1,
+      "return": -9.132240377366543,
+      "docking_distance": 0.05491616576910019
+    },
+    {
+      "episode": 333,
+      "goal": 0,
+      "success": 1,
+      "return": -5.322325419634581,
+      "docking_distance": 0.049547385424375534
+    },
+    {
+      "episode": 334,
+      "goal": 2,
+      "success": 1,
+      "return": -4.291914030909538,
+      "docking_distance": 0.03696434199810028
+    },
+    {
+      "episode": 335,
+      "goal": 3,
+      "success": 0,
+      "return": -15.620539233088493,
+      "docking_distance": 0.1531050056219101
+    },
+    {
+      "episode": 336,
+      "goal": 1,
+      "success": 0,
+      "return": -14.75644452124834,
+      "docking_distance": 0.07136497646570206
+    },
+    {
+      "episode": 337,
+      "goal": 2,
+      "success": 1,
+      "return": -4.011712431907654,
+      "docking_distance": 0.04415690898895264
+    },
+    {
+      "episode": 338,
+      "goal": 1,
+      "success": 1,
+      "return": -8.813657656311989,
+      "docking_distance": 0.022130563855171204
+    },
+    {
+      "episode": 339,
+      "goal": 2,
+      "success": 1,
+      "return": -2.6318415366113186,
+      "docking_distance": 0.023494478315114975
+    },
+    {
+      "episode": 340,
+      "goal": 0,
+      "success": 1,
+      "return": -3.093336842954159,
+      "docking_distance": 0.05084516853094101
+    },
+    {
+      "episode": 341,
+      "goal": 2,
+      "success": 1,
+      "return": -4.363052923232317,
+      "docking_distance": 0.03711320832371712
+    },
+    {
+      "episode": 342,
+      "goal": 2,
+      "success": 1,
+      "return": -1.5490265898406506,
+      "docking_distance": 0.029577117413282394
+    },
+    {
+      "episode": 343,
+      "goal": 2,
+      "success": 1,
+      "return": -8.588790317997336,
+      "docking_distance": 0.02996711991727352
+    },
+    {
+      "episode": 344,
+      "goal": 0,
+      "success": 1,
+      "return": -8.428011010400951,
+      "docking_distance": 0.008996854536235332
+    },
+    {
+      "episode": 345,
+      "goal": 0,
+      "success": 1,
+      "return": -1.4540634788572788,
+      "docking_distance": 0.04213506355881691
+    },
+    {
+      "episode": 346,
+      "goal": 1,
+      "success": 0,
+      "return": -15.149802893400192,
+      "docking_distance": 0.40792492032051086
+    },
+    {
+      "episode": 347,
+      "goal": 3,
+      "success": 0,
+      "return": -22.389584839344025,
+      "docking_distance": 0.6694214344024658
+    },
+    {
+      "episode": 348,
+      "goal": 2,
+      "success": 1,
+      "return": -10.472506469115615,
+      "docking_distance": 0.030958181247115135
+    },
+    {
+      "episode": 349,
+      "goal": 0,
+      "success": 0,
+      "return": -16.386924386024475,
+      "docking_distance": 0.06720519065856934
+    },
+    {
+      "episode": 350,
+      "goal": 2,
+      "success": 1,
+      "return": -5.681068800389767,
+      "docking_distance": 0.03803037852048874
+    },
+    {
+      "episode": 351,
+      "goal": 0,
+      "success": 1,
+      "return": -1.8481884617358446,
+      "docking_distance": 0.019823970273137093
+    },
+    {
+      "episode": 352,
+      "goal": 0,
+      "success": 1,
+      "return": -3.2917417101562023,
+      "docking_distance": 0.05843765661120415
+    },
+    {
+      "episode": 353,
+      "goal": 1,
+      "success": 1,
+      "return": -7.431373413652182,
+      "docking_distance": 0.04460936412215233
+    },
+    {
+      "episode": 354,
+      "goal": 0,
+      "success": 1,
+      "return": -11.169165257364511,
+      "docking_distance": 0.04851067438721657
+    },
+    {
+      "episode": 355,
+      "goal": 2,
+      "success": 1,
+      "return": -5.516592971980572,
+      "docking_distance": 0.02156030386686325
+    },
+    {
+      "episode": 356,
+      "goal": 2,
+      "success": 1,
+      "return": -1.782271632924676,
+      "docking_distance": 0.019945571199059486
+    },
+    {
+      "episode": 357,
+      "goal": 2,
+      "success": 1,
+      "return": -5.628593718633056,
+      "docking_distance": 0.02920166216790676
+    },
+    {
+      "episode": 358,
+      "goal": 0,
+      "success": 1,
+      "return": -7.080412436276674,
+      "docking_distance": 0.040484536439180374
+    },
+    {
+      "episode": 359,
+      "goal": 2,
+      "success": 1,
+      "return": -2.636909071356058,
+      "docking_distance": 0.03150445595383644
+    },
+    {
+      "episode": 360,
+      "goal": 0,
+      "success": 1,
+      "return": -8.544186405837536,
+      "docking_distance": 0.026119641959667206
+    },
+    {
+      "episode": 361,
+      "goal": 1,
+      "success": 0,
+      "return": -21.738840386271477,
+      "docking_distance": 0.06704847514629364
+    },
+    {
+      "episode": 362,
+      "goal": 1,
+      "success": 1,
+      "return": -8.21150528267026,
+      "docking_distance": 0.05984847620129585
+    },
+    {
+      "episode": 363,
+      "goal": 3,
+      "success": 0,
+      "return": -18.740383565425873,
+      "docking_distance": 1.0504810810089111
+    },
+    {
+      "episode": 364,
+      "goal": 0,
+      "success": 1,
+      "return": -3.4117460884153843,
+      "docking_distance": 0.03380141034722328
+    },
+    {
+      "episode": 365,
+      "goal": 2,
+      "success": 1,
+      "return": -3.8377970177680254,
+      "docking_distance": 0.026634665206074715
+    },
+    {
+      "episode": 366,
+      "goal": 1,
+      "success": 1,
+      "return": -4.790933437645435,
+      "docking_distance": 0.051254160702228546
+    },
+    {
+      "episode": 367,
+      "goal": 0,
+      "success": 1,
+      "return": -6.532616838812828,
+      "docking_distance": 0.032367557287216187
+    },
+    {
+      "episode": 368,
+      "goal": 0,
+      "success": 1,
+      "return": -3.56242348626256,
+      "docking_distance": 0.04719223454594612
+    },
+    {
+      "episode": 369,
+      "goal": 2,
+      "success": 1,
+      "return": -2.279276804998517,
+      "docking_distance": 0.025604741647839546
+    },
+    {
+      "episode": 370,
+      "goal": 0,
+      "success": 1,
+      "return": -4.305693417787552,
+      "docking_distance": 0.04420134425163269
+    },
+    {
+      "episode": 371,
+      "goal": 3,
+      "success": 0,
+      "return": -14.99291107058525,
+      "docking_distance": 0.18713060021400452
+    },
+    {
+      "episode": 372,
+      "goal": 2,
+      "success": 1,
+      "return": -6.335820000618696,
+      "docking_distance": 0.02775661274790764
+    },
+    {
+      "episode": 373,
+      "goal": 1,
+      "success": 1,
+      "return": -7.024703372269869,
+      "docking_distance": 0.0245203860104084
+    },
+    {
+      "episode": 374,
+      "goal": 3,
+      "success": 0,
+      "return": -22.304362654685974,
+      "docking_distance": 0.727716863155365
+    },
+    {
+      "episode": 375,
+      "goal": 0,
+      "success": 1,
+      "return": -5.190085913985968,
+      "docking_distance": 0.05911865457892418
+    },
+    {
+      "episode": 376,
+      "goal": 0,
+      "success": 1,
+      "return": -10.335301157087088,
+      "docking_distance": 0.029229696840047836
+    },
+    {
+      "episode": 377,
+      "goal": 1,
+      "success": 1,
+      "return": -9.844237845391035,
+      "docking_distance": 0.02849334105849266
+    },
+    {
+      "episode": 378,
+      "goal": 3,
+      "success": 0,
+      "return": -15.578473627567291,
+      "docking_distance": 1.627300500869751
+    },
+    {
+      "episode": 379,
+      "goal": 2,
+      "success": 1,
+      "return": -5.274614408612251,
+      "docking_distance": 0.0361911803483963
+    },
+    {
+      "episode": 380,
+      "goal": 1,
+      "success": 1,
+      "return": -4.893282786011696,
+      "docking_distance": 0.020320847630500793
+    },
+    {
+      "episode": 381,
+      "goal": 1,
+      "success": 1,
+      "return": -3.797160539776087,
+      "docking_distance": 0.024660203605890274
+    },
+    {
+      "episode": 382,
+      "goal": 1,
+      "success": 1,
+      "return": -6.727726588025689,
+      "docking_distance": 0.010977277532219887
+    },
+    {
+      "episode": 383,
+      "goal": 1,
+      "success": 1,
+      "return": -1.9490812383592129,
+      "docking_distance": 0.023874934762716293
+    },
+    {
+      "episode": 384,
+      "goal": 3,
+      "success": 0,
+      "return": -17.58345465362072,
+      "docking_distance": 0.1335473507642746
+    },
+    {
+      "episode": 385,
+      "goal": 0,
+      "success": 1,
+      "return": -10.702116064727306,
+      "docking_distance": 0.04067593067884445
+    },
+    {
+      "episode": 386,
+      "goal": 2,
+      "success": 1,
+      "return": -4.758260268718004,
+      "docking_distance": 0.017174143344163895
+    },
+    {
+      "episode": 387,
+      "goal": 0,
+      "success": 1,
+      "return": -5.072037722915411,
+      "docking_distance": 0.0505865179002285
+    },
+    {
+      "episode": 388,
+      "goal": 2,
+      "success": 1,
+      "return": -4.100230477750301,
+      "docking_distance": 0.045549176633358
+    },
+    {
+      "episode": 389,
+      "goal": 1,
+      "success": 1,
+      "return": -11.004449693486094,
+      "docking_distance": 0.019153503701090813
+    },
+    {
+      "episode": 390,
+      "goal": 1,
+      "success": 1,
+      "return": -2.5698924846947193,
+      "docking_distance": 0.031620997935533524
+    },
+    {
+      "episode": 391,
+      "goal": 2,
+      "success": 1,
+      "return": -5.092222889885306,
+      "docking_distance": 0.023553749546408653
+    },
+    {
+      "episode": 392,
+      "goal": 0,
+      "success": 1,
+      "return": -10.398777402937412,
+      "docking_distance": 0.033955611288547516
+    },
+    {
+      "episode": 393,
+      "goal": 0,
+      "success": 1,
+      "return": -5.78552533313632,
+      "docking_distance": 0.042819034308195114
+    },
+    {
+      "episode": 394,
+      "goal": 0,
+      "success": 1,
+      "return": -6.900137424468994,
+      "docking_distance": 0.05844295024871826
+    },
+    {
+      "episode": 395,
+      "goal": 0,
+      "success": 1,
+      "return": -4.674060862511396,
+      "docking_distance": 0.023789387196302414
+    },
+    {
+      "episode": 396,
+      "goal": 1,
+      "success": 1,
+      "return": -4.655872780829668,
+      "docking_distance": 0.02793153002858162
+    },
+    {
+      "episode": 397,
+      "goal": 0,
+      "success": 0,
+      "return": -15.050856314599514,
+      "docking_distance": 0.06774719804525375
+    },
+    {
+      "episode": 398,
+      "goal": 2,
+      "success": 1,
+      "return": -9.788651466369629,
+      "docking_distance": 0.04442781209945679
+    },
+    {
+      "episode": 399,
+      "goal": 0,
+      "success": 1,
+      "return": -4.697115790098906,
+      "docking_distance": 0.04264272376894951
+    },
+    {
+      "episode": 400,
+      "goal": 2,
+      "success": 1,
+      "return": -9.208536375313997,
+      "docking_distance": 0.04001091793179512
+    },
+    {
+      "episode": 401,
+      "goal": 0,
+      "success": 1,
+      "return": -3.0935754403471947,
+      "docking_distance": 0.05215587466955185
+    },
+    {
+      "episode": 402,
+      "goal": 1,
+      "success": 1,
+      "return": -7.716655416414142,
+      "docking_distance": 0.029867930337786674
+    },
+    {
+      "episode": 403,
+      "goal": 0,
+      "success": 1,
+      "return": -5.282956808805466,
+      "docking_distance": 0.028720825910568237
+    },
+    {
+      "episode": 404,
+      "goal": 2,
+      "success": 1,
+      "return": -6.208030059933662,
+      "docking_distance": 0.04704262316226959
+    },
+    {
+      "episode": 405,
+      "goal": 2,
+      "success": 1,
+      "return": -12.630261451005936,
+      "docking_distance": 0.03129836916923523
+    },
+    {
+      "episode": 406,
+      "goal": 3,
+      "success": 0,
+      "return": -17.793358951807022,
+      "docking_distance": 0.3906610310077667
+    },
+    {
+      "episode": 407,
+      "goal": 1,
+      "success": 1,
+      "return": -9.935767006129026,
+      "docking_distance": 0.027221571654081345
+    },
+    {
+      "episode": 408,
+      "goal": 1,
+      "success": 1,
+      "return": -3.7652725502848625,
+      "docking_distance": 0.01786329597234726
+    },
+    {
+      "episode": 409,
+      "goal": 1,
+      "success": 1,
+      "return": -5.762542195618153,
+      "docking_distance": 0.05009496957063675
+    },
+    {
+      "episode": 410,
+      "goal": 2,
+      "success": 1,
+      "return": -8.080595288425684,
+      "docking_distance": 0.04876384511590004
+    },
+    {
+      "episode": 411,
+      "goal": 2,
+      "success": 1,
+      "return": -6.20400944724679,
+      "docking_distance": 0.05455640330910683
+    },
+    {
+      "episode": 412,
+      "goal": 3,
+      "success": 0,
+      "return": -17.657240390777588,
+      "docking_distance": 0.806424617767334
+    },
+    {
+      "episode": 413,
+      "goal": 1,
+      "success": 1,
+      "return": -3.188975004479289,
+      "docking_distance": 0.02709999494254589
+    },
+    {
+      "episode": 414,
+      "goal": 3,
+      "success": 0,
+      "return": -27.79851073026657,
+      "docking_distance": 0.7375059723854065
+    },
+    {
+      "episode": 415,
+      "goal": 2,
+      "success": 1,
+      "return": -11.643206588923931,
+      "docking_distance": 0.04629223793745041
+    },
+    {
+      "episode": 416,
+      "goal": 0,
+      "success": 1,
+      "return": -2.6939526796340942,
+      "docking_distance": 0.04590749740600586
+    },
+    {
+      "episode": 417,
+      "goal": 2,
+      "success": 1,
+      "return": -8.657991420477629,
+      "docking_distance": 0.03522629663348198
+    },
+    {
+      "episode": 418,
+      "goal": 3,
+      "success": 0,
+      "return": -20.039704978466034,
+      "docking_distance": 0.3631089925765991
+    },
+    {
+      "episode": 419,
+      "goal": 2,
+      "success": 1,
+      "return": -7.190089426934719,
+      "docking_distance": 0.024136744439601898
+    },
+    {
+      "episode": 420,
+      "goal": 0,
+      "success": 1,
+      "return": -10.665021132677794,
+      "docking_distance": 0.045755695551633835
+    },
+    {
+      "episode": 421,
+      "goal": 2,
+      "success": 1,
+      "return": -4.145395860075951,
+      "docking_distance": 0.04046814143657684
+    },
+    {
+      "episode": 422,
+      "goal": 2,
+      "success": 1,
+      "return": -8.09621624276042,
+      "docking_distance": 0.04546390101313591
+    },
+    {
+      "episode": 423,
+      "goal": 0,
+      "success": 1,
+      "return": -4.626733805984259,
+      "docking_distance": 0.03938749060034752
+    },
+    {
+      "episode": 424,
+      "goal": 0,
+      "success": 1,
+      "return": -10.891786439344287,
+      "docking_distance": 0.02533094398677349
+    },
+    {
+      "episode": 425,
+      "goal": 0,
+      "success": 1,
+      "return": -20.22531403787434,
+      "docking_distance": 0.031113402917981148
+    },
+    {
+      "episode": 426,
+      "goal": 1,
+      "success": 1,
+      "return": -8.893653448671103,
+      "docking_distance": 0.05459677800536156
+    },
+    {
+      "episode": 427,
+      "goal": 1,
+      "success": 1,
+      "return": -10.524899408221245,
+      "docking_distance": 0.01703713834285736
+    },
+    {
+      "episode": 428,
+      "goal": 1,
+      "success": 1,
+      "return": -4.736823761835694,
+      "docking_distance": 0.020513856783509254
+    },
+    {
+      "episode": 429,
+      "goal": 0,
+      "success": 1,
+      "return": -4.981133159250021,
+      "docking_distance": 0.03722059354186058
+    },
+    {
+      "episode": 430,
+      "goal": 2,
+      "success": 1,
+      "return": -7.22907467186451,
+      "docking_distance": 0.021990522742271423
+    },
+    {
+      "episode": 431,
+      "goal": 1,
+      "success": 1,
+      "return": -6.980772864073515,
+      "docking_distance": 0.03403322026133537
+    },
+    {
+      "episode": 432,
+      "goal": 2,
+      "success": 1,
+      "return": -9.12801081687212,
+      "docking_distance": 0.03420592099428177
+    },
+    {
+      "episode": 433,
+      "goal": 0,
+      "success": 1,
+      "return": -4.00337602943182,
+      "docking_distance": 0.03266926854848862
+    },
+    {
+      "episode": 434,
+      "goal": 1,
+      "success": 1,
+      "return": -2.8677452683914453,
+      "docking_distance": 0.00353567604906857
+    },
+    {
+      "episode": 435,
+      "goal": 1,
+      "success": 1,
+      "return": -8.831745777279139,
+      "docking_distance": 0.021879348903894424
+    },
+    {
+      "episode": 436,
+      "goal": 0,
+      "success": 1,
+      "return": -7.235194578766823,
+      "docking_distance": 0.042364731431007385
+    },
+    {
+      "episode": 437,
+      "goal": 0,
+      "success": 1,
+      "return": -3.3708928301930428,
+      "docking_distance": 0.045098014175891876
+    },
+    {
+      "episode": 438,
+      "goal": 2,
+      "success": 1,
+      "return": -15.240796720609069,
+      "docking_distance": 0.013126468285918236
+    },
+    {
+      "episode": 439,
+      "goal": 0,
+      "success": 1,
+      "return": -2.85662985406816,
+      "docking_distance": 0.029372399672865868
+    },
+    {
+      "episode": 440,
+      "goal": 0,
+      "success": 1,
+      "return": -9.335422337055206,
+      "docking_distance": 0.03608807921409607
+    },
+    {
+      "episode": 441,
+      "goal": 1,
+      "success": 1,
+      "return": -13.934897370636463,
+      "docking_distance": 0.028351016342639923
+    },
+    {
+      "episode": 442,
+      "goal": 2,
+      "success": 1,
+      "return": -4.318219255656004,
+      "docking_distance": 0.0410466305911541
+    },
+    {
+      "episode": 443,
+      "goal": 2,
+      "success": 1,
+      "return": -15.564841002225876,
+      "docking_distance": 0.03934326767921448
+    },
+    {
+      "episode": 444,
+      "goal": 2,
+      "success": 1,
+      "return": -5.951237667351961,
+      "docking_distance": 0.03898047283291817
+    },
+    {
+      "episode": 445,
+      "goal": 1,
+      "success": 0,
+      "return": -13.234907291829586,
+      "docking_distance": 0.09012045711278915
+    },
+    {
+      "episode": 446,
+      "goal": 2,
+      "success": 1,
+      "return": -8.062959372997284,
+      "docking_distance": 0.037375181913375854
+    },
+    {
+      "episode": 447,
+      "goal": 2,
+      "success": 1,
+      "return": -5.14624335616827,
+      "docking_distance": 0.0420510396361351
+    },
+    {
+      "episode": 448,
+      "goal": 0,
+      "success": 1,
+      "return": -9.505446370691061,
+      "docking_distance": 0.03408190235495567
+    },
+    {
+      "episode": 449,
+      "goal": 2,
+      "success": 1,
+      "return": -5.998828170821071,
+      "docking_distance": 0.025243638083338737
+    },
+    {
+      "episode": 450,
+      "goal": 2,
+      "success": 1,
+      "return": -6.225308030843735,
+      "docking_distance": 0.031196683645248413
+    },
+    {
+      "episode": 451,
+      "goal": 1,
+      "success": 0,
+      "return": -15.69700202345848,
+      "docking_distance": 0.2878395617008209
+    },
+    {
+      "episode": 452,
+      "goal": 1,
+      "success": 1,
+      "return": -9.67170799151063,
+      "docking_distance": 0.05429143086075783
+    },
+    {
+      "episode": 453,
+      "goal": 2,
+      "success": 1,
+      "return": -3.990812122821808,
+      "docking_distance": 0.02660268545150757
+    },
+    {
+      "episode": 454,
+      "goal": 0,
+      "success": 1,
+      "return": -2.321728707756847,
+      "docking_distance": 0.0039505972526967525
+    },
+    {
+      "episode": 455,
+      "goal": 0,
+      "success": 1,
+      "return": -4.818890795111656,
+      "docking_distance": 0.01620595157146454
+    },
+    {
+      "episode": 456,
+      "goal": 2,
+      "success": 1,
+      "return": -7.716106386855245,
+      "docking_distance": 0.007870109751820564
+    },
+    {
+      "episode": 457,
+      "goal": 2,
+      "success": 1,
+      "return": -3.8897177763283253,
+      "docking_distance": 0.038220543414354324
+    },
+    {
+      "episode": 458,
+      "goal": 3,
+      "success": 0,
+      "return": -21.27118793129921,
+      "docking_distance": 0.2560695707798004
+    },
+    {
+      "episode": 459,
+      "goal": 1,
+      "success": 1,
+      "return": -1.633627388626337,
+      "docking_distance": 0.042837176471948624
+    },
+    {
+      "episode": 460,
+      "goal": 3,
+      "success": 0,
+      "return": -18.970317780971527,
+      "docking_distance": 1.158160924911499
+    },
+    {
+      "episode": 461,
+      "goal": 0,
+      "success": 1,
+      "return": -5.327893767505884,
+      "docking_distance": 0.049397919327020645
+    },
+    {
+      "episode": 462,
+      "goal": 1,
+      "success": 0,
+      "return": -18.742280513048172,
+      "docking_distance": 0.1095222532749176
+    },
+    {
+      "episode": 463,
+      "goal": 0,
+      "success": 1,
+      "return": -6.198285706341267,
+      "docking_distance": 0.036755986511707306
+    },
+    {
+      "episode": 464,
+      "goal": 1,
+      "success": 1,
+      "return": -10.674395129084587,
+      "docking_distance": 0.05728696286678314
+    },
+    {
+      "episode": 465,
+      "goal": 2,
+      "success": 1,
+      "return": -7.574811410158873,
+      "docking_distance": 0.04787315055727959
+    },
+    {
+      "episode": 466,
+      "goal": 0,
+      "success": 1,
+      "return": -4.7000645361840725,
+      "docking_distance": 0.04344009980559349
+    },
+    {
+      "episode": 467,
+      "goal": 1,
+      "success": 1,
+      "return": -4.163920111954212,
+      "docking_distance": 0.04857815057039261
+    },
+    {
+      "episode": 468,
+      "goal": 1,
+      "success": 1,
+      "return": -6.724468719214201,
+      "docking_distance": 0.04323698207736015
+    },
+    {
+      "episode": 469,
+      "goal": 1,
+      "success": 1,
+      "return": -6.617963418364525,
+      "docking_distance": 0.04549334943294525
+    },
+    {
+      "episode": 470,
+      "goal": 0,
+      "success": 1,
+      "return": -3.6797364875674248,
+      "docking_distance": 0.03658979386091232
+    },
+    {
+      "episode": 471,
+      "goal": 3,
+      "success": 0,
+      "return": -14.147841334342957,
+      "docking_distance": 0.7194874286651611
+    },
+    {
+      "episode": 472,
+      "goal": 0,
+      "success": 1,
+      "return": -8.366416785866022,
+      "docking_distance": 0.029603097587823868
+    },
+    {
+      "episode": 473,
+      "goal": 0,
+      "success": 1,
+      "return": -19.334240451455116,
+      "docking_distance": 0.019794777035713196
+    },
+    {
+      "episode": 474,
+      "goal": 2,
+      "success": 1,
+      "return": -5.578713804483414,
+      "docking_distance": 0.019355684518814087
+    },
+    {
+      "episode": 475,
+      "goal": 2,
+      "success": 1,
+      "return": -8.649029914289713,
+      "docking_distance": 0.04672021046280861
+    },
+    {
+      "episode": 476,
+      "goal": 2,
+      "success": 1,
+      "return": -8.885257311165333,
+      "docking_distance": 0.035006411373615265
+    },
+    {
+      "episode": 477,
+      "goal": 0,
+      "success": 1,
+      "return": -5.471132326871157,
+      "docking_distance": 0.03280137851834297
+    },
+    {
+      "episode": 478,
+      "goal": 0,
+      "success": 1,
+      "return": -6.9466152004897594,
+      "docking_distance": 0.044333260506391525
+    },
+    {
+      "episode": 479,
+      "goal": 0,
+      "success": 1,
+      "return": -4.526660762727261,
+      "docking_distance": 0.03562422841787338
+    },
+    {
+      "episode": 480,
+      "goal": 0,
+      "success": 1,
+      "return": -5.988757342100143,
+      "docking_distance": 0.015474885702133179
+    },
+    {
+      "episode": 481,
+      "goal": 0,
+      "success": 0,
+      "return": -20.38605121895671,
+      "docking_distance": 0.06043199822306633
+    },
+    {
+      "episode": 482,
+      "goal": 0,
+      "success": 1,
+      "return": -1.4706953689455986,
+      "docking_distance": 0.026398949325084686
+    },
+    {
+      "episode": 483,
+      "goal": 0,
+      "success": 1,
+      "return": -11.545497104525566,
+      "docking_distance": 0.04616396129131317
+    },
+    {
+      "episode": 484,
+      "goal": 3,
+      "success": 0,
+      "return": -38.245091676712036,
+      "docking_distance": 0.19761212170124054
+    },
+    {
+      "episode": 485,
+      "goal": 2,
+      "success": 1,
+      "return": -7.7766014114022255,
+      "docking_distance": 0.058247245848178864
+    },
+    {
+      "episode": 486,
+      "goal": 0,
+      "success": 1,
+      "return": -7.78661909326911,
+      "docking_distance": 0.04694845899939537
+    },
+    {
+      "episode": 487,
+      "goal": 1,
+      "success": 0,
+      "return": -16.374602377414703,
+      "docking_distance": 1.2225285768508911
+    },
+    {
+      "episode": 488,
+      "goal": 1,
+      "success": 1,
+      "return": -3.3386353384703398,
+      "docking_distance": 0.019969535991549492
+    },
+    {
+      "episode": 489,
+      "goal": 0,
+      "success": 1,
+      "return": -11.475895155221224,
+      "docking_distance": 0.031741607934236526
+    },
+    {
+      "episode": 490,
+      "goal": 2,
+      "success": 1,
+      "return": -2.4924882892519236,
+      "docking_distance": 0.029288018122315407
+    },
+    {
+      "episode": 491,
+      "goal": 0,
+      "success": 1,
+      "return": -2.690207112580538,
+      "docking_distance": 0.05539732053875923
+    },
+    {
+      "episode": 492,
+      "goal": 2,
+      "success": 1,
+      "return": -11.68209869042039,
+      "docking_distance": 0.02144259586930275
+    },
+    {
+      "episode": 493,
+      "goal": 0,
+      "success": 1,
+      "return": -1.388710729777813,
+      "docking_distance": 0.0485493466258049
+    },
+    {
+      "episode": 494,
+      "goal": 0,
+      "success": 1,
+      "return": -4.538766045123339,
+      "docking_distance": 0.04772140458226204
+    },
+    {
+      "episode": 495,
+      "goal": 2,
+      "success": 1,
+      "return": -5.635953560471535,
+      "docking_distance": 0.054528698325157166
+    },
+    {
+      "episode": 496,
+      "goal": 2,
+      "success": 1,
+      "return": -6.145060640759766,
+      "docking_distance": 0.014344078488647938
+    },
+    {
+      "episode": 497,
+      "goal": 0,
+      "success": 1,
+      "return": -10.41280859336257,
+      "docking_distance": 0.041100140661001205
+    },
+    {
+      "episode": 498,
+      "goal": 3,
+      "success": 0,
+      "return": -13.813224136829376,
+      "docking_distance": 0.4706467390060425
+    },
+    {
+      "episode": 499,
+      "goal": 2,
+      "success": 1,
+      "return": -8.97635731101036,
+      "docking_distance": 0.019871383905410767
+    },
+    {
+      "episode": 500,
+      "goal": 2,
+      "success": 1,
+      "return": -2.6287334598600864,
+      "docking_distance": 0.05769771710038185
+    },
+    {
+      "episode": 501,
+      "goal": 0,
+      "success": 1,
+      "return": -4.380585789680481,
+      "docking_distance": 0.020477890968322754
+    },
+    {
+      "episode": 502,
+      "goal": 0,
+      "success": 1,
+      "return": -4.554067010991275,
+      "docking_distance": 0.010233874432742596
+    },
+    {
+      "episode": 503,
+      "goal": 0,
+      "success": 1,
+      "return": -10.402872435748577,
+      "docking_distance": 0.03532116860151291
+    },
+    {
+      "episode": 504,
+      "goal": 2,
+      "success": 1,
+      "return": -5.163799686357379,
+      "docking_distance": 0.025663597509264946
+    },
+    {
+      "episode": 505,
+      "goal": 1,
+      "success": 1,
+      "return": -8.041711255908012,
+      "docking_distance": 0.01913982629776001
+    },
+    {
+      "episode": 506,
+      "goal": 2,
+      "success": 1,
+      "return": -7.991172254085541,
+      "docking_distance": 0.033473193645477295
+    },
+    {
+      "episode": 507,
+      "goal": 3,
+      "success": 0,
+      "return": -24.59218066930771,
+      "docking_distance": 0.6331907510757446
+    },
+    {
+      "episode": 508,
+      "goal": 0,
+      "success": 1,
+      "return": -8.848347306251526,
+      "docking_distance": 0.052792906761169434
+    },
+    {
+      "episode": 509,
+      "goal": 1,
+      "success": 1,
+      "return": -7.0320284105837345,
+      "docking_distance": 0.027981799095869064
+    },
+    {
+      "episode": 510,
+      "goal": 0,
+      "success": 1,
+      "return": -6.160083007533103,
+      "docking_distance": 0.004824769217520952
+    },
+    {
+      "episode": 511,
+      "goal": 1,
+      "success": 1,
+      "return": -9.108015358448029,
+      "docking_distance": 0.038916945457458496
+    },
+    {
+      "episode": 512,
+      "goal": 2,
+      "success": 1,
+      "return": -5.283100096508861,
+      "docking_distance": 0.02428439073264599
+    },
+    {
+      "episode": 513,
+      "goal": 1,
+      "success": 1,
+      "return": -1.4319224804639816,
+      "docking_distance": 0.05495081841945648
+    },
+    {
+      "episode": 514,
+      "goal": 2,
+      "success": 1,
+      "return": -2.8176900297403336,
+      "docking_distance": 0.041421547532081604
+    },
+    {
+      "episode": 515,
+      "goal": 1,
+      "success": 1,
+      "return": -9.781744595617056,
+      "docking_distance": 0.041915711015462875
+    },
+    {
+      "episode": 516,
+      "goal": 1,
+      "success": 1,
+      "return": -1.8253513760864735,
+      "docking_distance": 0.012858826667070389
+    },
+    {
+      "episode": 517,
+      "goal": 2,
+      "success": 1,
+      "return": -6.231778435409069,
+      "docking_distance": 0.02657710760831833
+    },
+    {
+      "episode": 518,
+      "goal": 0,
+      "success": 1,
+      "return": -5.554414413869381,
+      "docking_distance": 0.04648920148611069
+    },
+    {
+      "episode": 519,
+      "goal": 2,
+      "success": 1,
+      "return": -19.71407864615321,
+      "docking_distance": 0.04420993849635124
+    },
+    {
+      "episode": 520,
+      "goal": 0,
+      "success": 1,
+      "return": -3.8491304237395525,
+      "docking_distance": 0.011767985299229622
+    },
+    {
+      "episode": 521,
+      "goal": 3,
+      "success": 0,
+      "return": -20.900595664978027,
+      "docking_distance": 0.6331917643547058
+    },
+    {
+      "episode": 522,
+      "goal": 1,
+      "success": 1,
+      "return": -5.896202713251114,
+      "docking_distance": 0.049225181341171265
+    },
+    {
+      "episode": 523,
+      "goal": 0,
+      "success": 1,
+      "return": -5.068275433033705,
+      "docking_distance": 0.046769361943006516
+    },
+    {
+      "episode": 524,
+      "goal": 3,
+      "success": 0,
+      "return": -16.398222982883453,
+      "docking_distance": 0.7113457322120667
+    },
+    {
+      "episode": 525,
+      "goal": 1,
+      "success": 1,
+      "return": -1.521197848021984,
+      "docking_distance": 0.03463577479124069
+    },
+    {
+      "episode": 526,
+      "goal": 0,
+      "success": 1,
+      "return": -12.43895112350583,
+      "docking_distance": 0.03569136932492256
+    },
+    {
+      "episode": 527,
+      "goal": 0,
+      "success": 1,
+      "return": -10.170816361904144,
+      "docking_distance": 0.04115256667137146
+    },
+    {
+      "episode": 528,
+      "goal": 0,
+      "success": 1,
+      "return": -1.6002325341105461,
+      "docking_distance": 0.04572533816099167
+    },
+    {
+      "episode": 529,
+      "goal": 1,
+      "success": 1,
+      "return": -6.5773411970585585,
+      "docking_distance": 0.015682993456721306
+    },
+    {
+      "episode": 530,
+      "goal": 1,
+      "success": 1,
+      "return": -5.09207814745605,
+      "docking_distance": 0.01906472258269787
+    },
+    {
+      "episode": 531,
+      "goal": 3,
+      "success": 0,
+      "return": -17.079673647880554,
+      "docking_distance": 1.2862142324447632
+    },
+    {
+      "episode": 532,
+      "goal": 1,
+      "success": 1,
+      "return": -1.829298585653305,
+      "docking_distance": 0.03884187340736389
+    },
+    {
+      "episode": 533,
+      "goal": 2,
+      "success": 1,
+      "return": -6.516867730766535,
+      "docking_distance": 0.03574481979012489
+    },
+    {
+      "episode": 534,
+      "goal": 0,
+      "success": 1,
+      "return": -10.529003534466028,
+      "docking_distance": 0.040325794368982315
+    },
+    {
+      "episode": 535,
+      "goal": 0,
+      "success": 1,
+      "return": -3.9468508809804916,
+      "docking_distance": 0.011213734745979309
+    },
+    {
+      "episode": 536,
+      "goal": 3,
+      "success": 0,
+      "return": -12.703561618924141,
+      "docking_distance": 0.17030341923236847
+    },
+    {
+      "episode": 537,
+      "goal": 1,
+      "success": 1,
+      "return": -1.8213634565472603,
+      "docking_distance": 0.03848082572221756
+    },
+    {
+      "episode": 538,
+      "goal": 2,
+      "success": 1,
+      "return": -4.392233096063137,
+      "docking_distance": 0.03976782411336899
+    },
+    {
+      "episode": 539,
+      "goal": 0,
+      "success": 1,
+      "return": -3.931380028370768,
+      "docking_distance": 0.007787222508341074
+    },
+    {
+      "episode": 540,
+      "goal": 0,
+      "success": 1,
+      "return": -6.2234958708286285,
+      "docking_distance": 0.02568802237510681
+    },
+    {
+      "episode": 541,
+      "goal": 0,
+      "success": 1,
+      "return": -12.854914382100105,
+      "docking_distance": 0.049698665738105774
+    },
+    {
+      "episode": 542,
+      "goal": 1,
+      "success": 1,
+      "return": -18.024622909724712,
+      "docking_distance": 0.036697618663311005
+    },
+    {
+      "episode": 543,
+      "goal": 1,
+      "success": 1,
+      "return": -2.1490077264606953,
+      "docking_distance": 0.010516095906496048
+    },
+    {
+      "episode": 544,
+      "goal": 0,
+      "success": 1,
+      "return": -10.486051116138697,
+      "docking_distance": 0.047865960747003555
+    },
+    {
+      "episode": 545,
+      "goal": 2,
+      "success": 1,
+      "return": -6.047881249338388,
+      "docking_distance": 0.03153771534562111
+    },
+    {
+      "episode": 546,
+      "goal": 1,
+      "success": 1,
+      "return": -4.8620218224823475,
+      "docking_distance": 0.05746616795659065
+    },
+    {
+      "episode": 547,
+      "goal": 1,
+      "success": 1,
+      "return": -8.002027940005064,
+      "docking_distance": 0.022540222853422165
+    },
+    {
+      "episode": 548,
+      "goal": 1,
+      "success": 1,
+      "return": -7.824968583881855,
+      "docking_distance": 0.03412831574678421
+    },
+    {
+      "episode": 549,
+      "goal": 1,
+      "success": 1,
+      "return": -12.362445674836636,
+      "docking_distance": 0.008223317563533783
+    },
+    {
+      "episode": 550,
+      "goal": 0,
+      "success": 1,
+      "return": -6.17399288713932,
+      "docking_distance": 0.040398433804512024
+    },
+    {
+      "episode": 551,
+      "goal": 2,
+      "success": 1,
+      "return": -11.399356480687857,
+      "docking_distance": 0.029038306325674057
+    },
+    {
+      "episode": 552,
+      "goal": 0,
+      "success": 1,
+      "return": -8.387545391917229,
+      "docking_distance": 0.0198504775762558
+    },
+    {
+      "episode": 553,
+      "goal": 0,
+      "success": 1,
+      "return": -3.222596500068903,
+      "docking_distance": 0.029747221618890762
+    },
+    {
+      "episode": 554,
+      "goal": 0,
+      "success": 1,
+      "return": -13.27831313572824,
+      "docking_distance": 0.030070161446928978
+    },
+    {
+      "episode": 555,
+      "goal": 0,
+      "success": 1,
+      "return": -9.263083022087812,
+      "docking_distance": 0.03820345923304558
+    },
+    {
+      "episode": 556,
+      "goal": 2,
+      "success": 1,
+      "return": -6.606735244393349,
+      "docking_distance": 0.013237789273262024
+    },
+    {
+      "episode": 557,
+      "goal": 2,
+      "success": 1,
+      "return": -3.0932109393179417,
+      "docking_distance": 0.05203038826584816
+    },
+    {
+      "episode": 558,
+      "goal": 3,
+      "success": 0,
+      "return": -19.31110680103302,
+      "docking_distance": 1.0282657146453857
+    },
+    {
+      "episode": 559,
+      "goal": 2,
+      "success": 1,
+      "return": -6.692958258092403,
+      "docking_distance": 0.020124398171901703
+    },
+    {
+      "episode": 560,
+      "goal": 0,
+      "success": 1,
+      "return": -7.259231422096491,
+      "docking_distance": 0.020777497440576553
+    },
+    {
+      "episode": 561,
+      "goal": 0,
+      "success": 1,
+      "return": -5.529689408838749,
+      "docking_distance": 0.017210938036441803
+    },
+    {
+      "episode": 562,
+      "goal": 0,
+      "success": 1,
+      "return": -6.042855650186539,
+      "docking_distance": 0.037399619817733765
+    },
+    {
+      "episode": 563,
+      "goal": 0,
+      "success": 1,
+      "return": -4.00100189819932,
+      "docking_distance": 0.038486067205667496
+    },
+    {
+      "episode": 564,
+      "goal": 2,
+      "success": 1,
+      "return": -9.56925979629159,
+      "docking_distance": 0.05198434367775917
+    },
+    {
+      "episode": 565,
+      "goal": 3,
+      "success": 0,
+      "return": -21.485957264900208,
+      "docking_distance": 1.3874703645706177
+    },
+    {
+      "episode": 566,
+      "goal": 3,
+      "success": 0,
+      "return": -16.741987824440002,
+      "docking_distance": 0.46714746952056885
+    },
+    {
+      "episode": 567,
+      "goal": 1,
+      "success": 1,
+      "return": -1.528222193941474,
+      "docking_distance": 0.02071683667600155
+    },
+    {
+      "episode": 568,
+      "goal": 3,
+      "success": 0,
+      "return": -14.312404930591583,
+      "docking_distance": 1.151808738708496
+    },
+    {
+      "episode": 569,
+      "goal": 0,
+      "success": 1,
+      "return": -8.397171929478645,
+      "docking_distance": 0.038444772362709045
+    },
+    {
+      "episode": 570,
+      "goal": 2,
+      "success": 1,
+      "return": -5.908686883747578,
+      "docking_distance": 0.05320901423692703
+    },
+    {
+      "episode": 571,
+      "goal": 1,
+      "success": 1,
+      "return": -23.86148639023304,
+      "docking_distance": 0.033890023827552795
+    },
+    {
+      "episode": 572,
+      "goal": 0,
+      "success": 1,
+      "return": -4.747112173587084,
+      "docking_distance": 0.02226819470524788
+    },
+    {
+      "episode": 573,
+      "goal": 1,
+      "success": 0,
+      "return": -12.671744488179684,
+      "docking_distance": 0.06316330283880234
+    },
+    {
+      "episode": 574,
+      "goal": 2,
+      "success": 1,
+      "return": -1.808764299377799,
+      "docking_distance": 0.02454419992864132
+    },
+    {
+      "episode": 575,
+      "goal": 0,
+      "success": 1,
+      "return": -5.246964824385941,
+      "docking_distance": 0.013422084040939808
+    },
+    {
+      "episode": 576,
+      "goal": 1,
+      "success": 1,
+      "return": -4.397547539323568,
+      "docking_distance": 0.05237447842955589
+    },
+    {
+      "episode": 577,
+      "goal": 0,
+      "success": 1,
+      "return": -3.8131275475025177,
+      "docking_distance": 0.03545278310775757
+    },
+    {
+      "episode": 578,
+      "goal": 1,
+      "success": 1,
+      "return": -9.907265469431877,
+      "docking_distance": 0.04791456460952759
+    },
+    {
+      "episode": 579,
+      "goal": 0,
+      "success": 1,
+      "return": -4.3935349099338055,
+      "docking_distance": 0.03314150497317314
+    },
+    {
+      "episode": 580,
+      "goal": 0,
+      "success": 1,
+      "return": -1.7812876626849174,
+      "docking_distance": 0.028260938823223114
+    },
+    {
+      "episode": 581,
+      "goal": 1,
+      "success": 1,
+      "return": -10.825631825253367,
+      "docking_distance": 0.011263875290751457
+    },
+    {
+      "episode": 582,
+      "goal": 3,
+      "success": 0,
+      "return": -14.2522754073143,
+      "docking_distance": 1.5497002601623535
+    },
+    {
+      "episode": 583,
+      "goal": 0,
+      "success": 1,
+      "return": -6.259130023419857,
+      "docking_distance": 0.01659577339887619
+    },
+    {
+      "episode": 584,
+      "goal": 2,
+      "success": 1,
+      "return": -3.066580332815647,
+      "docking_distance": 0.041472770273685455
+    },
+    {
+      "episode": 585,
+      "goal": 1,
+      "success": 0,
+      "return": -15.07312136143446,
+      "docking_distance": 0.08598213642835617
+    },
+    {
+      "episode": 586,
+      "goal": 2,
+      "success": 1,
+      "return": -9.223133469000459,
+      "docking_distance": 0.02433248795568943
+    },
+    {
+      "episode": 587,
+      "goal": 0,
+      "success": 1,
+      "return": -5.915268503129482,
+      "docking_distance": 0.03635319322347641
+    },
+    {
+      "episode": 588,
+      "goal": 3,
+      "success": 0,
+      "return": -20.030420780181885,
+      "docking_distance": 0.5195345878601074
+    },
+    {
+      "episode": 589,
+      "goal": 0,
+      "success": 1,
+      "return": -14.110588937997818,
+      "docking_distance": 0.044168680906295776
+    },
+    {
+      "episode": 590,
+      "goal": 0,
+      "success": 1,
+      "return": -3.9627380333840847,
+      "docking_distance": 0.05380507931113243
+    },
+    {
+      "episode": 591,
+      "goal": 1,
+      "success": 1,
+      "return": -8.813799630850554,
+      "docking_distance": 0.03498042747378349
+    },
+    {
+      "episode": 592,
+      "goal": 0,
+      "success": 1,
+      "return": -9.097108606249094,
+      "docking_distance": 0.024956706911325455
+    },
+    {
+      "episode": 593,
+      "goal": 3,
+      "success": 0,
+      "return": -18.414281755685806,
+      "docking_distance": 0.37139442563056946
+    },
+    {
+      "episode": 594,
+      "goal": 1,
+      "success": 1,
+      "return": -8.624129544943571,
+      "docking_distance": 0.04405940696597099
+    },
+    {
+      "episode": 595,
+      "goal": 3,
+      "success": 0,
+      "return": -16.960048377513885,
+      "docking_distance": 0.8717240691184998
+    },
+    {
+      "episode": 596,
+      "goal": 1,
+      "success": 1,
+      "return": -2.74932449683547,
+      "docking_distance": 0.04878455027937889
+    },
+    {
+      "episode": 597,
+      "goal": 1,
+      "success": 1,
+      "return": -9.749405117705464,
+      "docking_distance": 0.023566218093037605
+    },
+    {
+      "episode": 598,
+      "goal": 0,
+      "success": 1,
+      "return": -6.575918255373836,
+      "docking_distance": 0.020379750058054924
+    },
+    {
+      "episode": 599,
+      "goal": 0,
+      "success": 1,
+      "return": -5.436175303533673,
+      "docking_distance": 0.010105805471539497
+    },
+    {
+      "episode": 600,
+      "goal": 0,
+      "success": 1,
+      "return": -7.412414891645312,
+      "docking_distance": 0.0214755367487669
+    },
+    {
+      "episode": 601,
+      "goal": 1,
+      "success": 0,
+      "return": -18.42619112879038,
+      "docking_distance": 0.07179532200098038
+    },
+    {
+      "episode": 602,
+      "goal": 1,
+      "success": 1,
+      "return": -7.18578960839659,
+      "docking_distance": 0.007073544897139072
+    },
+    {
+      "episode": 603,
+      "goal": 1,
+      "success": 1,
+      "return": -2.8553713746368885,
+      "docking_distance": 0.029148314148187637
+    },
+    {
+      "episode": 604,
+      "goal": 0,
+      "success": 1,
+      "return": -5.843730378895998,
+      "docking_distance": 0.04599415138363838
+    },
+    {
+      "episode": 605,
+      "goal": 3,
+      "success": 0,
+      "return": -18.330401957035065,
+      "docking_distance": 0.36072057485580444
+    },
+    {
+      "episode": 606,
+      "goal": 0,
+      "success": 1,
+      "return": -1.8788774646818638,
+      "docking_distance": 0.04977119341492653
+    },
+    {
+      "episode": 607,
+      "goal": 1,
+      "success": 1,
+      "return": -5.895134635269642,
+      "docking_distance": 0.04759455472230911
+    },
+    {
+      "episode": 608,
+      "goal": 1,
+      "success": 1,
+      "return": -3.957181958016008,
+      "docking_distance": 0.00591191416606307
+    },
+    {
+      "episode": 609,
+      "goal": 0,
+      "success": 1,
+      "return": -4.71147383004427,
+      "docking_distance": 0.01958412677049637
+    },
+    {
+      "episode": 610,
+      "goal": 2,
+      "success": 1,
+      "return": -12.977020245045424,
+      "docking_distance": 0.036272209137678146
+    },
+    {
+      "episode": 611,
+      "goal": 0,
+      "success": 1,
+      "return": -5.955409549176693,
+      "docking_distance": 0.05090131610631943
+    },
+    {
+      "episode": 612,
+      "goal": 2,
+      "success": 1,
+      "return": -3.409177739173174,
+      "docking_distance": 0.037513840943574905
+    },
+    {
+      "episode": 613,
+      "goal": 2,
+      "success": 1,
+      "return": -2.923509828746319,
+      "docking_distance": 0.04524689167737961
+    },
+    {
+      "episode": 614,
+      "goal": 0,
+      "success": 1,
+      "return": -7.971817245706916,
+      "docking_distance": 0.029089992865920067
+    },
+    {
+      "episode": 615,
+      "goal": 2,
+      "success": 1,
+      "return": -1.1258254926651716,
+      "docking_distance": 0.030234841629862785
+    },
+    {
+      "episode": 616,
+      "goal": 1,
+      "success": 1,
+      "return": -6.039716027677059,
+      "docking_distance": 0.05343963950872421
+    },
+    {
+      "episode": 617,
+      "goal": 1,
+      "success": 1,
+      "return": -10.187891570851207,
+      "docking_distance": 0.023189453408122063
+    },
+    {
+      "episode": 618,
+      "goal": 2,
+      "success": 1,
+      "return": -13.527436532080173,
+      "docking_distance": 0.05443880707025528
+    },
+    {
+      "episode": 619,
+      "goal": 2,
+      "success": 1,
+      "return": -3.0723948031663895,
+      "docking_distance": 0.04006488621234894
+    },
+    {
+      "episode": 620,
+      "goal": 0,
+      "success": 0,
+      "return": -18.00587022304535,
+      "docking_distance": 0.8310555815696716
+    },
+    {
+      "episode": 621,
+      "goal": 2,
+      "success": 1,
+      "return": -8.802227936685085,
+      "docking_distance": 0.04783310741186142
+    },
+    {
+      "episode": 622,
+      "goal": 2,
+      "success": 1,
+      "return": -3.9257430024445057,
+      "docking_distance": 0.03162818029522896
+    },
+    {
+      "episode": 623,
+      "goal": 0,
+      "success": 1,
+      "return": -4.47765414044261,
+      "docking_distance": 0.05450664088129997
+    },
+    {
+      "episode": 624,
+      "goal": 2,
+      "success": 1,
+      "return": -6.058098580688238,
+      "docking_distance": 0.04428067430853844
+    },
+    {
+      "episode": 625,
+      "goal": 2,
+      "success": 1,
+      "return": -10.884983871132135,
+      "docking_distance": 0.020541880279779434
+    },
+    {
+      "episode": 626,
+      "goal": 2,
+      "success": 1,
+      "return": -5.618064425885677,
+      "docking_distance": 0.04301711171865463
+    },
+    {
+      "episode": 627,
+      "goal": 0,
+      "success": 1,
+      "return": -5.179107379168272,
+      "docking_distance": 0.045795511454343796
+    },
+    {
+      "episode": 628,
+      "goal": 1,
+      "success": 1,
+      "return": -2.141083024442196,
+      "docking_distance": 0.04733332246541977
+    },
+    {
+      "episode": 629,
+      "goal": 1,
+      "success": 1,
+      "return": -7.0926334746181965,
+      "docking_distance": 0.015294153243303299
+    },
+    {
+      "episode": 630,
+      "goal": 3,
+      "success": 0,
+      "return": -14.874886333942413,
+      "docking_distance": 1.6914573907852173
+    },
+    {
+      "episode": 631,
+      "goal": 0,
+      "success": 1,
+      "return": -5.96633442863822,
+      "docking_distance": 0.059467997401952744
+    },
+    {
+      "episode": 632,
+      "goal": 1,
+      "success": 0,
+      "return": -19.53006712347269,
+      "docking_distance": 0.09252402931451797
+    },
+    {
+      "episode": 633,
+      "goal": 2,
+      "success": 1,
+      "return": -1.7417269498109818,
+      "docking_distance": 0.030866578221321106
+    },
+    {
+      "episode": 634,
+      "goal": 1,
+      "success": 1,
+      "return": -9.792960381135345,
+      "docking_distance": 0.018147742375731468
+    },
+    {
+      "episode": 635,
+      "goal": 2,
+      "success": 1,
+      "return": -4.123472366482019,
+      "docking_distance": 0.045046720653772354
+    },
+    {
+      "episode": 636,
+      "goal": 0,
+      "success": 1,
+      "return": -13.739789199084044,
+      "docking_distance": 0.026720385998487473
+    },
+    {
+      "episode": 637,
+      "goal": 3,
+      "success": 0,
+      "return": -13.687848329544067,
+      "docking_distance": 1.077536940574646
+    },
+    {
+      "episode": 638,
+      "goal": 0,
+      "success": 1,
+      "return": -1.980697575956583,
+      "docking_distance": 0.035930220037698746
+    },
+    {
+      "episode": 639,
+      "goal": 0,
+      "success": 1,
+      "return": -7.360846929252148,
+      "docking_distance": 0.051761917769908905
+    },
+    {
+      "episode": 640,
+      "goal": 1,
+      "success": 1,
+      "return": -5.113106602802873,
+      "docking_distance": 0.021060103550553322
+    },
+    {
+      "episode": 641,
+      "goal": 1,
+      "success": 1,
+      "return": -9.031209334731102,
+      "docking_distance": 0.023720785975456238
+    },
+    {
+      "episode": 642,
+      "goal": 2,
+      "success": 0,
+      "return": -13.448681138455868,
+      "docking_distance": 0.06664784997701645
+    },
+    {
+      "episode": 643,
+      "goal": 1,
+      "success": 0,
+      "return": -22.64167831093073,
+      "docking_distance": 0.09728912264108658
+    },
+    {
+      "episode": 644,
+      "goal": 0,
+      "success": 1,
+      "return": -4.725070681422949,
+      "docking_distance": 0.033044006675481796
+    },
+    {
+      "episode": 645,
+      "goal": 2,
+      "success": 1,
+      "return": -6.449053380638361,
+      "docking_distance": 0.03882429376244545
+    },
+    {
+      "episode": 646,
+      "goal": 0,
+      "success": 1,
+      "return": -2.6805569864809513,
+      "docking_distance": 0.05045059695839882
+    },
+    {
+      "episode": 647,
+      "goal": 0,
+      "success": 1,
+      "return": -12.688250662758946,
+      "docking_distance": 0.03086734004318714
+    },
+    {
+      "episode": 648,
+      "goal": 3,
+      "success": 0,
+      "return": -12.731766492128372,
+      "docking_distance": 0.4468517601490021
+    },
+    {
+      "episode": 649,
+      "goal": 2,
+      "success": 1,
+      "return": -4.290607828646898,
+      "docking_distance": 0.039300817996263504
+    },
+    {
+      "episode": 650,
+      "goal": 0,
+      "success": 1,
+      "return": -4.221707325428724,
+      "docking_distance": 0.03666369244456291
+    },
+    {
+      "episode": 651,
+      "goal": 0,
+      "success": 1,
+      "return": -8.517421137541533,
+      "docking_distance": 0.048362087458372116
+    },
+    {
+      "episode": 652,
+      "goal": 1,
+      "success": 1,
+      "return": -11.066014807671309,
+      "docking_distance": 0.008476059883832932
+    },
+    {
+      "episode": 653,
+      "goal": 2,
+      "success": 1,
+      "return": -5.405715607106686,
+      "docking_distance": 0.026356510818004608
+    },
+    {
+      "episode": 654,
+      "goal": 3,
+      "success": 0,
+      "return": -19.878611013293266,
+      "docking_distance": 0.2034349888563156
+    },
+    {
+      "episode": 655,
+      "goal": 2,
+      "success": 1,
+      "return": -5.3225072138011456,
+      "docking_distance": 0.038245510309934616
+    },
+    {
+      "episode": 656,
+      "goal": 1,
+      "success": 1,
+      "return": -2.0134954899549484,
+      "docking_distance": 0.009168371558189392
+    },
+    {
+      "episode": 657,
+      "goal": 2,
+      "success": 1,
+      "return": -9.141089662909508,
+      "docking_distance": 0.030458733439445496
+    },
+    {
+      "episode": 658,
+      "goal": 0,
+      "success": 1,
+      "return": -6.5888973362743855,
+      "docking_distance": 0.04149391129612923
+    },
+    {
+      "episode": 659,
+      "goal": 2,
+      "success": 1,
+      "return": -4.660947680473328,
+      "docking_distance": 0.0085848867893219
+    },
+    {
+      "episode": 660,
+      "goal": 2,
+      "success": 1,
+      "return": -10.27318711578846,
+      "docking_distance": 0.04752649366855621
+    },
+    {
+      "episode": 661,
+      "goal": 1,
+      "success": 0,
+      "return": -20.659646704792976,
+      "docking_distance": 0.0737587958574295
+    },
+    {
+      "episode": 662,
+      "goal": 0,
+      "success": 1,
+      "return": -7.969114929437637,
+      "docking_distance": 0.04613170027732849
+    },
+    {
+      "episode": 663,
+      "goal": 2,
+      "success": 1,
+      "return": -10.641800442710519,
+      "docking_distance": 0.02672211267054081
+    },
+    {
+      "episode": 664,
+      "goal": 1,
+      "success": 1,
+      "return": -8.501781333237886,
+      "docking_distance": 0.04216613247990608
+    },
+    {
+      "episode": 665,
+      "goal": 0,
+      "success": 1,
+      "return": -10.720213294029236,
+      "docking_distance": 0.03696388006210327
+    },
+    {
+      "episode": 666,
+      "goal": 0,
+      "success": 1,
+      "return": -6.332067921757698,
+      "docking_distance": 0.03461553156375885
+    },
+    {
+      "episode": 667,
+      "goal": 0,
+      "success": 1,
+      "return": -6.244341939687729,
+      "docking_distance": 0.026217550039291382
+    },
+    {
+      "episode": 668,
+      "goal": 1,
+      "success": 1,
+      "return": -8.474192500114441,
+      "docking_distance": 0.05408802628517151
+    },
+    {
+      "episode": 669,
+      "goal": 0,
+      "success": 1,
+      "return": -18.469615440815687,
+      "docking_distance": 0.0463477186858654
+    },
+    {
+      "episode": 670,
+      "goal": 0,
+      "success": 1,
+      "return": -16.02496123686433,
+      "docking_distance": 0.048722270876169205
+    },
+    {
+      "episode": 671,
+      "goal": 1,
+      "success": 1,
+      "return": -7.937245210632682,
+      "docking_distance": 0.012185772880911827
+    },
+    {
+      "episode": 672,
+      "goal": 1,
+      "success": 0,
+      "return": -18.104348547756672,
+      "docking_distance": 0.0964939072728157
+    },
+    {
+      "episode": 673,
+      "goal": 1,
+      "success": 1,
+      "return": -7.053540922701359,
+      "docking_distance": 0.05284307152032852
+    },
+    {
+      "episode": 674,
+      "goal": 2,
+      "success": 1,
+      "return": -1.7708001900464296,
+      "docking_distance": 0.031217830255627632
+    },
+    {
+      "episode": 675,
+      "goal": 1,
+      "success": 0,
+      "return": -22.335589811205864,
+      "docking_distance": 0.06087957322597504
+    },
+    {
+      "episode": 676,
+      "goal": 2,
+      "success": 1,
+      "return": -6.422887641936541,
+      "docking_distance": 0.03529644384980202
+    },
+    {
+      "episode": 677,
+      "goal": 2,
+      "success": 1,
+      "return": -6.774679906666279,
+      "docking_distance": 0.027936644852161407
+    },
+    {
+      "episode": 678,
+      "goal": 3,
+      "success": 0,
+      "return": -27.778698936104774,
+      "docking_distance": 0.2015215903520584
+    },
+    {
+      "episode": 679,
+      "goal": 0,
+      "success": 1,
+      "return": -15.721113994717598,
+      "docking_distance": 0.04742808640003204
+    },
+    {
+      "episode": 680,
+      "goal": 0,
+      "success": 1,
+      "return": -2.5464973775669932,
+      "docking_distance": 0.012182923965156078
+    },
+    {
+      "episode": 681,
+      "goal": 1,
+      "success": 0,
+      "return": -20.54345452785492,
+      "docking_distance": 1.0083659887313843
+    },
+    {
+      "episode": 682,
+      "goal": 0,
+      "success": 1,
+      "return": -7.409343339502811,
+      "docking_distance": 0.0418267622590065
+    },
+    {
+      "episode": 683,
+      "goal": 1,
+      "success": 1,
+      "return": -2.4843576587736607,
+      "docking_distance": 0.039162639528512955
+    },
+    {
+      "episode": 684,
+      "goal": 1,
+      "success": 1,
+      "return": -14.127291004173458,
+      "docking_distance": 0.011851648800075054
+    },
+    {
+      "episode": 685,
+      "goal": 2,
+      "success": 1,
+      "return": -4.1628009788692,
+      "docking_distance": 0.050413262099027634
+    },
+    {
+      "episode": 686,
+      "goal": 0,
+      "success": 1,
+      "return": -5.916068706661463,
+      "docking_distance": 0.05122581496834755
+    },
+    {
+      "episode": 687,
+      "goal": 2,
+      "success": 1,
+      "return": -7.6818773709237576,
+      "docking_distance": 0.04592251405119896
+    },
+    {
+      "episode": 688,
+      "goal": 2,
+      "success": 1,
+      "return": -2.655311483889818,
+      "docking_distance": 0.036297161132097244
+    },
+    {
+      "episode": 689,
+      "goal": 1,
+      "success": 1,
+      "return": -4.587147984653711,
+      "docking_distance": 0.04472384229302406
+    },
+    {
+      "episode": 690,
+      "goal": 0,
+      "success": 1,
+      "return": -2.9451168552041054,
+      "docking_distance": 0.04111603647470474
+    },
+    {
+      "episode": 691,
+      "goal": 1,
+      "success": 1,
+      "return": -7.247173182666302,
+      "docking_distance": 0.05356638878583908
+    },
+    {
+      "episode": 692,
+      "goal": 2,
+      "success": 1,
+      "return": -2.4746006038039923,
+      "docking_distance": 0.02798323892056942
+    },
+    {
+      "episode": 693,
+      "goal": 3,
+      "success": 0,
+      "return": -27.72076267004013,
+      "docking_distance": 0.6203575134277344
+    },
+    {
+      "episode": 694,
+      "goal": 2,
+      "success": 1,
+      "return": -6.269681561738253,
+      "docking_distance": 0.043747592717409134
+    },
+    {
+      "episode": 695,
+      "goal": 1,
+      "success": 0,
+      "return": -14.215589448809624,
+      "docking_distance": 0.06739424169063568
+    },
+    {
+      "episode": 696,
+      "goal": 2,
+      "success": 1,
+      "return": -5.459550587460399,
+      "docking_distance": 0.023990659043192863
+    },
+    {
+      "episode": 697,
+      "goal": 2,
+      "success": 1,
+      "return": -4.558668050915003,
+      "docking_distance": 0.045469317585229874
+    },
+    {
+      "episode": 698,
+      "goal": 2,
+      "success": 1,
+      "return": -4.9312915448099375,
+      "docking_distance": 0.021757448092103004
+    },
+    {
+      "episode": 699,
+      "goal": 0,
+      "success": 1,
+      "return": -3.6868468560278416,
+      "docking_distance": 0.03244984522461891
+    },
+    {
+      "episode": 700,
+      "goal": 0,
+      "success": 1,
+      "return": -8.359193924814463,
+      "docking_distance": 0.045119110494852066
+    },
+    {
+      "episode": 701,
+      "goal": 1,
+      "success": 1,
+      "return": -4.001704020425677,
+      "docking_distance": 0.023142976686358452
+    },
+    {
+      "episode": 702,
+      "goal": 0,
+      "success": 1,
+      "return": -26.15964959934354,
+      "docking_distance": 0.04748271778225899
+    },
+    {
+      "episode": 703,
+      "goal": 0,
+      "success": 1,
+      "return": -8.335774049162865,
+      "docking_distance": 0.03869675099849701
+    },
+    {
+      "episode": 704,
+      "goal": 0,
+      "success": 1,
+      "return": -3.4173023961484432,
+      "docking_distance": 0.037836577743291855
+    },
+    {
+      "episode": 705,
+      "goal": 0,
+      "success": 1,
+      "return": -1.9545353762805462,
+      "docking_distance": 0.04582054540514946
+    },
+    {
+      "episode": 706,
+      "goal": 2,
+      "success": 1,
+      "return": -8.41731270775199,
+      "docking_distance": 0.04814871773123741
+    },
+    {
+      "episode": 707,
+      "goal": 0,
+      "success": 1,
+      "return": -4.024310279637575,
+      "docking_distance": 0.03314178064465523
+    },
+    {
+      "episode": 708,
+      "goal": 2,
+      "success": 1,
+      "return": -12.614658039063215,
+      "docking_distance": 0.030416470021009445
+    },
+    {
+      "episode": 709,
+      "goal": 1,
+      "success": 1,
+      "return": -4.272422026842833,
+      "docking_distance": 0.03331119939684868
+    },
+    {
+      "episode": 710,
+      "goal": 2,
+      "success": 1,
+      "return": -10.36089476570487,
+      "docking_distance": 0.046034302562475204
+    },
+    {
+      "episode": 711,
+      "goal": 2,
+      "success": 1,
+      "return": -5.0607670322060585,
+      "docking_distance": 0.037027694284915924
+    },
+    {
+      "episode": 712,
+      "goal": 0,
+      "success": 1,
+      "return": -5.477959718555212,
+      "docking_distance": 0.042008426040410995
+    },
+    {
+      "episode": 713,
+      "goal": 3,
+      "success": 0,
+      "return": -18.777645498514175,
+      "docking_distance": 0.5485193729400635
+    },
+    {
+      "episode": 714,
+      "goal": 2,
+      "success": 1,
+      "return": -5.858443763107061,
+      "docking_distance": 0.0396936796605587
+    },
+    {
+      "episode": 715,
+      "goal": 3,
+      "success": 0,
+      "return": -14.366626590490341,
+      "docking_distance": 0.3082493841648102
+    },
+    {
+      "episode": 716,
+      "goal": 0,
+      "success": 1,
+      "return": -6.687048014253378,
+      "docking_distance": 0.05554282292723656
+    },
+    {
+      "episode": 717,
+      "goal": 2,
+      "success": 1,
+      "return": -8.169622601941228,
+      "docking_distance": 0.010385902598500252
+    },
+    {
+      "episode": 718,
+      "goal": 1,
+      "success": 1,
+      "return": -5.01840790733695,
+      "docking_distance": 0.03795107826590538
+    },
+    {
+      "episode": 719,
+      "goal": 2,
+      "success": 1,
+      "return": -4.750708319246769,
+      "docking_distance": 0.03133217245340347
+    },
+    {
+      "episode": 720,
+      "goal": 3,
+      "success": 0,
+      "return": -24.30844271183014,
+      "docking_distance": 1.308180570602417
+    },
+    {
+      "episode": 721,
+      "goal": 0,
+      "success": 1,
+      "return": -8.69097626581788,
+      "docking_distance": 0.04623771086335182
+    },
+    {
+      "episode": 722,
+      "goal": 3,
+      "success": 0,
+      "return": -18.444046914577484,
+      "docking_distance": 0.7906294465065002
+    },
+    {
+      "episode": 723,
+      "goal": 1,
+      "success": 1,
+      "return": -10.26310645788908,
+      "docking_distance": 0.034204237163066864
+    },
+    {
+      "episode": 724,
+      "goal": 1,
+      "success": 0,
+      "return": -12.794243283569813,
+      "docking_distance": 0.07569796591997147
+    },
+    {
+      "episode": 725,
+      "goal": 0,
+      "success": 1,
+      "return": -6.698977302759886,
+      "docking_distance": 0.033650290220975876
+    },
+    {
+      "episode": 726,
+      "goal": 3,
+      "success": 0,
+      "return": -24.11770749092102,
+      "docking_distance": 1.3280962705612183
+    },
+    {
+      "episode": 727,
+      "goal": 1,
+      "success": 1,
+      "return": -18.44030853547156,
+      "docking_distance": 0.017856979742646217
+    },
+    {
+      "episode": 728,
+      "goal": 1,
+      "success": 1,
+      "return": -15.594281826168299,
+      "docking_distance": 0.03518477454781532
+    },
+    {
+      "episode": 729,
+      "goal": 0,
+      "success": 1,
+      "return": -3.913768572732806,
+      "docking_distance": 0.024659080430865288
+    },
+    {
+      "episode": 730,
+      "goal": 0,
+      "success": 1,
+      "return": -7.941886629909277,
+      "docking_distance": 0.044162776321172714
+    },
+    {
+      "episode": 731,
+      "goal": 2,
+      "success": 1,
+      "return": -2.3524557407945395,
+      "docking_distance": 0.02597004733979702
+    },
+    {
+      "episode": 732,
+      "goal": 0,
+      "success": 1,
+      "return": -5.4137659184634686,
+      "docking_distance": 0.03270215913653374
+    },
+    {
+      "episode": 733,
+      "goal": 1,
+      "success": 1,
+      "return": -4.3926708297804,
+      "docking_distance": 0.012880881316959858
+    },
+    {
+      "episode": 734,
+      "goal": 1,
+      "success": 1,
+      "return": -8.121533628553152,
+      "docking_distance": 0.024659868329763412
+    },
+    {
+      "episode": 735,
+      "goal": 0,
+      "success": 1,
+      "return": -5.8685398902744055,
+      "docking_distance": 0.025542592629790306
+    },
+    {
+      "episode": 736,
+      "goal": 2,
+      "success": 1,
+      "return": -2.800223035737872,
+      "docking_distance": 0.03110448829829693
+    },
+    {
+      "episode": 737,
+      "goal": 0,
+      "success": 1,
+      "return": -5.515859425067902,
+      "docking_distance": 0.039134979248046875
+    },
+    {
+      "episode": 738,
+      "goal": 0,
+      "success": 1,
+      "return": -2.844009654596448,
+      "docking_distance": 0.018122391775250435
+    },
+    {
+      "episode": 739,
+      "goal": 0,
+      "success": 1,
+      "return": -12.401655999943614,
+      "docking_distance": 0.01595774106681347
+    },
+    {
+      "episode": 740,
+      "goal": 0,
+      "success": 1,
+      "return": -5.226584687829018,
+      "docking_distance": 0.03173883259296417
+    },
+    {
+      "episode": 741,
+      "goal": 2,
+      "success": 1,
+      "return": -12.849726855754852,
+      "docking_distance": 0.0376276969909668
+    },
+    {
+      "episode": 742,
+      "goal": 2,
+      "success": 1,
+      "return": -3.1979463808238506,
+      "docking_distance": 0.03200296685099602
+    },
+    {
+      "episode": 743,
+      "goal": 0,
+      "success": 1,
+      "return": -4.397510940209031,
+      "docking_distance": 0.022822672501206398
+    },
+    {
+      "episode": 744,
+      "goal": 0,
+      "success": 1,
+      "return": -4.059743314981461,
+      "docking_distance": 0.025938063859939575
+    },
+    {
+      "episode": 745,
+      "goal": 0,
+      "success": 1,
+      "return": -3.093706525862217,
+      "docking_distance": 0.03214142471551895
+    },
+    {
+      "episode": 746,
+      "goal": 0,
+      "success": 1,
+      "return": -21.925984740257263,
+      "docking_distance": 0.05157959461212158
+    },
+    {
+      "episode": 747,
+      "goal": 2,
+      "success": 1,
+      "return": -2.9218475371599197,
+      "docking_distance": 0.016634956002235413
+    },
+    {
+      "episode": 748,
+      "goal": 2,
+      "success": 1,
+      "return": -3.544668987393379,
+      "docking_distance": 0.054945722222328186
+    },
+    {
+      "episode": 749,
+      "goal": 2,
+      "success": 1,
+      "return": -4.79670699685812,
+      "docking_distance": 0.050271593034267426
+    },
+    {
+      "episode": 750,
+      "goal": 0,
+      "success": 1,
+      "return": -2.5030018128454685,
+      "docking_distance": 0.02811664715409279
+    },
+    {
+      "episode": 751,
+      "goal": 2,
+      "success": 1,
+      "return": -3.2059740480035543,
+      "docking_distance": 0.029234176501631737
+    },
+    {
+      "episode": 752,
+      "goal": 3,
+      "success": 0,
+      "return": -23.17548644542694,
+      "docking_distance": 0.8132994174957275
+    },
+    {
+      "episode": 753,
+      "goal": 0,
+      "success": 1,
+      "return": -2.6737269684672356,
+      "docking_distance": 0.0592183992266655
+    },
+    {
+      "episode": 754,
+      "goal": 2,
+      "success": 1,
+      "return": -6.160657403990626,
+      "docking_distance": 0.028507111594080925
+    },
+    {
+      "episode": 755,
+      "goal": 0,
+      "success": 1,
+      "return": -2.5263056606054306,
+      "docking_distance": 0.03804557025432587
+    },
+    {
+      "episode": 756,
+      "goal": 1,
+      "success": 1,
+      "return": -12.646065410226583,
+      "docking_distance": 0.04164808616042137
+    },
+    {
+      "episode": 757,
+      "goal": 0,
+      "success": 1,
+      "return": -6.1274564899504185,
+      "docking_distance": 0.05950463190674782
+    },
+    {
+      "episode": 758,
+      "goal": 2,
+      "success": 1,
+      "return": -4.399860756471753,
+      "docking_distance": 0.02179737575352192
+    },
+    {
+      "episode": 759,
+      "goal": 2,
+      "success": 1,
+      "return": -3.508398562669754,
+      "docking_distance": 0.044561952352523804
+    },
+    {
+      "episode": 760,
+      "goal": 0,
+      "success": 1,
+      "return": -8.639076426625252,
+      "docking_distance": 0.041234090924263
+    },
+    {
+      "episode": 761,
+      "goal": 2,
+      "success": 1,
+      "return": -4.331671234220266,
+      "docking_distance": 0.031657394021749496
+    },
+    {
+      "episode": 762,
+      "goal": 1,
+      "success": 1,
+      "return": -4.579035971313715,
+      "docking_distance": 0.05637345090508461
+    },
+    {
+      "episode": 763,
+      "goal": 2,
+      "success": 1,
+      "return": -5.700121451169252,
+      "docking_distance": 0.035709042102098465
+    },
+    {
+      "episode": 764,
+      "goal": 2,
+      "success": 1,
+      "return": -10.908228505402803,
+      "docking_distance": 0.028611410409212112
+    },
+    {
+      "episode": 765,
+      "goal": 3,
+      "success": 0,
+      "return": -35.28679347038269,
+      "docking_distance": 0.19694000482559204
+    },
+    {
+      "episode": 766,
+      "goal": 0,
+      "success": 1,
+      "return": -5.48177644610405,
+      "docking_distance": 0.04389670491218567
+    },
+    {
+      "episode": 767,
+      "goal": 0,
+      "success": 1,
+      "return": -8.426604609936476,
+      "docking_distance": 0.01878223940730095
+    },
+    {
+      "episode": 768,
+      "goal": 0,
+      "success": 1,
+      "return": -1.966897189617157,
+      "docking_distance": 0.037677884101867676
+    },
+    {
+      "episode": 769,
+      "goal": 0,
+      "success": 1,
+      "return": -3.050184953957796,
+      "docking_distance": 0.03755413368344307
+    },
+    {
+      "episode": 770,
+      "goal": 0,
+      "success": 1,
+      "return": -8.389641165733337,
+      "docking_distance": 0.040118515491485596
+    },
+    {
+      "episode": 771,
+      "goal": 0,
+      "success": 1,
+      "return": -6.709913204424083,
+      "docking_distance": 0.014379988424479961
+    },
+    {
+      "episode": 772,
+      "goal": 1,
+      "success": 1,
+      "return": -3.1808408051729202,
+      "docking_distance": 0.05905933678150177
+    },
+    {
+      "episode": 773,
+      "goal": 1,
+      "success": 1,
+      "return": -7.350328478962183,
+      "docking_distance": 0.04841146245598793
+    },
+    {
+      "episode": 774,
+      "goal": 2,
+      "success": 1,
+      "return": -6.651068452745676,
+      "docking_distance": 0.025389496237039566
+    },
+    {
+      "episode": 775,
+      "goal": 0,
+      "success": 1,
+      "return": -4.5739309675991535,
+      "docking_distance": 0.05449758842587471
+    },
+    {
+      "episode": 776,
+      "goal": 0,
+      "success": 1,
+      "return": -4.428236436098814,
+      "docking_distance": 0.016432475298643112
+    },
+    {
+      "episode": 777,
+      "goal": 2,
+      "success": 1,
+      "return": -7.447879738174379,
+      "docking_distance": 0.015584654174745083
+    },
+    {
+      "episode": 778,
+      "goal": 3,
+      "success": 0,
+      "return": -16.808842658996582,
+      "docking_distance": 1.2257604598999023
+    },
+    {
+      "episode": 779,
+      "goal": 0,
+      "success": 1,
+      "return": -3.4730329997837543,
+      "docking_distance": 0.043885160237550735
+    },
+    {
+      "episode": 780,
+      "goal": 1,
+      "success": 1,
+      "return": -6.547446578741074,
+      "docking_distance": 0.03765961527824402
+    },
+    {
+      "episode": 781,
+      "goal": 1,
+      "success": 1,
+      "return": -6.632744610309601,
+      "docking_distance": 0.03098154067993164
+    },
+    {
+      "episode": 782,
+      "goal": 0,
+      "success": 1,
+      "return": -8.12086921557784,
+      "docking_distance": 0.035424765199422836
+    },
+    {
+      "episode": 783,
+      "goal": 0,
+      "success": 1,
+      "return": -6.494117379188538,
+      "docking_distance": 0.05203753709793091
+    },
+    {
+      "episode": 784,
+      "goal": 0,
+      "success": 1,
+      "return": -5.2422824539244175,
+      "docking_distance": 0.04519445076584816
+    },
+    {
+      "episode": 785,
+      "goal": 2,
+      "success": 1,
+      "return": -7.200923493131995,
+      "docking_distance": 0.029054930433630943
+    },
+    {
+      "episode": 786,
+      "goal": 0,
+      "success": 1,
+      "return": -9.207893198356032,
+      "docking_distance": 0.00517231784760952
+    },
+    {
+      "episode": 787,
+      "goal": 1,
+      "success": 1,
+      "return": -7.1702105067670345,
+      "docking_distance": 0.03717288002371788
+    },
+    {
+      "episode": 788,
+      "goal": 0,
+      "success": 1,
+      "return": -6.56329045817256,
+      "docking_distance": 0.05364338681101799
+    },
+    {
+      "episode": 789,
+      "goal": 2,
+      "success": 1,
+      "return": -11.358959536999464,
+      "docking_distance": 0.014600198715925217
+    },
+    {
+      "episode": 790,
+      "goal": 2,
+      "success": 1,
+      "return": -1.978885367512703,
+      "docking_distance": 0.050899699330329895
+    },
+    {
+      "episode": 791,
+      "goal": 0,
+      "success": 1,
+      "return": -4.408509674482048,
+      "docking_distance": 0.013933631591498852
+    },
+    {
+      "episode": 792,
+      "goal": 1,
+      "success": 1,
+      "return": -2.317746532149613,
+      "docking_distance": 0.008959603495895863
+    },
+    {
+      "episode": 793,
+      "goal": 1,
+      "success": 1,
+      "return": -10.689488146454096,
+      "docking_distance": 0.027099166065454483
+    },
+    {
+      "episode": 794,
+      "goal": 1,
+      "success": 0,
+      "return": -13.094456322491169,
+      "docking_distance": 0.08314508944749832
+    },
+    {
+      "episode": 795,
+      "goal": 2,
+      "success": 1,
+      "return": -1.9839057363569736,
+      "docking_distance": 0.04584640637040138
+    },
+    {
+      "episode": 796,
+      "goal": 3,
+      "success": 0,
+      "return": -19.185240924358368,
+      "docking_distance": 1.07875394821167
+    },
+    {
+      "episode": 797,
+      "goal": 1,
+      "success": 0,
+      "return": -14.22314029186964,
+      "docking_distance": 0.07837044447660446
+    },
+    {
+      "episode": 798,
+      "goal": 0,
+      "success": 1,
+      "return": -5.379817282781005,
+      "docking_distance": 0.028678154572844505
+    },
+    {
+      "episode": 799,
+      "goal": 2,
+      "success": 1,
+      "return": -4.658813608810306,
+      "docking_distance": 0.0248993169516325
+    },
+    {
+      "episode": 800,
+      "goal": 3,
+      "success": 0,
+      "return": -17.24551784992218,
+      "docking_distance": 1.4781458377838135
+    },
+    {
+      "episode": 801,
+      "goal": 3,
+      "success": 0,
+      "return": -40.25564840435982,
+      "docking_distance": 0.5653281211853027
+    },
+    {
+      "episode": 802,
+      "goal": 2,
+      "success": 1,
+      "return": -7.263915205840021,
+      "docking_distance": 0.00577738368883729
+    },
+    {
+      "episode": 803,
+      "goal": 0,
+      "success": 1,
+      "return": -5.639706855639815,
+      "docking_distance": 0.030049210414290428
+    },
+    {
+      "episode": 804,
+      "goal": 1,
+      "success": 1,
+      "return": -6.780198641819879,
+      "docking_distance": 0.0037748150061815977
+    },
+    {
+      "episode": 805,
+      "goal": 1,
+      "success": 1,
+      "return": -4.021865583956242,
+      "docking_distance": 0.058949269354343414
+    },
+    {
+      "episode": 806,
+      "goal": 2,
+      "success": 1,
+      "return": -5.897926572710276,
+      "docking_distance": 0.03075653687119484
+    },
+    {
+      "episode": 807,
+      "goal": 2,
+      "success": 1,
+      "return": -12.32699852436781,
+      "docking_distance": 0.02101253718137741
+    },
+    {
+      "episode": 808,
+      "goal": 0,
+      "success": 1,
+      "return": -1.485030509531498,
+      "docking_distance": 0.04596010595560074
+    },
+    {
+      "episode": 809,
+      "goal": 3,
+      "success": 0,
+      "return": -20.905900478363037,
+      "docking_distance": 0.6816471815109253
+    },
+    {
+      "episode": 810,
+      "goal": 2,
+      "success": 1,
+      "return": -3.899380451068282,
+      "docking_distance": 0.023258214816451073
+    },
+    {
+      "episode": 811,
+      "goal": 1,
+      "success": 1,
+      "return": -8.161123540252447,
+      "docking_distance": 0.03719228133559227
+    },
+    {
+      "episode": 812,
+      "goal": 2,
+      "success": 1,
+      "return": -2.702122528105974,
+      "docking_distance": 0.04409565404057503
+    },
+    {
+      "episode": 813,
+      "goal": 2,
+      "success": 1,
+      "return": -4.117875404655933,
+      "docking_distance": 0.03809339553117752
+    },
+    {
+      "episode": 814,
+      "goal": 0,
+      "success": 1,
+      "return": -5.924806572496891,
+      "docking_distance": 0.02616295963525772
+    },
+    {
+      "episode": 815,
+      "goal": 2,
+      "success": 1,
+      "return": -6.541767958551645,
+      "docking_distance": 0.030397001653909683
+    },
+    {
+      "episode": 816,
+      "goal": 0,
+      "success": 0,
+      "return": -21.222274005413055,
+      "docking_distance": 0.06037026643753052
+    },
+    {
+      "episode": 817,
+      "goal": 2,
+      "success": 1,
+      "return": -5.83864189684391,
+      "docking_distance": 0.04954142868518829
+    },
+    {
+      "episode": 818,
+      "goal": 2,
+      "success": 1,
+      "return": -1.190583761781454,
+      "docking_distance": 0.04772758111357689
+    },
+    {
+      "episode": 819,
+      "goal": 3,
+      "success": 0,
+      "return": -20.659365236759186,
+      "docking_distance": 1.0171786546707153
+    },
+    {
+      "episode": 820,
+      "goal": 1,
+      "success": 0,
+      "return": -19.175923600792885,
+      "docking_distance": 0.10940171778202057
+    },
+    {
+      "episode": 821,
+      "goal": 3,
+      "success": 0,
+      "return": -19.652148067951202,
+      "docking_distance": 0.8838633298873901
+    },
+    {
+      "episode": 822,
+      "goal": 0,
+      "success": 1,
+      "return": -2.4157995358109474,
+      "docking_distance": 0.026550091803073883
+    },
+    {
+      "episode": 823,
+      "goal": 2,
+      "success": 1,
+      "return": -3.474681243300438,
+      "docking_distance": 0.05189774930477142
+    },
+    {
+      "episode": 824,
+      "goal": 3,
+      "success": 0,
+      "return": -25.88005304336548,
+      "docking_distance": 0.8280317187309265
+    },
+    {
+      "episode": 825,
+      "goal": 2,
+      "success": 1,
+      "return": -2.8428719476796687,
+      "docking_distance": 0.005344016943126917
+    },
+    {
+      "episode": 826,
+      "goal": 0,
+      "success": 0,
+      "return": -14.92618951946497,
+      "docking_distance": 0.06713394075632095
+    },
+    {
+      "episode": 827,
+      "goal": 2,
+      "success": 1,
+      "return": -13.119157683104277,
+      "docking_distance": 0.024817895144224167
+    },
+    {
+      "episode": 828,
+      "goal": 1,
+      "success": 1,
+      "return": -5.802904065698385,
+      "docking_distance": 0.05829321965575218
+    },
+    {
+      "episode": 829,
+      "goal": 3,
+      "success": 0,
+      "return": -22.440613329410553,
+      "docking_distance": 0.2658710479736328
+    },
+    {
+      "episode": 830,
+      "goal": 2,
+      "success": 1,
+      "return": -8.467088848352432,
+      "docking_distance": 0.030772656202316284
+    },
+    {
+      "episode": 831,
+      "goal": 1,
+      "success": 1,
+      "return": -14.010375551879406,
+      "docking_distance": 0.024279825389385223
+    },
+    {
+      "episode": 832,
+      "goal": 0,
+      "success": 1,
+      "return": -11.99293888360262,
+      "docking_distance": 0.047986604273319244
+    },
+    {
+      "episode": 833,
+      "goal": 1,
+      "success": 1,
+      "return": -7.569602398201823,
+      "docking_distance": 0.017481474205851555
+    },
+    {
+      "episode": 834,
+      "goal": 2,
+      "success": 1,
+      "return": -4.348089750856161,
+      "docking_distance": 0.020552512258291245
+    },
+    {
+      "episode": 835,
+      "goal": 0,
+      "success": 1,
+      "return": -2.2775913439691067,
+      "docking_distance": 0.035350557416677475
+    },
+    {
+      "episode": 836,
+      "goal": 1,
+      "success": 1,
+      "return": -2.7961576618254185,
+      "docking_distance": 0.04424339905381203
+    },
+    {
+      "episode": 837,
+      "goal": 1,
+      "success": 1,
+      "return": -9.460483893752098,
+      "docking_distance": 0.041731998324394226
+    },
+    {
+      "episode": 838,
+      "goal": 2,
+      "success": 1,
+      "return": -6.768033819273114,
+      "docking_distance": 0.02180911786854267
+    },
+    {
+      "episode": 839,
+      "goal": 3,
+      "success": 0,
+      "return": -19.200197011232376,
+      "docking_distance": 0.40771499276161194
+    },
+    {
+      "episode": 840,
+      "goal": 0,
+      "success": 1,
+      "return": -4.126792520284653,
+      "docking_distance": 0.038099080324172974
+    },
+    {
+      "episode": 841,
+      "goal": 0,
+      "success": 1,
+      "return": -6.724510084837675,
+      "docking_distance": 0.03276700899004936
+    },
+    {
+      "episode": 842,
+      "goal": 2,
+      "success": 1,
+      "return": -6.739591624587774,
+      "docking_distance": 0.049394626170396805
+    },
+    {
+      "episode": 843,
+      "goal": 1,
+      "success": 1,
+      "return": -2.4386632591485977,
+      "docking_distance": 0.018766537308692932
+    },
+    {
+      "episode": 844,
+      "goal": 0,
+      "success": 1,
+      "return": -5.258201934397221,
+      "docking_distance": 0.035164691507816315
+    },
+    {
+      "episode": 845,
+      "goal": 0,
+      "success": 1,
+      "return": -12.459497105330229,
+      "docking_distance": 0.010322999209165573
+    },
+    {
+      "episode": 846,
+      "goal": 0,
+      "success": 1,
+      "return": -4.499311987310648,
+      "docking_distance": 0.03888464346528053
+    },
+    {
+      "episode": 847,
+      "goal": 0,
+      "success": 0,
+      "return": -12.94177620112896,
+      "docking_distance": 0.06032697856426239
+    },
+    {
+      "episode": 848,
+      "goal": 2,
+      "success": 1,
+      "return": -3.887029955163598,
+      "docking_distance": 0.02644200064241886
+    },
+    {
+      "episode": 849,
+      "goal": 0,
+      "success": 1,
+      "return": -8.20931044779718,
+      "docking_distance": 0.028214609250426292
+    },
+    {
+      "episode": 850,
+      "goal": 0,
+      "success": 1,
+      "return": -6.576160363852978,
+      "docking_distance": 0.020175985991954803
+    },
+    {
+      "episode": 851,
+      "goal": 1,
+      "success": 0,
+      "return": -20.846126817166805,
+      "docking_distance": 0.06480612605810165
+    },
+    {
+      "episode": 852,
+      "goal": 1,
+      "success": 1,
+      "return": -9.165856163948774,
+      "docking_distance": 0.054443877190351486
+    },
+    {
+      "episode": 853,
+      "goal": 2,
+      "success": 1,
+      "return": -8.887301303446293,
+      "docking_distance": 0.04775748401880264
+    },
+    {
+      "episode": 854,
+      "goal": 2,
+      "success": 1,
+      "return": -6.878029340878129,
+      "docking_distance": 0.0251688901335001
+    },
+    {
+      "episode": 855,
+      "goal": 1,
+      "success": 1,
+      "return": -11.65712283924222,
+      "docking_distance": 0.027657557278871536
+    },
+    {
+      "episode": 856,
+      "goal": 0,
+      "success": 1,
+      "return": -13.785782799124718,
+      "docking_distance": 0.04620353877544403
+    },
+    {
+      "episode": 857,
+      "goal": 0,
+      "success": 1,
+      "return": -7.3079225067049265,
+      "docking_distance": 0.022621894255280495
+    },
+    {
+      "episode": 858,
+      "goal": 2,
+      "success": 1,
+      "return": -8.941594138741493,
+      "docking_distance": 0.04538460075855255
+    },
+    {
+      "episode": 859,
+      "goal": 1,
+      "success": 1,
+      "return": -9.707109168171883,
+      "docking_distance": 0.017941847443580627
+    },
+    {
+      "episode": 860,
+      "goal": 1,
+      "success": 1,
+      "return": -3.815977592021227,
+      "docking_distance": 0.034375447779893875
+    },
+    {
+      "episode": 861,
+      "goal": 0,
+      "success": 1,
+      "return": -8.497457455843687,
+      "docking_distance": 0.049043845385313034
+    },
+    {
+      "episode": 862,
+      "goal": 1,
+      "success": 1,
+      "return": -5.419454896822572,
+      "docking_distance": 0.017888570204377174
+    },
+    {
+      "episode": 863,
+      "goal": 2,
+      "success": 1,
+      "return": -3.7564853243529797,
+      "docking_distance": 0.036384861916303635
+    },
+    {
+      "episode": 864,
+      "goal": 2,
+      "success": 1,
+      "return": -6.098621046170592,
+      "docking_distance": 0.018096720799803734
+    },
+    {
+      "episode": 865,
+      "goal": 0,
+      "success": 1,
+      "return": -7.804153587669134,
+      "docking_distance": 0.03521665558218956
+    },
+    {
+      "episode": 866,
+      "goal": 2,
+      "success": 1,
+      "return": -7.478686964139342,
+      "docking_distance": 0.02855137549340725
+    },
+    {
+      "episode": 867,
+      "goal": 0,
+      "success": 1,
+      "return": -9.166380655020475,
+      "docking_distance": 0.031838130205869675
+    },
+    {
+      "episode": 868,
+      "goal": 2,
+      "success": 1,
+      "return": -1.922668717801571,
+      "docking_distance": 0.047610484063625336
+    },
+    {
+      "episode": 869,
+      "goal": 0,
+      "success": 1,
+      "return": -10.359543215483427,
+      "docking_distance": 0.04215989634394646
+    },
+    {
+      "episode": 870,
+      "goal": 0,
+      "success": 1,
+      "return": -7.3111657202243805,
+      "docking_distance": 0.0459371879696846
+    },
+    {
+      "episode": 871,
+      "goal": 1,
+      "success": 1,
+      "return": -7.044253274798393,
+      "docking_distance": 0.04137168824672699
+    },
+    {
+      "episode": 872,
+      "goal": 0,
+      "success": 1,
+      "return": -6.27722937008366,
+      "docking_distance": 0.007655681576579809
+    },
+    {
+      "episode": 873,
+      "goal": 2,
+      "success": 1,
+      "return": -4.504307467490435,
+      "docking_distance": 0.041918832808732986
+    },
+    {
+      "episode": 874,
+      "goal": 2,
+      "success": 1,
+      "return": -5.345794592052698,
+      "docking_distance": 0.022960100322961807
+    },
+    {
+      "episode": 875,
+      "goal": 2,
+      "success": 1,
+      "return": -6.644154317677021,
+      "docking_distance": 0.029993481934070587
+    },
+    {
+      "episode": 876,
+      "goal": 2,
+      "success": 1,
+      "return": -1.8511372543871403,
+      "docking_distance": 0.015547189861536026
+    },
+    {
+      "episode": 877,
+      "goal": 1,
+      "success": 1,
+      "return": -8.5597780123353,
+      "docking_distance": 0.03427688032388687
+    },
+    {
+      "episode": 878,
+      "goal": 0,
+      "success": 1,
+      "return": -7.1299376506358385,
+      "docking_distance": 0.02894383855164051
+    },
+    {
+      "episode": 879,
+      "goal": 2,
+      "success": 1,
+      "return": -3.9282956160604954,
+      "docking_distance": 0.019553963094949722
+    },
+    {
+      "episode": 880,
+      "goal": 2,
+      "success": 1,
+      "return": -5.260866612195969,
+      "docking_distance": 0.050695210695266724
+    },
+    {
+      "episode": 881,
+      "goal": 1,
+      "success": 1,
+      "return": -4.3755268305540085,
+      "docking_distance": 0.03258542716503143
+    },
+    {
+      "episode": 882,
+      "goal": 1,
+      "success": 0,
+      "return": -15.78303875029087,
+      "docking_distance": 0.07051171362400055
+    },
+    {
+      "episode": 883,
+      "goal": 2,
+      "success": 1,
+      "return": -2.2100223898887634,
+      "docking_distance": 0.02903205156326294
+    },
+    {
+      "episode": 884,
+      "goal": 0,
+      "success": 1,
+      "return": -5.568905834108591,
+      "docking_distance": 0.035472456365823746
+    },
+    {
+      "episode": 885,
+      "goal": 1,
+      "success": 1,
+      "return": -5.446588217280805,
+      "docking_distance": 0.008213101886212826
+    },
+    {
+      "episode": 886,
+      "goal": 0,
+      "success": 1,
+      "return": -7.121191117912531,
+      "docking_distance": 0.051530513912439346
+    },
+    {
+      "episode": 887,
+      "goal": 2,
+      "success": 1,
+      "return": -3.420854652300477,
+      "docking_distance": 0.019861185923218727
+    },
+    {
+      "episode": 888,
+      "goal": 2,
+      "success": 1,
+      "return": -7.206977466121316,
+      "docking_distance": 0.027495572343468666
+    },
+    {
+      "episode": 889,
+      "goal": 2,
+      "success": 1,
+      "return": -14.794435257092118,
+      "docking_distance": 0.009848231449723244
+    },
+    {
+      "episode": 890,
+      "goal": 1,
+      "success": 1,
+      "return": -9.104614198207855,
+      "docking_distance": 0.03215870261192322
+    },
+    {
+      "episode": 891,
+      "goal": 2,
+      "success": 1,
+      "return": -11.575944032520056,
+      "docking_distance": 0.04181477054953575
+    },
+    {
+      "episode": 892,
+      "goal": 0,
+      "success": 0,
+      "return": -17.64051964133978,
+      "docking_distance": 0.06351830810308456
+    },
+    {
+      "episode": 893,
+      "goal": 1,
+      "success": 1,
+      "return": -2.730389278382063,
+      "docking_distance": 0.044247906655073166
+    },
+    {
+      "episode": 894,
+      "goal": 3,
+      "success": 0,
+      "return": -15.941123723983765,
+      "docking_distance": 0.862137496471405
+    },
+    {
+      "episode": 895,
+      "goal": 2,
+      "success": 1,
+      "return": -9.891405615955591,
+      "docking_distance": 0.0364818312227726
+    },
+    {
+      "episode": 896,
+      "goal": 2,
+      "success": 1,
+      "return": -10.261178527027369,
+      "docking_distance": 0.03264084830880165
+    },
+    {
+      "episode": 897,
+      "goal": 0,
+      "success": 1,
+      "return": -1.8619554191827774,
+      "docking_distance": 0.026336029171943665
+    },
+    {
+      "episode": 898,
+      "goal": 0,
+      "success": 1,
+      "return": -2.5772025138139725,
+      "docking_distance": 0.05002249777317047
+    },
+    {
+      "episode": 899,
+      "goal": 0,
+      "success": 1,
+      "return": -5.381427921354771,
+      "docking_distance": 0.04629383236169815
+    },
+    {
+      "episode": 900,
+      "goal": 2,
+      "success": 1,
+      "return": -11.72587881051004,
+      "docking_distance": 0.018485164269804955
+    },
+    {
+      "episode": 901,
+      "goal": 1,
+      "success": 1,
+      "return": -5.345204044133425,
+      "docking_distance": 0.0326913483440876
+    },
+    {
+      "episode": 902,
+      "goal": 3,
+      "success": 0,
+      "return": -29.12578621506691,
+      "docking_distance": 0.3080767095088959
+    },
+    {
+      "episode": 903,
+      "goal": 2,
+      "success": 1,
+      "return": -7.945577669888735,
+      "docking_distance": 0.04496728256344795
+    },
+    {
+      "episode": 904,
+      "goal": 0,
+      "success": 1,
+      "return": -11.305079512298107,
+      "docking_distance": 0.043970488011837006
+    },
+    {
+      "episode": 905,
+      "goal": 2,
+      "success": 1,
+      "return": -5.700381603091955,
+      "docking_distance": 0.046660032123327255
+    },
+    {
+      "episode": 906,
+      "goal": 2,
+      "success": 1,
+      "return": -7.1555799171328545,
+      "docking_distance": 0.02255444973707199
+    },
+    {
+      "episode": 907,
+      "goal": 1,
+      "success": 1,
+      "return": -6.937636014074087,
+      "docking_distance": 0.031715746968984604
+    },
+    {
+      "episode": 908,
+      "goal": 2,
+      "success": 1,
+      "return": -12.970773220062256,
+      "docking_distance": 0.050927937030792236
+    },
+    {
+      "episode": 909,
+      "goal": 2,
+      "success": 1,
+      "return": -2.6026963740587234,
+      "docking_distance": 0.0282108336687088
+    },
+    {
+      "episode": 910,
+      "goal": 0,
+      "success": 1,
+      "return": -11.11699539795518,
+      "docking_distance": 0.03573257103562355
+    },
+    {
+      "episode": 911,
+      "goal": 1,
+      "success": 0,
+      "return": -22.451902650296688,
+      "docking_distance": 0.06732197850942612
+    },
+    {
+      "episode": 912,
+      "goal": 2,
+      "success": 1,
+      "return": -10.199622437357903,
+      "docking_distance": 0.03938870131969452
+    },
+    {
+      "episode": 913,
+      "goal": 1,
+      "success": 1,
+      "return": -2.845085896551609,
+      "docking_distance": 0.04373375326395035
+    },
+    {
+      "episode": 914,
+      "goal": 0,
+      "success": 1,
+      "return": -11.139745358377695,
+      "docking_distance": 0.03210695460438728
+    },
+    {
+      "episode": 915,
+      "goal": 1,
+      "success": 1,
+      "return": -7.525047183036804,
+      "docking_distance": 0.021542251110076904
+    },
+    {
+      "episode": 916,
+      "goal": 2,
+      "success": 1,
+      "return": -12.406267419457436,
+      "docking_distance": 0.04317618906497955
+    },
+    {
+      "episode": 917,
+      "goal": 0,
+      "success": 1,
+      "return": -9.060345612466335,
+      "docking_distance": 0.0372103676199913
+    },
+    {
+      "episode": 918,
+      "goal": 0,
+      "success": 1,
+      "return": -7.827311936765909,
+      "docking_distance": 0.05115872994065285
+    },
+    {
+      "episode": 919,
+      "goal": 2,
+      "success": 1,
+      "return": -8.577716071158648,
+      "docking_distance": 0.03357519581913948
+    },
+    {
+      "episode": 920,
+      "goal": 2,
+      "success": 1,
+      "return": -7.255697403103113,
+      "docking_distance": 0.03153032436966896
+    },
+    {
+      "episode": 921,
+      "goal": 2,
+      "success": 1,
+      "return": -8.500397343188524,
+      "docking_distance": 0.0412687249481678
+    },
+    {
+      "episode": 922,
+      "goal": 2,
+      "success": 1,
+      "return": -6.224518422037363,
+      "docking_distance": 0.034243348985910416
+    },
+    {
+      "episode": 923,
+      "goal": 0,
+      "success": 1,
+      "return": -1.438891850411892,
+      "docking_distance": 0.035297296941280365
+    },
+    {
+      "episode": 924,
+      "goal": 0,
+      "success": 1,
+      "return": -5.316612597554922,
+      "docking_distance": 0.044918354600667953
+    },
+    {
+      "episode": 925,
+      "goal": 0,
+      "success": 1,
+      "return": -5.794694788753986,
+      "docking_distance": 0.04607708007097244
+    },
+    {
+      "episode": 926,
+      "goal": 1,
+      "success": 1,
+      "return": -7.545033808797598,
+      "docking_distance": 0.039883073419332504
+    },
+    {
+      "episode": 927,
+      "goal": 2,
+      "success": 1,
+      "return": -2.659633994102478,
+      "docking_distance": 0.04747891426086426
+    },
+    {
+      "episode": 928,
+      "goal": 3,
+      "success": 0,
+      "return": -22.147270176559687,
+      "docking_distance": 0.09172925353050232
+    },
+    {
+      "episode": 929,
+      "goal": 2,
+      "success": 1,
+      "return": -7.440318051725626,
+      "docking_distance": 0.0459982194006443
+    },
+    {
+      "episode": 930,
+      "goal": 1,
+      "success": 1,
+      "return": -1.9806098658591509,
+      "docking_distance": 0.02212289161980152
+    },
+    {
+      "episode": 931,
+      "goal": 2,
+      "success": 1,
+      "return": -8.456761237233877,
+      "docking_distance": 0.013146575540304184
+    },
+    {
+      "episode": 932,
+      "goal": 2,
+      "success": 1,
+      "return": -9.735995523631573,
+      "docking_distance": 0.04097443073987961
+    },
+    {
+      "episode": 933,
+      "goal": 2,
+      "success": 1,
+      "return": -5.782970428466797,
+      "docking_distance": 0.04908376932144165
+    },
+    {
+      "episode": 934,
+      "goal": 2,
+      "success": 1,
+      "return": -8.35943153873086,
+      "docking_distance": 0.02142656221985817
+    },
+    {
+      "episode": 935,
+      "goal": 0,
+      "success": 1,
+      "return": -6.9295910857617855,
+      "docking_distance": 0.02897074446082115
+    },
+    {
+      "episode": 936,
+      "goal": 0,
+      "success": 1,
+      "return": -6.247266054153442,
+      "docking_distance": 0.03729599714279175
+    },
+    {
+      "episode": 937,
+      "goal": 1,
+      "success": 1,
+      "return": -4.737442310899496,
+      "docking_distance": 0.0322420559823513
+    },
+    {
+      "episode": 938,
+      "goal": 3,
+      "success": 0,
+      "return": -21.34328520298004,
+      "docking_distance": 1.2323576211929321
+    },
+    {
+      "episode": 939,
+      "goal": 1,
+      "success": 1,
+      "return": -9.45379750058055,
+      "docking_distance": 0.03820059821009636
+    },
+    {
+      "episode": 940,
+      "goal": 3,
+      "success": 0,
+      "return": -15.070083856582642,
+      "docking_distance": 0.7816599607467651
+    },
+    {
+      "episode": 941,
+      "goal": 0,
+      "success": 1,
+      "return": -5.755127189680934,
+      "docking_distance": 0.02800416760146618
+    },
+    {
+      "episode": 942,
+      "goal": 2,
+      "success": 1,
+      "return": -20.852503299713135,
+      "docking_distance": 0.0540006160736084
+    },
+    {
+      "episode": 943,
+      "goal": 0,
+      "success": 1,
+      "return": -7.674886662513018,
+      "docking_distance": 0.02172597125172615
+    },
+    {
+      "episode": 944,
+      "goal": 0,
+      "success": 1,
+      "return": -9.38645052909851,
+      "docking_distance": 0.03601861000061035
+    },
+    {
+      "episode": 945,
+      "goal": 0,
+      "success": 1,
+      "return": -10.191613957285881,
+      "docking_distance": 0.03502587974071503
+    },
+    {
+      "episode": 946,
+      "goal": 2,
+      "success": 1,
+      "return": -4.8126222006976604,
+      "docking_distance": 0.04673166200518608
+    },
+    {
+      "episode": 947,
+      "goal": 0,
+      "success": 1,
+      "return": -4.653907090425491,
+      "docking_distance": 0.03883078694343567
+    },
+    {
+      "episode": 948,
+      "goal": 2,
+      "success": 1,
+      "return": -12.728806528262794,
+      "docking_distance": 0.010516318492591381
+    },
+    {
+      "episode": 949,
+      "goal": 1,
+      "success": 1,
+      "return": -11.981144219636917,
+      "docking_distance": 0.04723528027534485
+    },
+    {
+      "episode": 950,
+      "goal": 1,
+      "success": 1,
+      "return": -3.3873692471534014,
+      "docking_distance": 0.02651546336710453
+    },
+    {
+      "episode": 951,
+      "goal": 2,
+      "success": 1,
+      "return": -4.923215068876743,
+      "docking_distance": 0.03717938810586929
+    },
+    {
+      "episode": 952,
+      "goal": 1,
+      "success": 1,
+      "return": -11.943299312144518,
+      "docking_distance": 0.04278804734349251
+    },
+    {
+      "episode": 953,
+      "goal": 0,
+      "success": 1,
+      "return": -4.387116584926844,
+      "docking_distance": 0.04521939530968666
+    },
+    {
+      "episode": 954,
+      "goal": 1,
+      "success": 1,
+      "return": -4.675507619976997,
+      "docking_distance": 0.031086161732673645
+    },
+    {
+      "episode": 955,
+      "goal": 0,
+      "success": 1,
+      "return": -8.421919927001,
+      "docking_distance": 0.04236172139644623
+    },
+    {
+      "episode": 956,
+      "goal": 0,
+      "success": 1,
+      "return": -9.321114674210548,
+      "docking_distance": 0.04619850218296051
+    },
+    {
+      "episode": 957,
+      "goal": 2,
+      "success": 1,
+      "return": -3.1051161400973797,
+      "docking_distance": 0.026480000466108322
+    },
+    {
+      "episode": 958,
+      "goal": 0,
+      "success": 1,
+      "return": -12.362486004829407,
+      "docking_distance": 0.055221617221832275
+    },
+    {
+      "episode": 959,
+      "goal": 0,
+      "success": 1,
+      "return": -4.997512984555215,
+      "docking_distance": 0.007305670063942671
+    },
+    {
+      "episode": 960,
+      "goal": 2,
+      "success": 1,
+      "return": -9.840081315487623,
+      "docking_distance": 0.05792240425944328
+    },
+    {
+      "episode": 961,
+      "goal": 2,
+      "success": 1,
+      "return": -5.641365479677916,
+      "docking_distance": 0.04335249587893486
+    },
+    {
+      "episode": 962,
+      "goal": 1,
+      "success": 1,
+      "return": -2.981333560310304,
+      "docking_distance": 0.00954777654260397
+    },
+    {
+      "episode": 963,
+      "goal": 2,
+      "success": 1,
+      "return": -3.3373510874807835,
+      "docking_distance": 0.02828175202012062
+    },
+    {
+      "episode": 964,
+      "goal": 2,
+      "success": 1,
+      "return": -6.693404972553253,
+      "docking_distance": 0.03503537178039551
+    },
+    {
+      "episode": 965,
+      "goal": 2,
+      "success": 1,
+      "return": -8.648034907877445,
+      "docking_distance": 0.04646889120340347
+    },
+    {
+      "episode": 966,
+      "goal": 3,
+      "success": 0,
+      "return": -13.665441572666168,
+      "docking_distance": 0.9951616525650024
+    },
+    {
+      "episode": 967,
+      "goal": 1,
+      "success": 1,
+      "return": -3.612669873982668,
+      "docking_distance": 0.02475665882229805
+    },
+    {
+      "episode": 968,
+      "goal": 0,
+      "success": 1,
+      "return": -8.404917668551207,
+      "docking_distance": 0.05059469863772392
+    },
+    {
+      "episode": 969,
+      "goal": 3,
+      "success": 0,
+      "return": -14.979854464530945,
+      "docking_distance": 0.6643218994140625
+    },
+    {
+      "episode": 970,
+      "goal": 0,
+      "success": 1,
+      "return": -3.349603794515133,
+      "docking_distance": 0.033285461366176605
+    },
+    {
+      "episode": 971,
+      "goal": 3,
+      "success": 0,
+      "return": -25.060070723295212,
+      "docking_distance": 0.3311190903186798
+    },
+    {
+      "episode": 972,
+      "goal": 3,
+      "success": 0,
+      "return": -13.637285888195038,
+      "docking_distance": 0.7121707797050476
+    },
+    {
+      "episode": 973,
+      "goal": 3,
+      "success": 0,
+      "return": -14.91941499710083,
+      "docking_distance": 0.6454888582229614
+    },
+    {
+      "episode": 974,
+      "goal": 2,
+      "success": 1,
+      "return": -3.6914813946932554,
+      "docking_distance": 0.01927773468196392
+    },
+    {
+      "episode": 975,
+      "goal": 3,
+      "success": 0,
+      "return": -22.385137110948563,
+      "docking_distance": 1.132127285003662
+    },
+    {
+      "episode": 976,
+      "goal": 0,
+      "success": 1,
+      "return": -4.539238132536411,
+      "docking_distance": 0.04707113653421402
+    },
+    {
+      "episode": 977,
+      "goal": 0,
+      "success": 1,
+      "return": -9.220081217586994,
+      "docking_distance": 0.03012121468782425
+    },
+    {
+      "episode": 978,
+      "goal": 1,
+      "success": 1,
+      "return": -3.6733394004404545,
+      "docking_distance": 0.024347279220819473
+    },
+    {
+      "episode": 979,
+      "goal": 0,
+      "success": 1,
+      "return": -4.694268554449081,
+      "docking_distance": 0.04856899380683899
+    },
+    {
+      "episode": 980,
+      "goal": 0,
+      "success": 1,
+      "return": -5.240713242441416,
+      "docking_distance": 0.040921662002801895
+    },
+    {
+      "episode": 981,
+      "goal": 2,
+      "success": 1,
+      "return": -4.135336637496948,
+      "docking_distance": 0.03379148244857788
+    },
+    {
+      "episode": 982,
+      "goal": 2,
+      "success": 1,
+      "return": -2.781838171184063,
+      "docking_distance": 0.0518682524561882
+    },
+    {
+      "episode": 983,
+      "goal": 0,
+      "success": 1,
+      "return": -5.813487205654383,
+      "docking_distance": 0.03160599246621132
+    },
+    {
+      "episode": 984,
+      "goal": 2,
+      "success": 1,
+      "return": -5.769138865172863,
+      "docking_distance": 0.04524373263120651
+    },
+    {
+      "episode": 985,
+      "goal": 2,
+      "success": 1,
+      "return": -3.2450031843036413,
+      "docking_distance": 0.029971560463309288
+    },
+    {
+      "episode": 986,
+      "goal": 1,
+      "success": 1,
+      "return": -10.371487826108932,
+      "docking_distance": 0.031979531049728394
+    },
+    {
+      "episode": 987,
+      "goal": 2,
+      "success": 1,
+      "return": -5.544310916215181,
+      "docking_distance": 0.049545932561159134
+    },
+    {
+      "episode": 988,
+      "goal": 0,
+      "success": 1,
+      "return": -4.927652144804597,
+      "docking_distance": 0.02975013293325901
+    },
+    {
+      "episode": 989,
+      "goal": 2,
+      "success": 1,
+      "return": -3.486178193241358,
+      "docking_distance": 0.04471364989876747
+    },
+    {
+      "episode": 990,
+      "goal": 0,
+      "success": 1,
+      "return": -5.987311311066151,
+      "docking_distance": 0.041935987770557404
+    },
+    {
+      "episode": 991,
+      "goal": 2,
+      "success": 1,
+      "return": -6.215968064963818,
+      "docking_distance": 0.03669857233762741
+    },
+    {
+      "episode": 992,
+      "goal": 1,
+      "success": 1,
+      "return": -4.28896702080965,
+      "docking_distance": 0.03338927775621414
+    },
+    {
+      "episode": 993,
+      "goal": 2,
+      "success": 1,
+      "return": -22.069887164980173,
+      "docking_distance": 0.05313045158982277
+    },
+    {
+      "episode": 994,
+      "goal": 0,
+      "success": 1,
+      "return": -7.7364759892225266,
+      "docking_distance": 0.04287742078304291
+    },
+    {
+      "episode": 995,
+      "goal": 1,
+      "success": 1,
+      "return": -8.579383354634047,
+      "docking_distance": 0.039674799889326096
+    },
+    {
+      "episode": 996,
+      "goal": 0,
+      "success": 1,
+      "return": -2.3854828849434853,
+      "docking_distance": 0.0473085418343544
+    },
+    {
+      "episode": 997,
+      "goal": 0,
+      "success": 1,
+      "return": -5.976062938570976,
+      "docking_distance": 0.035983607172966
+    },
+    {
+      "episode": 998,
+      "goal": 2,
+      "success": 1,
+      "return": -2.8901942297816277,
+      "docking_distance": 0.051102571189403534
+    },
+    {
+      "episode": 999,
+      "goal": 3,
+      "success": 0,
+      "return": -17.194145798683167,
+      "docking_distance": 1.0720441341400146
+    }
+  ],
+  "summary": {
+    "p_i": [
+      0.345,
+      0.202,
+      0.305,
+      0.002
+    ],
+    "total_success": 0.8539999999999999,
+    "successful_goal_entropy_nats": 1.0890713753140464,
+    "successful_goal_entropy_normalized": 0.7855989361698489,
+    "u4": 0.5462702740794999,
+    "u16": 0.75009275729395,
+    "mean_return": -8.44666896384419
+  },
+  "eval_seed": 26152
+}

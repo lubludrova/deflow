@@ -17,3 +17,13 @@ Profile and commands: ops/profile.json and ops/manifest.json.
 Status: ops/monitor_state.json and monitor_history.jsonl.
 All final statistics must use these new fresh attempts. Preserve administrative
 stops as separate provenance. Shared GPU SPS is not exclusive solver timing.
+
+## Final operational clarification — 2026-11-12T13:45:25.630771+00:00
+
+These results belong exclusively to the fresh `restart1` campaign explicitly authorized after the original attempts were stopped by the global stop request. The original stopped attempts remain separate. There were no scientific retries or resumes within restart1. Shared-GPU throughput is not an isolated solver timing comparison. Final critical artifacts were verified locally against the server-generated verification and final synchronization receipts. See `../ops/COMPLETED.json`.
+
+For restart1, E04 trained with E05 peers during their overlapping training interval, then continued after those peers finished. The earlier initial-exclusive-operation wording describes the preceding campaign history, not a controlled timing phase of restart1.
+
+Final results: `analysis/REPORT.md`.
+
+Final follow-up: at 13:44:46 UTC all three server GPUs were idle (0% utilization, 2 MiB each), with no compute processes. The existing SSH control connection succeeded. All five restart1-only local monitoring/synchronization/keepawake services were unloaded after verification. Files, remote artifacts, shared SSH and unrelated services were preserved. See `ops/FINAL_OBSERVATION_AND_CLEANUP.json`.

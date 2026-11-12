@@ -1,0 +1,33 @@
+{
+  "pid": 102170,
+  "argv": [
+    "/home/featurize/deflow-sequential-anderson-20261112/venv/bin/python",
+    "-m",
+    "deflow_rebuttal.audit",
+    "--engine",
+    "/home/featurize/deflow-anderson-table-audit-20261112/code/DEFlow/src/docking_full/sac_anderson_flow.py",
+    "--checkpoint",
+    "/home/featurize/deflow-anderson-table-audit-20261112/inputs/s2_200000.pt",
+    "--inputs",
+    "/home/featurize/deflow-anderson-table-audit-20261112/inputs/s2_200000.pt",
+    "--anderson-tol",
+    "1e-5",
+    "--anderson-caps",
+    "10",
+    "25",
+    "100",
+    "500",
+    "--output",
+    "/home/featurize/deflow-anderson-table-audit-20261112/audits/s2_200000_sweep",
+    "--device",
+    "cuda",
+    "--warmup",
+    "2",
+    "--repeats",
+    "10",
+    "--precision-policy",
+    "strict_fp32",
+    "--require-same-capsule"
+  ],
+  "at": 1794492281.1097105
+}

@@ -1,0 +1,44 @@
+{
+  "run_id": "s1_25000_tight",
+  "seed": 1,
+  "target_step": 25000,
+  "actual_step": 26726,
+  "input": "inputs/s1_25000.pt",
+  "input_sha256": "58880cad105fe016f1a07d01d72fe68ea02fade3437f454f119876f87cd73fa9",
+  "tol": 1e-06,
+  "caps": [
+    100
+  ],
+  "argv": [
+    "/home/featurize/deflow-sequential-anderson-20261112/venv/bin/python",
+    "-m",
+    "deflow_rebuttal.audit",
+    "--engine",
+    "/home/featurize/deflow-anderson-table-audit-20261112/code/DEFlow/src/docking_full/sac_anderson_flow.py",
+    "--checkpoint",
+    "/home/featurize/deflow-anderson-table-audit-20261112/inputs/s1_25000.pt",
+    "--inputs",
+    "/home/featurize/deflow-anderson-table-audit-20261112/inputs/s1_25000.pt",
+    "--anderson-tol",
+    "1e-6",
+    "--anderson-cap",
+    "100",
+    "--output",
+    "/home/featurize/deflow-anderson-table-audit-20261112/audits/s1_25000_tight",
+    "--device",
+    "cuda",
+    "--warmup",
+    "2",
+    "--repeats",
+    "10",
+    "--precision-policy",
+    "strict_fp32",
+    "--require-same-capsule"
+  ],
+  "gpu_samples": [
+    "GPU-76379389-f799-da48-fde8-accbca15445b, 0, 2",
+    "GPU-76379389-f799-da48-fde8-accbca15445b, 0, 2",
+    "GPU-76379389-f799-da48-fde8-accbca15445b, 0, 2"
+  ],
+  "at": 1794491654.5491464
+}

@@ -1,4 +1,4 @@
-> **Current attempt:** [`a100-20261112-restart1`](runs/a100-20261112-restart1/HANDOFF.md), three seeds verified TRAINING on 12 November 2026. Use its `ops/status.py` and existing sync services. [Published log snapshot](runs/a100-20261112-restart1/publication-snapshot-20261112/) is dated and contains no checkpoints. The original non-restart attempt described below was stopped and is now in the ignored local archive. No final evaluation is available for the restart snapshot.
+> **Completed:** three `restart1` trainings and three 1000-episode evaluations, all child exits 0. [Final report](runs/a100-20261112-restart1/analysis/REPORT.md), [verified final evidence](runs/a100-20261112-restart1/completion-snapshot-20261112/). The earlier publication snapshot and original stopped attempts are historical. No job remains queued.
 
 # E04 — joint Anderson tolerance 1e-5, cap 100
 
@@ -44,3 +44,13 @@ E04 runtime now includes shared-GPU intervals. Report those explicitly and do
 not treat full-run SPS as an exclusive-GPU cost measurement. E05 preflight and
 production receipts bound these intervals. Do not reload E04's original sync
 publisher while E05 training is active, because that bypasses the ACK guard.
+
+## Current attempt: restart1
+
+After the global administrative stop, the user explicitly requested immediate
+continuation. Exact resume is unsupported because the checkpoints omit replay,
+optimizer and RNG state, so a fresh replacement was launched with unchanged
+science and seeds. [Current run](runs/a100-20261112-restart1/HANDOFF.md),
+[active pointer](ACTIVE_RUN.json), and
+[completion receipt](runs/a100-20261112-restart1/ops/COMPLETED.json).
+The original stopped attempts remain preserved. Only restart1 contributes to the final results. All work is complete.

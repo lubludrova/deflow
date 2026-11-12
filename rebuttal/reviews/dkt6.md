@@ -26,16 +26,15 @@ We agree that DEFlow's additional computational cost must be justified by a conc
 
 2. **Higher sample efficiency.** Across the five MuJoCo and five manipulation tasks, DEFlow achieves higher mean return AUC than SAC-Flow on 8/10 tasks and both SAC and DIME on 7/10 tasks each, suggesting improved sample efficiency under the evaluated training recipes (Tables 7–8). Additionally, at 100k training steps, DEFlow achieves returns of 25.7 ± 6.8 on PickCube and 40.5 ± 0.4 on PushCube, compared with 18.3 ± 1.8 and 39.4 ± 1.0 for SAC, 17.2 ± 3.1 and 31.9 ± 1.7 for SAC-Flow, and 20.2 ± 1.8 and 32.6 ± 8.3 for DIME, respectively. Averaging the DEFlow-to-baseline return ratios across both tasks and all three baselines yields a mean relative improvement of **28.5%** at this checkpoint. Thus, we are simply more sample efficient and we believe that in some cases where environment is too expensive this benefit can make the learning more efficient.
 
-**Q: “How reliable are the policy gradients and action densities when the equilibrium solver does not converge?”
+**Q: “How reliable are the policy gradients and action densities when the equilibrium solver does not converge?”**
 
 Thank you for raising this concern. We agree that our original final-checkpoint analysis was insufficient to establish reliability during learning. Without convergence, both quantities are approximations whose accuracy requires checking. To answer this concern, we decided to conduct one more ablation study, trying to show how different the DEFlow performs on docking task with different tolerance and cap settings.
 | Anderson setting (tolerance / cap) | Forward time (ms/batch) | Log-density (nat), Median | Log-density (nat), P95 | Gradient (%), Median | Gradient (%), P95 | Success (%) |
 |---|---:|---:|---:|---:|---:|---:|
-| 1e-5 / 10 | | | | | | |  
-| 1e-5 / 25 | 21.83 | 7.19e-7 | 7.54e-3 | 8.02 | 59.0 | 96.17 ± 1.10 |
-| 1e-5 / 500 | 53.34 | 3.53e-7 | 4.65e-6 | 0.395 | 2.57 | 98.20 ± 0.70 |
-| 1e-5 / 100 | | | | | | |
-| 1e-6 / 100 | 74.13 | 3.53e-7 | 2.70e-6 | 0.0344 | 0.375 | 96.53 ± 1.60 |
+| 1e-5 / 10 | 7.63 | 1.47e-4 | 9.19e-2 | 207 | 315 | 50.63 ± 6.86 |
+| 1e-5 / 25 | 18.76 | 7.77e-7 | 7.54e-3 | 8.02 | 59.0 | 96.17 ± 1.10 |
+| 1e-5 / 500 | 44.73 | 4.10e-7 | 4.39e-6 | 0.395 | 2.57 | 98.20 ± 0.70 |
+| 1e-5 / 100 | 45.23 | 4.09e-7 | 4.97e-6 | 0.395 | 2.57 | 93.40 ± 6.93 |
+| 1e-6 / 100 | 64.22 | 3.95e-7 | 2.70e-6 | 0.0343 | 0.0946 | 96.53 ± 1.60 |
 
-
-Our original audit (Appendix C.1, Tables 3–4) examined solver accuracy and success at final manipulation checkpoints. We now extend this analysis to training checkpoints and independently trained policies on wide-navigation/tight-docking MultiGoal. Timing and errors compare solver settings on identical batches saved during training with tolerance 1e-5 and cap 25. As in Table 3, log-density discrepancy is the absolute difference from the reference, and gradient discrepancy is the relative L2 difference, expressed as a percentage. Errors use a safeguarded FP64 equilibrium reference: log-density statistics pool 5,120 trajectories, while gradient statistics summarize five fully valid batches. Four other batches, including all three near 100k transitions, lack a fully valid reference and are excluded from these error summaries. Success comes from separate 200k-transition training runs, evaluated with their respective training solver, and reports mean ± sample SD across three seeds with 1,000 stochastic episodes each. More accurate solves substantially reduce numerical discrepancies, while success remains high across settings. These results do not establish exact densities or derivatives of the finite-iteration sampler or resolve the PushWall limitation.
+All reported solver comparisons use the same Jacobian-regularization schedule: β increases linearly from zero to 0.01 over the first 100k transitions, with a Jacobian-norm threshold of 0.9. We have not conducted a separate β ablation, so these experiments assess sensitivity to solver settings while leaving sensitivity to the regularization strength unresolved.
